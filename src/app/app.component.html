@@ -427,7 +427,7 @@
   </div>
 
   <!-- Terminal -->
-  <div class="terminal" [ngSwitch]="selection.value">
+  <div class="terminal" [ngSwitch]="selection.value" (click)="callDebug()">
       <pre *ngSwitchDefault>ng generate component xyz</pre>
       <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
       <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>

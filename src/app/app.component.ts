@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'k42un0k0keymanager';
+  callDebug() {
+    window.main.debug();
+  }
 }
