@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'k42un0k0keymanager';
+  title = 'k42un0k0passwordmanager';
   callDebug() {
     window.main.debug();
   }

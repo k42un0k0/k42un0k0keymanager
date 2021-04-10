@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'k42un0k0keymanager'`, () => {
+  it(`should have as title 'k42un0k0passwordmanager'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('k42un0k0keymanager');
+    expect(app.title).toEqual('k42un0k0passwordmanager');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('k42un0k0keymanager app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('k42un0k0passwordmanager app is running!');
   });
 });
