@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('k42un0k0keymanager app is running!');
+    expect(await page.getTitleText()).toEqual('k42un0k0passwordmanager app is running!');
   });
 
   afterEach(async () => {

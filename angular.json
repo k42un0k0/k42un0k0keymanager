@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "k42un0k0keymanager": {
+    "k42un0k0passwordmanager": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/k42un0k0keymanager",
+            "outputPath": "dist/k42un0k0passwordmanager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "k42un0k0keymanager:build"
+            "browserTarget": "k42un0k0passwordmanager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "k42un0k0keymanager:build:production"
+              "browserTarget": "k42un0k0passwordmanager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "k42un0k0keymanager:build"
+            "browserTarget": "k42un0k0passwordmanager:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "k42un0k0keymanager:serve"
+            "devServerTarget": "k42un0k0passwordmanager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "k42un0k0keymanager:serve:production"
+              "devServerTarget": "k42un0k0passwordmanager:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "k42un0k0keymanager"
+  "defaultProject": "k42un0k0passwordmanager"
 }
