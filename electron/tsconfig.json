@@ -14,5 +14,4 @@
     "outDir": "../dist",
     "sourceMap":true
   },
-  "include": ["../electron"]
 }

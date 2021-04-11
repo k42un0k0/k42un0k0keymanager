@@ -10,4 +10,7 @@ export class AppComponent {
   callDebug() {
     window.main.debug();
   }
+  openAuthWindow() {
+    window.main.window.auth();
+  }
 }

@@ -1,1 +1,14 @@
 # k42un0k0passwordmanager
+
+## Attention
+
+- 初回起動時、distフォルダに何もないので起動が失敗するので、`build:electron`してから起動して下さい
+
+## ページ追加のコマンド
+
+```sh
+> ng g module name --route path --module module
+```
+
+- `--route`
+  - `--module`で指定したモジュールに対して、指定したパスでのlazy loadの記述をしてくれる
