@@ -12,13 +12,13 @@ class RegisterPage{}
 
 class MainWindow{}
 class OuterAccountListPage{}
-class UserAccountSettingWindow{}
+class UserAccountManagerWindow{}
 class UserAccountListPage{}
 class UserAccountSettingPage{}
 
 BrowserWindow <|-- AuthenticationWindow
 BrowserWindow <|-- MainWindow
-BrowserWindow <|-- UserAccountSettingWindow
+BrowserWindow <|-- UserAccountManagerWindow
  LoginPage --|> Page
  RegisterPage --|> Page
  UserAccountListPage --|> Page
@@ -27,9 +27,9 @@ BrowserWindow <|-- UserAccountSettingWindow
 AuthenticationWindow ..> LoginPage
 AuthenticationWindow ..> RegisterPage
 AuthenticationWindow .> MainWindow
-MainWindow .> UserAccountSettingWindow
+MainWindow .> UserAccountManagerWindow
 MainWindow ..> OuterAccountListPage
-UserAccountSettingWindow ..> UserAccountListPage
-UserAccountSettingWindow ..> UserAccountSettingPage
+UserAccountManagerWindow ..> UserAccountListPage
+UserAccountManagerWindow ..> UserAccountSettingPage
 
 @enduml
