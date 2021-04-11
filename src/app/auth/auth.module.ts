@@ -13,7 +13,6 @@ import { BaseModule } from './base/base.module';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    BaseModule
   ]
 })
 export class AuthModule { }

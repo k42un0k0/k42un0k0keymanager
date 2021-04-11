@@ -1,9 +1,21 @@
-:root {
+:host {
+  display: flex;
+  flex-direction: column;
+
   label {
-    padding: 10px;
+    color: #C4C4C4;
+    padding: 1rem;
   }
 
   input {
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: .75rem;
+    border: 1px solid #0DEC6B;
+    border-radius: 4px;
+    color: #0DEC6B;
+    background-color: transparent;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
