@@ -1,3 +1,6 @@
 @startuml クラス図
 
+!include ./windows.pu
+
+
 @enduml

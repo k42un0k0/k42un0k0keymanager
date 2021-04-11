@@ -2,5 +2,6 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld("process", { env: { ...process.env } });
 contextBridge.exposeInMainWorld("main", {
-    debug: () => ipcRenderer.send("debug")
+    debug: () => ipcRenderer.send("debug"),
+    close: () => ipcRenderer.send("close")
 });
