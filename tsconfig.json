@@ -21,6 +21,10 @@
       "dom"
     ]
   },
+  "files": [
+    "src/main.ts",
+    "./electron/preload.d.ts"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

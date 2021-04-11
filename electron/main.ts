@@ -15,7 +15,6 @@ function main() {
       webPreferences: {
         preload: path.join(__dirname, "preload.js")
       },
-      frame: false
     })
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({
