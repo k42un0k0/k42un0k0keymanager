@@ -11,5 +11,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  userId = "User ID"
+  password = "Password"
+  passwordConfirmation = "Password Confirmation"
 }
