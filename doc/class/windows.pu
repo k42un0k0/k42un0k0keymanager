@@ -1,0 +1,35 @@
+@startuml
+
+interface BrowserWindow{}
+
+interface Page {}
+
+class AuthenticationWindow{}
+
+class LoginPage{}
+
+class RegisterPage{}
+
+class MainWindow{}
+class OuterAccountListPage{}
+class UserAccountSettingWindow{}
+class UserAccountListPage{}
+class UserAccountSettingPage{}
+
+BrowserWindow <|-- AuthenticationWindow
+BrowserWindow <|-- MainWindow
+BrowserWindow <|-- UserAccountSettingWindow
+ LoginPage --|> Page
+ RegisterPage --|> Page
+ UserAccountListPage --|> Page
+ UserAccountSettingPage --|> Page
+ OuterAccountListPage --|> Page
+AuthenticationWindow ..> LoginPage
+AuthenticationWindow ..> RegisterPage
+AuthenticationWindow .> MainWindow
+MainWindow .> UserAccountSettingWindow
+MainWindow ..> OuterAccountListPage
+UserAccountSettingWindow ..> UserAccountListPage
+UserAccountSettingWindow ..> UserAccountSettingPage
+
+@enduml

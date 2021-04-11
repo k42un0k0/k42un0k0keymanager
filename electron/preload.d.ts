@@ -1,6 +1,7 @@
 
 declare interface Window {
     main: {
-        debug: () => void
+        debug: () => void,
+        close: () => void,
     }
 }
