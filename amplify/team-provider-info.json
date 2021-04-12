@@ -10,6 +10,11 @@
             "StackName": "amplify-passwordmanager-dev-143428",
             "StackId": "arn:aws:cloudformation:ap-northeast-1:732792174901:stack/amplify-passwordmanager-dev-143428/c1f5ea20-9b50-11eb-ba36-0a8d3e86f3f1",
             "AmplifyAppId": "dac7utmi2ms0o"
+        },
+        "categories": {
+            "auth": {
+                "passwordmanager3e6c09d9": {}
+            }
         }
     }
 }

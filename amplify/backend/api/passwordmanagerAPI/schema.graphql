@@ -1,0 +1,16 @@
+type UserAccount @model {
+  id: ID!
+  name: String!
+  OuterAccounts: [OuterAccount] @connection(keyName: "byUserAccount", fields: ["id"])
+}
+
+type OuterAccount @model @key(name: "byUserAccount", fields: ["userAccountID"]) {
+  id: ID!
+  name: String!
+  iconPath: String!
+  userId: String!
+  link: String!
+  password: String!
+  userAccountID: ID!
+  userAccount: UserAccount @connection(fields: ["userAccountID"])
+}
