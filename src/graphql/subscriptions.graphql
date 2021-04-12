@@ -1,0 +1,175 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUserAccount {
+  onCreateUserAccount {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUserAccount {
+  onUpdateUserAccount {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUserAccount {
+  onDeleteUserAccount {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateOuterAccount {
+  onCreateOuterAccount {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateOuterAccount {
+  onUpdateOuterAccount {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteOuterAccount {
+  onDeleteOuterAccount {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}

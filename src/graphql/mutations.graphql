@@ -1,0 +1,193 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateUserAccount(
+  $input: CreateUserAccountInput!
+  $condition: ModelUserAccountConditionInput
+) {
+  createUserAccount(input: $input, condition: $condition) {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateUserAccount(
+  $input: UpdateUserAccountInput!
+  $condition: ModelUserAccountConditionInput
+) {
+  updateUserAccount(input: $input, condition: $condition) {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteUserAccount(
+  $input: DeleteUserAccountInput!
+  $condition: ModelUserAccountConditionInput
+) {
+  deleteUserAccount(input: $input, condition: $condition) {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateOuterAccount(
+  $input: CreateOuterAccountInput!
+  $condition: ModelOuterAccountConditionInput
+) {
+  createOuterAccount(input: $input, condition: $condition) {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateOuterAccount(
+  $input: UpdateOuterAccountInput!
+  $condition: ModelOuterAccountConditionInput
+) {
+  updateOuterAccount(input: $input, condition: $condition) {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteOuterAccount(
+  $input: DeleteOuterAccountInput!
+  $condition: ModelOuterAccountConditionInput
+) {
+  deleteOuterAccount(input: $input, condition: $condition) {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
