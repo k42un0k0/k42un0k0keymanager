@@ -1,0 +1,183 @@
+# this is an auto generated file. This will be overwritten
+query SyncUserAccounts(
+  $filter: ModelUserAccountFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncUserAccounts(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetUserAccount($id: ID!) {
+  getUserAccount(id: $id) {
+    id
+    name
+    OuterAccounts {
+      items {
+        id
+        name
+        iconPath
+        userId
+        link
+        password
+        userAccountID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListUserAccounts(
+  $filter: ModelUserAccountFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUserAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncOuterAccounts(
+  $filter: ModelOuterAccountFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncOuterAccounts(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      name
+      iconPath
+      userId
+      link
+      password
+      userAccountID
+      userAccount {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetOuterAccount($id: ID!) {
+  getOuterAccount(id: $id) {
+    id
+    name
+    iconPath
+    userId
+    link
+    password
+    userAccountID
+    userAccount {
+      id
+      name
+      OuterAccounts {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListOuterAccounts(
+  $filter: ModelOuterAccountFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOuterAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      iconPath
+      userId
+      link
+      password
+      userAccountID
+      userAccount {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
