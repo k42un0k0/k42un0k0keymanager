@@ -13,6 +13,7 @@
     "src/**/*.d.ts"
   ],
   "exclude": [
-    "**/*.stories.*"
+    "**/*.stories.*",
+    "node_modules/@aws-amplify/api-graphql/lib-esm/types/index.d.ts"
   ]
 }
