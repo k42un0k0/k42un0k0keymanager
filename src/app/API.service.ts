@@ -7,12 +7,16 @@ import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import { Observable } from "zen-observable-ts";
 
 export type CreateUserAccountInput = {
+  sub: string;
+  token: string;
   id?: string | null;
   name: string;
   _version?: number | null;
 };
 
 export type ModelUserAccountConditionInput = {
+  sub?: ModelStringInput | null;
+  token?: ModelStringInput | null;
   name?: ModelStringInput | null;
   and?: Array<ModelUserAccountConditionInput | null> | null;
   or?: Array<ModelUserAccountConditionInput | null> | null;
@@ -59,6 +63,8 @@ export type ModelSizeInput = {
 };
 
 export type UpdateUserAccountInput = {
+  sub?: string | null;
+  token?: string | null;
   id: string;
   name?: string | null;
   _version?: number | null;
@@ -125,6 +131,8 @@ export type DeleteOuterAccountInput = {
 };
 
 export type ModelUserAccountFilterInput = {
+  sub?: ModelStringInput | null;
+  token?: ModelStringInput | null;
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
   and?: Array<ModelUserAccountFilterInput | null> | null;
@@ -147,6 +155,8 @@ export type ModelOuterAccountFilterInput = {
 
 export type CreateUserAccountMutation = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -178,6 +188,8 @@ export type CreateUserAccountMutation = {
 
 export type UpdateUserAccountMutation = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -209,6 +221,8 @@ export type UpdateUserAccountMutation = {
 
 export type DeleteUserAccountMutation = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -249,6 +263,8 @@ export type CreateOuterAccountMutation = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -280,6 +296,8 @@ export type UpdateOuterAccountMutation = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -311,6 +329,8 @@ export type DeleteOuterAccountMutation = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -335,6 +355,8 @@ export type SyncUserAccountsQuery = {
   __typename: "ModelUserAccountConnection";
   items: Array<{
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -354,6 +376,8 @@ export type SyncUserAccountsQuery = {
 
 export type GetUserAccountQuery = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -387,6 +411,8 @@ export type ListUserAccountsQuery = {
   __typename: "ModelUserAccountConnection";
   items: Array<{
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -417,6 +443,8 @@ export type SyncOuterAccountsQuery = {
     userAccountID: string;
     userAccount: {
       __typename: "UserAccount";
+      sub: string;
+      token: string;
       id: string;
       name: string;
       _version: number;
@@ -446,6 +474,8 @@ export type GetOuterAccountQuery = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -479,6 +509,8 @@ export type ListOuterAccountsQuery = {
     userAccountID: string;
     userAccount: {
       __typename: "UserAccount";
+      sub: string;
+      token: string;
       id: string;
       name: string;
       _version: number;
@@ -499,6 +531,8 @@ export type ListOuterAccountsQuery = {
 
 export type OnCreateUserAccountSubscription = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -530,6 +564,8 @@ export type OnCreateUserAccountSubscription = {
 
 export type OnUpdateUserAccountSubscription = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -561,6 +597,8 @@ export type OnUpdateUserAccountSubscription = {
 
 export type OnDeleteUserAccountSubscription = {
   __typename: "UserAccount";
+  sub: string;
+  token: string;
   id: string;
   name: string;
   OuterAccounts: {
@@ -601,6 +639,8 @@ export type OnCreateOuterAccountSubscription = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -632,6 +672,8 @@ export type OnUpdateOuterAccountSubscription = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -663,6 +705,8 @@ export type OnDeleteOuterAccountSubscription = {
   userAccountID: string;
   userAccount: {
     __typename: "UserAccount";
+    sub: string;
+    token: string;
     id: string;
     name: string;
     OuterAccounts: {
@@ -694,6 +738,8 @@ export class APIService {
     const statement = `mutation CreateUserAccount($input: CreateUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         createUserAccount(input: $input, condition: $condition) {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -741,6 +787,8 @@ export class APIService {
     const statement = `mutation UpdateUserAccount($input: UpdateUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         updateUserAccount(input: $input, condition: $condition) {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -788,6 +836,8 @@ export class APIService {
     const statement = `mutation DeleteUserAccount($input: DeleteUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         deleteUserAccount(input: $input, condition: $condition) {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -844,6 +894,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -891,6 +943,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -938,6 +992,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -980,6 +1036,8 @@ export class APIService {
           __typename
           items {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -1019,6 +1077,8 @@ export class APIService {
     const statement = `query GetUserAccount($id: ID!) {
         getUserAccount(id: $id) {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -1066,6 +1126,8 @@ export class APIService {
           __typename
           items {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -1118,6 +1180,8 @@ export class APIService {
             userAccountID
             userAccount {
               __typename
+              sub
+              token
               id
               name
               _version
@@ -1167,6 +1231,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -1214,6 +1280,8 @@ export class APIService {
             userAccountID
             userAccount {
               __typename
+              sub
+              token
               id
               name
               _version
@@ -1254,6 +1322,8 @@ export class APIService {
       `subscription OnCreateUserAccount {
         onCreateUserAccount {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -1293,6 +1363,8 @@ export class APIService {
       `subscription OnUpdateUserAccount {
         onUpdateUserAccount {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -1332,6 +1404,8 @@ export class APIService {
       `subscription OnDeleteUserAccount {
         onDeleteUserAccount {
           __typename
+          sub
+          token
           id
           name
           OuterAccounts {
@@ -1380,6 +1454,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -1419,6 +1495,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {
@@ -1458,6 +1536,8 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
+            sub
+            token
             id
             name
             OuterAccounts {

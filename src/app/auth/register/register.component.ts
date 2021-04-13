@@ -1,4 +1,6 @@
+import { AuthenticationService } from '../../base/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  userId = "User ID"
-  password = "Password"
-  passwordConfirmation = "Password Confirmation"
+  username = ""
+  password = ""
+  email = ""
+  passwordConfirmation = ""
+
+  async submit() {
+    await this.authenticationService.signUp({ username: this.username, password: this.password, email: this.email }).then((res) => { console.log(res) })
+    this.router.navigate(['/auth/confirm'], { queryParams: { username: this.username } });
+  }
 }

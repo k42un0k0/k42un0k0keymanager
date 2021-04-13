@@ -2,10 +2,11 @@
 <h1 class="title">Register</h1>
 <form>
     <div class="input-group">
-        <app-input [label]="userId"></app-input>
-        <app-input [label]="password"></app-input>        
-        <app-input [label]="passwordConfirmation"></app-input>        
+        <app-input label="User ID" [(value)]="username"></app-input>
+        <app-input label="Email" [(value)]="email"></app-input>
+        <app-input label="Password" [(value)]="password"></app-input>
+        <app-input label="Password Confirmation" [(value)]="passwordConfirmation"></app-input>
     </div>
-    <span class="button">Submit</span>
+    <span class="button" (click)="submit()">Submit</span>
 </form>
-<span class="link">Login</span>
+<a routerLink="/auth/login" class="link">Login</a>

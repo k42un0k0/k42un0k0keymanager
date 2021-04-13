@@ -1,6 +1,8 @@
 # this is an auto generated file. This will be overwritten
 subscription OnCreateUserAccount {
   onCreateUserAccount {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -30,6 +32,8 @@ subscription OnCreateUserAccount {
 }
 subscription OnUpdateUserAccount {
   onUpdateUserAccount {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -59,6 +63,8 @@ subscription OnUpdateUserAccount {
 }
 subscription OnDeleteUserAccount {
   onDeleteUserAccount {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -96,6 +102,8 @@ subscription OnCreateOuterAccount {
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -125,6 +133,8 @@ subscription OnUpdateOuterAccount {
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -154,6 +164,8 @@ subscription OnDeleteOuterAccount {
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {

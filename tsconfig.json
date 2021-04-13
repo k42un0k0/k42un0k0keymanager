@@ -19,12 +19,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "noImplicitAny": false
   },
   "files": [
     "./electron/preload.d.ts"
   ],
   "include": ["src"],
+  "exclude": ["node_modules/@aws-amplify/api-graphql/lib-esm/types/index.d.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

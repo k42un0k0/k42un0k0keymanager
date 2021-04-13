@@ -2,9 +2,9 @@
 <h1 class="title">K42un0k0 Password Manager</h1>
 <form>
     <div class="input-group">
-        <app-input [label]="userId"></app-input>
-        <app-input [label]="password"></app-input>        
+        <app-input label="User ID" [(value)]="username"></app-input>
+        <app-input label="Password" [(value)]="password"></app-input>
     </div>
-    <span class="button">Login</span>
+    <span class="button" (click)="submit()">Login</span>
 </form>
-<span class="link">Register</span>
+<a routerLink="/auth/register" class="link">Register</a>
