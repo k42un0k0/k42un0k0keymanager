@@ -12,6 +12,8 @@ query SyncUserAccounts(
     lastSync: $lastSync
   ) {
     items {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -30,6 +32,8 @@ query SyncUserAccounts(
 }
 query GetUserAccount($id: ID!) {
   getUserAccount(id: $id) {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -64,6 +68,8 @@ query ListUserAccounts(
 ) {
   listUserAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -101,6 +107,8 @@ query SyncOuterAccounts(
       password
       userAccountID
       userAccount {
+        sub
+        token
         id
         name
         _version
@@ -129,6 +137,8 @@ query GetOuterAccount($id: ID!) {
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -163,6 +173,8 @@ query ListOuterAccounts(
       password
       userAccountID
       userAccount {
+        sub
+        token
         id
         name
         _version

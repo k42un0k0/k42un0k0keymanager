@@ -1,3 +1,5 @@
+import { APIService } from './../API.service';
+import { AuthenticationService } from '../base/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private apiService: APIService) { }
 
   ngOnInit(): void {
   }
-
+  logout() {
+    console.log("logout");
+    this.authenticationService.signOut();
+  }
 }

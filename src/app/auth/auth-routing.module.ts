@@ -1,8 +1,16 @@
+import { UnauthedGuard } from '../base/guards/unauthed.guard';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
-const routes: Routes = [{ path: '', component: AuthComponent }, { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) }, { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) }];
+const routes: Routes = [
+  { path: 'login', canActivate: [UnauthedGuard], component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'confirm', component: ConfirmComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

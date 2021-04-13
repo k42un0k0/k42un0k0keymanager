@@ -4,6 +4,8 @@ mutation CreateUserAccount(
   $condition: ModelUserAccountConditionInput
 ) {
   createUserAccount(input: $input, condition: $condition) {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -36,6 +38,8 @@ mutation UpdateUserAccount(
   $condition: ModelUserAccountConditionInput
 ) {
   updateUserAccount(input: $input, condition: $condition) {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -68,6 +72,8 @@ mutation DeleteUserAccount(
   $condition: ModelUserAccountConditionInput
 ) {
   deleteUserAccount(input: $input, condition: $condition) {
+    sub
+    token
     id
     name
     OuterAccounts {
@@ -108,6 +114,8 @@ mutation CreateOuterAccount(
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -140,6 +148,8 @@ mutation UpdateOuterAccount(
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {
@@ -172,6 +182,8 @@ mutation DeleteOuterAccount(
     password
     userAccountID
     userAccount {
+      sub
+      token
       id
       name
       OuterAccounts {
