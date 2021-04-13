@@ -1,4 +1,4 @@
-import { AuthenticationService } from '../common/authentication.service';
+import { AuthenticationService } from '../../base/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService,private router:Router) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,8 +18,8 @@ export class RegisterComponent implements OnInit {
   email = ""
   passwordConfirmation = ""
 
-  async submit(){
-    await this.authenticationService.signUp({username:this.username,password:this.password,email:this.email}).then((res)=>{console.log(res)})
-    this.router.navigate(['/products'], { queryParams: { order: 'popular' } });
+  async submit() {
+    await this.authenticationService.signUp({ username: this.username, password: this.password, email: this.email }).then((res) => { console.log(res) })
+    this.router.navigate(['/auth/confirm'], { queryParams: { username: this.username } });
   }
 }

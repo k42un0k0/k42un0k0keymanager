@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../common/authentication.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../base/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { AuthenticationService } from '../common/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   password = "";
   username = "";
 
-  submit() {
-    this.authenticationService.signIn({ username: this.username, password: this.password }).then((res) => { console.log(res) })
+  async submit() {
+    await this.authenticationService.signIn({ username: this.username, password: this.password })
+    this.router.navigate(['/'])
   }
 }

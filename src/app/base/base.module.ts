@@ -1,3 +1,4 @@
+import { AuthenticationService } from './services/authentication.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TitlebarComponent } from './titlebar/titlebar.component';

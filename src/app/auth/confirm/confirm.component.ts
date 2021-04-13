@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../common/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../../base/services/authentication.service';
 
 @Component({
   selector: 'app-confirm',
@@ -9,7 +9,7 @@ import { AuthenticationService } from '../common/authentication.service';
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
+  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
 
   code: string = "";
   get username() {
@@ -18,9 +18,10 @@ export class ConfirmComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submit() {
+  async submit() {
     if (this.username != null) {
-      this.authenticationService.confirmSignUp({ username: this.username, code: this.code })
+      await this.authenticationService.confirmSignUp({ username: this.username, code: this.code })
+      this.router.navigate(['/auth/login'], { queryParams: { username: this.username } });
     }
   }
 }
