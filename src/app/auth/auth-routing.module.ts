@@ -1,8 +1,17 @@
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
-const routes: Routes = [{ path: '', component: AuthComponent }, { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) }, { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) }, { path: 'confirm', loadChildren: () => import('./confirm/confirm.module').then(m => m.ConfirmModule) }];
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'confirm', component: ConfirmComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
