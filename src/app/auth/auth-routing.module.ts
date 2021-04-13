@@ -1,4 +1,4 @@
-import { UnauthedGuard } from './common/guards/unauthed.guard';
+import { UnauthedGuard } from '../base/guards/unauthed.guard';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';

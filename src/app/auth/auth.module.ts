@@ -1,5 +1,5 @@
-import { ButtonComponent } from './common/button/button.component';
-import { InputComponent } from './common/input/input.component';
+import { ButtonComponent } from './components/button/button.component';
+import { InputComponent } from './components/input/input.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
