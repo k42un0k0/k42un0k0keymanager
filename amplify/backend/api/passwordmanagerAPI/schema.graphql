@@ -1,4 +1,6 @@
 type UserAccount @model {
+  sub: String!
+  token: String!
   id: ID!
   name: String!
   OuterAccounts: [OuterAccount] @connection(keyName: "byUserAccount", fields: ["id"])
