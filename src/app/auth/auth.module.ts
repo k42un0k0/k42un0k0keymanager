@@ -10,6 +10,7 @@ import { AuthComponent } from './auth.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { BaseModule } from '../base/base.module';
 import { FormsModule } from '@angular/forms';
+import { ContainerComponent } from './components/container/container.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     ConfirmComponent,
     InputComponent,
     ButtonComponent,
+    ContainerComponent,
   ],
   imports: [
     CommonModule,

@@ -1,11 +1,3 @@
-
- <a routerLink="/auth">link to user component</a>
- <a routerLink="/auth/login">link to login component</a>
- <a routerLink="/auth/register">link to auth/register component</a>
- <a routerLink="/">link to main component</a>
- <a routerLink="/outer-account-list">link to outer-account-list component</a>
- <a routerLink="/user-account-manager">link to outer-account-list component</a>
- <a routerLink="/user-account-manager/user-account-list">link to user-account-manager/user-account-list component</a>
- <a routerLink="/user-account-manager/user-account-setting">link to user-account-manager/user-account-setting component</a>
-<button (click)="openAuthWindow()">押せ</button>
- <router-outlet></router-outlet>
+<div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
