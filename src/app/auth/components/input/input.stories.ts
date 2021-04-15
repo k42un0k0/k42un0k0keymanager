@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/angular/types-6-0';
 import { InputComponent } from './input.component';
 
 export default {
-  title: 'auth/base/InputComponent',
+  title: 'auth/components/InputComponent',
   component: InputComponent,
   argTypes: {
     backgroundColor: { control: 'color' },
