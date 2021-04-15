@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { routeAnimations } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    routeAnimations
+  ]
 })
 export class AppComponent {
-  title = 'k42un0k0passwordmanager';
-  callDebug() {
-    window.main.debug();
-  }
-  openAuthWindow() {
-    window.main.window.auth();
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }
