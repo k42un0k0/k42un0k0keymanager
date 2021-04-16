@@ -1,0 +1,9 @@
+@import "_variables";
+
+:host {
+  background-color: #333;
+}
+
+.icon {
+  color: $primary-text;
+}
