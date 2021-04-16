@@ -10,6 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TabComponent } from './components/tab/tab.component';
 import { TabbarComponent } from './components/tabbar/tabbar.component';
 import { AccountModalComponent } from './components/account-modal/account-modal.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AccountModalComponent } from './components/account-modal/account-modal.
   imports: [
     CommonModule,
     MainRoutingModule,
+    MatIconModule
   ]
 })
 export class MainModule { }
