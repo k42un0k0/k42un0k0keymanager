@@ -1,0 +1,22 @@
+@import "_variables";
+
+:host {
+  background-color: $gray1;
+  display: flex;
+  align-items: center;
+
+  &:hover ::ng-deep .close {
+    color: $gray3;
+  }
+}
+
+.home-wrapper {
+  color: $primary-text;
+  padding: 4px 12px;
+
+  .home {
+    font-size: 20px;
+    width: 1em;
+    height: 1em;
+  }
+}

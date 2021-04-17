@@ -23,4 +23,11 @@ const Template: Story<TabComponent> = (args: TabComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
+  tabItem: { title: "hello", link: "/unko" }
+};
+
+export const Active = Template.bind({});
+Active.args = {
+  tabItem: { title: "hello", link: "/unko" },
+  active: true
 };
