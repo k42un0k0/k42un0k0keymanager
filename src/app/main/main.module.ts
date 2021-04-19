@@ -11,6 +11,7 @@ import { TabComponent } from './components/tab/tab.component';
 import { TabbarComponent } from './components/tabbar/tabbar.component';
 import { AccountModalComponent } from './components/account-modal/account-modal.component';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
