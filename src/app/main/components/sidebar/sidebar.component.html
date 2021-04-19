@@ -1,1 +1,13 @@
-<p>sidebar works!</p>
+<section #section>
+    <ul>
+        <a *ngFor="let item of sidebarItems" [routerLink]="item.link">
+            <li>
+                {{item.title}}
+            </li>
+        </a>
+    </ul>
+    <footer>
+            <mat-icon class="add" aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+        <mat-icon class="settings" aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+    </footer>
+</section>

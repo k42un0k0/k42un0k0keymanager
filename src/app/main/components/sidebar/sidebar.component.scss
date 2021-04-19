@@ -1,0 +1,32 @@
+@import "_variables";
+
+:host {
+  display: block;
+  width: 0;
+  transition: width 300ms;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+
+section {
+  min-width: 20vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  color: $primary-text;
+}
+
+li {
+  padding: .5em 1em;
+  border-bottom: 1px solid $gray2;
+}
+
+footer {
+  position: absolute;
+  left: 1em;
+  right: 1em;
+  bottom: .5em;
+  display: flex;
+  justify-content: space-between;
+}

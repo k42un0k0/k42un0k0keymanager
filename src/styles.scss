@@ -1,20 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
+@import "_variables";
 
 html,
 body {
   height: 100%;
+  bottom: 100%;
+}
+
+html,
+body,
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-text;
+}
+
+ul {
+  list-style: none;
 }
