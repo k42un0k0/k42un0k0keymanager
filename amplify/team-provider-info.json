@@ -16,5 +16,23 @@
         "passwordmanager3e6c09d9": {}
       }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-passwordmanager-prod-70544-authRole",
+      "UnauthRoleArn": "arn:aws:iam::732792174901:role/amplify-passwordmanager-prod-70544-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::732792174901:role/amplify-passwordmanager-prod-70544-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-passwordmanager-prod-70544-deployment",
+      "UnauthRoleName": "amplify-passwordmanager-prod-70544-unauthRole",
+      "StackName": "amplify-passwordmanager-prod-70544",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:732792174901:stack/amplify-passwordmanager-prod-70544/8025d940-9b5d-11eb-adaa-0656c9242ef3",
+      "AmplifyAppId": "dac7utmi2ms0o"
+    },
+    "categories": {
+      "auth": {
+        "passwordmanager3e6c09d9": {}
+      }
+    }
   }
 }

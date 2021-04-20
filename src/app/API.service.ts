@@ -2,12 +2,14 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 import { Injectable } from "@angular/core";
-import API, { graphqlOperation } from "@aws-amplify/api";
-import { GraphQLResult } from "@aws-amplify/api/lib/types";
+import API, { graphqlOperation, GraphQLResult } from "@aws-amplify/api-graphql";
 import { Observable } from "zen-observable-ts";
 
+export interface SubscriptionResponse<T> {
+  value: GraphQLResult<T>;
+}
+
 export type CreateUserAccountInput = {
-  sub: string;
   token: string;
   id?: string | null;
   name: string;
@@ -15,7 +17,6 @@ export type CreateUserAccountInput = {
 };
 
 export type ModelUserAccountConditionInput = {
-  sub?: ModelStringInput | null;
   token?: ModelStringInput | null;
   name?: ModelStringInput | null;
   and?: Array<ModelUserAccountConditionInput | null> | null;
@@ -62,8 +63,46 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
+export type UserAccount = {
+  __typename: "UserAccount";
+  token?: string;
+  id?: string;
+  name?: string;
+  OuterAccounts?: ModelOuterAccountConnection;
+  _version?: number;
+  _deleted?: boolean | null;
+  _lastChangedAt?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
+export type ModelOuterAccountConnection = {
+  __typename: "ModelOuterAccountConnection";
+  items?: Array<OuterAccount | null> | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type OuterAccount = {
+  __typename: "OuterAccount";
+  id?: string;
+  providerName?: string;
+  iconPath?: string;
+  userId?: string;
+  link?: string;
+  password?: string;
+  userAccountID?: string;
+  userAccount?: UserAccount;
+  _version?: number;
+  _deleted?: boolean | null;
+  _lastChangedAt?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  owner?: string | null;
+};
+
 export type UpdateUserAccountInput = {
-  sub?: string | null;
   token?: string | null;
   id: string;
   name?: string | null;
@@ -77,7 +116,7 @@ export type DeleteUserAccountInput = {
 
 export type CreateOuterAccountInput = {
   id?: string | null;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
@@ -87,7 +126,7 @@ export type CreateOuterAccountInput = {
 };
 
 export type ModelOuterAccountConditionInput = {
-  name?: ModelStringInput | null;
+  providerName?: ModelStringInput | null;
   iconPath?: ModelStringInput | null;
   userId?: ModelStringInput | null;
   link?: ModelStringInput | null;
@@ -116,7 +155,7 @@ export type ModelIDInput = {
 
 export type UpdateOuterAccountInput = {
   id: string;
-  name?: string | null;
+  providerName?: string | null;
   iconPath?: string | null;
   userId?: string | null;
   link?: string | null;
@@ -131,7 +170,6 @@ export type DeleteOuterAccountInput = {
 };
 
 export type ModelUserAccountFilterInput = {
-  sub?: ModelStringInput | null;
   token?: ModelStringInput | null;
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -140,9 +178,16 @@ export type ModelUserAccountFilterInput = {
   not?: ModelUserAccountFilterInput | null;
 };
 
+export type ModelUserAccountConnection = {
+  __typename: "ModelUserAccountConnection";
+  items?: Array<UserAccount | null> | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
 export type ModelOuterAccountFilterInput = {
   id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
+  providerName?: ModelStringInput | null;
   iconPath?: ModelStringInput | null;
   userId?: ModelStringInput | null;
   link?: ModelStringInput | null;
@@ -155,576 +200,592 @@ export type ModelOuterAccountFilterInput = {
 
 export type CreateUserAccountMutation = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type UpdateUserAccountMutation = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type DeleteUserAccountMutation = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type CreateOuterAccountMutation = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type UpdateOuterAccountMutation = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type DeleteOuterAccountMutation = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type SyncUserAccountsQuery = {
   __typename: "ModelUserAccountConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetUserAccountQuery = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type ListUserAccountsQuery = {
   __typename: "ModelUserAccountConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type SyncOuterAccountsQuery = {
   __typename: "ModelOuterAccountConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "OuterAccount";
     id: string;
-    name: string;
+    providerName: string;
     iconPath: string;
     userId: string;
     link: string;
     password: string;
     userAccountID: string;
-    userAccount: {
+    userAccount?: {
       __typename: "UserAccount";
-      sub: string;
       token: string;
       id: string;
       name: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetOuterAccountQuery = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type ListOuterAccountsQuery = {
   __typename: "ModelOuterAccountConnection";
-  items: Array<{
+  items?: Array<{
     __typename: "OuterAccount";
     id: string;
-    name: string;
+    providerName: string;
     iconPath: string;
     userId: string;
     link: string;
     password: string;
     userAccountID: string;
-    userAccount: {
+    userAccount?: {
       __typename: "UserAccount";
-      sub: string;
       token: string;
       id: string;
       name: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type OnCreateUserAccountSubscription = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type OnUpdateUserAccountSubscription = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type OnDeleteUserAccountSubscription = {
   __typename: "UserAccount";
-  sub: string;
   token: string;
   id: string;
   name: string;
-  OuterAccounts: {
+  OuterAccounts?: {
     __typename: "ModelOuterAccountConnection";
-    items: Array<{
+    items?: Array<{
       __typename: "OuterAccount";
       id: string;
-      name: string;
+      providerName: string;
       iconPath: string;
       userId: string;
       link: string;
       password: string;
       userAccountID: string;
       _version: number;
-      _deleted: boolean | null;
+      _deleted?: boolean | null;
       _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
+      owner?: string | null;
     } | null> | null;
-    nextToken: string | null;
-    startedAt: number | null;
+    nextToken?: string | null;
+    startedAt?: number | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type OnCreateOuterAccountSubscription = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type OnUpdateOuterAccountSubscription = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 export type OnDeleteOuterAccountSubscription = {
   __typename: "OuterAccount";
   id: string;
-  name: string;
+  providerName: string;
   iconPath: string;
   userId: string;
   link: string;
   password: string;
   userAccountID: string;
-  userAccount: {
+  userAccount?: {
     __typename: "UserAccount";
-    sub: string;
     token: string;
     id: string;
     name: string;
-    OuterAccounts: {
+    OuterAccounts?: {
       __typename: "ModelOuterAccountConnection";
-      nextToken: string | null;
-      startedAt: number | null;
+      nextToken?: string | null;
+      startedAt?: number | null;
     } | null;
     _version: number;
-    _deleted: boolean | null;
+    _deleted?: boolean | null;
     _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
+    owner?: string | null;
   } | null;
   _version: number;
-  _deleted: boolean | null;
+  _deleted?: boolean | null;
   _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
+  owner?: string | null;
 };
 
 @Injectable({
@@ -738,7 +799,6 @@ export class APIService {
     const statement = `mutation CreateUserAccount($input: CreateUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         createUserAccount(input: $input, condition: $condition) {
           __typename
-          sub
           token
           id
           name
@@ -747,7 +807,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -758,6 +818,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -767,6 +828,7 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -787,7 +849,6 @@ export class APIService {
     const statement = `mutation UpdateUserAccount($input: UpdateUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         updateUserAccount(input: $input, condition: $condition) {
           __typename
-          sub
           token
           id
           name
@@ -796,7 +857,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -807,6 +868,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -816,6 +878,7 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -836,7 +899,6 @@ export class APIService {
     const statement = `mutation DeleteUserAccount($input: DeleteUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         deleteUserAccount(input: $input, condition: $condition) {
           __typename
-          sub
           token
           id
           name
@@ -845,7 +907,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -856,6 +918,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -865,6 +928,7 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -886,7 +950,7 @@ export class APIService {
         createOuterAccount(input: $input, condition: $condition) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -894,7 +958,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -908,12 +971,14 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -935,7 +1000,7 @@ export class APIService {
         updateOuterAccount(input: $input, condition: $condition) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -943,7 +1008,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -957,12 +1021,14 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -984,7 +1050,7 @@ export class APIService {
         deleteOuterAccount(input: $input, condition: $condition) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -992,7 +1058,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -1006,12 +1071,14 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1036,7 +1103,6 @@ export class APIService {
           __typename
           items {
             __typename
-            sub
             token
             id
             name
@@ -1050,6 +1116,7 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -1077,7 +1144,6 @@ export class APIService {
     const statement = `query GetUserAccount($id: ID!) {
         getUserAccount(id: $id) {
           __typename
-          sub
           token
           id
           name
@@ -1086,7 +1152,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -1097,6 +1163,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -1106,6 +1173,7 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1126,7 +1194,6 @@ export class APIService {
           __typename
           items {
             __typename
-            sub
             token
             id
             name
@@ -1140,6 +1207,7 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -1172,7 +1240,7 @@ export class APIService {
           items {
             __typename
             id
-            name
+            providerName
             iconPath
             userId
             link
@@ -1180,7 +1248,6 @@ export class APIService {
             userAccountID
             userAccount {
               __typename
-              sub
               token
               id
               name
@@ -1189,12 +1256,14 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -1223,7 +1292,7 @@ export class APIService {
         getOuterAccount(id: $id) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -1231,7 +1300,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -1245,12 +1313,14 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1272,7 +1342,7 @@ export class APIService {
           items {
             __typename
             id
-            name
+            providerName
             iconPath
             userId
             link
@@ -1280,7 +1350,6 @@ export class APIService {
             userAccountID
             userAccount {
               __typename
-              sub
               token
               id
               name
@@ -1289,12 +1358,14 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           nextToken
           startedAt
@@ -1316,13 +1387,12 @@ export class APIService {
     return <ListOuterAccountsQuery>response.data.listOuterAccounts;
   }
   OnCreateUserAccountListener: Observable<
-    OnCreateUserAccountSubscription
+    SubscriptionResponse<OnCreateUserAccountSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateUserAccount {
-        onCreateUserAccount {
+      `subscription OnCreateUserAccount($owner: String!) {
+        onCreateUserAccount(owner: $owner) {
           __typename
-          sub
           token
           id
           name
@@ -1331,7 +1401,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -1342,6 +1412,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -1351,19 +1422,19 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`
     )
-  ) as Observable<OnCreateUserAccountSubscription>;
+  ) as Observable<SubscriptionResponse<OnCreateUserAccountSubscription>>;
 
   OnUpdateUserAccountListener: Observable<
-    OnUpdateUserAccountSubscription
+    SubscriptionResponse<OnUpdateUserAccountSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateUserAccount {
-        onUpdateUserAccount {
+      `subscription OnUpdateUserAccount($owner: String!) {
+        onUpdateUserAccount(owner: $owner) {
           __typename
-          sub
           token
           id
           name
@@ -1372,7 +1443,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -1383,6 +1454,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -1392,19 +1464,19 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`
     )
-  ) as Observable<OnUpdateUserAccountSubscription>;
+  ) as Observable<SubscriptionResponse<OnUpdateUserAccountSubscription>>;
 
   OnDeleteUserAccountListener: Observable<
-    OnDeleteUserAccountSubscription
+    SubscriptionResponse<OnDeleteUserAccountSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteUserAccount {
-        onDeleteUserAccount {
+      `subscription OnDeleteUserAccount($owner: String!) {
+        onDeleteUserAccount(owner: $owner) {
           __typename
-          sub
           token
           id
           name
@@ -1413,7 +1485,7 @@ export class APIService {
             items {
               __typename
               id
-              name
+              providerName
               iconPath
               userId
               link
@@ -1424,6 +1496,7 @@ export class APIService {
               _lastChangedAt
               createdAt
               updatedAt
+              owner
             }
             nextToken
             startedAt
@@ -1433,20 +1506,21 @@ export class APIService {
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`
     )
-  ) as Observable<OnDeleteUserAccountSubscription>;
+  ) as Observable<SubscriptionResponse<OnDeleteUserAccountSubscription>>;
 
   OnCreateOuterAccountListener: Observable<
-    OnCreateOuterAccountSubscription
+    SubscriptionResponse<OnCreateOuterAccountSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateOuterAccount {
-        onCreateOuterAccount {
+      `subscription OnCreateOuterAccount($owner: String!) {
+        onCreateOuterAccount(owner: $owner) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -1454,7 +1528,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -1468,26 +1541,28 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`
     )
-  ) as Observable<OnCreateOuterAccountSubscription>;
+  ) as Observable<SubscriptionResponse<OnCreateOuterAccountSubscription>>;
 
   OnUpdateOuterAccountListener: Observable<
-    OnUpdateOuterAccountSubscription
+    SubscriptionResponse<OnUpdateOuterAccountSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateOuterAccount {
-        onUpdateOuterAccount {
+      `subscription OnUpdateOuterAccount($owner: String!) {
+        onUpdateOuterAccount(owner: $owner) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -1495,7 +1570,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -1509,26 +1583,28 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`
     )
-  ) as Observable<OnUpdateOuterAccountSubscription>;
+  ) as Observable<SubscriptionResponse<OnUpdateOuterAccountSubscription>>;
 
   OnDeleteOuterAccountListener: Observable<
-    OnDeleteOuterAccountSubscription
+    SubscriptionResponse<OnDeleteOuterAccountSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteOuterAccount {
-        onDeleteOuterAccount {
+      `subscription OnDeleteOuterAccount($owner: String!) {
+        onDeleteOuterAccount(owner: $owner) {
           __typename
           id
-          name
+          providerName
           iconPath
           userId
           link
@@ -1536,7 +1612,6 @@ export class APIService {
           userAccountID
           userAccount {
             __typename
-            sub
             token
             id
             name
@@ -1550,14 +1625,16 @@ export class APIService {
             _lastChangedAt
             createdAt
             updatedAt
+            owner
           }
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
       }`
     )
-  ) as Observable<OnDeleteOuterAccountSubscription>;
+  ) as Observable<SubscriptionResponse<OnDeleteOuterAccountSubscription>>;
 }
