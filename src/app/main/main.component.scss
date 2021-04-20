@@ -1,0 +1,22 @@
+@import "_variables";
+
+.content {
+  height: calc(100vh - 50px);
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar {
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.account-list {
+  flex: 0 0 100%;
+  background-color: $gray2;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+}
