@@ -6,6 +6,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TabComponent } from './tab/tab.component';
 import { TabbarComponent } from './tabbar/tabbar.component';
 import { AccountModalComponent } from './account-modal/account-modal.component';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,7 @@ import { AccountModalComponent } from './account-modal/account-modal.component';
     TabComponent,
     TabbarComponent,
   ],
+  imports: [MatIconModule, RouterModule, CommonModule],
   exports: [
     AccountCardComponent,
     AccountEditorComponent,

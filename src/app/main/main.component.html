@@ -1,2 +1,16 @@
-<p>main works!</p>
-<button (click)="logout()">ログアウト</button>
+<app-tabbar (onClickHome)="onClickHome()" [tabItems]="tabItems"></app-tabbar>
+<div class="content">
+        <div class="sidebar">
+<app-sidebar [open]="open" [sidebarItems]="sidebarItems"></app-sidebar>
+</div>
+
+<div class="account-list">
+    <app-account-card [account]="account"></app-account-card>
+    <app-account-card [account]="account"></app-account-card>
+    <app-account-card [account]="account"></app-account-card>
+    <app-account-card [account]="account"></app-account-card>
+    <app-account-card [account]="account"></app-account-card>
+    <app-account-card [account]="account"></app-account-card>
+    <app-account-card [account]="account"></app-account-card>
+</div>
+</div>

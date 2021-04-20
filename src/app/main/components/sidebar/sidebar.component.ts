@@ -16,7 +16,6 @@ export class SidebarComponent implements OnInit, AfterViewChecked {
 
   constructor(private elm: ElementRef<HTMLElement>) { }
   ngAfterViewChecked(): void {
-    console.log(this)
     if (this.open) {
       const width = this.section.nativeElement.clientWidth;
       this.elm.nativeElement.style.width = `${width}px`;

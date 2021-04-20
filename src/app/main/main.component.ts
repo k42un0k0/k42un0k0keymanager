@@ -1,6 +1,7 @@
-import { APIService } from './../API.service';
-import { AuthenticationService } from '../base/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { OuterAccount } from 'src/models';
+import { SidebarItem } from './components/sidebar/sidebar.component';
+import { TabItem } from './components/tab/tab.component';
 
 @Component({
   selector: 'app-main',
@@ -9,12 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private apiService: APIService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  logout() {
-    console.log("logout");
-    this.authenticationService.signOut();
+  open: boolean = false;
+  onClickHome() {
+    console.log("clicked")
+    this.open = !this.open;
+  }
+  tabItems: TabItem[] = [{ title: "Jobs", link: "/auth/login" }]
+  sidebarItems: SidebarItem[] = [{ title: 'Jobs', link: "/auth/login" }]
+  account: OuterAccount = {
+    id: "",
+    providerName: "Twitter",
+    iconPath: "",
+    userId: "k42un0k0",
+    link: "",
+    password: "",
   }
 }
