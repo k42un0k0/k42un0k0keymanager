@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { OuterAccount } from 'src/models';
 
 @Component({
   selector: 'app-account-card',
@@ -12,4 +13,6 @@ export class AccountCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input()
+  account!: OuterAccount;
 }
