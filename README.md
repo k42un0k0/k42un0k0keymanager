@@ -12,3 +12,14 @@
 
 - `--route`
   - `--module`で指定したモジュールに対して、指定したパスでのlazy loadの記述をしてくれる
+
+
+## amplify
+
+### 環境の追加
+
+```cmd
+> amplify env add
+?Do you want to use an existing environment? No
+?Enter a name for the environment / {{name}}
+```

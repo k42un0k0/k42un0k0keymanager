@@ -6,7 +6,6 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 export declare class UserAccount {
   readonly id: string;
-  readonly sub: string;
   readonly token: string;
   readonly name: string;
   readonly OuterAccounts?: (OuterAccount | null)[];
@@ -16,7 +15,7 @@ export declare class UserAccount {
 
 export declare class OuterAccount {
   readonly id: string;
-  readonly name: string;
+  readonly providerName: string;
   readonly iconPath: string;
   readonly userId: string;
   readonly link: string;
