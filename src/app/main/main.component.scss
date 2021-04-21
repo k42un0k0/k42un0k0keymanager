@@ -1,7 +1,13 @@
 @import "_variables";
 
+:host{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $gray2;
+}
 .content {
-  height: calc(100vh - 50px);
+  flex-grow: 1;
   display: flex;
   overflow: hidden;
 }
@@ -13,10 +19,16 @@
 
 .account-list {
   flex: 0 0 100%;
-  background-color: $gray2;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
+  padding: 8px 8px 0;
+  position: relative;
+}
+.button{
+  position: absolute;
+  bottom:2em;
+  right:2em;
 }

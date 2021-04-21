@@ -1,10 +1,9 @@
 <app-tabbar (onClickHome)="onClickHome()" [tabItems]="tabItems"></app-tabbar>
 <div class="content">
-        <div class="sidebar">
-<app-sidebar [open]="open" [sidebarItems]="sidebarItems"></app-sidebar>
-</div>
-
-<div class="account-list">
+  <div class="sidebar">
+    <app-sidebar [open]="open" [sidebarItems]="sidebarItems"></app-sidebar>
+  </div>
+  <div class="account-list">
     <app-account-card [account]="account"></app-account-card>
     <app-account-card [account]="account"></app-account-card>
     <app-account-card [account]="account"></app-account-card>
@@ -12,5 +11,8 @@
     <app-account-card [account]="account"></app-account-card>
     <app-account-card [account]="account"></app-account-card>
     <app-account-card [account]="account"></app-account-card>
-</div>
+    <button class="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>

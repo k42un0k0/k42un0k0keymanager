@@ -19,8 +19,14 @@ export class MainComponent implements OnInit {
     console.log("clicked")
     this.open = !this.open;
   }
-  tabItems: TabItem[] = [{ title: "Jobs", link: "/auth/login" }]
-  sidebarItems: SidebarItem[] = [{ title: 'Jobs', link: "/auth/login" }]
+  tabItems: TabItem[] = [
+    { title: "Jobs", link: "/auth/login" },
+    { title: "Hobby", link: "/auth/login" },
+  ]
+  sidebarItems: SidebarItem[] = [
+    { title: 'Jobs', link: "/auth/login" },
+    { title: "Hobby", link: "/auth/login" },
+  ]
   account: OuterAccount = {
     id: "",
     providerName: "Twitter",

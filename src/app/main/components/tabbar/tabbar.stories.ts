@@ -6,6 +6,7 @@ import { TabbarComponent } from './tabbar.component';
 import { CommonModule } from '@angular/common';
 import { TabComponent } from '../tab/tab.component';
 import { action } from '@storybook/addon-actions';
+import { BaseModule } from 'src/app/base/base.module';
 
 export default {
   title: 'main/components/TabbarComponent',
@@ -16,7 +17,7 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [TabComponent],
-      imports: [CommonModule, MatIconModule],
+      imports: [CommonModule, MatIconModule, BaseModule],
     }),
   ],
 } as Meta;
