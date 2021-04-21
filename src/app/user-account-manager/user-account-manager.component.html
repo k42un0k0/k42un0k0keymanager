@@ -1,1 +1,20 @@
-<p>user-account-manager works!</p>
+<div class="bar primary">
+  ユーザーアカウントの管理
+  <mat-icon (click)="closeWindow()">close</mat-icon>
+</div>
+<div class="content">
+  <aside>
+    <ul>
+      <li *ngFor="let item of userAccounts" class="primary ">
+        <span>
+          {{item.name}}
+        </span>
+        <button class="settings" mat-icon-button color="primary"
+          aria-label="Example icon button with a open in new tab icon">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </li>
+    </ul>
+  </aside>
+  <router-outlet></router-outlet>
+</div>

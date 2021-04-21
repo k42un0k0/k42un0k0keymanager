@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-user-account-manager',
@@ -12,4 +13,17 @@ export class UserAccountManagerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userAccounts: UserAccount[] = [{
+    id: "",
+    token: "",
+    name: "Jobs",
+  }, {
+    id: "",
+    token: "",
+    name: "Hobby",
+  }];
+
+  closeWindow() {
+    window.close();
+  }
 }
