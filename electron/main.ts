@@ -1,5 +1,5 @@
 import * as url from "url";
-import { app, BrowserWindow } from "electron"
+import { app, BrowserWindow, dialog } from "electron"
 import path from "path"
 
 function main() {
@@ -15,6 +15,7 @@ function main() {
       webPreferences: {
         preload: path.join(__dirname, "preload.js")
       },
+      frame: false,
     })
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({

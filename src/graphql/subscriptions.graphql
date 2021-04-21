@@ -1,14 +1,13 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateUserAccount {
-  onCreateUserAccount {
-    sub
+subscription OnCreateUserAccount($owner: String!) {
+  onCreateUserAccount(owner: $owner) {
     token
     id
     name
     OuterAccounts {
       items {
         id
-        name
+        providerName
         iconPath
         userId
         link
@@ -19,6 +18,7 @@ subscription OnCreateUserAccount {
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -28,18 +28,18 @@ subscription OnCreateUserAccount {
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateUserAccount {
-  onUpdateUserAccount {
-    sub
+subscription OnUpdateUserAccount($owner: String!) {
+  onUpdateUserAccount(owner: $owner) {
     token
     id
     name
     OuterAccounts {
       items {
         id
-        name
+        providerName
         iconPath
         userId
         link
@@ -50,6 +50,7 @@ subscription OnUpdateUserAccount {
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -59,18 +60,18 @@ subscription OnUpdateUserAccount {
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteUserAccount {
-  onDeleteUserAccount {
-    sub
+subscription OnDeleteUserAccount($owner: String!) {
+  onDeleteUserAccount(owner: $owner) {
     token
     id
     name
     OuterAccounts {
       items {
         id
-        name
+        providerName
         iconPath
         userId
         link
@@ -81,6 +82,7 @@ subscription OnDeleteUserAccount {
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -90,19 +92,19 @@ subscription OnDeleteUserAccount {
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnCreateOuterAccount {
-  onCreateOuterAccount {
+subscription OnCreateOuterAccount($owner: String!) {
+  onCreateOuterAccount(owner: $owner) {
     id
-    name
+    providerName
     iconPath
     userId
     link
     password
     userAccountID
     userAccount {
-      sub
       token
       id
       name
@@ -115,25 +117,26 @@ subscription OnCreateOuterAccount {
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     _version
     _deleted
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnUpdateOuterAccount {
-  onUpdateOuterAccount {
+subscription OnUpdateOuterAccount($owner: String!) {
+  onUpdateOuterAccount(owner: $owner) {
     id
-    name
+    providerName
     iconPath
     userId
     link
     password
     userAccountID
     userAccount {
-      sub
       token
       id
       name
@@ -146,25 +149,26 @@ subscription OnUpdateOuterAccount {
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     _version
     _deleted
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
-subscription OnDeleteOuterAccount {
-  onDeleteOuterAccount {
+subscription OnDeleteOuterAccount($owner: String!) {
+  onDeleteOuterAccount(owner: $owner) {
     id
-    name
+    providerName
     iconPath
     userId
     link
     password
     userAccountID
     userAccount {
-      sub
       token
       id
       name
@@ -177,11 +181,13 @@ subscription OnDeleteOuterAccount {
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     _version
     _deleted
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }

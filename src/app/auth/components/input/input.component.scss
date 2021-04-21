@@ -1,17 +1,19 @@
+@import "_variables";
+
 :host {
   display: flex;
   flex-direction: column;
 
   label {
-    color: #C4C4C4;
+    color: $secondary-text;
     padding: 1rem;
   }
 
   input {
     padding: .75rem;
-    border: 1px solid #0DEC6B;
+    border: 1px solid $primary-text;
     border-radius: 4px;
-    color: #0DEC6B;
+    color: $primary-text;
     background-color: transparent;
 
     &:focus {
