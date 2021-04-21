@@ -7,14 +7,15 @@
 
 .container {
   cursor: pointer;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: $gray1;
 }
 
 .content {
-  padding: .5em 1em;
+  padding: 1em;
 }
 
 .providerName {

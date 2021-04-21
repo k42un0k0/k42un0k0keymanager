@@ -1,4 +1,8 @@
-<div class="home-wrapper">
+<div class="menu">
+  <div class="home-wrapper">
     <mat-icon class="home" (click)="_onClickHome()" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  </div>
+  <app-tab *ngFor="let tabItem of tabItems" [tabItem]="tabItem" [active]="tabItem.title=='hello'"></app-tab>
 </div>
-<app-tab  *ngFor="let tabItem of tabItems" [tabItem]="tabItem" [active]="tabItem.title=='hello'"></app-tab>
+<mat-icon class="window-close" (click)="closeWindow()" aria-hidden="false" aria-label="Example home icon">close
+</mat-icon>

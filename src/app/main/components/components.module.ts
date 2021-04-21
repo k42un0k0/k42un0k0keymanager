@@ -1,3 +1,4 @@
+import { MatButtonModule } from '@angular/material/button';
 import { AccountViewerComponent } from './account-viewer/account-viewer.component';
 import { AccountEditorComponent } from './account-editor/account-editor.component';
 import { AccountCardComponent } from './account-card/account-card.component';
@@ -10,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BaseModule } from 'src/app/base/base.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { RouterModule } from '@angular/router';
     TabComponent,
     TabbarComponent,
   ],
-  imports: [MatIconModule, RouterModule, CommonModule],
+  imports: [MatIconModule, MatButtonModule, RouterModule, CommonModule, BaseModule],
   exports: [
     AccountCardComponent,
     AccountEditorComponent,
