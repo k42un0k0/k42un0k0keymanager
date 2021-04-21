@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, HostBinding } from '@angular/core';
+
+
+export interface TabItem {
+  title: string,
+  link: string,
+}
 
 @Component({
   selector: 'app-tab',
@@ -11,5 +17,9 @@ export class TabComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @HostBinding('class.active') @Input() active!: boolean;
+
+  @Input() tabItem!: TabItem;
 
 }

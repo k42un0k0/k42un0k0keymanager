@@ -1,11 +1,11 @@
 {
-    "AppSyncApiName": "passwordmanagerAPI",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": false,
-    "AuthCognitoUserPoolId": {
-        "Fn::GetAtt": [
-            "authpasswordmanager3e6c09d9",
-            "Outputs.UserPoolId"
-        ]
-    }
+  "AppSyncApiName": "passwordmanagerAPI",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authpasswordmanager3e6c09d9",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

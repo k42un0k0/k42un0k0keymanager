@@ -12,7 +12,6 @@ query SyncUserAccounts(
     lastSync: $lastSync
   ) {
     items {
-      sub
       token
       id
       name
@@ -25,6 +24,7 @@ query SyncUserAccounts(
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     nextToken
     startedAt
@@ -32,14 +32,13 @@ query SyncUserAccounts(
 }
 query GetUserAccount($id: ID!) {
   getUserAccount(id: $id) {
-    sub
     token
     id
     name
     OuterAccounts {
       items {
         id
-        name
+        providerName
         iconPath
         userId
         link
@@ -50,6 +49,7 @@ query GetUserAccount($id: ID!) {
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -59,6 +59,7 @@ query GetUserAccount($id: ID!) {
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
 query ListUserAccounts(
@@ -68,7 +69,6 @@ query ListUserAccounts(
 ) {
   listUserAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      sub
       token
       id
       name
@@ -81,6 +81,7 @@ query ListUserAccounts(
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     nextToken
     startedAt
@@ -100,14 +101,13 @@ query SyncOuterAccounts(
   ) {
     items {
       id
-      name
+      providerName
       iconPath
       userId
       link
       password
       userAccountID
       userAccount {
-        sub
         token
         id
         name
@@ -116,12 +116,14 @@ query SyncOuterAccounts(
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     nextToken
     startedAt
@@ -130,14 +132,13 @@ query SyncOuterAccounts(
 query GetOuterAccount($id: ID!) {
   getOuterAccount(id: $id) {
     id
-    name
+    providerName
     iconPath
     userId
     link
     password
     userAccountID
     userAccount {
-      sub
       token
       id
       name
@@ -150,12 +151,14 @@ query GetOuterAccount($id: ID!) {
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     _version
     _deleted
     _lastChangedAt
     createdAt
     updatedAt
+    owner
   }
 }
 query ListOuterAccounts(
@@ -166,14 +169,13 @@ query ListOuterAccounts(
   listOuterAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
+      providerName
       iconPath
       userId
       link
       password
       userAccountID
       userAccount {
-        sub
         token
         id
         name
@@ -182,12 +184,14 @@ query ListOuterAccounts(
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
     nextToken
     startedAt

@@ -1,1 +1,18 @@
-<p>sidebar works!</p>
+<section #section>
+  <ul>
+    <a *ngFor="let item of sidebarItems" [routerLink]="item.link">
+      <li>
+        {{item.title}}
+      </li>
+    </a>
+  </ul>
+  <footer>
+    <button mat-icon-button color="primary" aria-label="Example icon button with a open in new tab icon">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button class="settings" mat-icon-button color="primary"
+      aria-label="Example icon button with a open in new tab icon">
+      <mat-icon>settings</mat-icon>
+    </button>
+  </footer>
+</section>

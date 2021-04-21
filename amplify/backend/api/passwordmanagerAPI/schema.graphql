@@ -1,14 +1,13 @@
-type UserAccount @model {
-  sub: String!
+type UserAccount @auth(rules: [{ allow: owner }]) @model {
   token: String!
   id: ID!
   name: String!
   OuterAccounts: [OuterAccount] @connection(keyName: "byUserAccount", fields: ["id"])
 }
 
-type OuterAccount @model @key(name: "byUserAccount", fields: ["userAccountID"]) {
+type OuterAccount @auth(rules: [{ allow: owner }]) @model @key(name: "byUserAccount", fields: ["userAccountID"]) {
   id: ID!
-  name: String!
+  providerName: String!
   iconPath: String!
   userId: String!
   link: String!

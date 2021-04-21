@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { TabItem } from '../tab/tab.component';
 
 @Component({
   selector: 'app-tabbar',
@@ -12,4 +13,14 @@ export class TabbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input() tabItems!: TabItem[];
+
+  @Output() onClickHome = new EventEmitter();
+
+  _onClickHome() {
+    this.onClickHome.emit();
+  }
+  closeWindow() {
+    window.close()
+  }
 }
