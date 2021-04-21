@@ -1,8 +1,10 @@
+import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserAccountManagerRoutingModule } from './user-account-manager-routing.module';
 import { UserAccountManagerComponent } from './user-account-manager.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { UserAccountManagerComponent } from './user-account-manager.component';
   ],
   imports: [
     CommonModule,
-    UserAccountManagerRoutingModule
+    UserAccountManagerRoutingModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class UserAccountManagerModule { }
