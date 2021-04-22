@@ -2,7 +2,7 @@
   ユーザーアカウントの管理
   <mat-icon (click)="closeWindow()">close</mat-icon>
 </div>
-<div class="content">
+<div class="container">
   <aside>
     <ul>
       <li *ngFor="let item of userAccounts" class="primary ">
@@ -16,5 +16,7 @@
       </li>
     </ul>
   </aside>
-  <router-outlet></router-outlet>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

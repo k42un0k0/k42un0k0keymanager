@@ -1,1 +1,29 @@
-<p>user-account-setting works!</p>
+<div [ngClass]="editing?['row','row-username']:['row','row-username','edit']">
+    <div *ngIf="editing; else elseBlock">
+        <div class="label secondary">
+            ユーザー名
+        </div>
+        <div class="value primary">
+            {{userAccount.name}}
+        </div>  
+    </div>
+    <ng-template #elseBlock>
+    <div>
+        <div class="label secondary">
+            ユーザー名
+        </div>
+        <input class="input primary" appAutoFocus type="text" [(ngModel)]="userAccount.name"/>
+    </div>
+</ng-template>
+    <button mat-button color="primary" (click)="onClickEdit()">編集</button>
+</div>
+<div class="row row-key">
+    <div class="secondary">
+        暗号化鍵
+    </div>
+    <button mat-button color="primary">エクスポート</button>
+</div>
+<footer class="footer row">
+    <div></div>
+    <button mat-button color="warn">削除</button>
+</footer>
