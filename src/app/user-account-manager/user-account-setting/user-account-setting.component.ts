@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-user-account-setting',
@@ -12,4 +13,13 @@ export class UserAccountSettingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userAccount: UserAccount = {
+    id: "",
+    token: "",
+    name: "Jobs",
+  }
+  editing = false;
+  onClickEdit() {
+    this.editing = !this.editing;
+  }
 }
