@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BaseModule } from '../base/base.module';
 
 export default {
-  title: 'main/UserAccountManagerComponent',
+  title: 'user-account-manager/UserAccountManagerComponent',
   component: UserAccountManagerComponent,
   decorators: [
     moduleMetadata({
