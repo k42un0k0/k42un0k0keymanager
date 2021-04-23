@@ -33,4 +33,8 @@ export class SidebarComponent implements OnInit, AfterViewChecked {
   sidebarItems!: SidebarItem[];
   @Input()
   open!: boolean;
+
+  openUserAccountManager() {
+    window.main.window.userAccountManager();
+  }
 }

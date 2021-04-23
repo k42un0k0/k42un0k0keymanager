@@ -2,6 +2,7 @@ import { componentWrapperDecorator, Meta, moduleMetadata, Story } from '@storybo
 import { SidebarComponent } from './sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatButtonModule } from '@angular/material/button';
 
 export default {
   title: 'main/components/SidebarComponent',
@@ -12,7 +13,7 @@ export default {
   decorators: [
     componentWrapperDecorator((story) => `<div style="height: 300px">${story}</div>`),
     moduleMetadata({
-      imports: [MatIconModule, RouterTestingModule],
+      imports: [MatIconModule, MatButtonModule, RouterTestingModule],
     }),
   ],
 } as Meta;

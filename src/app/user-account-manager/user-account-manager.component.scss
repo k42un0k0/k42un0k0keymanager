@@ -1,0 +1,72 @@
+@import "_variables";
+
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $gray1;
+}
+
+.bar {
+  -webkit-app-region: drag;
+  padding: 1rem;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $gray3;
+  width: 300px;
+  padding: .25em;
+  padding-right: .5em;
+  padding-left: 1em;
+
+  span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+// buttonの大きさを変えたがline-heightが数値指定なので、相対指定に修正してる
+.settings {
+  width: 30px;
+  height: 30px;
+  line-height: 1;
+
+  mat-icon {
+    font-size: 20px;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+  }
+}
+
+aside {
+  height: 100%;
+  flex-shrink: 0;
+  padding: 1rem;
+}
+
+.content {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 8px 8px 0;
+  position: relative;
+  border-left: 1px solid $gray2;
+}
