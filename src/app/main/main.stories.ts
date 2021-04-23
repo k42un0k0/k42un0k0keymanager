@@ -4,13 +4,15 @@ import { moduleMetadata } from '@storybook/angular';
 import { MainComponent } from './main.component';
 import { ComponentsModule } from './components/components.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 export default {
   title: 'main/MainComponent',
   component: MainComponent,
   decorators: [
     moduleMetadata({
-      imports: [ComponentsModule, RouterTestingModule],
+      imports: [ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule],
     }),
   ],
 } as Meta;
