@@ -18,18 +18,3 @@ export const Primary = Template.bind({});
 Primary.args = {
   label: 'ButtonComponent',
 };
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'ButtonComponent',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  label: 'ButtonComponent',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  label: 'ButtonComponent',
-};
