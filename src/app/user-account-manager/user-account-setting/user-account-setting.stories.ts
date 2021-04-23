@@ -5,11 +5,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { UserAccountSettingComponent } from './user-account-setting.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { AutoFocusDirective } from 'src/app/base/directives/auto-focus.directive';
 import { BaseModule } from 'src/app/base/base.module';
 
 export default {
-  title: 'main/UserAccountSettingComponent',
+  title: 'user-account-manager/UserAccountSettingComponent',
   component: UserAccountSettingComponent,
   decorators: [
     moduleMetadata({
