@@ -34,6 +34,10 @@ ul {
   list-style: none;
 }
 
+.is-window-frame{
+  -webkit-app-region: drag;
+}
+
 @include mat-core();
 
 $primary:(

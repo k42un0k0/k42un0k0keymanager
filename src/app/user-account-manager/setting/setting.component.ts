@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { UserAccount } from 'src/models';
 
 @Component({
-  selector: 'app-user-account-setting',
-  templateUrl: './user-account-setting.component.html',
-  styleUrls: ['./user-account-setting.component.scss']
+  selector: 'app-setting',
+  templateUrl: './setting.component.html',
+  styleUrls: ['./setting.component.scss']
 })
-export class UserAccountSettingComponent implements OnInit {
+export class SettingComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  userAccount: UserAccount = {
+  userAccount: DeepWritable<UserAccount> = {
     id: "",
     token: "",
     name: "Jobs",

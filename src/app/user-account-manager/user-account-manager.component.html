@@ -1,20 +1,27 @@
-<div class="bar primary">
+<div class="bar primary is-window-frame">
   ユーザーアカウントの管理
   <mat-icon (click)="closeWindow()">close</mat-icon>
 </div>
 <div class="container">
   <aside>
     <ul>
-      <li *ngFor="let item of userAccounts" class="primary ">
-        <span>
-          {{item.name}}
-        </span>
-        <button class="settings" mat-icon-button color="primary"
-          aria-label="Example icon button with a open in new tab icon">
-          <mat-icon>settings</mat-icon>
-        </button>
-      </li>
+      <a *ngFor="let item of userAccounts" [routerLink]="'/user-account-manager/setting'">
+        <li class="primary">
+          <span>
+            {{item.name}}
+          </span>
+          <button class="settings" mat-icon-button color="primary"
+            aria-label="Example icon button with a open in new tab icon">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </li>
+      </a>
     </ul>
+    <footer>
+      <button mat-icon-button color="primary" aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>add</mat-icon>
+      </button>
+    </footer>
   </aside>
   <div class="content">
     <router-outlet></router-outlet>
