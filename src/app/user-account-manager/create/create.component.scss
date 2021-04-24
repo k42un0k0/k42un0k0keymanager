@@ -1,0 +1,20 @@
+@import "_variables";
+:host{
+  margin-top: -30px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 40px;
+}
+.paper{
+  flex:1;
+  border-radius: 4px;
+  background-color: $gray2;
+  padding: 1em;
+}
+
+footer{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
+}

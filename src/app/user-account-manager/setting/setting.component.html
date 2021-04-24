@@ -1,22 +1,9 @@
-<div [ngClass]="editing?['row','row-username','edit']:['row','row-username']">
-  <ng-template [ngIf]="editing" [ngIfElse]="elseBlock">
-    <div>
-      <div class="label secondary">
-        ユーザー名
-      </div>
-      <input class="input primary" appAutoFocus type="text" [(ngModel)]="userAccount.name" />
-    </div>
-    <button mat-button color="primary" (click)="onClickEdit()">保存</button>
-  </ng-template>
+<div class="row-username">
+  <app-input #input class="input" [disabled]="!editing" label="ユーザー名" [(value)]="userAccount.name">
+  </app-input>
+
+  <button *ngIf="editing; else elseBlock;" mat-button color="primary" (click)="onClickEdit()">保存</button>
   <ng-template #elseBlock>
-    <div>
-      <div class="label secondary">
-        ユーザー名
-      </div>
-      <div class="value primary">
-        {{userAccount.name}}
-      </div>
-    </div>
     <button mat-button color="primary" (click)="onClickEdit()">編集</button>
   </ng-template>
 </div>

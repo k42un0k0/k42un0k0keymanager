@@ -6,13 +6,14 @@ import { CreateComponent } from './create.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { BaseModule } from 'src/app/base/base.module';
+import { ComponentsModule } from '../components/components.module';
 
 export default {
   title: 'user-account-manager/CreateComponent',
   component: CreateComponent,
   decorators: [
     moduleMetadata({
-      imports: [RouterTestingModule, MatButtonModule, FormsModule, BaseModule],
+      imports: [RouterTestingModule, MatButtonModule, FormsModule, BaseModule, ComponentsModule],
     }),
   ],
 } as Meta;
