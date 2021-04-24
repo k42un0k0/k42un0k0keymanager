@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-titlebar',
@@ -11,5 +11,7 @@ export class TitlebarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @HostBinding("class.is-window-frame") isWindowFrame = true;
 
 }

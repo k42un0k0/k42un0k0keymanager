@@ -1,5 +1,3 @@
-import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +8,7 @@ import { AuthComponent } from './auth.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { BaseModule } from '../base/base.module';
 import { FormsModule } from '@angular/forms';
-import { ContainerComponent } from './components/container/container.component';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
@@ -19,15 +17,13 @@ import { ContainerComponent } from './components/container/container.component';
     LoginComponent,
     RegisterComponent,
     ConfirmComponent,
-    InputComponent,
-    ButtonComponent,
-    ContainerComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
     FormsModule,
     BaseModule,
+    ComponentsModule
   ]
 })
 export class AuthModule { }

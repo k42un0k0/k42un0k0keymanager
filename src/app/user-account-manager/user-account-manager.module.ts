@@ -1,3 +1,5 @@
+import { CreateComponent } from './create/create.component';
+import { SettingComponent } from './setting/setting.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +13,9 @@ import { AutoFocusDirective } from '../base/directives/auto-focus.directive';
 
 @NgModule({
   declarations: [
-    UserAccountManagerComponent
+    UserAccountManagerComponent,
+    SettingComponent,
+    CreateComponent,
   ],
   providers: [
     AutoFocusDirective
