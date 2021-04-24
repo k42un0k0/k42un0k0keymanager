@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { InputComponent } from '../components/input/input.component';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { UserAccount } from 'src/models';
 
 @Component({
@@ -18,8 +19,13 @@ export class SettingComponent implements OnInit {
     token: "",
     name: "Jobs",
   }
+
+  @ViewChild('input') input!: InputComponent;
   editing = false;
   onClickEdit() {
     this.editing = !this.editing;
+    setTimeout(() => {
+      this.input.focus();
+    }, 0)
   }
 }
