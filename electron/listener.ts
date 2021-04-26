@@ -3,7 +3,8 @@ import { EVENTS } from "./events";
 import { windowManager } from "./singleton";
 
 
-ipcMain.on(EVENTS.DEBUG, () => {
+ipcMain.on(EVENTS.DEBUG, (e) => {
+  console.log(e);
   console.log("debug")
 })
 
