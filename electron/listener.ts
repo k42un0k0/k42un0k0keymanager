@@ -15,3 +15,7 @@ ipcMain.on(EVENTS.OPEN_WINDOW.AUTH, () => {
 ipcMain.on(EVENTS.OPEN_WINDOW.USER_ACCOUNT_MANAGER, () => {
   windowManager.createWindow("#/user-account-manager");
 })
+
+ipcMain.on(EVENTS.CLOSE, (e) => {
+  windowManager.closeWindow(e.sender.id)
+})
