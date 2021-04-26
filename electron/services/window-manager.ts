@@ -23,4 +23,10 @@ export class WindowManager {
     win.loadURL(startUrl);
     this.windowMap.set(win.id, win);
   }
+
+  closeWindow(id: number) {
+    const win = this.windowMap.get(id);
+    if (win == null) throw new Error("存在しないウィンドウです")
+    win.close();
+  }
 }
