@@ -1,3 +1,4 @@
+import { ElectronService } from './../../base/services/electron.service';
 import { APIService } from './../../API.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private apiService: APIService) { }
+  constructor(private apiService: APIService, private electronService: ElectronService) { }
 
   ngOnInit(): void {
   }
-  username: string = "";
+  name: string = "";
   password: string = "";
+
+  submit() {
+    this.apiService.CreateUserAccount({ name: this.name, token: "aaaaaa" }).then(() => {
+      this.electronService.closeWindow();
+    })
+  }
 }

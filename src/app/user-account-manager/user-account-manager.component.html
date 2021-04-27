@@ -5,10 +5,10 @@
 <div class="container">
   <aside>
     <ul>
-      <a *ngFor="let item of userAccounts" [routerLink]="'/user-account-manager/setting'">
+      <a *ngFor="let item of userAccounts | async" [routerLink]="'/user-account-manager/setting/'+ item?.id">
         <li class="primary">
           <span>
-            {{item.name}}
+            {{item?.name||''}}
           </span>
           <button class="settings" mat-icon-button color="primary"
             aria-label="Example icon button with a open in new tab icon">

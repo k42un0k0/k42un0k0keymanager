@@ -7,7 +7,7 @@ import { UserAccountManagerComponent } from './user-account-manager.component';
 const routes: Routes = [
   {
     path: '', component: UserAccountManagerComponent, children: [
-      { path: 'setting', component: SettingComponent },
+      { path: 'setting/:id', component: SettingComponent },
       { path: 'create', component: CreateComponent },
     ]
   },
