@@ -1,6 +1,9 @@
+import { APIService } from './../../API.service';
 import { InputComponent } from '../components/input/input.component';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { UserAccount } from 'src/models';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map, mergeMap, pluck } from "rxjs/operators"
+import { from, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-setting',
@@ -9,19 +12,20 @@ import { UserAccount } from 'src/models';
 })
 export class SettingComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private activatedRoute: ActivatedRoute, private apiService: APIService) { }
   ngOnInit(): void {
   }
 
-  userAccount: DeepWritable<UserAccount> = {
-    id: "",
-    token: "",
-    name: "Jobs",
-  }
+  private id = this.activatedRoute.params.pipe(pluck("id"))
 
+  userAccount = this.id.pipe(mergeMap((id) => {
+    return from(this.apiService.GetUserAccount(id));
+  }))
+
+  name = this.userAccount.pipe(pluck("name"))
   @ViewChild('input') input!: InputComponent;
   editing = false;
+
   onClickEdit() {
     this.editing = !this.editing;
     setTimeout(() => {

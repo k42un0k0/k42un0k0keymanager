@@ -1,5 +1,5 @@
 <div class="row-username">
-  <app-input #input class="input" [disabled]="!editing" label="ユーザー名" [(value)]="userAccount.name">
+  <app-input #input class="input" [disabled]="!editing" [value]="(name|async)||''" label="ユーザー名">
   </app-input>
 
   <button *ngIf="editing; else elseBlock;" mat-button color="primary" (click)="onClickEdit()">保存</button>

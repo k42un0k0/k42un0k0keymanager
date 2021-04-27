@@ -30,4 +30,5 @@ export class InputComponent implements OnInit {
   value!: string;
 
   @Output() valueChange = new EventEmitter<string>();
+
 }
