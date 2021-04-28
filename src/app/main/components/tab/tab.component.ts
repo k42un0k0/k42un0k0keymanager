@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Tab } from '../../services/tab.service';
 
 
 export interface TabItem {
@@ -18,8 +19,11 @@ export class TabComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @HostBinding('class.active') @Input() active!: boolean;
+  @HostBinding('class.active')
+  get active() {
+    return this.tab.active
+  }
 
-  @Input() tabItem!: TabItem;
-
+  @Input() tab!: Tab;
+  @Output() close = new EventEmitter();
 }

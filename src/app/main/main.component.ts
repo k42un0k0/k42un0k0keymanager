@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { OuterAccount } from 'src/models';
+import { OuterAccount, UserAccount } from 'src/models';
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
 import { nonNullable } from '../base/utils/nonNullable';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { TabItem } from './components/tab/tab.component';
+import { TabService } from './services/tab.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +15,7 @@ import { TabItem } from './components/tab/tab.component';
 })
 export class MainComponent {
 
-  constructor(private userAccountRepository: UserAccountRepository) { }
+  constructor(private userAccountRepository: UserAccountRepository, private tabService: TabService) { }
 
   open: boolean = false;
 
@@ -22,13 +23,9 @@ export class MainComponent {
     this.open = !this.open;
   }
 
-  tabItems: TabItem[] = [
-    { title: "Jobs", link: "/auth/login" },
-    { title: "Hobby", link: "/auth/login" },
-  ]
   sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.userAccounts.pipe(map((value) => {
     return value.map((v) => {
-      return { title: nonNullable.string(v?.name), link: nonNullable.string(v?.name) }
+      return { title: nonNullable.string(v?.name), onClick: () => { this.tabService.createTab(v as UserAccount) } }
     })
   }))
 
