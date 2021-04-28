@@ -8,9 +8,10 @@
   padding-right: .5rem;
 }
 
-.menu{
+.menu {
   display: flex;
   align-items: center;
+
   &:hover ::ng-deep .close {
     color: $gray3;
   }
@@ -28,14 +29,15 @@
   display: block;
 }
 
-.window-close{
+.window-close {
   font-size: 18px;
   width: 1em;
   height: 1em;
   color: $gray2;
   justify-self: flex-end;
   cursor: pointer;
-  &:hover{
-    color:white;
+
+  &:hover {
+    color: white;
   }
 }
