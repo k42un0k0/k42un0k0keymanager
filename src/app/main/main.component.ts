@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { OuterAccount } from 'src/models';
+import { UserAccountRepository } from '../base/repositories/user-account.repository';
+import { nonNullable } from '../base/utils/nonNullable';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { TabItem } from './components/tab/tab.component';
 
@@ -8,25 +12,26 @@ import { TabItem } from './components/tab/tab.component';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  constructor() { }
+  constructor(private userAccountRepository: UserAccountRepository) { }
 
-  ngOnInit(): void {
-  }
   open: boolean = false;
+
   onClickHome() {
-    console.log("clicked")
     this.open = !this.open;
   }
+
   tabItems: TabItem[] = [
     { title: "Jobs", link: "/auth/login" },
     { title: "Hobby", link: "/auth/login" },
   ]
-  sidebarItems: SidebarItem[] = [
-    { title: 'Jobs', link: "/auth/login" },
-    { title: "Hobby", link: "/auth/login" },
-  ]
+  sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.userAccounts.pipe(map((value) => {
+    return value.map((v) => {
+      return { title: nonNullable.string(v?.name), link: nonNullable.string(v?.name) }
+    })
+  }))
+
   account: OuterAccount = {
     id: "",
     providerName: "Twitter",

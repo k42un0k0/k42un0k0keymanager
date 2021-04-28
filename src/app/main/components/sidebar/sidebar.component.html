@@ -1,6 +1,6 @@
 <section #section>
   <ul>
-    <a *ngFor="let item of sidebarItems" [routerLink]="item.link">
+    <a *ngFor="let item of sidebarItems | async" [routerLink]="item.link">
       <li>
         {{item.title}}
       </li>

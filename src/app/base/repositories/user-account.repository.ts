@@ -1,6 +1,7 @@
 import { APIService, ListUserAccountsQuery } from '../../API.service';
 import { Injectable } from '@angular/core';
 import { from, BehaviorSubject } from 'rxjs';
+import { nonNullable } from '../utils/nonNullable';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +9,17 @@ import { from, BehaviorSubject } from 'rxjs';
 export class UserAccountRepository {
 
   constructor(private apiService: APIService) {
-    this._updateUserAccounts();
+    this.updateUserAccounts();
     this.apiService.OnCreateUserAccountListener.subscribe(() => {
-      this._updateUserAccounts();
+      this.updateUserAccounts();
     })
   }
 
-  userAccounts = new BehaviorSubject<ListUserAccountsQuery["items"]>([]);
+  userAccounts = new BehaviorSubject<NonNullable<ListUserAccountsQuery["items"]>>([]);
 
-  private _updateUserAccounts() {
+  updateUserAccounts() {
     from(this.apiService.ListUserAccounts()).subscribe((list) => {
-      this.userAccounts.next(list.items);
+      this.userAccounts.next(nonNullable.array(list.items));
     })
   }
 }
