@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 export type SidebarItem = {
   title: string,
-  link: string,
+  onClick: () => void,
 }
 
 @Component({
