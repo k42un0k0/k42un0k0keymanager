@@ -1,0 +1,5 @@
+<label class="secondary">
+  {{label}}
+</label>
+<input #input class="primary" [disabled]="disabled" [appAutoFocus]="autoFocus" type="text" [ngModel]="value"
+  (ngModelChange)="valueChange.emit($event)" />

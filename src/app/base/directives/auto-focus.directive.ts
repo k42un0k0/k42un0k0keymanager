@@ -1,12 +1,17 @@
-import { AfterContentInit, Directive, ElementRef, HostListener, Input, OnChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[appAutoFocus]'
 })
 export class AutoFocusDirective implements AfterContentInit {
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef<HTMLInputElement>) { }
   ngAfterContentInit(): void {
-    this.elementRef.nativeElement.focus()
+    if (this.appAutoFocus === "" || this.appAutoFocus === true) {
+      this.elementRef.nativeElement.focus()
+    }
   }
+
+  @Input()
+  appAutoFocus!: boolean | "";
 }
