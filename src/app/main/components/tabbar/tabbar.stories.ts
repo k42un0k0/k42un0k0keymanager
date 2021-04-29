@@ -31,5 +31,4 @@ const Template: Story<TabbarComponent> = (args: TabbarComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  tabItems: [{ title: "hello", link: "/outer-account-list" }, { title: "world", link: "/outer-account-list" }],
 };
