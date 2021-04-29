@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountCardComponent } from './account-card.component';
 
-describe('AccountCardComponent', () => {
+describe('main/components/AccountCardComponent', () => {
   let component: AccountCardComponent;
   let fixture: ComponentFixture<AccountCardComponent>;
 
