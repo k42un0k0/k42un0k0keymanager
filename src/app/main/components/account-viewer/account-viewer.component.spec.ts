@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountViewerComponent } from './account-viewer.component';
 
-describe('AccountViewerComponent', () => {
+describe('main/components/AccountViewerComponent', () => {
   let component: AccountViewerComponent;
   let fixture: ComponentFixture<AccountViewerComponent>;
 

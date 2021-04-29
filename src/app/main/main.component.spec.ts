@@ -9,7 +9,7 @@ import { ComponentsModule } from './components/components.module';
 import { MainComponent } from './main.component';
 import { of } from 'rxjs';
 
-describe('MainComponent', () => {
+describe('main/MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
 

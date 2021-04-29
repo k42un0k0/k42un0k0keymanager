@@ -5,7 +5,7 @@ import { BaseModule } from 'src/app/base/base.module';
 
 import { TabbarComponent } from './tabbar.component';
 
-describe('TabbarComponent', () => {
+describe('main/components/TabbarComponent', () => {
   let component: TabbarComponent;
   let fixture: ComponentFixture<TabbarComponent>;
 
