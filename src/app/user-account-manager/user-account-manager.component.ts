@@ -1,5 +1,9 @@
+import { UserAccountRepository } from './../base/repositories/user-account.repository';
+import { APIService } from './../API.service';
 import { Component, OnInit } from '@angular/core';
 import { UserAccount } from 'src/models';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-account-manager',
@@ -8,20 +12,12 @@ import { UserAccount } from 'src/models';
 })
 export class UserAccountManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userAccountRepository: UserAccountRepository) { }
 
   ngOnInit(): void {
   }
 
-  userAccounts: UserAccount[] = [{
-    id: "",
-    token: "",
-    name: "Jobs",
-  }, {
-    id: "",
-    token: "",
-    name: "Hobby",
-  }];
+  userAccounts = this.userAccountRepository.userAccounts;
 
   closeWindow() {
     window.close();

@@ -1,10 +1,11 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AfterViewChecked, ElementRef } from '@angular/core';
 import { Component, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export type SidebarItem = {
   title: string,
-  link: string,
+  onClick: () => void,
 }
 
 @Component({
@@ -30,7 +31,7 @@ export class SidebarComponent implements OnInit, AfterViewChecked {
   }
   @ViewChild('section') section!: ElementRef<HTMLDivElement>;
   @Input()
-  sidebarItems!: SidebarItem[];
+  sidebarItems!: Observable<SidebarItem[]>;
   @Input()
   open!: boolean;
 

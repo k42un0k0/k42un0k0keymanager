@@ -1,0 +1,33 @@
+@import "_variables";
+
+.row {
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $gray3;
+  }
+}
+
+.label {
+  margin-bottom: .5em;
+}
+
+.value {
+  color: $primary-text;
+}
+.row-username {
+  border: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .input{
+    flex:1;
+  }
+  button{
+    position: absolute;
+    right: 1em;
+  }
+}

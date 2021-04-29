@@ -1,8 +1,10 @@
-<div class="menu">
+<div class="menu in-window-frame">
   <div class="home-wrapper">
     <mat-icon class="home" (click)="_onClickHome()" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
   </div>
-  <app-tab *ngFor="let tabItem of tabItems" [tabItem]="tabItem" [active]="tabItem.title=='hello'"></app-tab>
+  <app-tab *ngFor="let tab of tabService.tabs; index as i" [tab]="tab" (click)="tabService.clickTab(i)"
+    (close)="tabService.closeTab(i)"></app-tab>
 </div>
-<mat-icon class="window-close" (click)="closeWindow()" aria-hidden="false" aria-label="Example home icon">close
+<mat-icon class="window-close in-window-frame" (click)="closeWindow()" aria-hidden="false"
+  aria-label="Example home icon">close
 </mat-icon>

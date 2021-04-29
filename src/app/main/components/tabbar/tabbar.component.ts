@@ -1,5 +1,7 @@
+import { ElectronService } from './../../../base/services/electron.service';
 import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { TabItem } from '../tab/tab.component';
+import { TabService } from '../../services/tab.service';
 
 @Component({
   selector: 'app-tabbar',
@@ -8,12 +10,10 @@ import { TabItem } from '../tab/tab.component';
 })
 export class TabbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private electronService: ElectronService, public tabService: TabService) { }
 
   ngOnInit(): void {
   }
-
-  @Input() tabItems!: TabItem[];
 
   @Output() onClickHome = new EventEmitter();
 
@@ -21,6 +21,6 @@ export class TabbarComponent implements OnInit {
     this.onClickHome.emit();
   }
   closeWindow() {
-    window.close()
+    this.electronService.closeWindow();
   }
 }
