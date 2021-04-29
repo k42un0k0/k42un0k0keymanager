@@ -3,6 +3,7 @@ import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 import { TabComponent } from './tab.component';
 import { MatIconModule } from '@angular/material/icon';
+import { Tab } from '../../services/tab.service';
 
 export default {
   title: 'main/components/TabComponent',
@@ -23,11 +24,10 @@ const Template: Story<TabComponent> = (args: TabComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  tabItem: { title: "hello", link: "/unko" }
 };
 
 export const Active = Template.bind({});
 Active.args = {
-  tabItem: { title: "hello", link: "/unko" },
+  tab: new Tab({ name: "aaaaaa", id: '', token: "" }),
   active: true
 };
