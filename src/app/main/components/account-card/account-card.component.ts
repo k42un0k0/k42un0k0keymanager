@@ -4,14 +4,12 @@ import { OuterAccount } from 'src/models';
 @Component({
   selector: 'app-account-card',
   templateUrl: './account-card.component.html',
-  styleUrls: ['./account-card.component.scss']
+  styleUrls: ['./account-card.component.scss'],
 })
 export class AccountCardComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   @Input()
   account!: OuterAccount;

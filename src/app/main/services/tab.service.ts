@@ -10,20 +10,19 @@ export class Tab {
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class TabService {
-
-  constructor() { }
+  constructor() {}
 
   tabs: Tab[] = [];
   createTab(userAccount: UserAccount) {
-    this.tabs.push(new Tab(userAccount))
+    this.tabs.push(new Tab(userAccount));
   }
   clickTab(index: number) {
     this.tabs.forEach((tab, i) => {
       if (i === index) tab.active = true;
-      tab.active = false
+      tab.active = false;
     });
   }
   closeTab(index: number) {

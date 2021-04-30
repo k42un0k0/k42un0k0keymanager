@@ -9,17 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ComponentsModule } from './components/components.module';
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    OuterAccountListComponent,
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    ComponentsModule,
-    BaseModule,
-  ]
+  declarations: [MainComponent, OuterAccountListComponent],
+  imports: [CommonModule, MainRoutingModule, MatIconModule, MatButtonModule, ComponentsModule, BaseModule],
 })
-export class MainModule { }
+export class MainModule {}

@@ -1,23 +1,20 @@
 import { ElectronService } from './../../base/services/electron.service';
-import { APIService } from './../../API.service';
 import { Component, OnInit } from '@angular/core';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
+  name = '';
+  password = '';
 
-  constructor(private userAccountRepository: UserAccountRepository, private electronService: ElectronService) { }
+  constructor(private userAccountRepository: UserAccountRepository, private electronService: ElectronService) {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-  name: string = "";
-  password: string = "";
-
-  submit() {
-    this.userAccountRepository.create({ name: this.name, token: "aaaaaa" })
+  submit(): void {
+    this.userAccountRepository.create({ name: this.name, token: 'aaaaaa' });
   }
 }

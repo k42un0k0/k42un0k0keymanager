@@ -25,5 +25,4 @@ const Template: Story<SettingComponent> = (args: SettingComponent) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

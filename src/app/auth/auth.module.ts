@@ -10,20 +10,8 @@ import { BaseModule } from '../base/base.module';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from './components/components.module';
 
-
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    RegisterComponent,
-    ConfirmComponent,
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    FormsModule,
-    BaseModule,
-    ComponentsModule
-  ]
+  declarations: [AuthComponent, LoginComponent, RegisterComponent, ConfirmComponent],
+  imports: [CommonModule, AuthRoutingModule, FormsModule, BaseModule, ComponentsModule],
 })
-export class AuthModule { }
+export class AuthModule {}

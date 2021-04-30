@@ -15,8 +15,7 @@ describe('CreateComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CreateComponent],
       imports: [RouterTestingModule, MatButtonModule, FormsModule, BaseModule, ComponentsModule],
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -7,22 +7,27 @@ import { AuthenticationService } from '../../base/services/authentication.servic
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements AfterViewInit {
-
-  constructor(private authenticationService: AuthenticationService, private elm: ElementRef, private windowService: WindowService, private electronService: ElectronService, private router: Router) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private elm: ElementRef,
+    private windowService: WindowService,
+    private electronService: ElectronService,
+    private router: Router
+  ) {}
 
   ngAfterViewInit(): void {
     this.windowService.resizeTo(this.elm);
   }
 
-  password = "";
-  username = "";
+  password = '';
+  username = '';
 
   async submit() {
-    await this.authenticationService.signIn({ username: this.username, password: this.password })
-    await this.electronService.openWindow(WindowEnum.main)
+    await this.authenticationService.signIn({ username: this.username, password: this.password });
+    await this.electronService.openWindow(WindowEnum.main);
     this.electronService.closeWindow();
   }
 }

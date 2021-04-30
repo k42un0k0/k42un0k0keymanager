@@ -8,9 +8,8 @@ describe('main/components/AccountModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AccountModalComponent]
-    })
-      .compileComponents();
+      declarations: [AccountModalComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

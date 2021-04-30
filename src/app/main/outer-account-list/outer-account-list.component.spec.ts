@@ -8,9 +8,8 @@ describe('main/OuterAccountListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OuterAccountListComponent]
-    })
-      .compileComponents();
+      declarations: [OuterAccountListComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
