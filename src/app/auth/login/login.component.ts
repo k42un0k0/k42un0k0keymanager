@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ElectronService, WindowEnum } from 'src/app/base/services/electron.service';
 import { AuthenticationService } from '../../base/services/authentication.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthenticationService } from '../../base/services/authentication.servic
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, private electronService: ElectronService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   async submit() {
     await this.authenticationService.signIn({ username: this.username, password: this.password })
-    this.router.navigate(['/'])
+    await this.electronService.openWindow(WindowEnum.main)
+    this.electronService.closeWindow();
   }
 }

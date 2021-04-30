@@ -20,8 +20,8 @@ export class WindowManager {
       protocol: 'file:',
       slashes: true
     })) + path;
-    win.loadURL(startUrl);
     this.windowMap.set(win.id, win);
+    return win.loadURL(startUrl);
   }
 
   closeWindow(id: number) {
