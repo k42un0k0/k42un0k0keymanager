@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 export enum WindowEnum {
   auth,
   main,
-  userAccountSetting
+  userAccountSetting,
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ElectronService {
-
-  constructor() { }
+  constructor() {}
   openWindow(value: WindowEnum) {
     switch (value) {
       case WindowEnum.auth:

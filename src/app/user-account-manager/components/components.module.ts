@@ -5,12 +5,8 @@ import { BaseModule } from 'src/app/base/base.module';
 import { InputComponent } from './input/input.component';
 
 @NgModule({
-  declarations: [
-    InputComponent
-  ],
+  declarations: [InputComponent],
   imports: [FormsModule, BaseModule],
-  exports: [
-    InputComponent,
-  ]
+  exports: [InputComponent],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

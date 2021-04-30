@@ -11,8 +11,7 @@ describe('main/components/SidebarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SidebarComponent],
       imports: [MatIconModule],
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

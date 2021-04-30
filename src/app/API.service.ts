@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
-import { Injectable } from "@angular/core";
-import API, { graphqlOperation, GraphQLResult } from "@aws-amplify/api-graphql";
-import { Observable } from "zen-observable-ts";
+import { Injectable } from '@angular/core';
+import API, { graphqlOperation, GraphQLResult } from '@aws-amplify/api-graphql';
+import { Observable } from 'zen-observable-ts';
 
 export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
@@ -41,16 +41,16 @@ export type ModelStringInput = {
 };
 
 export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null"
+  binary = 'binary',
+  binarySet = 'binarySet',
+  bool = 'bool',
+  list = 'list',
+  map = 'map',
+  number = 'number',
+  numberSet = 'numberSet',
+  string = 'string',
+  stringSet = 'stringSet',
+  _null = '_null',
 }
 
 export type ModelSizeInput = {
@@ -64,7 +64,7 @@ export type ModelSizeInput = {
 };
 
 export type UserAccount = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token?: string;
   id?: string;
   name?: string;
@@ -78,14 +78,14 @@ export type UserAccount = {
 };
 
 export type ModelOuterAccountConnection = {
-  __typename: "ModelOuterAccountConnection";
+  __typename: 'ModelOuterAccountConnection';
   items?: Array<OuterAccount | null> | null;
   nextToken?: string | null;
   startedAt?: number | null;
 };
 
 export type OuterAccount = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id?: string;
   providerName?: string;
   iconPath?: string;
@@ -179,7 +179,7 @@ export type ModelUserAccountFilterInput = {
 };
 
 export type ModelUserAccountConnection = {
-  __typename: "ModelUserAccountConnection";
+  __typename: 'ModelUserAccountConnection';
   items?: Array<UserAccount | null> | null;
   nextToken?: string | null;
   startedAt?: number | null;
@@ -199,14 +199,14 @@ export type ModelOuterAccountFilterInput = {
 };
 
 export type CreateUserAccountMutation = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -233,14 +233,14 @@ export type CreateUserAccountMutation = {
 };
 
 export type UpdateUserAccountMutation = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -267,14 +267,14 @@ export type UpdateUserAccountMutation = {
 };
 
 export type DeleteUserAccountMutation = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -301,7 +301,7 @@ export type DeleteUserAccountMutation = {
 };
 
 export type CreateOuterAccountMutation = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -310,12 +310,12 @@ export type CreateOuterAccountMutation = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -335,7 +335,7 @@ export type CreateOuterAccountMutation = {
 };
 
 export type UpdateOuterAccountMutation = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -344,12 +344,12 @@ export type UpdateOuterAccountMutation = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -369,7 +369,7 @@ export type UpdateOuterAccountMutation = {
 };
 
 export type DeleteOuterAccountMutation = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -378,12 +378,12 @@ export type DeleteOuterAccountMutation = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -403,14 +403,14 @@ export type DeleteOuterAccountMutation = {
 };
 
 export type SyncUserAccountsQuery = {
-  __typename: "ModelUserAccountConnection";
+  __typename: 'ModelUserAccountConnection';
   items?: Array<{
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -426,14 +426,14 @@ export type SyncUserAccountsQuery = {
 };
 
 export type GetUserAccountQuery = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -460,14 +460,14 @@ export type GetUserAccountQuery = {
 };
 
 export type ListUserAccountsQuery = {
-  __typename: "ModelUserAccountConnection";
+  __typename: 'ModelUserAccountConnection';
   items?: Array<{
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -483,9 +483,9 @@ export type ListUserAccountsQuery = {
 };
 
 export type SyncOuterAccountsQuery = {
-  __typename: "ModelOuterAccountConnection";
+  __typename: 'ModelOuterAccountConnection';
   items?: Array<{
-    __typename: "OuterAccount";
+    __typename: 'OuterAccount';
     id: string;
     providerName: string;
     iconPath: string;
@@ -494,7 +494,7 @@ export type SyncOuterAccountsQuery = {
     password: string;
     userAccountID: string;
     userAccount?: {
-      __typename: "UserAccount";
+      __typename: 'UserAccount';
       token: string;
       id: string;
       name: string;
@@ -517,7 +517,7 @@ export type SyncOuterAccountsQuery = {
 };
 
 export type GetOuterAccountQuery = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -526,12 +526,12 @@ export type GetOuterAccountQuery = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -551,9 +551,9 @@ export type GetOuterAccountQuery = {
 };
 
 export type ListOuterAccountsQuery = {
-  __typename: "ModelOuterAccountConnection";
+  __typename: 'ModelOuterAccountConnection';
   items?: Array<{
-    __typename: "OuterAccount";
+    __typename: 'OuterAccount';
     id: string;
     providerName: string;
     iconPath: string;
@@ -562,7 +562,7 @@ export type ListOuterAccountsQuery = {
     password: string;
     userAccountID: string;
     userAccount?: {
-      __typename: "UserAccount";
+      __typename: 'UserAccount';
       token: string;
       id: string;
       name: string;
@@ -585,14 +585,14 @@ export type ListOuterAccountsQuery = {
 };
 
 export type OnCreateUserAccountSubscription = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -619,14 +619,14 @@ export type OnCreateUserAccountSubscription = {
 };
 
 export type OnUpdateUserAccountSubscription = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -653,14 +653,14 @@ export type OnUpdateUserAccountSubscription = {
 };
 
 export type OnDeleteUserAccountSubscription = {
-  __typename: "UserAccount";
+  __typename: 'UserAccount';
   token: string;
   id: string;
   name: string;
   OuterAccounts?: {
-    __typename: "ModelOuterAccountConnection";
+    __typename: 'ModelOuterAccountConnection';
     items?: Array<{
-      __typename: "OuterAccount";
+      __typename: 'OuterAccount';
       id: string;
       providerName: string;
       iconPath: string;
@@ -687,7 +687,7 @@ export type OnDeleteUserAccountSubscription = {
 };
 
 export type OnCreateOuterAccountSubscription = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -696,12 +696,12 @@ export type OnCreateOuterAccountSubscription = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -721,7 +721,7 @@ export type OnCreateOuterAccountSubscription = {
 };
 
 export type OnUpdateOuterAccountSubscription = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -730,12 +730,12 @@ export type OnUpdateOuterAccountSubscription = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -755,7 +755,7 @@ export type OnUpdateOuterAccountSubscription = {
 };
 
 export type OnDeleteOuterAccountSubscription = {
-  __typename: "OuterAccount";
+  __typename: 'OuterAccount';
   id: string;
   providerName: string;
   iconPath: string;
@@ -764,12 +764,12 @@ export type OnDeleteOuterAccountSubscription = {
   password: string;
   userAccountID: string;
   userAccount?: {
-    __typename: "UserAccount";
+    __typename: 'UserAccount';
     token: string;
     id: string;
     name: string;
     OuterAccounts?: {
-      __typename: "ModelOuterAccountConnection";
+      __typename: 'ModelOuterAccountConnection';
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
@@ -789,13 +789,10 @@ export type OnDeleteOuterAccountSubscription = {
 };
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class APIService {
-  async CreateUserAccount(
-    input: CreateUserAccountInput,
-    condition?: ModelUserAccountConditionInput
-  ): Promise<CreateUserAccountMutation> {
+  async CreateUserAccount(input: CreateUserAccountInput, condition?: ModelUserAccountConditionInput): Promise<CreateUserAccountMutation> {
     const statement = `mutation CreateUserAccount($input: CreateUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         createUserAccount(input: $input, condition: $condition) {
           __typename
@@ -832,20 +829,15 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      input
+      input,
     };
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <CreateUserAccountMutation>response.data.createUserAccount;
   }
-  async UpdateUserAccount(
-    input: UpdateUserAccountInput,
-    condition?: ModelUserAccountConditionInput
-  ): Promise<UpdateUserAccountMutation> {
+  async UpdateUserAccount(input: UpdateUserAccountInput, condition?: ModelUserAccountConditionInput): Promise<UpdateUserAccountMutation> {
     const statement = `mutation UpdateUserAccount($input: UpdateUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         updateUserAccount(input: $input, condition: $condition) {
           __typename
@@ -882,20 +874,15 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      input
+      input,
     };
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <UpdateUserAccountMutation>response.data.updateUserAccount;
   }
-  async DeleteUserAccount(
-    input: DeleteUserAccountInput,
-    condition?: ModelUserAccountConditionInput
-  ): Promise<DeleteUserAccountMutation> {
+  async DeleteUserAccount(input: DeleteUserAccountInput, condition?: ModelUserAccountConditionInput): Promise<DeleteUserAccountMutation> {
     const statement = `mutation DeleteUserAccount($input: DeleteUserAccountInput!, $condition: ModelUserAccountConditionInput) {
         deleteUserAccount(input: $input, condition: $condition) {
           __typename
@@ -932,20 +919,15 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      input
+      input,
     };
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <DeleteUserAccountMutation>response.data.deleteUserAccount;
   }
-  async CreateOuterAccount(
-    input: CreateOuterAccountInput,
-    condition?: ModelOuterAccountConditionInput
-  ): Promise<CreateOuterAccountMutation> {
+  async CreateOuterAccount(input: CreateOuterAccountInput, condition?: ModelOuterAccountConditionInput): Promise<CreateOuterAccountMutation> {
     const statement = `mutation CreateOuterAccount($input: CreateOuterAccountInput!, $condition: ModelOuterAccountConditionInput) {
         createOuterAccount(input: $input, condition: $condition) {
           __typename
@@ -982,20 +964,15 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      input
+      input,
     };
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <CreateOuterAccountMutation>response.data.createOuterAccount;
   }
-  async UpdateOuterAccount(
-    input: UpdateOuterAccountInput,
-    condition?: ModelOuterAccountConditionInput
-  ): Promise<UpdateOuterAccountMutation> {
+  async UpdateOuterAccount(input: UpdateOuterAccountInput, condition?: ModelOuterAccountConditionInput): Promise<UpdateOuterAccountMutation> {
     const statement = `mutation UpdateOuterAccount($input: UpdateOuterAccountInput!, $condition: ModelOuterAccountConditionInput) {
         updateOuterAccount(input: $input, condition: $condition) {
           __typename
@@ -1032,20 +1009,15 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      input
+      input,
     };
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <UpdateOuterAccountMutation>response.data.updateOuterAccount;
   }
-  async DeleteOuterAccount(
-    input: DeleteOuterAccountInput,
-    condition?: ModelOuterAccountConditionInput
-  ): Promise<DeleteOuterAccountMutation> {
+  async DeleteOuterAccount(input: DeleteOuterAccountInput, condition?: ModelOuterAccountConditionInput): Promise<DeleteOuterAccountMutation> {
     const statement = `mutation DeleteOuterAccount($input: DeleteOuterAccountInput!, $condition: ModelOuterAccountConditionInput) {
         deleteOuterAccount(input: $input, condition: $condition) {
           __typename
@@ -1082,22 +1054,15 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      input
+      input,
     };
     if (condition) {
       gqlAPIServiceArguments.condition = condition;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <DeleteOuterAccountMutation>response.data.deleteOuterAccount;
   }
-  async SyncUserAccounts(
-    filter?: ModelUserAccountFilterInput,
-    limit?: number,
-    nextToken?: string,
-    lastSync?: number
-  ): Promise<SyncUserAccountsQuery> {
+  async SyncUserAccounts(filter?: ModelUserAccountFilterInput, limit?: number, nextToken?: string, lastSync?: number): Promise<SyncUserAccountsQuery> {
     const statement = `query SyncUserAccounts($filter: ModelUserAccountFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
         syncUserAccounts(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
           __typename
@@ -1135,9 +1100,7 @@ export class APIService {
     if (lastSync) {
       gqlAPIServiceArguments.lastSync = lastSync;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <SyncUserAccountsQuery>response.data.syncUserAccounts;
   }
   async GetUserAccount(id: string): Promise<GetUserAccountQuery> {
@@ -1177,18 +1140,12 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id
+      id,
     };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <GetUserAccountQuery>response.data.getUserAccount;
   }
-  async ListUserAccounts(
-    filter?: ModelUserAccountFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListUserAccountsQuery> {
+  async ListUserAccounts(filter?: ModelUserAccountFilterInput, limit?: number, nextToken?: string): Promise<ListUserAccountsQuery> {
     const statement = `query ListUserAccounts($filter: ModelUserAccountFilterInput, $limit: Int, $nextToken: String) {
         listUserAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
@@ -1223,17 +1180,10 @@ export class APIService {
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <ListUserAccountsQuery>response.data.listUserAccounts;
   }
-  async SyncOuterAccounts(
-    filter?: ModelOuterAccountFilterInput,
-    limit?: number,
-    nextToken?: string,
-    lastSync?: number
-  ): Promise<SyncOuterAccountsQuery> {
+  async SyncOuterAccounts(filter?: ModelOuterAccountFilterInput, limit?: number, nextToken?: string, lastSync?: number): Promise<SyncOuterAccountsQuery> {
     const statement = `query SyncOuterAccounts($filter: ModelOuterAccountFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
         syncOuterAccounts(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
           __typename
@@ -1282,9 +1232,7 @@ export class APIService {
     if (lastSync) {
       gqlAPIServiceArguments.lastSync = lastSync;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <SyncOuterAccountsQuery>response.data.syncOuterAccounts;
   }
   async GetOuterAccount(id: string): Promise<GetOuterAccountQuery> {
@@ -1324,18 +1272,12 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id
+      id,
     };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <GetOuterAccountQuery>response.data.getOuterAccount;
   }
-  async ListOuterAccounts(
-    filter?: ModelOuterAccountFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListOuterAccountsQuery> {
+  async ListOuterAccounts(filter?: ModelOuterAccountFilterInput, limit?: number, nextToken?: string): Promise<ListOuterAccountsQuery> {
     const statement = `query ListOuterAccounts($filter: ModelOuterAccountFilterInput, $limit: Int, $nextToken: String) {
         listOuterAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
@@ -1381,14 +1323,10 @@ export class APIService {
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
     }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql(graphqlOperation(statement, gqlAPIServiceArguments))) as any;
     return <ListOuterAccountsQuery>response.data.listOuterAccounts;
   }
-  OnCreateUserAccountListener: Observable<
-    SubscriptionResponse<OnCreateUserAccountSubscription>
-  > = API.graphql(
+  OnCreateUserAccountListener: Observable<SubscriptionResponse<OnCreateUserAccountSubscription>> = API.graphql(
     graphqlOperation(
       `subscription OnCreateUserAccount($owner: String!) {
         onCreateUserAccount(owner: $owner) {
@@ -1428,9 +1366,7 @@ export class APIService {
     )
   ) as Observable<SubscriptionResponse<OnCreateUserAccountSubscription>>;
 
-  OnUpdateUserAccountListener: Observable<
-    SubscriptionResponse<OnUpdateUserAccountSubscription>
-  > = API.graphql(
+  OnUpdateUserAccountListener: Observable<SubscriptionResponse<OnUpdateUserAccountSubscription>> = API.graphql(
     graphqlOperation(
       `subscription OnUpdateUserAccount($owner: String!) {
         onUpdateUserAccount(owner: $owner) {
@@ -1470,9 +1406,7 @@ export class APIService {
     )
   ) as Observable<SubscriptionResponse<OnUpdateUserAccountSubscription>>;
 
-  OnDeleteUserAccountListener: Observable<
-    SubscriptionResponse<OnDeleteUserAccountSubscription>
-  > = API.graphql(
+  OnDeleteUserAccountListener: Observable<SubscriptionResponse<OnDeleteUserAccountSubscription>> = API.graphql(
     graphqlOperation(
       `subscription OnDeleteUserAccount($owner: String!) {
         onDeleteUserAccount(owner: $owner) {
@@ -1512,9 +1446,7 @@ export class APIService {
     )
   ) as Observable<SubscriptionResponse<OnDeleteUserAccountSubscription>>;
 
-  OnCreateOuterAccountListener: Observable<
-    SubscriptionResponse<OnCreateOuterAccountSubscription>
-  > = API.graphql(
+  OnCreateOuterAccountListener: Observable<SubscriptionResponse<OnCreateOuterAccountSubscription>> = API.graphql(
     graphqlOperation(
       `subscription OnCreateOuterAccount($owner: String!) {
         onCreateOuterAccount(owner: $owner) {
@@ -1554,9 +1486,7 @@ export class APIService {
     )
   ) as Observable<SubscriptionResponse<OnCreateOuterAccountSubscription>>;
 
-  OnUpdateOuterAccountListener: Observable<
-    SubscriptionResponse<OnUpdateOuterAccountSubscription>
-  > = API.graphql(
+  OnUpdateOuterAccountListener: Observable<SubscriptionResponse<OnUpdateOuterAccountSubscription>> = API.graphql(
     graphqlOperation(
       `subscription OnUpdateOuterAccount($owner: String!) {
         onUpdateOuterAccount(owner: $owner) {
@@ -1596,9 +1526,7 @@ export class APIService {
     )
   ) as Observable<SubscriptionResponse<OnUpdateOuterAccountSubscription>>;
 
-  OnDeleteOuterAccountListener: Observable<
-    SubscriptionResponse<OnDeleteOuterAccountSubscription>
-  > = API.graphql(
+  OnDeleteOuterAccountListener: Observable<SubscriptionResponse<OnDeleteOuterAccountSubscription>> = API.graphql(
     graphqlOperation(
       `subscription OnDeleteOuterAccount($owner: String!) {
         onDeleteOuterAccount(owner: $owner) {

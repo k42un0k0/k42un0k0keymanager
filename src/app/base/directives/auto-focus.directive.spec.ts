@@ -4,13 +4,13 @@ import { AutoFocusDirective } from './auto-focus.directive';
 
 @Component({
   template: `
-  <h2 appAutoFocus>Something Yellow</h2>
-  <h2 [appAutoFocus]="true">The Default (Gray)</h2>
-  <h2 [appAutoFocus]="false">No Highlight</h2>
-  <h2>No Highlight</h2>
-  `
+    <h2 appAutoFocus>Something Yellow</h2>
+    <h2 [appAutoFocus]="true">The Default (Gray)</h2>
+    <h2 [appAutoFocus]="false">No Highlight</h2>
+    <h2>No Highlight</h2>
+  `,
 })
-class TestComponent { }
+class TestComponent {}
 
 describe('AutoFocusDirective', () => {
   let component: TestComponent;
@@ -19,10 +19,8 @@ describe('AutoFocusDirective', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TestComponent, AutoFocusDirective],
-    })
-      .createComponent(TestComponent);
+    }).createComponent(TestComponent);
   });
-
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

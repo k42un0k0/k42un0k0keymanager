@@ -11,15 +11,14 @@ describe('main/components/TabComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TabComponent],
-      imports: [MatIconModule]
-    })
-      .compileComponents();
+      imports: [MatIconModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;
-    component.tab = new Tab({ name: "user account", id: "", token: "" })
+    component.tab = new Tab({ name: 'user account', id: '', token: '' });
     fixture.detectChanges();
   });
 

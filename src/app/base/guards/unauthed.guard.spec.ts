@@ -10,7 +10,7 @@ describe('UnauthedGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [{ provide: AuthenticationService, useValue: {} }],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule],
     });
     guard = TestBed.inject(UnauthedGuard);
   });

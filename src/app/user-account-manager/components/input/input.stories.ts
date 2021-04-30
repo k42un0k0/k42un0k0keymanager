@@ -25,7 +25,6 @@ Primary.args = {
   autoFocus: false,
 };
 
-
 export const Secondary = Template.bind({});
 Secondary.args = {
   label: 'InputComponent',

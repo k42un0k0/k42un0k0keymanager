@@ -12,10 +12,7 @@ export default {
   component: UserAccountManagerComponent,
   decorators: [
     moduleMetadata({
-      imports: [RouterTestingModule,
-        MatIconModule,
-        MatButtonModule,
-        BaseModule],
+      imports: [RouterTestingModule, MatIconModule, MatButtonModule, BaseModule],
     }),
   ],
 } as Meta;
@@ -27,5 +24,4 @@ const Template: Story<UserAccountManagerComponent> = (args: UserAccountManagerCo
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

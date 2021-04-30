@@ -5,11 +5,10 @@ import { ElectronService, WindowEnum } from '../base/services/electron.service';
 @Component({
   selector: 'app-initial',
   templateUrl: './initial.component.html',
-  styleUrls: ['./initial.component.scss']
+  styleUrls: ['./initial.component.scss'],
 })
 export class InitialComponent implements OnInit {
-
-  constructor(private authenticationService: AuthenticationService, private electronService: ElectronService) { }
+  constructor(private authenticationService: AuthenticationService, private electronService: ElectronService) {}
 
   ngOnInit(): void {
     (async () => {
@@ -19,6 +18,6 @@ export class InitialComponent implements OnInit {
         await this.electronService.openWindow(WindowEnum.auth);
       }
       this.electronService.closeWindow();
-    })()
+    })();
   }
 }

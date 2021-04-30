@@ -1,27 +1,24 @@
 import { Component, OnInit, Input, HostBinding, Output, EventEmitter } from '@angular/core';
 import { Tab } from '../../services/tab.service';
 
-
 export interface TabItem {
-  title: string,
-  link: string,
+  title: string;
+  link: string;
 }
 
 @Component({
   selector: 'app-tab',
   templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.scss']
+  styleUrls: ['./tab.component.scss'],
 })
 export class TabComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   @HostBinding('class.active')
   get active() {
-    return this.tab.active
+    return this.tab.active;
   }
 
   @Input() tab!: Tab;
