@@ -7,12 +7,11 @@ import { ControlValueAccessor } from '@angular/forms';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent {
-  constructor() {}
-
   @Input()
   label!: string;
 
   @Input()
   value!: string;
   @Output() valueChange = new EventEmitter<string>();
+  constructor() {}
 }

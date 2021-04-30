@@ -8,15 +8,16 @@ import { AuthenticationService } from '../../base/services/authentication.servic
   styleUrls: ['./confirm.component.scss'],
 })
 export class ConfirmComponent implements OnInit {
+  code = '';
+
   constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) {}
 
-  code: string = '';
-  get username() {
+  get username(): string | null {
     return this.route.snapshot.queryParamMap.get('username');
   }
   ngOnInit(): void {}
 
-  async submit() {
+  async submit(): Promise<void> {
     if (this.username != null) {
       await this.authenticationService.confirmSignUp({ username: this.username, code: this.code });
       this.router.navigate(['/auth/login'], { queryParams: { username: this.username } });

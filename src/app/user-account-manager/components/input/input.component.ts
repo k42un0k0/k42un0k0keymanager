@@ -5,16 +5,6 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef }
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  @ViewChild('input') input!: ElementRef<HTMLInputElement>;
-
-  focus() {
-    this.input.nativeElement.focus();
-  }
-
   @Input()
   disabled!: boolean;
 
@@ -28,4 +18,14 @@ export class InputComponent implements OnInit {
   value!: string;
 
   @Output() valueChange = new EventEmitter<string>();
+
+  @ViewChild('input') input!: ElementRef<HTMLInputElement>;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  focus(): void {
+    this.input.nativeElement.focus();
+  }
 }

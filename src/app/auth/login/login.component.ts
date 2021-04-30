@@ -10,6 +10,9 @@ import { AuthenticationService } from '../../base/services/authentication.servic
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements AfterViewInit {
+  password = '';
+  username = '';
+
   constructor(
     private authenticationService: AuthenticationService,
     private elm: ElementRef,
@@ -22,10 +25,7 @@ export class LoginComponent implements AfterViewInit {
     this.windowService.resizeTo(this.elm);
   }
 
-  password = '';
-  username = '';
-
-  async submit() {
+  async submit(): Promise<void> {
     await this.authenticationService.signIn({ username: this.username, password: this.password });
     await this.electronService.openWindow(WindowEnum.main);
     this.electronService.closeWindow();
