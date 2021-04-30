@@ -12,11 +12,8 @@ describe('main/components/TabbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TabbarComponent],
-      imports: [
-        CommonModule, MatIconModule, BaseModule
-      ]
-    })
-      .compileComponents();
+      imports: [CommonModule, MatIconModule, BaseModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

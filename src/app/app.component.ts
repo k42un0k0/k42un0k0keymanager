@@ -6,9 +6,7 @@ import { routeAnimations } from './animations';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    routeAnimations
-  ]
+  animations: [routeAnimations],
 })
 export class AppComponent {
   prepareRoute(outlet: RouterOutlet) {

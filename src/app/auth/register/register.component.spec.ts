@@ -13,9 +13,8 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
       providers: [{ provide: AuthenticationService, useValue: {} }],
-      imports: [RouterTestingModule, ComponentsModule]
-    })
-      .compileComponents();
+      imports: [RouterTestingModule, ComponentsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

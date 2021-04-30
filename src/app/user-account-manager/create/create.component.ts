@@ -5,20 +5,18 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
+  constructor(private apiService: APIService, private electronService: ElectronService) {}
 
-  constructor(private apiService: APIService, private electronService: ElectronService) { }
-
-  ngOnInit(): void {
-  }
-  name: string = "";
-  password: string = "";
+  ngOnInit(): void {}
+  name: string = '';
+  password: string = '';
 
   submit() {
-    this.apiService.CreateUserAccount({ name: this.name, token: "aaaaaa" }).then(() => {
+    this.apiService.CreateUserAccount({ name: this.name, token: 'aaaaaa' }).then(() => {
       this.electronService.closeWindow();
-    })
+    });
   }
 }

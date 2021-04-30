@@ -7,14 +7,12 @@ import { AuthenticationService } from 'src/app/base/services/authentication.serv
 @Component({
   selector: 'app-tabbar',
   templateUrl: './tabbar.component.html',
-  styleUrls: ['./tabbar.component.scss']
+  styleUrls: ['./tabbar.component.scss'],
 })
 export class TabbarComponent implements OnInit {
+  constructor(private electronService: ElectronService, private authenticationService: AuthenticationService, public tabService: TabService) {}
 
-  constructor(private electronService: ElectronService, private authenticationService: AuthenticationService, public tabService: TabService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   @Output() onClickHome = new EventEmitter();
 

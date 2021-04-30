@@ -13,9 +13,8 @@ describe('ConfirmComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmComponent],
       providers: [{ provide: AuthenticationService, useValue: {} }],
-      imports: [RouterTestingModule, ComponentsModule]
-    })
-      .compileComponents();
+      imports: [RouterTestingModule, ComponentsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

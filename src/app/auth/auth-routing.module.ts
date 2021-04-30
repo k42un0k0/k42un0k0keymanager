@@ -6,14 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfirmComponent } from './confirm/confirm.component';
 
 const routes: Routes = [
-  { path: 'login', canActivate: [UnauthedGuard], component: LoginComponent, data: { animation: "login" } },
-  { path: 'register', component: RegisterComponent, data: { animation: "register" } },
-  { path: 'confirm', component: ConfirmComponent, data: { animation: "confirm" } },
+  { path: 'login', canActivate: [UnauthedGuard], component: LoginComponent, data: { animation: 'login' } },
+  { path: 'register', component: RegisterComponent, data: { animation: 'register' } },
+  { path: 'confirm', component: ConfirmComponent, data: { animation: 'confirm' } },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

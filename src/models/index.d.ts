@@ -1,8 +1,4 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
-
-
+import { ModelInit, MutableModel, PersistentModelConstructor } from '@aws-amplify/datastore';
 
 export declare class UserAccount {
   readonly id: string;
