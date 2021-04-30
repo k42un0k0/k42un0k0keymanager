@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from '@aws-amplify/auth';
 import { promisify } from 'util';
-import { ReplaySubject, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, from } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { UserAccountRepository } from '../repositories/user-account.repository';
 
 type SignUpArg = { username: string, password: string, email: string };
 type ConfirmSignUpArg = { username: string, code: string };
@@ -20,10 +21,17 @@ type User = {
 })
 export class AuthenticationService {
 
-  constructor() {
+  constructor(private userAccountRepository: UserAccountRepository) {
     this.initializeResult = Auth.currentAuthenticatedUser().then(async (v) => {
       await this.setUserFromCognitoUser(v)
     }).catch(() => { });
+    this.user.subscribe((v) => {
+      if (!!v) {
+        this.userAccountRepository.startSubscribe(v.sub);
+      } else {
+        this.userAccountRepository.endSubscribe();
+      }
+    })
   }
 
   initializeResult: Promise<void>;
@@ -33,16 +41,20 @@ export class AuthenticationService {
     if (sub == null) {
       throw Error("sub not found");
     }
-    this.user = {
-      sub,
-      username: cognitoUser.getUsername()
-    }
+    this.user.next(
+      {
+        sub,
+        username: cognitoUser.getUsername()
+      }
+    )
   }
 
-  user: User | null = null;
+  user = new BehaviorSubject<User | null>(null);
 
   get isSignedIn() {
-    return this.initializeResult.then(() => !!this.user)
+    return from(this.initializeResult).pipe(mergeMap(() => {
+      return this.user.pipe(map(v => !!v))
+    }))
   }
 
   async signUp({ username, password, email }: SignUpArg) {
@@ -87,7 +99,7 @@ export class AuthenticationService {
   }
 
   async signOut() {
-    this.user = null;
+    this.user.next(null)
     console.log("sign out")
     try {
       await Auth.signOut();

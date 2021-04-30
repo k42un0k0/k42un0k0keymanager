@@ -1,6 +1,7 @@
 import { ElectronService } from './../../base/services/electron.service';
 import { APIService } from './../../API.service';
 import { Component, OnInit } from '@angular/core';
+import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 
 @Component({
   selector: 'app-create',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private apiService: APIService, private electronService: ElectronService) { }
+  constructor(private userAccountRepository: UserAccountRepository, private electronService: ElectronService) { }
 
   ngOnInit(): void {
   }
@@ -17,8 +18,6 @@ export class CreateComponent implements OnInit {
   password: string = "";
 
   submit() {
-    this.apiService.CreateUserAccount({ name: this.name, token: "aaaaaa" }).then(() => {
-      this.electronService.closeWindow();
-    })
+    this.userAccountRepository.create({ name: this.name, token: "aaaaaa" })
   }
 }
