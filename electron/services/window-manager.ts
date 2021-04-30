@@ -1,3 +1,5 @@
+import { splashPath } from './../constant';
+import { SplashWindow } from './window/splash-window';
 import { BrowserWindow } from 'electron';
 import { AuthWindow } from './window/auth-window';
 import { MainWindow } from './window/main-window';
@@ -9,7 +11,6 @@ export enum WindowEnum {
   auth,
   main,
   userAccountManager,
-  initial,
 }
 
 export class WindowManager {
@@ -27,15 +28,28 @@ export class WindowManager {
       case WindowEnum.userAccountManager:
         win = new UserAccountManagerWindow();
         break;
-      case WindowEnum.initial:
-        win = new InitialWindow();
-        break;
       default:
         throw new Error('引数の値が不正です');
     }
     const [browser, url] = win.configure();
-    this.windowMap.set(browser.id, browser);
+    this._pushWindow(browser);
     return browser.loadURL(url);
+  }
+
+  async initializeWindow() {
+    let splash = new SplashWindow().configure();
+    let initial = new InitialWindow().configure();
+    this._pushWindow(splash[0]);
+    this._pushWindow(initial[0]);
+    initial[0].hide();
+    splash[0].loadURL(splash[1]);
+    await initial[0].loadURL(initial[1]);
+    splash[0].close();
+    initial[0].show();
+  }
+
+  private _pushWindow(browser: BrowserWindow) {
+    this.windowMap.set(browser.id, browser);
   }
 
   closeWindow(id: number) {

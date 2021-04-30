@@ -9,7 +9,7 @@ function main() {
   });
 
   app.whenReady().then(() => {
-    windowManager.createWindow(WindowEnum.initial);
+    windowManager.initializeWindow();
   });
 
   app.on('window-all-closed', () => {
@@ -20,7 +20,7 @@ function main() {
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      windowManager.createWindow(WindowEnum.initial);
+      windowManager.initializeWindow();
     }
   });
 }

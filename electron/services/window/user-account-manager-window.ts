@@ -12,6 +12,7 @@ export class UserAccountManagerWindow implements MyWindow {
         preload: preloadPath,
       },
       frame: false,
+      backgroundColor: '#333',
     });
 
     const startUrl =

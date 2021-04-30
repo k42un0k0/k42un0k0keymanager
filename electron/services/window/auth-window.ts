@@ -13,6 +13,7 @@ export class AuthWindow implements MyWindow {
       },
       frame: false,
       resizable: false,
+      backgroundColor: '#333',
     });
 
     const startUrl =
