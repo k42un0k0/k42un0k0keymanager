@@ -17,9 +17,22 @@
     "watch:electron": "yarn build:electron --watch",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "yarn docs:json && start-storybook -p 6006",
-    "build-storybook": "yarn docs:json && build-storybook"
+    "build-storybook": "yarn docs:json && build-storybook",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "private": true,
+  "build": {
+    "appId": "com.electron.k42un0k0passwordmanager",
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "files":["dist/**/*"],
+    "directories": {
+      "buildResources": "./dist",
+      "output": "./build"
+    }
+  },
   "dependencies": {
     "@angular/animations": "~11.2.8",
     "@angular/cdk": "^11.2.9",
@@ -34,7 +47,6 @@
     "@angular/service-worker": "~11.2.8",
     "@storybook/theming": "^6.2.8",
     "aws-amplify": "^3.3.26",
-    "electron": "^12.0.2",
     "electron-reload": "^1.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -56,6 +68,8 @@
     "codelyzer": "^6.0.0",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
