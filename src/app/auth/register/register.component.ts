@@ -1,17 +1,18 @@
 import { AuthenticationService } from '../../base/services/authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { WindowService } from 'src/app/base/services/window.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements AfterViewInit {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
-
-  ngOnInit(): void {
+  constructor(private authenticationService: AuthenticationService, private elm: ElementRef, private windowService: WindowService, private router: Router) { }
+  ngAfterViewInit(): void {
+    this.windowService.resizeTo(this.elm);
   }
   username = ""
   password = ""
