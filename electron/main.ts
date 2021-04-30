@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from "electron"
 import path from "path"
+import { WindowEnum } from "./services/window-manager";
 import { windowManager } from './singleton';
 
 function main() {
@@ -8,7 +9,7 @@ function main() {
   });
 
   app.whenReady().then(() => {
-    windowManager.createWindow("");
+    windowManager.createWindow(WindowEnum.main);
   })
 
   app.on('window-all-closed', () => {
@@ -19,7 +20,7 @@ function main() {
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      windowManager.createWindow("");
+      windowManager.createWindow(WindowEnum.main);
     }
   })
 }
