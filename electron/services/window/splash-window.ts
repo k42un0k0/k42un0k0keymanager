@@ -1,9 +1,10 @@
+import { splashPath } from './../../constant';
 import { BrowserWindow } from 'electron';
 import * as url from 'url';
 import { MyWindow } from './my-window';
-import { appPath, preloadPath } from '../../constant';
+import { preloadPath } from '../../constant';
 
-export class InitialWindow implements MyWindow {
+export class SplashWindow implements MyWindow {
   configure(): [BrowserWindow, string] {
     const win = new BrowserWindow({
       width: 400,
@@ -16,13 +17,11 @@ export class InitialWindow implements MyWindow {
       backgroundColor: '#333',
     });
 
-    const startUrl =
-      (process.env.ELECTRON_START_URL ||
-        url.format({
-          pathname: appPath,
-          protocol: 'file:',
-          slashes: true,
-        })) + '#/initial';
+    const startUrl = url.format({
+      pathname: splashPath,
+      protocol: 'file:',
+      slashes: true,
+    });
     return [win, startUrl];
   }
 }
