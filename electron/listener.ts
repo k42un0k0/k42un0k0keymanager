@@ -1,5 +1,6 @@
 import { ipcMain } from "electron";
 import { EVENTS } from "./events";
+import { WindowEnum } from "./services/window-manager";
 import { windowManager } from "./singleton";
 
 
@@ -9,11 +10,14 @@ ipcMain.on(EVENTS.DEBUG, (e) => {
 })
 
 ipcMain.on(EVENTS.OPEN_WINDOW.AUTH, () => {
-  windowManager.createWindow("#/auth/login");
+  return windowManager.createWindow(WindowEnum.auth);
 })
 
 ipcMain.on(EVENTS.OPEN_WINDOW.USER_ACCOUNT_MANAGER, () => {
-  windowManager.createWindow("#/user-account-manager");
+  return windowManager.createWindow(WindowEnum.userAccountManager);
+})
+ipcMain.on(EVENTS.OPEN_WINDOW.MAIN, () => {
+  return windowManager.createWindow(WindowEnum.main);
 })
 
 ipcMain.on(EVENTS.CLOSE, (e) => {
