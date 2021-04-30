@@ -1,5 +1,5 @@
-function createNonNullableValue<T>(def: T) {
-  return function nonNullableValue(value: T | null | undefined) {
+function createNonNullableValue<T>(def: T): (value: NullableValue<T>) => T {
+  return function nonNullableValue(value: NullableValue<T>): T {
     return value ?? def;
   };
 }
@@ -7,7 +7,7 @@ function createNonNullableValue<T>(def: T) {
 type NullableValue<T> = T | null | undefined;
 
 export const nonNullable = {
-  array: function nonNullableArray<T>(arr: NullableValue<T[]>) {
+  array: function nonNullableArray<T>(arr: NullableValue<T[]>): T[] {
     return createNonNullableValue<T[]>([])(arr);
   },
   number: createNonNullableValue(0),

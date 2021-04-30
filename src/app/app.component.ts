@@ -9,7 +9,7 @@ import { routeAnimations } from './animations';
   animations: [routeAnimations],
 })
 export class AppComponent {
-  prepareRoute(outlet: RouterOutlet) {
+  prepareRoute(outlet: RouterOutlet): any {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

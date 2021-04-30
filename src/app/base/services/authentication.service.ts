@@ -31,13 +31,11 @@ export class AuthenticationService {
     this.user.subscribe({
       next: (v) => {
         if (!!v) {
-          this.userAccountRepository.startSubscribe(v.sub);
+          this.userAccountRepository.startSubscribe();
         } else {
           this.userAccountRepository.endSubscribe();
         }
       },
-      complete: () => {},
-      error: () => {},
     });
   }
 

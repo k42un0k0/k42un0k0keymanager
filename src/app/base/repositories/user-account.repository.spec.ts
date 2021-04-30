@@ -1,35 +1,4 @@
-import {
-  APIService,
-  CreateOuterAccountInput,
-  CreateOuterAccountMutation,
-  CreateUserAccountInput,
-  CreateUserAccountMutation,
-  DeleteOuterAccountInput,
-  DeleteOuterAccountMutation,
-  DeleteUserAccountInput,
-  DeleteUserAccountMutation,
-  GetOuterAccountQuery,
-  GetUserAccountQuery,
-  ListOuterAccountsQuery,
-  ListUserAccountsQuery,
-  ModelOuterAccountConditionInput,
-  ModelOuterAccountFilterInput,
-  ModelUserAccountConditionInput,
-  ModelUserAccountFilterInput,
-  OnCreateOuterAccountSubscription,
-  OnCreateUserAccountSubscription,
-  OnDeleteOuterAccountSubscription,
-  OnDeleteUserAccountSubscription,
-  OnUpdateOuterAccountSubscription,
-  OnUpdateUserAccountSubscription,
-  SubscriptionResponse,
-  SyncOuterAccountsQuery,
-  SyncUserAccountsQuery,
-  UpdateOuterAccountInput,
-  UpdateOuterAccountMutation,
-  UpdateUserAccountInput,
-  UpdateUserAccountMutation,
-} from './../../API.service';
+import { APIService } from './../../API.service';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'zen-observable-ts';
 

@@ -20,7 +20,7 @@ export class UserAccountRepository {
 
   createSub?: ZenObservable.Subscription;
   updateSub?: ZenObservable.Subscription;
-  startSubscribe(owner: string): void {
+  startSubscribe(): void {
     this._updateUserAccounts();
   }
 

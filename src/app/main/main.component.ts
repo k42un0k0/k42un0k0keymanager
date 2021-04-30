@@ -14,13 +14,15 @@ import { TabService } from './services/tab.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(private userAccountRepository: UserAccountRepository, private tabService: TabService) {}
-
-  open: boolean = false;
-
-  onClickHome() {
-    this.open = !this.open;
-  }
+  account: OuterAccount = {
+    id: '',
+    providerName: 'Twitter',
+    iconPath: '',
+    userId: 'k42un0k0',
+    link: '',
+    password: '',
+  };
+  open = false;
 
   sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.userAccounts.pipe(
     map((value) => {
@@ -34,13 +36,9 @@ export class MainComponent {
       });
     })
   );
+  constructor(private userAccountRepository: UserAccountRepository, private tabService: TabService) {}
 
-  account: OuterAccount = {
-    id: '',
-    providerName: 'Twitter',
-    iconPath: '',
-    userId: 'k42un0k0',
-    link: '',
-    password: '',
-  };
+  onClickHome(): void {
+    this.open = !this.open;
+  }
 }

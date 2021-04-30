@@ -10,7 +10,7 @@ export enum WindowEnum {
 })
 export class ElectronService {
   constructor() {}
-  openWindow(value: WindowEnum) {
+  openWindow(value: WindowEnum): Promise<void> {
     switch (value) {
       case WindowEnum.auth:
         return window.main.window.auth();
@@ -20,7 +20,7 @@ export class ElectronService {
         return window.main.window.main();
     }
   }
-  closeWindow() {
+  closeWindow(): void {
     window.main.close();
   }
 }
