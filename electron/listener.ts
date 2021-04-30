@@ -9,11 +9,14 @@ ipcMain.on(EVENTS.DEBUG, (e) => {
 })
 
 ipcMain.on(EVENTS.OPEN_WINDOW.AUTH, () => {
-  windowManager.createWindow("#/auth/login");
+  return windowManager.createWindow("#/auth/login");
 })
 
 ipcMain.on(EVENTS.OPEN_WINDOW.USER_ACCOUNT_MANAGER, () => {
-  windowManager.createWindow("#/user-account-manager");
+  return windowManager.createWindow("#/user-account-manager");
+})
+ipcMain.on(EVENTS.OPEN_WINDOW.MAIN, () => {
+  return windowManager.createWindow("#/");
 })
 
 ipcMain.on(EVENTS.CLOSE, (e) => {

@@ -8,5 +8,6 @@ contextBridge.exposeInMainWorld("main", {
   window: {
     auth: () => ipcRenderer.send(EVENTS.OPEN_WINDOW.AUTH),
     userAccountManager: () => ipcRenderer.send(EVENTS.OPEN_WINDOW.USER_ACCOUNT_MANAGER),
+    main: () => ipcRenderer.send(EVENTS.OPEN_WINDOW.MAIN),
   }
 });
