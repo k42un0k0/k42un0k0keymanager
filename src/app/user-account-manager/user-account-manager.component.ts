@@ -1,9 +1,5 @@
 import { UserAccountRepository } from './../base/repositories/user-account.repository';
-import { APIService } from './../API.service';
 import { Component, OnInit } from '@angular/core';
-import { UserAccount } from 'src/models';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-account-manager',

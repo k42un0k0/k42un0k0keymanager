@@ -2,15 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OuterAccountListComponent } from './outer-account-list.component';
 
-describe('OuterAccountListComponent', () => {
+describe('main/OuterAccountListComponent', () => {
   let component: OuterAccountListComponent;
   let fixture: ComponentFixture<OuterAccountListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OuterAccountListComponent ]
+      declarations: [OuterAccountListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

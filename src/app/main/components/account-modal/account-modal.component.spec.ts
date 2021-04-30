@@ -2,15 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountModalComponent } from './account-modal.component';
 
-describe('AccountModalComponent', () => {
+describe('main/components/AccountModalComponent', () => {
   let component: AccountModalComponent;
   let fixture: ComponentFixture<AccountModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountModalComponent ]
+      declarations: [AccountModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

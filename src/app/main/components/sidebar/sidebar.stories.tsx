@@ -3,6 +3,7 @@ import { SidebarComponent } from './sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatButtonModule } from '@angular/material/button';
+import { of } from 'rxjs';
 
 export default {
   title: 'main/components/SidebarComponent',
@@ -24,6 +25,6 @@ const Template: Story<SidebarComponent> = (args: SidebarComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  sidebarItems: [{ title: "Job", link: "/auth/login" }],
+  sidebarItems: of([{ title: "Job", onClick() { } }]),
   open: true
 };
