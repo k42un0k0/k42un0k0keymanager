@@ -8,9 +8,8 @@ describe('main/components/AccountViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AccountViewerComponent]
-    })
-      .compileComponents();
+      declarations: [AccountViewerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

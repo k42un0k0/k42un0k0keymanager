@@ -4,31 +4,28 @@ import { Component, HostBinding, Input, OnInit, ViewChild } from '@angular/core'
 import { Observable } from 'rxjs';
 
 export type SidebarItem = {
-  title: string,
-  onClick: () => void,
-}
+  title: string;
+  onClick: () => void;
+};
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit, AfterViewChecked {
-
-  constructor(private elm: ElementRef<HTMLElement>) { }
+  constructor(private elm: ElementRef<HTMLElement>) {}
   ngAfterViewChecked(): void {
     if (this.open) {
       const width = this.section.nativeElement.clientWidth;
       this.elm.nativeElement.style.width = `${width}px`;
       this.elm.nativeElement.style.width = `${width}px`;
-    }
-    else {
-      this.elm.nativeElement.style.width = "0px";
+    } else {
+      this.elm.nativeElement.style.width = '0px';
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   @ViewChild('section') section!: ElementRef<HTMLDivElement>;
   @Input()
   sidebarItems!: Observable<SidebarItem[]>;

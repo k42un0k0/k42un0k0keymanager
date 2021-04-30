@@ -2,14 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef }
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
@@ -30,5 +28,4 @@ export class InputComponent implements OnInit {
   value!: string;
 
   @Output() valueChange = new EventEmitter<string>();
-
 }

@@ -13,24 +13,8 @@ import { RouterModule } from '@angular/router';
 import { BaseModule } from 'src/app/base/base.module';
 
 @NgModule({
-  declarations: [
-    AccountCardComponent,
-    AccountEditorComponent,
-    AccountViewerComponent,
-    AccountModalComponent,
-    SidebarComponent,
-    TabComponent,
-    TabbarComponent,
-  ],
+  declarations: [AccountCardComponent, AccountEditorComponent, AccountViewerComponent, AccountModalComponent, SidebarComponent, TabComponent, TabbarComponent],
   imports: [MatIconModule, MatButtonModule, RouterModule, CommonModule, BaseModule],
-  exports: [
-    AccountCardComponent,
-    AccountEditorComponent,
-    AccountViewerComponent,
-    AccountModalComponent,
-    SidebarComponent,
-    TabComponent,
-    TabbarComponent,
-  ]
+  exports: [AccountCardComponent, AccountEditorComponent, AccountViewerComponent, AccountModalComponent, SidebarComponent, TabComponent, TabbarComponent],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

@@ -5,44 +5,45 @@ import { promisify } from 'util';
 import { ReplaySubject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-type SignUpArg = { username: string, password: string, email: string };
-type ConfirmSignUpArg = { username: string, code: string };
-type SignInArg = { username: string, password: string };
+type SignUpArg = { username: string; password: string; email: string };
+type ConfirmSignUpArg = { username: string; code: string };
+type SignInArg = { username: string; password: string };
 type ResendConfirmationCodeArg = { username: string };
 
 type User = {
-  sub: string,
-  username: string,
-}
+  sub: string;
+  username: string;
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-
   constructor() {
-    this.initializeResult = Auth.currentAuthenticatedUser().then(async (v) => {
-      await this.setUserFromCognitoUser(v)
-    }).catch(() => { });
+    this.initializeResult = Auth.currentAuthenticatedUser()
+      .then(async (v) => {
+        await this.setUserFromCognitoUser(v);
+      })
+      .catch(() => {});
   }
 
   initializeResult: Promise<void>;
 
   async setUserFromCognitoUser(cognitoUser: CognitoUser) {
-    const sub = (await promisify(cognitoUser.getUserAttributes.bind(cognitoUser))())?.find((_) => _.Name == "sub")?.Value;
+    const sub = (await promisify(cognitoUser.getUserAttributes.bind(cognitoUser))())?.find((_) => _.Name == 'sub')?.Value;
     if (sub == null) {
-      throw Error("sub not found");
+      throw Error('sub not found');
     }
     this.user = {
       sub,
-      username: cognitoUser.getUsername()
-    }
+      username: cognitoUser.getUsername(),
+    };
   }
 
   user: User | null = null;
 
   get isSignedIn() {
-    return this.initializeResult.then(() => !!this.user)
+    return this.initializeResult.then(() => !!this.user);
   }
 
   async signUp({ username, password, email }: SignUpArg) {
@@ -52,7 +53,7 @@ export class AuthenticationService {
         password,
         attributes: {
           email,
-        }
+        },
       });
       console.log(user);
     } catch (error) {
@@ -70,7 +71,7 @@ export class AuthenticationService {
   async signIn({ username, password }: SignInArg) {
     try {
       const cognitoUser: CognitoUser = await Auth.signIn(username, password);
-      console.log("sign in")
+      console.log('sign in');
       await this.setUserFromCognitoUser(cognitoUser);
     } catch (error) {
       console.log('error signing in', error);
@@ -88,7 +89,7 @@ export class AuthenticationService {
 
   async signOut() {
     this.user = null;
-    console.log("sign out")
+    console.log('sign out');
     try {
       await Auth.signOut();
     } catch (error) {

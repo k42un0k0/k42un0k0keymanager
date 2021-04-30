@@ -11,14 +11,13 @@ describe('main/components/AccountCardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AccountCardComponent],
       imports: [MatIconModule],
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountCardComponent);
     component = fixture.componentInstance;
-    component.account = { providerName: "", id: '', iconPath: '', userId: '', link: '', password: '' }
+    component.account = { providerName: '', id: '', iconPath: '', userId: '', link: '', password: '' };
     fixture.detectChanges();
   });
 
