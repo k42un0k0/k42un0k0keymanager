@@ -4,22 +4,21 @@ import { from, BehaviorSubject } from 'rxjs';
 import { nonNullable } from '../utils/nonNullable';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserAccountRepository {
-
   constructor(private apiService: APIService) {
     this.updateUserAccounts();
     this.apiService.OnCreateUserAccountListener.subscribe(() => {
       this.updateUserAccounts();
-    })
+    });
   }
 
-  userAccounts = new BehaviorSubject<NonNullable<ListUserAccountsQuery["items"]>>([]);
+  userAccounts = new BehaviorSubject<NonNullable<ListUserAccountsQuery['items']>>([]);
 
   updateUserAccounts() {
     from(this.apiService.ListUserAccounts()).subscribe((list) => {
       this.userAccounts.next(nonNullable.array(list.items));
-    })
+    });
   }
 }

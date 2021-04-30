@@ -11,23 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { AutoFocusDirective } from '../base/directives/auto-focus.directive';
 import { ComponentsModule } from './components/components.module';
 
-
 @NgModule({
-  declarations: [
-    UserAccountManagerComponent,
-    SettingComponent,
-    CreateComponent,
-  ],
-  providers: [
-    AutoFocusDirective
-  ],
-  imports: [
-    CommonModule,
-    UserAccountManagerRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule,
-    ComponentsModule
-  ]
+  declarations: [UserAccountManagerComponent, SettingComponent, CreateComponent],
+  providers: [AutoFocusDirective],
+  imports: [CommonModule, UserAccountManagerRoutingModule, MatIconModule, MatButtonModule, FormsModule, ComponentsModule],
 })
-export class UserAccountManagerModule { }
+export class UserAccountManagerModule {}

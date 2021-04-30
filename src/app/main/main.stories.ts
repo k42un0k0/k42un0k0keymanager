@@ -24,5 +24,4 @@ const Template: Story<MainComponent> = (args: MainComponent) => ({
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};
