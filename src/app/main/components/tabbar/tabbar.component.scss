@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: .5rem;
   height: 36px;
 }
 
@@ -30,15 +29,34 @@
   display: block;
 }
 
+.button {
+  border-radius: 0;
+  min-width: 52px;
+}
+
+.button-down {
+  &:hover {
+    background-color: $gray2;
+
+    .window-close {
+      color: white;
+    }
+  }
+}
+
+.button-close {
+  &:hover {
+    background-color: red;
+
+    .window-close {
+      color: white;
+    }
+  }
+}
+
 .window-close {
   font-size: 18px;
   width: 1em;
   height: 1em;
   color: $gray2;
-  justify-self: flex-end;
-  cursor: pointer;
-
-  &:hover {
-    color: white;
-  }
 }

@@ -1,27 +1,41 @@
-import { join } from 'path';
 import { BrowserWindow } from "electron";
-import * as url from "url";
+import { AuthWindow } from "./window/auth-window";
+import { MainWindow } from "./window/main-window";
+import { UserAccountManagerWindow } from "./window/user-account-manager-window";
+import { MyWindow } from "./window/my-window";
+import { InitialWindow } from "./window/initial-window";
+
+export enum WindowEnum {
+  auth,
+  main,
+  userAccountManager,
+  initial
+}
 
 export class WindowManager {
   windowMap: Map<number, BrowserWindow> = new Map;
 
-  createWindow(path: string) {
-    const win = new BrowserWindow({
-      width: 800,
-      height: 600,
-      webPreferences: {
-        preload: join(__dirname, "../preload.js")
-      },
-      frame: false,
-    })
-
-    const startUrl = (process.env.ELECTRON_START_URL || url.format({
-      pathname: join(__dirname, '../k42un0k0passwordmanager/index.html'),
-      protocol: 'file:',
-      slashes: true
-    })) + path;
-    win.loadURL(startUrl);
-    this.windowMap.set(win.id, win);
+  createWindow(value: WindowEnum) {
+    let win: MyWindow;
+    switch (value) {
+      case WindowEnum.auth:
+        win = new AuthWindow();
+        break;
+      case WindowEnum.main:
+        win = new MainWindow();
+        break;
+      case WindowEnum.userAccountManager:
+        win = new UserAccountManagerWindow();
+        break;
+      case WindowEnum.initial:
+        win = new InitialWindow();
+        break;
+      default:
+        throw new Error("引数の値が不正です")
+    }
+    const [browser, url] = win.configure();
+    this.windowMap.set(browser.id, browser);
+    return browser.loadURL(url);
   }
 
   closeWindow(id: number) {
