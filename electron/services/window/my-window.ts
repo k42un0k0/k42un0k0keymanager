@@ -1,5 +1,5 @@
-import { BrowserWindow } from "electron";
+import { BrowserWindow } from 'electron';
 
 export interface MyWindow {
-    configure(): [BrowserWindow, string]
+  configure(): [BrowserWindow, string];
 }

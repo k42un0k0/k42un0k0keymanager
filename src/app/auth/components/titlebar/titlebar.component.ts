@@ -3,15 +3,12 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 @Component({
   selector: 'app-titlebar',
   templateUrl: './titlebar.component.html',
-  styleUrls: ['./titlebar.component.scss']
+  styleUrls: ['./titlebar.component.scss'],
 })
 export class TitlebarComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  @HostBinding("class.is-window-frame") isWindowFrame = true;
-
+  @HostBinding('class.is-window-frame') isWindowFrame = true;
 }

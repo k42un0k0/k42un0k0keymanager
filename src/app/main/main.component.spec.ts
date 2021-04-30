@@ -19,11 +19,8 @@ describe('main/MainComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [MainComponent],
       providers: [{ provide: UserAccountRepository, useValue: mock }],
-      imports: [
-        ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule
-      ]
-    })
-      .compileComponents();
+      imports: [ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

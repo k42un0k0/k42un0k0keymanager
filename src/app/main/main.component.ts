@@ -11,11 +11,10 @@ import { TabService } from './services/tab.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-
-  constructor(private userAccountRepository: UserAccountRepository, private tabService: TabService) { }
+  constructor(private userAccountRepository: UserAccountRepository, private tabService: TabService) {}
 
   open: boolean = false;
 
@@ -23,18 +22,25 @@ export class MainComponent {
     this.open = !this.open;
   }
 
-  sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.userAccounts.pipe(map((value) => {
-    return value.map((v) => {
-      return { title: nonNullable.string(v?.name), onClick: () => { this.tabService.createTab(v as UserAccount) } }
+  sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.userAccounts.pipe(
+    map((value) => {
+      return value.map((v) => {
+        return {
+          title: nonNullable.string(v?.name),
+          onClick: () => {
+            this.tabService.createTab(v as UserAccount);
+          },
+        };
+      });
     })
-  }))
+  );
 
   account: OuterAccount = {
-    id: "",
-    providerName: "Twitter",
-    iconPath: "",
-    userId: "k42un0k0",
-    link: "",
-    password: "",
-  }
+    id: '',
+    providerName: 'Twitter',
+    iconPath: '',
+    userId: 'k42un0k0',
+    link: '',
+    password: '',
+  };
 }

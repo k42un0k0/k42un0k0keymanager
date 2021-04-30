@@ -7,22 +7,20 @@ import { BaseModule } from 'src/app/base/base.module';
 
 import { SettingComponent } from './setting.component';
 import { APIService } from 'src/app/API.service';
-import { Observable } from "zen-observable-ts";
-
+import { Observable } from 'zen-observable-ts';
 
 describe('SettingComponent', () => {
   let component: SettingComponent;
   let fixture: ComponentFixture<SettingComponent>;
 
   beforeEach(async () => {
-    const mockApiServie = jasmine.createSpyObj("APIService", ["GetUserAccount"]);
+    const mockApiServie = jasmine.createSpyObj('APIService', ['GetUserAccount']);
     mockApiServie.GetUserAccount.and.returnValue(Promise.resolve(Observable.of()));
     await TestBed.configureTestingModule({
       declarations: [SettingComponent],
       providers: [{ provide: APIService, useValue: mockApiServie }],
       imports: [RouterTestingModule, MatButtonModule, FormsModule, BaseModule, ComponentsModule],
-    })
-      .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -5,22 +5,20 @@ import { AuthenticationService } from '../../base/services/authentication.servic
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.scss']
+  styleUrls: ['./confirm.component.scss'],
 })
 export class ConfirmComponent implements OnInit {
+  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) {}
 
-  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
-
-  code: string = "";
+  code: string = '';
   get username() {
-    return this.route.snapshot.queryParamMap.get("username");
-  };
-  ngOnInit(): void {
+    return this.route.snapshot.queryParamMap.get('username');
   }
+  ngOnInit(): void {}
 
   async submit() {
     if (this.username != null) {
-      await this.authenticationService.confirmSignUp({ username: this.username, code: this.code })
+      await this.authenticationService.confirmSignUp({ username: this.username, code: this.code });
       this.router.navigate(['/auth/login'], { queryParams: { username: this.username } });
     }
   }

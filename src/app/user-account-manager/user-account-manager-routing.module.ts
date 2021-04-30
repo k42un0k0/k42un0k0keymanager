@@ -6,15 +6,17 @@ import { UserAccountManagerComponent } from './user-account-manager.component';
 
 const routes: Routes = [
   {
-    path: '', component: UserAccountManagerComponent, children: [
+    path: '',
+    component: UserAccountManagerComponent,
+    children: [
       { path: 'setting/:id', component: SettingComponent },
       { path: 'create', component: CreateComponent },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UserAccountManagerRoutingModule { }
+export class UserAccountManagerRoutingModule {}
