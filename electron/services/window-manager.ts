@@ -1,13 +1,15 @@
 import { BrowserWindow } from "electron";
-import { AuthWindow } from "./auth-window";
-import { MainWindow } from "./main-window";
-import { UserAccountManagerWindow } from "./user-account-manager-window";
-import { MyWindow } from "./my-window";
+import { AuthWindow } from "./window/auth-window";
+import { MainWindow } from "./window/main-window";
+import { UserAccountManagerWindow } from "./window/user-account-manager-window";
+import { MyWindow } from "./window/my-window";
+import { InitialWindow } from "./window/initial-window";
 
 export enum WindowEnum {
   auth,
   main,
-  userAccountManager
+  userAccountManager,
+  initial
 }
 
 export class WindowManager {
@@ -24,6 +26,9 @@ export class WindowManager {
         break;
       case WindowEnum.userAccountManager:
         win = new UserAccountManagerWindow();
+        break;
+      case WindowEnum.initial:
+        win = new InitialWindow();
         break;
       default:
         throw new Error("引数の値が不正です")
