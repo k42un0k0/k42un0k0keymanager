@@ -1,8 +1,8 @@
-import { ElectronService } from './../../../base/services/electron.service';
+import { ElectronService } from '../../../base/services/electron.service';
 import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { TabItem } from '../tab/tab.component';
 import { TabService } from '../../services/tab.service';
-import { AuthenticationService } from 'src/app/base/services/authentication.service';
+import { AuthenticationService } from '../../../base/services/authentication.service';
 
 @Component({
   selector: 'app-tabbar',
@@ -10,7 +10,11 @@ import { AuthenticationService } from 'src/app/base/services/authentication.serv
   styleUrls: ['./tabbar.component.scss'],
 })
 export class TabbarComponent implements OnInit {
-  constructor(private electronService: ElectronService, private authenticationService: AuthenticationService, public tabService: TabService) {}
+  constructor(
+    private electronService: ElectronService,
+    private authenticationService: AuthenticationService,
+    public tabService: TabService
+  ) {}
 
   ngOnInit(): void {}
 

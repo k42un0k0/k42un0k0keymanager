@@ -1,8 +1,8 @@
-import { splashPath } from './../../constant';
-import { BrowserWindow } from 'electron';
-import * as url from 'url';
-import { MyWindow } from './my-window';
-import { preloadPath } from '../../constant';
+import { splashPath } from "../../constant";
+import { BrowserWindow } from "electron";
+import * as url from "url";
+import { MyWindow } from "./my-window";
+import { preloadPath } from "../../constant";
 
 export class SplashWindow implements MyWindow {
   configure(): [BrowserWindow, string] {
@@ -14,12 +14,12 @@ export class SplashWindow implements MyWindow {
       },
       frame: false,
       resizable: false,
-      backgroundColor: '#333',
+      backgroundColor: "#333",
     });
 
     const startUrl = url.format({
       pathname: splashPath,
-      protocol: 'file:',
+      protocol: "file:",
       slashes: true,
     });
     return [win, startUrl];

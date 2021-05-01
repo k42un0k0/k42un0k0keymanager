@@ -8,12 +8,11 @@ import { UserAccountManagerRoutingModule } from './user-account-manager-routing.
 import { UserAccountManagerComponent } from './user-account-manager.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { AutoFocusDirective } from '../base/directives/auto-focus.directive';
 import { ComponentsModule } from './components/components.module';
+import { BaseModule } from '../base/base.module';
 
 @NgModule({
   declarations: [UserAccountManagerComponent, SettingComponent, CreateComponent],
-  providers: [AutoFocusDirective],
-  imports: [CommonModule, UserAccountManagerRoutingModule, MatIconModule, MatButtonModule, FormsModule, ComponentsModule],
+  imports: [CommonModule, UserAccountManagerRoutingModule, MatIconModule, MatButtonModule, BaseModule, FormsModule, ComponentsModule],
 })
 export class UserAccountManagerModule {}

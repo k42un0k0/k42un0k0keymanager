@@ -1,5 +1,5 @@
-import { ElectronService } from 'src/app/base/services/electron.service';
-import { UserAccountRepository } from './../base/repositories/user-account.repository';
+import { ElectronService } from '../base/services/electron.service';
+import { UserAccountRepository } from '../base/repositories/user-account.repository';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

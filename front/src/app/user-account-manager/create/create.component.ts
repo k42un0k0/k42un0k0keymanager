@@ -1,6 +1,6 @@
-import { ElectronService } from './../../base/services/electron.service';
+import { ElectronService } from '../../base/services/electron.service';
 import { Component, OnInit } from '@angular/core';
-import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { UserAccountRepository } from '../../base/repositories/user-account.repository';
 
 @Component({
   selector: 'app-create',

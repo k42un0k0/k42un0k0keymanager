@@ -1,5 +1,5 @@
 import { MatButtonModule } from '@angular/material/button';
-import { BaseModule } from './../base/base.module';
+import { BaseModule } from '../base/base.module';
 import { OuterAccountListComponent } from './outer-account-list/outer-account-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
