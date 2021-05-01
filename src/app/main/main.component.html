@@ -1,16 +1,10 @@
 <app-tabbar class="is-window-frame" (onClickHome)="onClickHome()"></app-tabbar>
 <div class="content">
   <div class="sidebar">
-    <app-sidebar [open]="open" [sidebarItems]="sidebarItems"></app-sidebar>
+    <app-sidebar [open]="open || tabLength ===0" [sidebarItems]="sidebarItems"></app-sidebar>
   </div>
   <div class="account-list">
-    <app-account-card [account]="account"></app-account-card>
-    <app-account-card [account]="account"></app-account-card>
-    <app-account-card [account]="account"></app-account-card>
-    <app-account-card [account]="account"></app-account-card>
-    <app-account-card [account]="account"></app-account-card>
-    <app-account-card [account]="account"></app-account-card>
-    <app-account-card [account]="account"></app-account-card>
+    <app-account-card *ngFor="let account of outerAccounts | async" [account]="account"></app-account-card>
     <button class="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
       <mat-icon>add</mat-icon>
     </button>

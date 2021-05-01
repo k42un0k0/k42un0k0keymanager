@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { OuterAccount, UserAccount } from 'src/models';
+import { OuterAccountRepository } from '../base/repositories/outer-account.repository';
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
 import { nonNullable } from '../base/utils/nonNullable';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { TabItem } from './components/tab/tab.component';
-import { TabService } from './services/tab.service';
+import { Tab, TabService } from './services/tab.service';
 
 @Component({
   selector: 'app-main',
@@ -23,6 +24,9 @@ export class MainComponent {
     password: '',
   };
   open = false;
+  get tabLength(): number {
+    return this.tabService.tabs.length;
+  }
 
   sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.userAccounts.pipe(
     map((value) => {
@@ -36,7 +40,22 @@ export class MainComponent {
       });
     })
   );
-  constructor(private userAccountRepository: UserAccountRepository, private tabService: TabService) {}
+
+  outerAccounts = this.outerAccountRepository.outerAcconts.pipe(
+    map((v) => {
+      return v.filter((i): i is NonNullProperty<typeof v[0], 'userAccount'> => true);
+    })
+  );
+  constructor(
+    private userAccountRepository: UserAccountRepository,
+    private outerAccountRepository: OuterAccountRepository,
+    private tabService: TabService
+  ) {
+    this.tabService.current.pipe(filter((v): v is Tab => v != null)).subscribe((tab) => {
+      outerAccountRepository.userAccountID = tab.userAccountID;
+      outerAccountRepository.startSubscribe();
+    });
+  }
 
   onClickHome(): void {
     this.open = !this.open;

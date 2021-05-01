@@ -10,6 +10,9 @@ export const nonNullable = {
   array: function nonNullableArray<T>(arr: NullableValue<T[]>): T[] {
     return createNonNullableValue<T[]>([])(arr);
   },
+  arrayItem: function nonNullableArray<T>(arr: NullableValue<T>[]): T[] {
+    return arr.filter((v): v is T => v != null);
+  },
   number: createNonNullableValue(0),
   string: createNonNullableValue(''),
 };
