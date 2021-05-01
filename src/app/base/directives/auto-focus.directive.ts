@@ -4,13 +4,13 @@ import { AfterContentChecked, AfterContentInit, Directive, ElementRef, HostListe
   selector: '[appAutoFocus]',
 })
 export class AutoFocusDirective implements AfterContentInit {
+  @Input()
+  appAutoFocus!: boolean | '';
+
   constructor(private elementRef: ElementRef<HTMLInputElement>) {}
   ngAfterContentInit(): void {
     if (this.appAutoFocus === '' || this.appAutoFocus === true) {
       this.elementRef.nativeElement.focus();
     }
   }
-
-  @Input()
-  appAutoFocus!: boolean | '';
 }

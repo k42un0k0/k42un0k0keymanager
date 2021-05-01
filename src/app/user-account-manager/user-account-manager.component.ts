@@ -1,3 +1,4 @@
+import { ElectronService } from 'src/app/base/services/electron.service';
 import { UserAccountRepository } from './../base/repositories/user-account.repository';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-account-manager.component.scss'],
 })
 export class UserAccountManagerComponent implements OnInit {
-  constructor(private userAccountRepository: UserAccountRepository) {}
+  userAccounts = this.userAccountRepository.userAccounts;
+
+  constructor(private userAccountRepository: UserAccountRepository, private electronService: ElectronService) {}
 
   ngOnInit(): void {}
 
-  userAccounts = this.userAccountRepository.userAccounts;
-
-  closeWindow() {
-    window.close();
+  closeWindow(): void {
+    this.electronService.closeWindow();
   }
 }

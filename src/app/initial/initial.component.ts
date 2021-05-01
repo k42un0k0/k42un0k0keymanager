@@ -11,13 +11,15 @@ export class InitialComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private electronService: ElectronService) {}
 
   ngOnInit(): void {
-    (async () => {
-      if (await this.authenticationService.isSignedIn) {
-        await this.electronService.openWindow(WindowEnum.main);
-      } else {
-        await this.electronService.openWindow(WindowEnum.auth);
-      }
-      this.electronService.closeWindow();
-    })();
+    this.authenticationService.isSignedIn.subscribe((isSignedIn) => {
+      (async () => {
+        if (isSignedIn) {
+          await this.electronService.openWindow(WindowEnum.main);
+        } else {
+          await this.electronService.openWindow(WindowEnum.auth);
+        }
+        this.electronService.closeWindow();
+      })();
+    });
   }
 }

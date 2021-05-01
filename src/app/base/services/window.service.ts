@@ -6,7 +6,7 @@ import { ElementRef, Injectable } from '@angular/core';
 export class WindowService {
   constructor() {}
 
-  resizeTo(elm: ElementRef<HTMLElement>) {
+  resizeTo(elm: ElementRef<HTMLElement>): void {
     elm.nativeElement.style.display = 'block';
     const width = elm.nativeElement.clientWidth;
     const height = elm.nativeElement.clientHeight;
