@@ -1,1 +1,21 @@
-<p>account-editor works!</p>
+<header class="header">
+  <button class="button" mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</header>
+<div>
+  <app-input label="Provider Name" [(value)]="providerName"></app-input>
+</div>
+<form>
+  <app-input label="User ID" [(value)]="userId"></app-input>
+  <app-input label="Password" [(value)]="password"></app-input>
+  <div class="link-group">
+    <img [src]="iconPath|async" alt="provider icon" />
+    <app-input label="Link" [value]="link" (valueChange)="onChangeLink($event)"></app-input>
+  </div>
+  <div class="form-action">
+    <button mat-button color="primary">Submit</button>
+  </div>
+</form>

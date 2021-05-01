@@ -11,7 +11,7 @@
     "start:web": "ng serve",
     "build:web": "ng build",
     "build:electron": "cpx electron/splash.html dist && tsc -p electron/tsconfig.json",
-    "test": "ng test",
+    "test:web": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch:electron": "yarn build:electron --watch",
@@ -27,7 +27,9 @@
     "mac": {
       "category": "your.app.category.type"
     },
-    "files":["dist/**/*"],
+    "files": [
+      "dist/**/*"
+    ],
     "directories": {
       "buildResources": "./dist",
       "output": "./build"
@@ -47,6 +49,7 @@
     "@angular/service-worker": "~11.2.8",
     "@storybook/theming": "^6.2.8",
     "aws-amplify": "^3.3.26",
+    "axios": "^0.21.1",
     "electron-reload": "^1.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -62,6 +65,7 @@
     "@storybook/addon-essentials": "^6.2.7",
     "@storybook/addon-links": "^6.2.7",
     "@storybook/angular": "^6.2.7",
+    "@types/axios": "^0.14.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "babel-loader": "^8.2.2",

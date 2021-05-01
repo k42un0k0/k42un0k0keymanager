@@ -1,9 +1,9 @@
-import { InputComponent } from '../components/input/input.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap, pluck } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { InputComponent } from 'src/app/base/components/input/input.component';
 
 @Component({
   selector: 'app-setting',

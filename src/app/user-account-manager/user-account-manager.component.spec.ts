@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ComponentsModule } from './components/components.module';
 import { BaseModule } from '../base/base.module';
 
 import { UserAccountManagerComponent } from './user-account-manager.component';
@@ -19,7 +18,7 @@ describe('UserAccountManagerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [UserAccountManagerComponent],
       providers: [{ provide: UserAccountRepository, useValue: mockUserAccountRepository }],
-      imports: [RouterTestingModule, MatIconModule, MatButtonModule, BaseModule, ComponentsModule],
+      imports: [RouterTestingModule, MatIconModule, MatButtonModule, BaseModule],
     }).compileComponents();
   });
 
