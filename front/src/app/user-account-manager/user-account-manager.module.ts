@@ -13,6 +13,15 @@ import { BaseModule } from '../base/base.module';
 
 @NgModule({
   declarations: [UserAccountManagerComponent, SettingComponent, CreateComponent],
-  imports: [CommonModule, UserAccountManagerRoutingModule, MatIconModule, MatButtonModule, BaseModule, FormsModule, ComponentsModule],
+  imports: [
+    CommonModule,
+    UserAccountManagerRoutingModule,
+    MatIconModule,
+    BaseModule,
+    MatButtonModule,
+    BaseModule,
+    FormsModule,
+    ComponentsModule,
+  ],
 })
 export class UserAccountManagerModule {}
