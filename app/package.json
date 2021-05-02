@@ -1,12 +1,13 @@
 {
   "name": "app",
   "version": "0.0.0",
-  "main": "./dist/main.js",
+  "main": "./dist/app/main.js",
   "scripts": {
-    "start": "run-p watch:electron start:electron",
-    "start:electron": "cross-env ELECTRON_START_URL=\"http://localhost:4200\" electron --inspect=5858 .",
-    "build": "cpx electron/splash.html dist && tsc -p electron/tsconfig.json",
-    "watch:electron": "yarn build:electron --watch",
+    "dev": "run-p watch start",
+    "start": "cross-env ELECTRON_START_URL=\"http://localhost:4200\" electron --inspect=5858 .",
+    "compile": "cpx src/splash.html dist/app && tsc",
+    "compile:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
+    "watch": "yarn compile --watch",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -21,7 +22,7 @@
     ],
     "directories": {
       "buildResources": "./dist",
-      "output": "./build"
+      "output": "../build"
     }
   },
   "dependencies": {

@@ -1,24 +1,27 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
-import { WindowEnum } from './services/window-manager';
-import { windowManager } from './singleton';
+import { app, BrowserWindow } from "electron";
+import path from "path";
+import { WindowEnum } from "./services/window-manager";
+import { windowManager } from "./singleton";
 
 function main() {
-  require('electron-reload')(path.join(__dirname, 'main.js'), {
-    electron: require('${__dirname}/../../node_modules/electron'),
-  });
+  if (app.isPackaged) {
+  } else {
+    // require("electron-reload")(path.join(__dirname, "main.js"), {
+    //   electron: require("${__dirname}/../node_modules/electron"),
+    // });
+  }
 
   app.whenReady().then(() => {
     windowManager.initializeWindow();
   });
 
-  app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
       app.quit();
     }
   });
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       windowManager.initializeWindow();
     }
@@ -27,4 +30,4 @@ function main() {
 
 main();
 
-require('./listener');
+require("./listener");

@@ -1,7 +1,7 @@
-import { BrowserWindow } from 'electron';
-import * as url from 'url';
-import { MyWindow } from './my-window';
-import { appPath, preloadPath } from '../../constant';
+import { BrowserWindow } from "electron";
+import * as url from "url";
+import { MyWindow } from "./my-window";
+import { frontPath, preloadPath } from "../../constant";
 
 export class InitialWindow implements MyWindow {
   configure(): [BrowserWindow, string] {
@@ -13,16 +13,16 @@ export class InitialWindow implements MyWindow {
       },
       frame: false,
       resizable: false,
-      backgroundColor: '#333',
+      backgroundColor: "#333",
     });
 
     const startUrl =
       (process.env.ELECTRON_START_URL ||
         url.format({
-          pathname: appPath,
-          protocol: 'file:',
+          pathname: frontPath,
+          protocol: "file:",
           slashes: true,
-        })) + '#/initial';
+        })) + "#/initial";
     return [win, startUrl];
   }
 }

@@ -2,10 +2,14 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build:app": "lerna run build",
-    "build:web": "lerna run build:web --scope front"
+    "build:front": "lerna run build --scope front",
+    "build:app": "lerna run compile:prod --scope app",
+    "cp-front-to-app": "cpx ./front/dist/front/**/* ./app/dist/front",
+    "package": "run-p build:* && npm run-script cp-front-to-app && lerna run dist --scope app"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "cpx": "^1.5.0",
+    "lerna": "^4.0.0",
+    "npm-run-all": "^4.1.5"
   }
 }
