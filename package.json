@@ -2,6 +2,9 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "start": "run-p start:*",
+    "start:front": "lerna run start --scope front",
+    "start:app": "lerna run dev --scope app",
     "build:front": "lerna run build --scope front",
     "build:app": "lerna run compile:prod --scope app",
     "cp-front-to-app": "cpx ./front/dist/front/**/* ./app/dist/front",
