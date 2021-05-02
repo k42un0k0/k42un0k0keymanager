@@ -1,12 +1,12 @@
 <app-titlebar></app-titlebar>
 <app-container>
-<h1 class="title">K42un0k0 Password Manager</h1>
-<form>
+  <h1 class="title">K42un0k0 Password Manager</h1>
+  <form>
     <div class="input-group">
-        <app-input label="User ID" [(value)]="username"></app-input>
-        <app-input label="Password" [(value)]="password"></app-input>
+      <app-auth-input label="User ID" [(value)]="username"></app-auth-input>
+      <app-auth-input label="Password" [(value)]="password"></app-auth-input>
     </div>
     <span class="button" (click)="submit()">Login</span>
-</form>
-<a routerLink="/auth/register" class="link">Register</a>
+  </form>
+  <a routerLink="/auth/register" class="link">Register</a>
 </app-container>

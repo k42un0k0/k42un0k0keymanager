@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
+  selector: 'app-auth-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
 })

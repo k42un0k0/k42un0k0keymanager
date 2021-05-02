@@ -1,14 +1,14 @@
 <app-titlebar></app-titlebar>
 <app-container>
-<h1 class="title">Register</h1>
-<form>
+  <h1 class="title">Register</h1>
+  <form>
     <div class="input-group">
-        <app-input label="User ID" [(value)]="username"></app-input>
-        <app-input label="Email" [(value)]="email"></app-input>
-        <app-input label="Password" [(value)]="password"></app-input>
-        <app-input label="Password Confirmation" [(value)]="passwordConfirmation"></app-input>
+      <app-auth-input label="User ID" [(value)]="username"></app-auth-input>
+      <app-auth-input label="Email" [(value)]="email"></app-auth-input>
+      <app-auth-input label="Password" [(value)]="password"></app-auth-input>
+      <app-auth-input label="Password Confirmation" [(value)]="passwordConfirmation"></app-auth-input>
     </div>
     <span class="button" (click)="submit()">Submit</span>
-</form>
-<a routerLink="/auth/login" class="link">Login</a>
+  </form>
+  <a routerLink="/auth/login" class="link">Login</a>
 </app-container>
