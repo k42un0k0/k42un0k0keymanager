@@ -25,7 +25,7 @@ export default {
 const Template: Story<TabbarComponent> = (args: TabbarComponent) => ({
   props: {
     ...args,
-    onClickHome: action('home'),
+    clickHome: action('home'),
   },
 });
 

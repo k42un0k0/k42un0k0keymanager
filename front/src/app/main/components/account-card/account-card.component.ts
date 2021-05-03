@@ -7,10 +7,10 @@ import { OuterAccount } from 'src/models';
   styleUrls: ['./account-card.component.scss'],
 })
 export class AccountCardComponent implements OnInit {
+  @Input()
+  account!: OuterAccount;
+
   constructor() {}
 
   ngOnInit(): void {}
-
-  @Input()
-  account!: OuterAccount;
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export enum WindowEnum {
   auth,
   main,
-  userAccountSetting,
+  userAccountManager,
 }
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class ElectronService {
     switch (value) {
       case WindowEnum.auth:
         return window.main.window.auth();
-      case WindowEnum.userAccountSetting:
+      case WindowEnum.userAccountManager:
         return window.main.window.userAccountManager();
       case WindowEnum.main:
         return window.main.window.main();

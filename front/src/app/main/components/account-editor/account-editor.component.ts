@@ -33,7 +33,7 @@ export class AccountEditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onChangeLink(v: string) {
+  onChangeLink(v: string): void {
     console.log(v);
     this.link = v;
     this.iconSubject.next(v);

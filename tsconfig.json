@@ -1,3 +1,0 @@
-{
-  "references": ["./front/tsconfig.json", "./electron/tsconfig.json"]
-}

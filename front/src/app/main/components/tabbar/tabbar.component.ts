@@ -10,6 +10,8 @@ import { AuthenticationService } from '../../../base/services/authentication.ser
   styleUrls: ['./tabbar.component.scss'],
 })
 export class TabbarComponent implements OnInit {
+  @Output() clickHome = new EventEmitter();
+
   constructor(
     private electronService: ElectronService,
     private authenticationService: AuthenticationService,
@@ -18,15 +20,13 @@ export class TabbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  @Output() onClickHome = new EventEmitter();
-
-  _onClickHome() {
-    this.onClickHome.emit();
+  _onClickHome(): void {
+    this.clickHome.emit();
   }
-  logout() {
+  logout(): void {
     this.authenticationService.signOut();
   }
-  closeWindow() {
+  closeWindow(): void {
     this.electronService.closeWindow();
   }
 }

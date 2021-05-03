@@ -1,7 +1,7 @@
-<app-tabbar class="is-window-frame" (onClickHome)="onClickHome()"></app-tabbar>
+<app-tabbar class="is-window-frame" (clickHome)="_onClickHome()"></app-tabbar>
 <div class="content">
   <div class="sidebar">
-    <app-sidebar [open]="open || tabLength ===0" [sidebarItems]="sidebarItems"></app-sidebar>
+    <app-sidebar [open]="open || tabLength === 0" [sidebarItems]="sidebarItems"></app-sidebar>
   </div>
   <div class="account-list">
     <app-account-card *ngFor="let account of outerAccounts | async" [account]="account"></app-account-card>

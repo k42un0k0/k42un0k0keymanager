@@ -57,7 +57,7 @@ export class MainComponent {
     });
   }
 
-  onClickHome(): void {
+  _onClickHome(): void {
     this.open = !this.open;
   }
 }

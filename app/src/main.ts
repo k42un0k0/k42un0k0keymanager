@@ -1,17 +1,18 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { WindowEnum } from "./services/window-manager";
-import { windowManager } from "./singleton";
+import { windowManagerListener } from "./listener";
+import { windowManager, ipcService } from "./singleton";
 
 function main() {
   if (app.isPackaged) {
   } else {
-    // require("electron-reload")(path.join(__dirname, "main.js"), {
-    //   electron: require("${__dirname}/../node_modules/electron"),
-    // });
+    require("electron-reload")(path.join(__dirname, "main.js"), {
+      electron: require(path.join(__dirname, "../../node_modules/electron")),
+    });
   }
 
   app.whenReady().then(() => {
+    ipcService.addEventListener(windowManagerListener);
     windowManager.initializeWindow();
   });
 

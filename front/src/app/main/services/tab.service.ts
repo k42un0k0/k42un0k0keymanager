@@ -4,7 +4,7 @@ import { UserAccount } from 'src/models';
 
 export class Tab {
   title: string;
-  active: boolean = false;
+  active = false;
   userAccountID: string;
   constructor(private userAccount: UserAccount) {
     this.title = userAccount.name;

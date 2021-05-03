@@ -1,8 +1,4 @@
-# k42un0k0passwordmanager
-
-## Attention
-
-- 初回起動時、dist フォルダに何もないので起動が失敗するので、`build:electron`してから起動して下さい
+# front
 
 ## ページ追加のコマンド
 

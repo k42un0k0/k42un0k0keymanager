@@ -12,16 +12,16 @@ export interface TabItem {
   styleUrls: ['./tab.component.scss'],
 })
 export class TabComponent implements OnInit {
+  @Input() tab!: Tab;
+
+  @Output() clickClose = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
 
   @HostBinding('class.active')
-  get active() {
+  get active(): boolean {
     return this.tab.active;
   }
-
-  @Input() tab!: Tab;
-
-  @Output() close = new EventEmitter();
 }

@@ -25,6 +25,6 @@ const Template: Story<SidebarComponent> = (args: SidebarComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  sidebarItems: of([{ title: "Job", onClick() { } }]),
-  open: true
+  sidebarItems: of([{ title: 'Job', onClick(): void {} }]),
+  open: true,
 };

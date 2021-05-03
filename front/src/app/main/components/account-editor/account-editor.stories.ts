@@ -27,7 +27,6 @@ export default {
 const Template: Story<AccountEditorComponent> = (args: AccountEditorComponent) => ({
   props: {
     ...args,
-    onClickHome: action('home'),
   },
 });
 
