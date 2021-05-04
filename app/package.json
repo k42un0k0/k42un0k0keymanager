@@ -8,6 +8,7 @@
     "compile": "cpx src/splash.html dist/app && tsc",
     "compile:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
     "watch": "yarn compile --watch",
+    "test": "jest",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
@@ -31,12 +32,15 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/jest": "^26.0.23",
     "@types/node": "^12.11.1",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
     "electron": "^12.0.2",
     "electron-builder": "^22.10.5",
+    "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
+    "ts-jest": "^26.5.5",
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "~4.1.5"
