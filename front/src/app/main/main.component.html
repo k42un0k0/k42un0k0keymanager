@@ -5,7 +5,7 @@
   </div>
   <div class="account-list">
     <app-account-card *ngFor="let account of outerAccounts | async" [account]="account"></app-account-card>
-    <button class="button" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+    <button class="button" (click)="_OpenDialog()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
       <mat-icon>add</mat-icon>
     </button>
   </div>

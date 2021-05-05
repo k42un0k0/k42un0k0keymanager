@@ -6,8 +6,9 @@ import { OuterAccountRepository } from '../base/repositories/outer-account.repos
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
 import { nonNullable } from '../base/utils/nonNullable';
 import { SidebarItem } from './components/sidebar/sidebar.component';
-import { TabItem } from './components/tab/tab.component';
 import { Tab, TabService } from './services/tab.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AccountEditorComponent } from './components/account-editor/account-editor.component';
 
 @Component({
   selector: 'app-main',
@@ -49,7 +50,8 @@ export class MainComponent {
   constructor(
     private userAccountRepository: UserAccountRepository,
     private outerAccountRepository: OuterAccountRepository,
-    private tabService: TabService
+    private tabService: TabService,
+    private dialog: MatDialog
   ) {
     this.tabService.current.pipe(filter((v): v is Tab => v != null)).subscribe((tab) => {
       outerAccountRepository.userAccountID = tab.userAccountID;
@@ -59,5 +61,11 @@ export class MainComponent {
 
   _onClickHome(): void {
     this.open = !this.open;
+  }
+
+  _OpenDialog(): void {
+    const dialogRef = this.dialog.open(AccountEditorComponent, {
+      width: '500px',
+    });
   }
 }

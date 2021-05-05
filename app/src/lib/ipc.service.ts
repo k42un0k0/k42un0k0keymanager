@@ -1,5 +1,5 @@
 import { ipcMain } from "electron";
-type IpcListener = (e: Electron.IpcMainEvent) => void;
+type IpcListener = (e: Electron.IpcMainInvokeEvent, ...args: any[]) => void;
 
 export type IpcListenerMap = { [key: string]: IpcListener };
 
@@ -10,7 +10,7 @@ export class IpcService {
   addEventListener(obj: IpcListenerMap): void;
   addEventListener(keyOrObj: string | IpcListenerMap, listner?: any): void {
     if (typeof keyOrObj == "string") {
-      ipcMain.on(keyOrObj, listner);
+      ipcMain.handle(keyOrObj, listner);
     } else {
       Object.entries(keyOrObj).forEach(
         ([key, value]: [string, IpcListener]) => {

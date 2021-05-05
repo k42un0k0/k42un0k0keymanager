@@ -1,7 +1,8 @@
+import { ElectronService } from 'src/app/base/services/electron.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
-import { debounceTime, mergeMap, map, catchError } from 'rxjs/operators';
+import { debounceTime, mergeMap, map, catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account-editor',
@@ -17,19 +18,15 @@ export class AccountEditorComponent implements OnInit {
   iconPath = this.iconSubject.pipe(
     debounceTime(1000),
     mergeMap((v) => {
-      console.log({ v });
-      return this.http.get(v).pipe(
-        map((response) => {
-          console.log(response);
-        }),
-        catchError((e) => {
-          return new BehaviorSubject('');
-        })
-      );
+      console.log({ v }, this.electronService.getFromUrl(v));
+      return from(this.electronService.getFromUrl(v));
+    }),
+    tap((v) => {
+      console.log(v);
     })
   );
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private electronService: ElectronService) {}
 
   ngOnInit(): void {}
 

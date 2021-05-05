@@ -1,7 +1,13 @@
 declare interface Window {
   main: {
-    debug: () => void;
-    close: () => void;
-    window: { auth: () => Promise<void>; main: () => Promise<void>; userAccountManager: () => Promise<void> };
+    windowManager: {
+      close(): Promise<void>;
+      auth(): Promise<void>;
+      userAccountManager(): Promise<void>;
+      main(): Promise<void>;
+    };
+    iconService: {
+      getFromUrl(url: string): Promise<string>;
+    };
   };
 }

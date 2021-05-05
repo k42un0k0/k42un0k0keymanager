@@ -7,9 +7,10 @@ import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ComponentsModule } from './components/components.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [MainComponent, OuterAccountListComponent],
-  imports: [CommonModule, MainRoutingModule, MatIconModule, MatButtonModule, ComponentsModule, BaseModule],
+  imports: [CommonModule, MainRoutingModule, MatIconModule, MatDialogModule, MatButtonModule, ComponentsModule, BaseModule],
 })
 export class MainModule {}

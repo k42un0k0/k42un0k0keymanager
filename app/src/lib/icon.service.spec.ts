@@ -1,5 +1,9 @@
-describe('icon.service', () => {
-  it('get', () => {
-    expect(1 + 1).toEqual(3);
+import { IconService } from "./icon.service";
+describe("icon.service", () => {
+  const service = new IconService();
+  it("get", async () => {
+    expect(await service.getFromUrl("http://twitter.com/login")).toEqual(
+      "unkoman"
+    );
   });
 });

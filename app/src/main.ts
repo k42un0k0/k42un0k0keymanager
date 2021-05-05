@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { windowManagerListener } from "./listener";
+import { iconServiceListener, windowManagerListener } from "./listener";
 import { windowManager, ipcService } from "./singleton";
 
 function main() {
@@ -12,7 +12,10 @@ function main() {
   }
 
   app.whenReady().then(() => {
-    ipcService.addEventListener(windowManagerListener);
+    ipcService.addEventListener({
+      ...windowManagerListener,
+      ...iconServiceListener,
+    });
     windowManager.initializeWindow();
   });
 
