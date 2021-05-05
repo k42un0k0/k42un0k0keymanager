@@ -8,8 +8,8 @@ describe('OuterAccountRepository', () => {
   let service: OuterAccountRepository;
 
   beforeEach(() => {
-    const mockApiServie = jasmine.createSpyObj('APIService', ['ListUserAccounts']);
-    mockApiServie.ListUserAccounts.and.returnValue(new Promise((resolve) => resolve({ items: [] })));
+    const mockApiServie: any = {};
+    mockApiServie.ListUserAccounts = jest.fn().mockReturnValue(new Promise((resolve) => resolve({ items: [] })));
     mockApiServie.OnCreateUserAccountListener = Observable.of();
     TestBed.configureTestingModule({
       providers: [{ provide: APIService, useValue: mockApiServie }],

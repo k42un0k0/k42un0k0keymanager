@@ -13,7 +13,7 @@ describe('UserAccountManagerComponent', () => {
   let fixture: ComponentFixture<UserAccountManagerComponent>;
 
   beforeEach(async () => {
-    const mockUserAccountRepository = jasmine.createSpyObj('UserAccountRepository', [], ['userAccounts']);
+    const mockUserAccountRepository: any = {};
     mockUserAccountRepository.userAccounts = of([]);
     await TestBed.configureTestingModule({
       declarations: [UserAccountManagerComponent],

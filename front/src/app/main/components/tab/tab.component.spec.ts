@@ -4,7 +4,7 @@ import { Tab } from '../../services/tab.service';
 
 import { TabComponent } from './tab.component';
 
-describe('main/components/TabComponent', () => {
+describe('main/components/TabComponent', () => {
   let component: TabComponent;
   let fixture: ComponentFixture<TabComponent>;
 

@@ -9,8 +9,12 @@ export enum WindowEnum {
   providedIn: 'root',
 })
 export class ElectronService {
-  getFromUrl = window.main.iconService.getFromUrl;
-  closeWindow = window.main.windowManager.close;
+  get getFromUrl(): (url: string) => Promise<string> {
+    return window.main.iconService.getFromUrl;
+  }
+  get closeWindow(): () => Promise<void> {
+    return window.main.windowManager.close;
+  }
 
   constructor() {}
   openWindow(value: WindowEnum): Promise<void> {

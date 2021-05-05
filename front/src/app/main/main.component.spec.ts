@@ -8,6 +8,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { MainComponent } from './main.component';
 import { of } from 'rxjs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('main/MainComponent', () => {
   let component: MainComponent;
@@ -19,7 +20,7 @@ describe('main/MainComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [MainComponent],
       providers: [{ provide: UserAccountRepository, useValue: mock }],
-      imports: [ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule],
+      imports: [ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule, MatDialogModule],
     }).compileComponents();
   });
 
