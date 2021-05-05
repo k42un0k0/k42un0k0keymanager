@@ -4,7 +4,7 @@ import { filter, map } from 'rxjs/operators';
 import { OuterAccount, UserAccount } from 'src/models';
 import { OuterAccountRepository } from '../base/repositories/outer-account.repository';
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
-import { nonNullable } from '../base/utils/nonNullable';
+import { nonNullable } from 'lib';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { Tab, TabService } from './services/tab.service';
 import { MatDialog } from '@angular/material/dialog';

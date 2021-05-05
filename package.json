@@ -7,6 +7,7 @@
     "start:front": "lerna run start --scope front --stream",
     "start:app": "lerna run dev --scope app --stream",
     "build:front": "lerna run build --scope front",
+    "build:lib": "lerna run compile --scope lib",
     "build:app": "lerna run compile:prod --scope app",
     "test:front": "lerna run test --scope front",
     "test:app": "lerna run test --scope app",

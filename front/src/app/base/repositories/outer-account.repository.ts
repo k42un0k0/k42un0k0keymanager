@@ -4,14 +4,13 @@ import {
   CreateOuterAccountMutation,
   GetOuterAccountQuery,
   ListOuterAccountsQuery,
-  ModelIDInput,
   ModelOuterAccountFilterInput,
   UpdateOuterAccountInput,
   UpdateOuterAccountMutation,
 } from '../../API.service';
 import { Injectable } from '@angular/core';
 import { from, BehaviorSubject } from 'rxjs';
-import { nonNullable } from '../utils/nonNullable';
+import { nonNullable } from 'lib';
 import { ZenObservable } from 'zen-observable-ts';
 
 @Injectable({

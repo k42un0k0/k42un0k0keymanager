@@ -2,7 +2,7 @@ import { ElectronService } from 'src/app/base/services/electron.service';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, from } from 'rxjs';
 import { debounceTime, mergeMap, map } from 'rxjs/operators';
-import { UrlUtils } from 'src/app/base/utils/url';
+import { UrlUtils } from 'lib';
 
 @Component({
   selector: 'app-account-editor',
