@@ -1,0 +1,63 @@
+@import '_variables';
+
+:host {
+  background-color: $gray1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+
+  &:hover ::ng-deep .close {
+    color: $gray3;
+  }
+}
+
+.home-wrapper {
+  color: $primary-text;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.home {
+  font-size: 20px;
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.button {
+  border-radius: 0;
+  min-width: 52px;
+}
+
+.button-down {
+  &:hover {
+    background-color: $gray2;
+
+    .window-close {
+      color: white;
+    }
+  }
+}
+
+.button-close {
+  &:hover {
+    background-color: red;
+
+    .window-close {
+      color: white;
+    }
+  }
+}
+
+.window-close {
+  font-size: 18px;
+  width: 1em;
+  height: 1em;
+  color: $gray2;
+}

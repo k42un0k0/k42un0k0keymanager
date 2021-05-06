@@ -1,0 +1,14 @@
+<app-titlebar></app-titlebar>
+<app-container>
+  <h1 class="title">Register</h1>
+  <form>
+    <div class="input-group">
+      <app-auth-input label="User ID" [(value)]="username"></app-auth-input>
+      <app-auth-input label="Email" [(value)]="email"></app-auth-input>
+      <app-auth-input label="Password" [(value)]="password"></app-auth-input>
+      <app-auth-input label="Password Confirmation" [(value)]="passwordConfirmation"></app-auth-input>
+    </div>
+    <span class="button" (click)="submit()">Submit</span>
+  </form>
+  <a routerLink="/auth/login" class="link">Login</a>
+</app-container>

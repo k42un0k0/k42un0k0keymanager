@@ -6,21 +6,19 @@
       "request": "launch",
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}",
+      "webRoot": "${workspaceFolder}"
     },
     {
       "name": "Debug Main Process",
       "type": "node",
       "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "cwd": "${workspaceFolder}/app",
+      "runtimeExecutable": "${workspaceFolder}/app/node_modules/.bin/electron",
       "windows": {
-        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+        "runtimeExecutable": "${workspaceFolder}/app/node_modules/.bin/electron.cmd"
       },
       "sourceMaps": true,
-      "args": [
-        "."
-      ],
+      "args": ["."],
       "outputCapture": "std",
       "env": {
         "ELECTRON_START_URL": "http://localhost:4200"

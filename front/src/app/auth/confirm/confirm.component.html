@@ -1,0 +1,11 @@
+<app-titlebar></app-titlebar>
+<app-container>
+  <h1 class="title">Verify Your Account</h1>
+  <form>
+    <div class="input-group">
+      <app-auth-input label="Password Confirmation" [(value)]="code"></app-auth-input>
+    </div>
+    <span class="button" (click)="submit()">Submit</span>
+  </form>
+  <a routerLink="/auth/login" class="link">Login</a>
+</app-container>

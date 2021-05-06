@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": ["node"]
+  },
+  "files": ["src/main.ts", "src/polyfills.ts", "../app/src/preload.d.ts"],
+  "include": ["src/**/*.d.ts"],
+  "exclude": ["**/*.stories.*", "node_modules/@aws-amplify/api-graphql/lib-esm/types/index.d.ts"]
+}

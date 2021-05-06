@@ -1,0 +1,50 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "main": "./dist/app/main.js",
+  "scripts": {
+    "dev": "run-p watch start",
+    "start": "cross-env ELECTRON_START_URL=\"http://localhost:4200\" electron --inspect=5858 .",
+    "compile": "cpx src/splash.html dist/app && tsc",
+    "compile:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
+    "watch": "yarn compile --watch",
+    "test": "jest",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "private": true,
+  "build": {
+    "appId": "com.electron.k42un0k0passwordmanager",
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "directories": {
+      "buildResources": "./dist",
+      "output": "../build"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "electron-reload": "^1.5.0",
+    "jsdom": "^16.5.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^26.0.23",
+    "@types/jsdom": "^16.2.10",
+    "@types/node": "^12.11.1",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.3",
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "jest": "^26.6.3",
+    "npm-run-all": "^4.1.5",
+    "ts-jest": "^26.5.5",
+    "tslint": "~6.1.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "~4.1.5"
+  }
+}
