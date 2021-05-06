@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "_variables";
-@import "_utils";
-@import "~@angular/material/theming";
+@import '_variables';
+@import '_utils';
+@import '_angular_material';
 
 * {
   box-sizing: border-box;
@@ -22,7 +22,7 @@ ul {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 a {
@@ -42,54 +42,12 @@ ul {
   -webkit-app-region: no-drag;
 }
 
-@include mat-core();
+.custom-modalbox {
+  mat-dialog-container {
+    background-color: $gray1;
+  }
+}
 
-$primary:(50 : #e0fcea,
-  100 : #b3f8cb,
-  200 : #80f4a8,
-  300 : #4def85,
-  400 : #26eb6a,
-  500 : #00e850,
-  600 : #00e549,
-  700 : #00e240,
-  800 : #00de37,
-  900 : #00d827,
-  A100 : #ffffff,
-  A200 : #cdffd3,
-  A400 : #9affa6,
-  A700 : #80ff8f,
-  contrast: (50 : #fff,
-    100 : #fff,
-    200 : #fff,
-    300 : #fff,
-    400 : #fff,
-    500 : #fff,
-    600 : #fff,
-    700 : #fff,
-    800 : #fff,
-    900 : #fff,
-    A100 : #fff,
-    A200 : #fff,
-    A400 : #fff,
-    A700 : #fff,
-  ));
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$candy-app-primary: mat-palette($primary);
-$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$candy-app-warn: mat-palette($mat-red);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as `color` or `typography`.
-$candy-app-theme: mat-light-theme((color: (primary: $candy-app-primary,
-      accent: $candy-app-accent,
-      warn: $candy-app-warn,
-    )));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($candy-app-theme);
+.cdk-overlay-dark-backdrop {
+  background: #e0e0e04b;
+}

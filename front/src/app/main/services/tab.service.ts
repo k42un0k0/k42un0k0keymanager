@@ -11,6 +11,10 @@ export class Tab {
     this.userAccountID = userAccount.id;
   }
 
+  isSame(tab: Tab): boolean {
+    return this.userAccountID === tab.userAccountID;
+  }
+
   activate(): void {
     this.active = true;
   }
@@ -27,20 +31,30 @@ export class TabService {
 
   current = new BehaviorSubject<Tab | null>(null);
   tabs: Tab[] = [];
-  createTab(userAccount: UserAccount): void {
+  createOrActivateTab(userAccount: UserAccount): void {
     const tab = new Tab(userAccount);
+    let existTab = false;
+    this.tabs.forEach((t) => {
+      if (tab.isSame(t)) {
+        t.activate();
+        existTab = true;
+      } else {
+        t.deactivate();
+      }
+    });
+    if (existTab) {
+      return;
+    }
     tab.activate();
     this.current.next(tab);
-    this.tabs.forEach((t) => {
-      t.deactivate();
-    });
     this.tabs.push(tab);
   }
+
   clickTab(index: number): void {
-    console.log('index ', index);
     this.tabs.forEach((tab, i) => {
       if (i === index) {
         tab.activate();
+        this.current.next(tab);
       } else {
         tab.deactivate();
       }

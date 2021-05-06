@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 :host {
   height: 100%;
@@ -7,12 +7,17 @@
   background-color: $gray2;
 }
 
+.mat-dialog-container {
+  background-color: $gray1;
+}
+
 .content {
   display: flex;
   overflow: hidden;
 }
 
-.sidebar {}
+.sidebar {
+}
 
 .account-list {
   flex: 0 0 100%;

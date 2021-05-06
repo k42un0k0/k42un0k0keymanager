@@ -1,6 +1,7 @@
-@import "_variables";
+@import '_variables';
 
 :host {
+  cursor: pointer;
   background-color: $gray1;
   display: flex;
   align-items: center;

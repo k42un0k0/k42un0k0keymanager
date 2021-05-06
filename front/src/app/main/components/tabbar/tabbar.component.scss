@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 :host {
   background-color: $gray1;
@@ -20,6 +20,7 @@
 .home-wrapper {
   color: $primary-text;
   padding: 4px 12px;
+  cursor: pointer;
 }
 
 .home {

@@ -1,6 +1,7 @@
 import {
   APIService,
   CreateUserAccountMutation,
+  DeleteUserAccountInput,
   GetUserAccountQuery,
   ListUserAccountsQuery,
   UpdateUserAccountMutation,
@@ -42,5 +43,9 @@ export class UserAccountRepository {
 
   create(input: { name: string; token: string }): Promise<CreateUserAccountMutation> {
     return this.apiService.CreateUserAccount(input);
+  }
+
+  destroy(input: DeleteUserAccountInput): Promise<CreateUserAccountMutation> {
+    return this.apiService.DeleteUserAccount(input);
   }
 }

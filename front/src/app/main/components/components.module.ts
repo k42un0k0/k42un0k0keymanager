@@ -9,10 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BaseModule } from 'src/app/base/base.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AccountCardComponent, AccountEditorComponent, SidebarComponent, TabComponent, TabbarComponent],
-  imports: [MatIconModule, MatButtonModule, RouterModule, CommonModule, BaseModule],
+  imports: [MatIconModule, MatButtonModule, RouterModule, CommonModule, BaseModule, MatDialogModule],
   exports: [AccountCardComponent, AccountEditorComponent, SidebarComponent, TabComponent, TabbarComponent],
 })
 export class ComponentsModule {}

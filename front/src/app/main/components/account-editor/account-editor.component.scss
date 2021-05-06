@@ -1,3 +1,7 @@
+@import '_variables';
+:host {
+  background-color: $gray1;
+}
 .header {
   display: flex;
   justify-content: flex-end;
@@ -10,7 +14,8 @@
   img {
     width: 30px;
     height: 30px;
-    margin-right: 30px;
+    margin: 30px;
+    margin-bottom: 6px;
   }
   app-input {
     flex: 1;
@@ -19,5 +24,5 @@
 .form-action {
   display: flex;
   justify-content: flex-end;
-  margin: 20px;
+  margin-top: 30px;
 }

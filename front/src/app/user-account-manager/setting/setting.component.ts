@@ -53,4 +53,8 @@ export class SettingComponent implements OnInit {
       this.input.focus();
     }, 0);
   }
+
+  _DeleteAccount(): void {
+    this.userAccountRepository.destroy({ id: this.id, _version: this.version });
+  }
 }

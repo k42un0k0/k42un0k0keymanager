@@ -25,6 +25,7 @@ export class MainComponent {
     password: '',
   };
   open = false;
+  userAccountID = '';
   get tabLength(): number {
     return this.tabService.tabs.length;
   }
@@ -35,7 +36,7 @@ export class MainComponent {
         return {
           title: nonNullable.string(v?.name),
           onClick: () => {
-            this.tabService.createTab(v as UserAccount);
+            this.tabService.createOrActivateTab(v as UserAccount);
           },
         };
       });
@@ -54,8 +55,10 @@ export class MainComponent {
     private dialog: MatDialog
   ) {
     this.tabService.current.pipe(filter((v): v is Tab => v != null)).subscribe((tab) => {
+      console.log(tab);
       outerAccountRepository.userAccountID = tab.userAccountID;
       outerAccountRepository.startSubscribe();
+      this.userAccountID = tab.userAccountID;
     });
   }
 
@@ -65,7 +68,12 @@ export class MainComponent {
 
   _OpenDialog(): void {
     const dialogRef = this.dialog.open(AccountEditorComponent, {
+      data: { userAccountID: this.userAccountID },
       width: '500px',
+      panelClass: 'custom-modalbox',
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.outerAccountRepository.startSubscribe();
     });
   }
 }
