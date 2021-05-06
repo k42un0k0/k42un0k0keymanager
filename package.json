@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "start": "run-p start:*",
+    "start": "run-p build:lib start:*",
     "start:front": "lerna run start --scope front --stream",
     "start:app": "lerna run dev --scope app --stream",
     "build:front": "lerna run build --scope front",
