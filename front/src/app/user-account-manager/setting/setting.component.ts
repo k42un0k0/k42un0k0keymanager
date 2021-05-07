@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap, pluck } from 'rxjs/operators';
+import { filter, mergeMap, pluck } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { InputComponent } from 'src/app/base/components/input/input.component';
+import { UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-setting',
@@ -11,9 +12,8 @@ import { InputComponent } from 'src/app/base/components/input/input.component';
   styleUrls: ['./setting.component.scss'],
 })
 export class SettingComponent implements OnInit {
-  id!: string;
   name!: string;
-  version!: number;
+  model!: UserAccount;
 
   @ViewChild('input') input!: InputComponent;
   editing = false;
@@ -26,21 +26,23 @@ export class SettingComponent implements OnInit {
         mergeMap((id) => {
           console.log(id);
           return from(this.userAccountRepository.get(id));
-        })
+        }),
+        filter((v): v is UserAccount => !!v)
       )
       .subscribe({
         next: (v): void => {
-          this.id = v.id;
           this.name = v.name;
-          this.version = v._version;
+          this.model = v;
         },
       });
   }
 
   onClickEdit(): void {
-    if (this.editing) {
+    if (this.editing && this.model) {
       this.userAccountRepository
-        .update({ id: this.id, name: this.name, _version: this.version })
+        .update(this.model, (model) => {
+          model.name = this.name;
+        })
         .then((a) => {
           console.log(a);
         })
@@ -55,6 +57,7 @@ export class SettingComponent implements OnInit {
   }
 
   _DeleteAccount(): void {
-    this.userAccountRepository.destroy({ id: this.id, _version: this.version });
+    console.log(this);
+    this.userAccountRepository.destroy(this.model);
   }
 }

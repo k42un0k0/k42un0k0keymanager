@@ -1,6 +1,7 @@
 import { ElectronService } from '../../base/services/electron.service';
 import { Component, OnInit } from '@angular/core';
 import { UserAccountRepository } from '../../base/repositories/user-account.repository';
+import { UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-create',
@@ -15,6 +16,6 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {}
 
   submit(): void {
-    this.userAccountRepository.create({ name: this.name, token: 'aaaaaa' });
+    this.userAccountRepository.save(new UserAccount({ name: this.name, token: 'aaaaaa' }));
   }
 }

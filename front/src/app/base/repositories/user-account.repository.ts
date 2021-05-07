@@ -9,18 +9,19 @@ import {
 import { Injectable } from '@angular/core';
 import { from, BehaviorSubject } from 'rxjs';
 import { nonNullable } from 'lib';
-import { ZenObservable } from 'zen-observable-ts';
+import { AbstractRepository } from './abstract.repository';
+import { UserAccount } from 'src/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserAccountRepository {
-  constructor(private apiService: APIService) {}
+export class UserAccountRepository extends AbstractRepository<UserAccount> {
+  constructor(private apiService: APIService) {
+    super(UserAccount);
+  }
 
-  userAccounts = new BehaviorSubject<NonNullable<ListUserAccountsQuery['items']>>([]);
+  userAccounts = new BehaviorSubject<UserAccount[]>([]);
 
-  createSub?: ZenObservable.Subscription;
-  updateSub?: ZenObservable.Subscription;
   startSubscribe(): void {
     this._updateUserAccounts();
   }
@@ -28,24 +29,8 @@ export class UserAccountRepository {
   endSubscribe(): void {}
 
   private _updateUserAccounts(): void {
-    from(this.apiService.ListUserAccounts()).subscribe((list) => {
-      this.userAccounts.next(nonNullable.array(list.items));
+    from(this.getAll()).subscribe((list) => {
+      this.userAccounts.next(list);
     });
-  }
-
-  get(id: string): Promise<GetUserAccountQuery> {
-    return this.apiService.GetUserAccount(id);
-  }
-
-  update(input: { id: string; name: string; _version: number }): Promise<UpdateUserAccountMutation> {
-    return this.apiService.UpdateUserAccount(input);
-  }
-
-  create(input: { name: string; token: string }): Promise<CreateUserAccountMutation> {
-    return this.apiService.CreateUserAccount(input);
-  }
-
-  destroy(input: DeleteUserAccountInput): Promise<CreateUserAccountMutation> {
-    return this.apiService.DeleteUserAccount(input);
   }
 }
