@@ -28,15 +28,6 @@ export class AuthenticationService {
         await this.setUserFromCognitoUser(v);
       })
       .catch(() => {});
-    this.user.subscribe({
-      next: (v) => {
-        if (!!v) {
-          this.userAccountRepository.startSubscribe();
-        } else {
-          this.userAccountRepository.endSubscribe();
-        }
-      },
-    });
   }
 
   initializeResult: Promise<void>;

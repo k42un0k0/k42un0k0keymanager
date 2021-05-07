@@ -5,6 +5,7 @@ import { debounceTime, mergeMap, map } from 'rxjs/operators';
 import { UrlUtils } from 'lib';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { OuterAccount, UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-account-editor',
@@ -21,7 +22,7 @@ export class AccountEditorComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<AccountEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { userAccountID: string },
+    @Inject(MAT_DIALOG_DATA) public data: { userAccount: UserAccount },
     private electronService: ElectronService,
     private outerAccountRepository: OuterAccountRepository
   ) {
@@ -38,7 +39,9 @@ export class AccountEditorComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+  }
 
   onChangeLink(v: string): void {
     console.log(v);
@@ -48,14 +51,17 @@ export class AccountEditorComponent implements OnInit {
 
   async save(e: MouseEvent): Promise<void> {
     e.preventDefault();
-    await this.outerAccountRepository.create({
-      userAccountID: this.data.userAccountID,
-      providerName: this.providerName,
-      userId: this.userId,
-      password: this.password,
-      link: this.link,
-      iconPath: this.iconPath,
-    });
+    await this.outerAccountRepository.save(
+      new OuterAccount({
+        userAccount: this.data.userAccount,
+        providerName: this.providerName,
+        userId: this.userId,
+        password: this.password,
+        link: this.link,
+        iconPath: this.iconPath,
+      })
+    );
+
     this.dialogRef.close();
   }
 }

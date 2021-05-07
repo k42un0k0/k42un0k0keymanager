@@ -1,9 +1,22 @@
 import { MutableModel, PersistentModel, PersistentModelConstructor } from '@aws-amplify/datastore';
 import { DataStore } from 'aws-amplify';
+import { BehaviorSubject, from } from 'rxjs';
 
 export abstract class AbstractRepository<T extends PersistentModel> {
   observable = DataStore.observe(this.model);
-  constructor(private model: PersistentModelConstructor<T>) {}
+  list = new BehaviorSubject<T[]>([]);
+  constructor(private model: PersistentModelConstructor<T>) {
+    this._updateObserber();
+    this.observable.subscribe((v) => {
+      this._updateObserber();
+    });
+  }
+
+  private _updateObserber(): void {
+    from(this.getAll()).subscribe((list) => {
+      this.list.next(list);
+    });
+  }
 
   getAll(): Promise<T[]> {
     return DataStore.query(this.model);

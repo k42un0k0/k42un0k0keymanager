@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-account-manager.component.scss'],
 })
 export class UserAccountManagerComponent implements OnInit {
-  userAccounts = this.userAccountRepository.userAccounts;
+  userAccounts = this.userAccountRepository.list;
 
   constructor(private userAccountRepository: UserAccountRepository, private electronService: ElectronService) {}
 

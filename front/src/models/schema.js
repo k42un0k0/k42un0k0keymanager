@@ -32,7 +32,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
-                    "isArrayNullable": true,
+                    "isArrayNullable": false,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "userAccount"
@@ -118,7 +118,7 @@ export const schema = {
                     "type": {
                         "model": "UserAccount"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",

@@ -2,7 +2,7 @@ type UserAccount @auth(rules: [{ allow: owner }]) @model {
   token: String!
   id: ID!
   name: String!
-  OuterAccounts: [OuterAccount] @connection(keyName: "byUserAccount", fields: ["id"])
+  OuterAccounts: [OuterAccount]! @connection(keyName: "byUserAccount", fields: ["id"])
 }
 
 type OuterAccount @auth(rules: [{ allow: owner }]) @model @key(name: "byUserAccount", fields: ["userAccountID"]) {
@@ -13,5 +13,5 @@ type OuterAccount @auth(rules: [{ allow: owner }]) @model @key(name: "byUserAcco
   link: String!
   password: String!
   userAccountID: ID!
-  userAccount: UserAccount @connection(fields: ["userAccountID"])
+  userAccount: UserAccount! @connection(fields: ["userAccountID"])
 }

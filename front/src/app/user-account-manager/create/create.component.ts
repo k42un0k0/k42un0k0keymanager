@@ -16,6 +16,6 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {}
 
   submit(): void {
-    this.userAccountRepository.save(new UserAccount({ name: this.name, token: 'aaaaaa' }));
+    this.userAccountRepository.save(new UserAccount({ name: this.name, token: 'aaaaaa', OuterAccounts: [] }));
   }
 }

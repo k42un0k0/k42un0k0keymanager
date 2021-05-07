@@ -5,14 +5,12 @@ import { UserAccount } from 'src/models';
 export class Tab {
   title: string;
   active = false;
-  userAccountID: string;
-  constructor(private userAccount: UserAccount) {
+  constructor(public userAccount: UserAccount) {
     this.title = userAccount.name;
-    this.userAccountID = userAccount.id;
   }
 
   isSame(tab: Tab): boolean {
-    return this.userAccountID === tab.userAccountID;
+    return this.userAccount.id === tab.userAccount.id;
   }
 
   activate(): void {
