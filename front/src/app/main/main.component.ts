@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { OuterAccount, UserAccount } from 'src/models';
+import { UserAccount } from 'src/models';
 import { OuterAccountRepository } from '../base/repositories/outer-account.repository';
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
 import { nonNullable } from 'lib';
@@ -36,10 +36,10 @@ export class MainComponent {
 
   outerAccounts = this.outerAccountRepository.list.pipe(
     mergeMap((v) => {
-      return this.tabService.current.pipe(
+      return this.tabService.current$.pipe(
         filter((tab): tab is Tab => tab != null),
         map((t) => {
-          return v.filter((item) => item.id === t.userAccount.id);
+          return v.filter((item) => item.userAccount.id === t.userAccount.id);
         })
       );
     })
@@ -51,7 +51,7 @@ export class MainComponent {
     private tabService: TabService,
     private dialog: MatDialog
   ) {
-    this.tabService.current.pipe(filter((v): v is Tab => v != null)).subscribe((tab) => {
+    this.tabService.current$.pipe(filter((v): v is Tab => v != null)).subscribe((tab) => {
       this.userAccount = tab.userAccount;
     });
   }

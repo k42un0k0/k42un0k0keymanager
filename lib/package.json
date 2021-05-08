@@ -15,7 +15,7 @@
   },
   "scripts": {
     "compile": "tsc",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/k42un0k0/k42un0k0passwordmanager/issues"

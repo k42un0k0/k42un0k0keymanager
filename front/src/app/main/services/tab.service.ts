@@ -27,7 +27,7 @@ export class Tab {
 export class TabService {
   constructor() {}
 
-  current = new BehaviorSubject<Tab | null>(null);
+  current$ = new BehaviorSubject<Tab | null>(null);
   tabs: Tab[] = [];
   createOrActivateTab(userAccount: UserAccount): void {
     const tab = new Tab(userAccount);
@@ -36,6 +36,7 @@ export class TabService {
       if (tab.isSame(t)) {
         t.activate();
         existTab = true;
+        this.current$.next(t);
       } else {
         t.deactivate();
       }
@@ -44,7 +45,7 @@ export class TabService {
       return;
     }
     tab.activate();
-    this.current.next(tab);
+    this.current$.next(tab);
     this.tabs.push(tab);
   }
 
@@ -52,7 +53,7 @@ export class TabService {
     this.tabs.forEach((tab, i) => {
       if (i === index) {
         tab.activate();
-        this.current.next(tab);
+        this.current$.next(tab);
       } else {
         tab.deactivate();
       }

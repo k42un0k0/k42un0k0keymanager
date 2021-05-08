@@ -9,13 +9,22 @@
     "build:front": "lerna run build --scope front",
     "build:lib": "lerna run compile --scope lib",
     "build:app": "lerna run compile:prod --scope app",
+    "test": "run-p test:*",
     "test:front": "lerna run test --scope front",
     "test:app": "lerna run test --scope app",
+    "test:lib": "lerna run test --scope lib",
     "cp-front-to-app": "cpx ./front/dist/front/**/* ./app/dist/front",
-    "package": "run-p build:* && npm run-script cp-front-to-app && lerna run dist --scope app"
+    "package": "run-p build:* && npm run-script cp-front-to-app && lerna run dist --scope app",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "test:front"
+    }
   },
   "devDependencies": {
     "cpx": "^1.5.0",
+    "husky": "^6.0.0",
     "lerna": "^4.0.0",
     "npm-run-all": "^4.1.5"
   }
