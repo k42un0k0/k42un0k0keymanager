@@ -33,7 +33,8 @@ export class AuthenticationService {
   initializeResult: Promise<void>;
 
   async setUserFromCognitoUser(cognitoUser: CognitoUser): Promise<void> {
-    const sub = (await promisify(cognitoUser.getUserAttributes.bind(cognitoUser))())?.find((_) => _.Name === 'sub')?.Value;
+    const sub = (await promisify(cognitoUser.getUserAttributes.bind(cognitoUser))())?.find((_) => _.Name === 'sub')
+      ?.Value;
     if (sub == null) {
       throw Error('sub not found');
     }

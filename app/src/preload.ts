@@ -1,7 +1,7 @@
-import { contextBridge, ipcRenderer } from "electron";
-import { CHANNELS } from "./channels";
+import { contextBridge, ipcRenderer } from 'electron';
+import { CHANNELS } from './channels';
 
-contextBridge.exposeInMainWorld("process", { env: { ...process.env } });
+contextBridge.exposeInMainWorld('process', { env: { ...process.env } });
 
 const main = {
   windowManager: {
@@ -24,4 +24,4 @@ const main = {
     },
   },
 };
-contextBridge.exposeInMainWorld("main", main);
+contextBridge.exposeInMainWorld('main', main);

@@ -25,9 +25,11 @@ export class RegisterComponent implements AfterViewInit {
   }
 
   async submit(): Promise<void> {
-    await this.authenticationService.signUp({ username: this.username, password: this.password, email: this.email }).then((res) => {
-      console.log(res);
-    });
+    await this.authenticationService
+      .signUp({ username: this.username, password: this.password, email: this.email })
+      .then((res) => {
+        console.log(res);
+      });
     this.router.navigate(['/auth/confirm'], { queryParams: { username: this.username } });
   }
 }

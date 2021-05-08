@@ -1,8 +1,4 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
-
-
+import { ModelInit, MutableModel, PersistentModelConstructor } from '@aws-amplify/datastore';
 
 export declare class UserAccount {
   readonly id: string;
@@ -10,7 +6,10 @@ export declare class UserAccount {
   readonly name: string;
   readonly OuterAccounts: (OuterAccount | null)[];
   constructor(init: ModelInit<UserAccount>);
-  static copyOf(source: UserAccount, mutator: (draft: MutableModel<UserAccount>) => MutableModel<UserAccount> | void): UserAccount;
+  static copyOf(
+    source: UserAccount,
+    mutator: (draft: MutableModel<UserAccount>) => MutableModel<UserAccount> | void
+  ): UserAccount;
 }
 
 export declare class OuterAccount {
@@ -22,5 +21,8 @@ export declare class OuterAccount {
   readonly password: string;
   readonly userAccount: UserAccount;
   constructor(init: ModelInit<OuterAccount>);
-  static copyOf(source: OuterAccount, mutator: (draft: MutableModel<OuterAccount>) => MutableModel<OuterAccount> | void): OuterAccount;
+  static copyOf(
+    source: OuterAccount,
+    mutator: (draft: MutableModel<OuterAccount>) => MutableModel<OuterAccount> | void
+  ): OuterAccount;
 }

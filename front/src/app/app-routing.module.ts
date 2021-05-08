@@ -8,7 +8,8 @@ const routes: Routes = [
   {
     path: 'user-account-manager',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./user-account-manager/user-account-manager.module').then((m) => m.UserAccountManagerModule),
+    loadChildren: () =>
+      import('./user-account-manager/user-account-manager.module').then((m) => m.UserAccountManagerModule),
   },
   { path: 'initial', loadChildren: () => import('./initial/initial.module').then((m) => m.InitialModule) },
 ];

@@ -1,7 +1,7 @@
-import { IpcListenerMap } from "./lib/ipc.service";
-import { CHANNELS } from "./channels";
-import { WindowEnum } from "./lib/window-manager";
-import { windowManager, iconService } from "./singleton";
+import { IpcListenerMap } from './lib/ipc.service';
+import { CHANNELS } from './channels';
+import { WindowEnum } from './lib/window-manager';
+import { windowManager, iconService } from './singleton';
 
 export const windowManagerListener: IpcListenerMap = {
   [CHANNELS.WINDOW_MANAGER.CLOSE]: (e) => {

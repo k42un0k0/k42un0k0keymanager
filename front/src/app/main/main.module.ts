@@ -11,6 +11,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [MainComponent, OuterAccountListComponent],
-  imports: [CommonModule, MainRoutingModule, MatIconModule, MatDialogModule, MatButtonModule, ComponentsModule, BaseModule],
+  imports: [
+    CommonModule,
+    MainRoutingModule,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
+    ComponentsModule,
+    BaseModule,
+  ],
 })
 export class MainModule {}

@@ -1,13 +1,13 @@
-import { app, BrowserWindow } from "electron";
-import path from "path";
-import { iconServiceListener, windowManagerListener } from "./listener";
-import { windowManager, ipcService } from "./singleton";
+import { app, BrowserWindow } from 'electron';
+import path from 'path';
+import { iconServiceListener, windowManagerListener } from './listener';
+import { windowManager, ipcService } from './singleton';
 
 function main() {
   if (app.isPackaged) {
   } else {
-    require("electron-reload")(path.join(__dirname, "main.js"), {
-      electron: require(path.join(__dirname, "../../node_modules/electron")),
+    require('electron-reload')(path.join(__dirname, 'main.js'), {
+      electron: require(path.join(__dirname, '../../node_modules/electron')),
     });
   }
 
@@ -19,13 +19,13 @@ function main() {
     windowManager.initializeWindow();
   });
 
-  app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
       app.quit();
     }
   });
 
-  app.on("activate", () => {
+  app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       windowManager.initializeWindow();
     }
@@ -34,4 +34,4 @@ function main() {
 
 main();
 
-require("./listener");
+require('./listener');

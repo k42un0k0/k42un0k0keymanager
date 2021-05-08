@@ -10,7 +10,11 @@ import { AuthenticationService } from '../../base/services/authentication.servic
 export class ConfirmComponent implements OnInit {
   code = '';
 
-  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   get username(): string | null {
     return this.route.snapshot.queryParamMap.get('username');

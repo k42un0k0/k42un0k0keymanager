@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[appAutoFocus]',
