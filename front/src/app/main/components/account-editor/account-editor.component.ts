@@ -1,5 +1,5 @@
 import { ElectronService } from 'src/app/base/services/electron.service';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { BehaviorSubject, from } from 'rxjs';
 import { debounceTime, mergeMap, map } from 'rxjs/operators';
 import { UrlUtils } from 'lib';
@@ -20,9 +20,16 @@ export class AccountEditorComponent implements OnInit {
   iconSubject = new BehaviorSubject('');
   iconPath = '';
 
+  editing = false;
+  creating = false;
+
+  get disabled(): boolean {
+    return !this.creating && !this.editing;
+  }
+
   constructor(
     private dialogRef: MatDialogRef<AccountEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { userAccount: UserAccount },
+    @Inject(MAT_DIALOG_DATA) public data: { outerAccountID?: string; userAccount: UserAccount },
     private electronService: ElectronService,
     private outerAccountRepository: OuterAccountRepository
   ) {
@@ -37,20 +44,63 @@ export class AccountEditorComponent implements OnInit {
       .subscribe((v) => {
         this.iconPath = v;
       });
+
+    if (this.data.outerAccountID) {
+      this.outerAccountRepository.get(this.data.outerAccountID).then((outerAccount) => {
+        if (outerAccount) {
+          this._parseOuterAccountToProperty(outerAccount);
+        }
+      });
+    } else {
+      this.creating = true;
+    }
   }
 
-  ngOnInit(): void {
-    console.log(this.data);
+  ngOnInit(): void {}
+
+  toggleEdit(): void {
+    this.editing = !this.editing;
+  }
+  private _parseOuterAccountToProperty(outerAccount: OuterAccount): void {
+    this.providerName = outerAccount.providerName;
+    this.userId = outerAccount.userId;
+    this.password = outerAccount.password;
+    this.link = outerAccount.link;
+    this.iconSubject.next(outerAccount.link);
+    this.iconPath = outerAccount.iconPath;
   }
 
   onChangeLink(v: string): void {
-    console.log(v);
     this.link = v;
     this.iconSubject.next(v);
   }
 
   async save(e: MouseEvent): Promise<void> {
     e.preventDefault();
+    if (this.creating) {
+      this._create();
+    } else {
+      this._update();
+    }
+  }
+  private async _update(): Promise<void> {
+    if (this.data.outerAccountID) {
+      const outerAccount = await this.outerAccountRepository.get(this.data.outerAccountID);
+      if (outerAccount) {
+        await this.outerAccountRepository.update(outerAccount, (v) => {
+          v.userAccount = this.data.userAccount;
+          v.providerName = this.providerName;
+          v.userId = this.userId;
+          v.password = this.password;
+          v.link = this.link;
+          v.iconPath = this.iconPath;
+        });
+
+        this.toggleEdit();
+      }
+    }
+  }
+  private async _create(): Promise<void> {
     await this.outerAccountRepository.save(
       new OuterAccount({
         userAccount: this.data.userAccount,
@@ -63,5 +113,16 @@ export class AccountEditorComponent implements OnInit {
     );
 
     this.dialogRef.close();
+  }
+
+  async destroyAccount(e: MouseEvent): Promise<void> {
+    e.preventDefault();
+    if (this.data.outerAccountID) {
+      const outerAccount = await this.outerAccountRepository.get(this.data.outerAccountID);
+      if (outerAccount) {
+        await this.outerAccountRepository.destroy(outerAccount);
+        this.dialogRef.close();
+      }
+    }
   }
 }

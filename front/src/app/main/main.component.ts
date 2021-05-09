@@ -67,4 +67,12 @@ export class MainComponent {
       panelClass: 'custom-modalbox',
     });
   }
+
+  _OpenEditDialog(outerAccountID: string): void {
+    const dialogRef = this.dialog.open(AccountEditorComponent, {
+      data: { userAccount: this.userAccount, outerAccountID },
+      width: '500px',
+      panelClass: 'custom-modalbox',
+    });
+  }
 }
