@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
   @Input()
   disabled!: boolean;
 
@@ -22,8 +22,6 @@ export class InputComponent implements OnInit {
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   focus(): void {
     this.input.nativeElement.focus();

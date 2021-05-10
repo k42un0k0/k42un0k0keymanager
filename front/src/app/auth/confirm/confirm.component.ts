@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../base/services/authentication.service';
 
@@ -7,7 +7,7 @@ import { AuthenticationService } from '../../base/services/authentication.servic
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss'],
 })
-export class ConfirmComponent implements OnInit {
+export class ConfirmComponent {
   code = '';
 
   constructor(
@@ -19,7 +19,6 @@ export class ConfirmComponent implements OnInit {
   get username(): string | null {
     return this.route.snapshot.queryParamMap.get('username');
   }
-  ngOnInit(): void {}
 
   async submit(): Promise<void> {
     if (this.username != null) {

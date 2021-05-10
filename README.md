@@ -7,3 +7,7 @@ npm i
 npm run bootstrap
 npm run start
 ```
+
+## メモ
+
+lerna add のローカル参照あたりがめんどいかも

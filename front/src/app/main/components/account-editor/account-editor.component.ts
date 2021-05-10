@@ -1,10 +1,10 @@
-import { ElectronService } from 'src/app/base/services/electron.service';
-import { Component, Inject, OnInit } from '@angular/core';
-import { BehaviorSubject, from } from 'rxjs';
-import { debounceTime, mergeMap, map } from 'rxjs/operators';
-import { UrlUtils } from 'lib';
-import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UrlUtils } from 'lib';
+import { BehaviorSubject, from } from 'rxjs';
+import { debounceTime, map, mergeMap } from 'rxjs/operators';
+import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
+import { ElectronService } from 'src/app/base/services/electron.service';
 import { OuterAccount, UserAccount } from 'src/models';
 
 @Component({
@@ -12,7 +12,7 @@ import { OuterAccount, UserAccount } from 'src/models';
   templateUrl: './account-editor.component.html',
   styleUrls: ['./account-editor.component.scss'],
 })
-export class AccountEditorComponent implements OnInit {
+export class AccountEditorComponent {
   providerName = '';
   userId = '';
   password = '';
@@ -55,8 +55,6 @@ export class AccountEditorComponent implements OnInit {
       this.creating = true;
     }
   }
-
-  ngOnInit(): void {}
 
   toggleEdit(): void {
     this.editing = !this.editing;

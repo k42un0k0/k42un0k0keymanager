@@ -1,15 +1,14 @@
-import { ElectronService } from '../../../base/services/electron.service';
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
-import { TabItem } from '../tab/tab.component';
-import { TabService } from '../../services/tab.service';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthenticationService } from '../../../base/services/authentication.service';
+import { ElectronService } from '../../../base/services/electron.service';
+import { TabService } from '../../services/tab.service';
 
 @Component({
   selector: 'app-tabbar',
   templateUrl: './tabbar.component.html',
   styleUrls: ['./tabbar.component.scss'],
 })
-export class TabbarComponent implements OnInit {
+export class TabbarComponent {
   @Output() clickHome = new EventEmitter();
 
   constructor(
@@ -17,8 +16,6 @@ export class TabbarComponent implements OnInit {
     private authenticationService: AuthenticationService,
     public tabService: TabService
   ) {}
-
-  ngOnInit(): void {}
 
   _onClickHome(): void {
     this.clickHome.emit();

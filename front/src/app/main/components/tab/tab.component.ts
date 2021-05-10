@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { Tab } from '../../services/tab.service';
 
 export interface TabItem {
@@ -11,14 +11,12 @@ export interface TabItem {
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss'],
 })
-export class TabComponent implements OnInit {
+export class TabComponent {
   @Input() tab!: Tab;
 
   @Output() clickClose = new EventEmitter();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   @HostBinding('class.active')
   get active(): boolean {

@@ -1,8 +1,6 @@
-import { ElectronService, WindowEnum } from './../../../base/services/electron.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AfterViewChecked, ElementRef } from '@angular/core';
-import { Component, HostBinding, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ElectronService, WindowEnum } from './../../../base/services/electron.service';
 
 export type SidebarItem = {
   title: string;
@@ -14,7 +12,7 @@ export type SidebarItem = {
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements OnInit, AfterViewChecked {
+export class SidebarComponent implements AfterViewChecked {
   @ViewChild('section') section!: ElementRef<HTMLDivElement>;
   @Input()
   sidebarItems!: Observable<SidebarItem[]>;
@@ -31,8 +29,6 @@ export class SidebarComponent implements OnInit, AfterViewChecked {
       this.elm.nativeElement.style.width = '0px';
     }
   }
-
-  ngOnInit(): void {}
 
   openUserAccountManager(): void {
     this.electronService.openWindow(WindowEnum.userAccountManager);
