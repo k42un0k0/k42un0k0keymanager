@@ -4,12 +4,12 @@ import { ElementRef, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class WindowService {
-  constructor() {}
+  constructor(private window: Window) {}
 
   resizeTo(elm: ElementRef<HTMLElement>): void {
     elm.nativeElement.style.display = 'block';
     const width = elm.nativeElement.clientWidth;
     const height = elm.nativeElement.clientHeight;
-    window.resizeTo(width, height);
+    this.window.resizeTo(width, height);
   }
 }

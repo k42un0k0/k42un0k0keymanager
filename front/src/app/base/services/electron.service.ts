@@ -9,22 +9,22 @@ export enum WindowEnum {
   providedIn: 'root',
 })
 export class ElectronService {
+  constructor(private window: Window) {}
   get getFromUrl(): (url: string) => Promise<string> {
-    return window.main.iconService.getFromUrl;
+    return this.window.main.iconService.getFromUrl;
   }
   get closeWindow(): () => Promise<void> {
-    return window.main.windowManager.close;
+    return this.window.main.windowManager.close;
   }
 
-  constructor() {}
   openWindow(value: WindowEnum): Promise<void> {
     switch (value) {
       case WindowEnum.auth:
-        return window.main.windowManager.auth();
+        return this.window.main.windowManager.auth();
       case WindowEnum.userAccountManager:
-        return window.main.windowManager.userAccountManager();
+        return this.window.main.windowManager.userAccountManager();
       case WindowEnum.main:
-        return window.main.windowManager.main();
+        return this.window.main.windowManager.main();
     }
   }
 }
