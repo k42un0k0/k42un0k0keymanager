@@ -17,12 +17,6 @@
     "package": "run-p build:* && npm run-script cp-front-to-app && lerna run dist --scope app",
     "prepare": "husky install"
   },
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write ",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "cpx": "^1.5.0",
     "husky": "^6.0.0",
