@@ -3,6 +3,7 @@
     "ms-vscode.vscode-typescript-tslint-plugin",
     "angular.ng-template",
     "editorconfig.editorconfig",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "gruntfuggly.todo-tree"
   ]
 }
