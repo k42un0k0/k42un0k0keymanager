@@ -1,4 +1,5 @@
 import { IconService } from './icon.service';
+
 describe('icon.service', () => {
   const service = new IconService();
   it('get', async () => {

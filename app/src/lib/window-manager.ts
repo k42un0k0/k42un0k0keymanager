@@ -1,11 +1,11 @@
-import { SplashWindow } from './window/splash-window';
 import { BrowserWindow } from 'electron';
-import { AuthWindow } from './window/auth-window';
-import { MainWindow } from './window/main-window';
-import { UserAccountManagerWindow } from './window/user-account-manager-window';
-import { MyWindow } from './window/my-window';
-import { InitialWindow } from './window/initial-window';
 import { App } from './app';
+import { AuthWindow } from './window/auth-window';
+import { InitialWindow } from './window/initial-window';
+import { MainWindow } from './window/main-window';
+import { MyWindow } from './window/my-window';
+import { SplashWindow } from './window/splash-window';
+import { UserAccountManagerWindow } from './window/user-account-manager-window';
 
 export enum WindowEnum {
   auth,
@@ -18,7 +18,7 @@ export class WindowManager {
 
   constructor(private app: App) {}
 
-  createWindow(value: WindowEnum) {
+  createWindow(value: WindowEnum): Promise<void> {
     let win: MyWindow;
     switch (value) {
       case WindowEnum.auth:
@@ -38,10 +38,10 @@ export class WindowManager {
     return browser.loadURL(url);
   }
 
-  async initializeWindow() {
+  async initializeWindow(): Promise<void> {
     if (this.app.isProd) {
-      let splash = new SplashWindow().configure();
-      let initial = new InitialWindow().configure();
+      const splash = new SplashWindow().configure();
+      const initial = new InitialWindow().configure();
       this._pushWindow(splash[0]);
       this._pushWindow(initial[0]);
       initial[0].hide();
@@ -50,7 +50,7 @@ export class WindowManager {
       splash[0].close();
       initial[0].show();
     } else {
-      let [browser, url] = new InitialWindow().configure();
+      const [browser, url] = new InitialWindow().configure();
       this._pushWindow(browser);
       await browser.loadURL(url);
     }
@@ -60,7 +60,7 @@ export class WindowManager {
     this.windowMap.set(browser.id, browser);
   }
 
-  closeWindow(id: number) {
+  closeWindow(id: number): void {
     const win = this.windowMap.get(id);
     if (win == null) throw new Error('存在しないウィンドウです');
     win.close();

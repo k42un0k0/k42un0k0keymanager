@@ -1,15 +1,16 @@
 import { ipcMain } from 'electron';
-type IpcListener = (e: Electron.IpcMainInvokeEvent, ...args: any[]) => void;
+
+type IpcListener = Parameters<typeof ipcMain.handle>[1];
 
 export type IpcListenerMap = { [key: string]: IpcListener };
 
 export class IpcService {
-  constructor() {}
-
   addEventListener(key: string, listener: IpcListener): void;
+
   addEventListener(obj: IpcListenerMap): void;
-  addEventListener(keyOrObj: string | IpcListenerMap, listner?: any): void {
-    if (typeof keyOrObj == 'string') {
+
+  addEventListener(keyOrObj: string | IpcListenerMap, listner?: IpcListener): void {
+    if (typeof keyOrObj === 'string' && listner) {
       ipcMain.handle(keyOrObj, listner);
     } else {
       Object.entries(keyOrObj).forEach(([key, value]: [string, IpcListener]) => {

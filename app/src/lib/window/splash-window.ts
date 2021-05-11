@@ -1,21 +1,22 @@
-import { splashPath } from '../../constant';
 import { BrowserWindow } from 'electron';
 import * as url from 'url';
+import { preloadPath, splashPath } from '../../constant';
 import { MyWindow } from './my-window';
-import { preloadPath } from '../../constant';
 
 export class SplashWindow implements MyWindow {
+  config = {
+    width: 400,
+    height: 300,
+    webPreferences: {
+      preload: preloadPath,
+    },
+    frame: false,
+    resizable: false,
+    backgroundColor: '#333',
+  };
+
   configure(): [BrowserWindow, string] {
-    const win = new BrowserWindow({
-      width: 400,
-      height: 300,
-      webPreferences: {
-        preload: preloadPath,
-      },
-      frame: false,
-      resizable: false,
-      backgroundColor: '#333',
-    });
+    const win = new BrowserWindow(this.config);
 
     const startUrl = url.format({
       pathname: splashPath,

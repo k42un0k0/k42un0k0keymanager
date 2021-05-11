@@ -1,11 +1,11 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { iconServiceListener, windowManagerListener } from './listener';
-import { windowManager, ipcService } from './singleton';
+import { ipcService, windowManager } from './singleton';
 
 function main() {
-  if (app.isPackaged) {
-  } else {
+  if (!app.isPackaged) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('electron-reload')(path.join(__dirname, 'main.js'), {
       electron: require(path.join(__dirname, '../../node_modules/electron')),
     });

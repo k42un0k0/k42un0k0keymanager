@@ -1,6 +1,6 @@
-import { IconService } from './lib/icon.service';
 import { app as electronApp } from 'electron';
 import { App } from './lib/app';
+import { IconService } from './lib/icon.service';
 import { IpcService } from './lib/ipc.service';
 import { WindowManager } from './lib/window-manager';
 
