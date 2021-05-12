@@ -7,17 +7,17 @@ import { SplashWindow } from './window/splash-window';
 import { UserAccountManagerWindow } from './window/user-account-manager-window';
 
 export enum WindowEnum {
-  auth = 'auth',
-  main = 'main',
-  userAccountManager = 'userAccountManager',
+  auth = 0,
+  main = 1,
+  userAccountManager = 2,
 }
 
 export class WindowManager {
-  public windowMap = new Map<number, BrowserWindow>();
+  windowMap = new Map<number, BrowserWindow>();
 
-  public constructor(private readonly app: App) {}
+  constructor(private readonly app: App) {}
 
-  public async createWindow(value: WindowEnum): Promise<void> {
+  async createWindow(value: WindowEnum): Promise<void> {
     switch (value) {
       case WindowEnum.auth:
         await this._createWindow(...new AuthWindow().configure());
@@ -33,7 +33,7 @@ export class WindowManager {
     }
   }
 
-  public async initializeWindow(): Promise<void> {
+  async initializeWindow(): Promise<void> {
     if (this.app.isProd) {
       const splash = new SplashWindow().configure();
       const initial = new InitialWindow().configure();
@@ -51,7 +51,7 @@ export class WindowManager {
     }
   }
 
-  public closeWindow(id: number): void {
+  closeWindow(id: number): void {
     const win = this.windowMap.get(id);
     if (win == null) throw new Error('存在しないウィンドウです');
     win.close();

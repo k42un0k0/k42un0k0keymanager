@@ -2,7 +2,7 @@ import axios from 'axios';
 import jsdom from 'jsdom';
 
 export class IconService {
-  public async getFromUrl(url: string): Promise<string> {
+  async getFromUrl(url: string): Promise<string> {
     try {
       const res = await axios.get(url);
       const dom = new jsdom.JSDOM(res.data as string);

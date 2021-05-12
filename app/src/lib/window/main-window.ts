@@ -14,7 +14,7 @@ export class MainWindow extends MyWindow {
     backgroundColor: '#333',
   };
 
-  public configure(): [BrowserWindow, string] {
+  configure(): [BrowserWindow, string] {
     const win = new BrowserWindow(this.config);
 
     const startUrl = `${

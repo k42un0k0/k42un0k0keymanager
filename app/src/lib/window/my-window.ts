@@ -11,5 +11,5 @@ export abstract class MyWindow {
     backgroundColor: string;
   };
 
-  public abstract configure(): [BrowserWindow, string];
+  abstract configure(): [BrowserWindow, string];
 }

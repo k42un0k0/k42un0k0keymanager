@@ -5,11 +5,11 @@ type IpcListener = (event: Electron.IpcMainInvokeEvent, ...args: any[]) => any;
 export type IpcListenerMap = Record<string, IpcListener>;
 
 export class IpcService {
-  public addEventListener(key: string, listener: IpcListener): void;
+  addEventListener(key: string, listener: IpcListener): void;
 
-  public addEventListener(obj: IpcListenerMap): void;
+  addEventListener(obj: IpcListenerMap): void;
 
-  public addEventListener(keyOrObj: IpcListenerMap | string, listner?: IpcListener): void {
+  addEventListener(keyOrObj: IpcListenerMap | string, listner?: IpcListener): void {
     if (typeof keyOrObj === 'string' && listner) {
       ipcMain.handle(keyOrObj, listner);
     } else {
