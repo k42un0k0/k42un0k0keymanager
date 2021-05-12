@@ -1,51 +1,46 @@
-import { BrowserWindow } from 'electron';
-import { App } from './app';
+import type { BrowserWindow } from 'electron';
+import type { App } from './app';
 import { AuthWindow } from './window/auth-window';
 import { InitialWindow } from './window/initial-window';
 import { MainWindow } from './window/main-window';
-import { MyWindow } from './window/my-window';
 import { SplashWindow } from './window/splash-window';
 import { UserAccountManagerWindow } from './window/user-account-manager-window';
 
 export enum WindowEnum {
-  auth,
-  main,
-  userAccountManager,
+  auth = 'auth',
+  main = 'main',
+  userAccountManager = 'userAccountManager',
 }
 
 export class WindowManager {
-  windowMap: Map<number, BrowserWindow> = new Map();
+  public windowMap = new Map<number, BrowserWindow>();
 
-  constructor(private app: App) {}
+  public constructor(private readonly app: App) {}
 
-  createWindow(value: WindowEnum): Promise<void> {
-    let win: MyWindow;
+  public async createWindow(value: WindowEnum): Promise<void> {
     switch (value) {
       case WindowEnum.auth:
-        win = new AuthWindow();
+        await this._createWindow(...new AuthWindow().configure());
         break;
       case WindowEnum.main:
-        win = new MainWindow();
+        await this._createWindow(...new MainWindow().configure());
         break;
       case WindowEnum.userAccountManager:
-        win = new UserAccountManagerWindow();
+        await this._createWindow(...new UserAccountManagerWindow().configure());
         break;
       default:
         throw new Error('引数の値が不正です');
     }
-    const [browser, url] = win.configure();
-    this._pushWindow(browser);
-    return browser.loadURL(url);
   }
 
-  async initializeWindow(): Promise<void> {
+  public async initializeWindow(): Promise<void> {
     if (this.app.isProd) {
       const splash = new SplashWindow().configure();
       const initial = new InitialWindow().configure();
       this._pushWindow(splash[0]);
       this._pushWindow(initial[0]);
       initial[0].hide();
-      splash[0].loadURL(splash[1]);
+      void splash[0].loadURL(splash[1]);
       await initial[0].loadURL(initial[1]);
       splash[0].close();
       initial[0].show();
@@ -56,13 +51,18 @@ export class WindowManager {
     }
   }
 
-  private _pushWindow(browser: BrowserWindow) {
-    this.windowMap.set(browser.id, browser);
-  }
-
-  closeWindow(id: number): void {
+  public closeWindow(id: number): void {
     const win = this.windowMap.get(id);
     if (win == null) throw new Error('存在しないウィンドウです');
     win.close();
+  }
+
+  private _pushWindow(browser: BrowserWindow): void {
+    this.windowMap.set(browser.id, browser);
+  }
+
+  private async _createWindow(browser: BrowserWindow, url: string): Promise<void> {
+    this._pushWindow(browser);
+    return browser.loadURL(url);
   }
 }

@@ -14,5 +14,6 @@
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  },
+  "eslint.workingDirectories": ["./front", "./lib", "./app"]
 }

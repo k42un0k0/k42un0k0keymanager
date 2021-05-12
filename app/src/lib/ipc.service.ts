@@ -1,15 +1,15 @@
 import { ipcMain } from 'electron';
 
-type IpcListener = Parameters<typeof ipcMain.handle>[1];
+type IpcListener = (event: Electron.IpcMainInvokeEvent, ...args: any[]) => any;
 
-export type IpcListenerMap = { [key: string]: IpcListener };
+export type IpcListenerMap = Record<string, IpcListener>;
 
 export class IpcService {
-  addEventListener(key: string, listener: IpcListener): void;
+  public addEventListener(key: string, listener: IpcListener): void;
 
-  addEventListener(obj: IpcListenerMap): void;
+  public addEventListener(obj: IpcListenerMap): void;
 
-  addEventListener(keyOrObj: string | IpcListenerMap, listner?: IpcListener): void {
+  public addEventListener(keyOrObj: IpcListenerMap | string, listner?: IpcListener): void {
     if (typeof keyOrObj === 'string' && listner) {
       ipcMain.handle(keyOrObj, listner);
     } else {

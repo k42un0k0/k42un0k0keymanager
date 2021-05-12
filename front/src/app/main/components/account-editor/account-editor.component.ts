@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UrlUtils } from 'lib';
+import { urlUtils } from 'lib';
 import { BehaviorSubject, from } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
@@ -39,7 +39,7 @@ export class AccountEditorComponent {
         mergeMap((v) => {
           return from(this.electronService.getFromUrl(v));
         }),
-        map(UrlUtils.complementProtocol)
+        map(urlUtils.complementProtocol)
       )
       .subscribe((v) => {
         this.iconPath = v;

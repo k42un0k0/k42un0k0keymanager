@@ -5,22 +5,22 @@ contextBridge.exposeInMainWorld('process', { env: { ...process.env } });
 
 const main = {
   windowManager: {
-    close() {
-      return ipcRenderer.invoke(CHANNELS.WINDOW_MANAGER.CLOSE);
+    async close(): Promise<any> {
+      return ipcRenderer.invoke(CHANNELS.windowManager.close);
     },
-    auth() {
-      return ipcRenderer.invoke(CHANNELS.WINDOW_MANAGER.AUTH);
+    async auth(): Promise<any> {
+      return ipcRenderer.invoke(CHANNELS.windowManager.auth);
     },
-    userAccountManager() {
-      return ipcRenderer.invoke(CHANNELS.WINDOW_MANAGER.USER_ACCOUNT_MANAGER);
+    async userAccountManager(): Promise<any> {
+      return ipcRenderer.invoke(CHANNELS.windowManager.userAccountManager);
     },
-    main() {
-      return ipcRenderer.invoke(CHANNELS.WINDOW_MANAGER.MAIN);
+    async main(): Promise<any> {
+      return ipcRenderer.invoke(CHANNELS.windowManager.main);
     },
   },
   iconService: {
-    getFromUrl(url: string) {
-      return ipcRenderer.invoke(CHANNELS.ICON_SERVICE.GET_FROM_URL, url);
+    async getFromUrl(url: string): Promise<any> {
+      return ipcRenderer.invoke(CHANNELS.iconService.getFromUrl, url);
     },
   },
 };

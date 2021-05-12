@@ -1,7 +1,7 @@
-import { BrowserWindow } from 'electron';
+import type { BrowserWindow } from 'electron';
 
-export interface MyWindow {
-  config: {
+export abstract class MyWindow {
+  protected abstract config: {
     width: number;
     height: number;
     webPreferences: {
@@ -10,5 +10,6 @@ export interface MyWindow {
     frame: boolean;
     backgroundColor: string;
   };
-  configure(): [BrowserWindow, string];
+
+  public abstract configure(): [BrowserWindow, string];
 }

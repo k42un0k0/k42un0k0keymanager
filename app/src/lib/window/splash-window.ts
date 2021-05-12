@@ -3,8 +3,8 @@ import * as url from 'url';
 import { preloadPath, splashPath } from '../../constant';
 import { MyWindow } from './my-window';
 
-export class SplashWindow implements MyWindow {
-  config = {
+export class SplashWindow extends MyWindow {
+  protected config = {
     width: 400,
     height: 300,
     webPreferences: {
@@ -15,7 +15,7 @@ export class SplashWindow implements MyWindow {
     backgroundColor: '#333',
   };
 
-  configure(): [BrowserWindow, string] {
+  public configure(): [BrowserWindow, string] {
     const win = new BrowserWindow(this.config);
 
     const startUrl = url.format({

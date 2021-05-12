@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Auth } from 'aws-amplify';
 import { CognitoUser } from '@aws-amplify/auth';
-import { promisify } from 'util';
+import { Auth } from 'aws-amplify';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
+import { promisify } from 'util';
 import { UserAccountRepository } from '../repositories/user-account.repository';
 
 type SignUpArg = { username: string; password: string; email: string };
@@ -32,7 +32,7 @@ export class AuthenticationService {
 
   initializeResult: Promise<void>;
 
-  async setUserFromCognitoUser(cognitoUser: CognitoUser): Promise<void> {
+  async setUserFromCognitoUser(cognitoUser: CognitoUser) {
     const sub = (await promisify(cognitoUser.getUserAttributes.bind(cognitoUser))())?.find((_) => _.Name === 'sub')
       ?.Value;
     if (sub == null) {

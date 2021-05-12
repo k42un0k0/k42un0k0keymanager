@@ -1,6 +1,6 @@
-export const UrlUtils = {
+export const urlUtils = {
   complementProtocol(url: string): string {
-    if (url.slice(0, 2) === '//') {
+    if (url.startsWith('//')) {
       return 'https:' + url;
     }
     return url;

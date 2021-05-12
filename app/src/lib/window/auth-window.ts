@@ -3,8 +3,8 @@ import * as url from 'url';
 import { frontPath, preloadPath } from '../../constant';
 import { MyWindow } from './my-window';
 
-export class AuthWindow implements MyWindow {
-  config = {
+export class AuthWindow extends MyWindow {
+  protected config = {
     width: 800,
     height: 800,
     webPreferences: {
@@ -15,11 +15,11 @@ export class AuthWindow implements MyWindow {
     backgroundColor: '#333',
   };
 
-  configure(): [BrowserWindow, string] {
+  public configure(): [BrowserWindow, string] {
     const win = new BrowserWindow(this.config);
 
     const startUrl = `${
-      process.env.ELECTRON_START_URL ||
+      process.env.ELECTRON_START_URL ??
       url.format({
         pathname: frontPath,
         protocol: 'file:',

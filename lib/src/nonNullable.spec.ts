@@ -14,7 +14,9 @@ describe('nonNullable', () => {
   });
   describe('arrayItem', () => {
     it('filter array having null or undefined', () => {
-      expect(nonNullable.arrayItem([1, undefined, null])).toEqual([1]);
+      const arg = [1, undefined, null];
+      const expectValue = [1];
+      expect(nonNullable.arrayItem(arg)).toEqual(expectValue);
     });
   });
   describe('number', () => {

@@ -1,7 +1,7 @@
 export class App {
-  constructor(private app: Electron.App) {}
+  public constructor(private readonly app: Electron.App) {}
 
-  get isProd(): boolean {
+  public get isProd(): boolean {
     return this.app.isPackaged;
   }
 }

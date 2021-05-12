@@ -1,22 +1,19 @@
 import { app, BrowserWindow } from 'electron';
-import path from 'path';
 import { iconServiceListener, windowManagerListener } from './listener';
 import { ipcService, windowManager } from './singleton';
+import { loadElectronReload } from './unsafe';
 
-function main() {
+function main(): void {
   if (!app.isPackaged) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require('electron-reload')(path.join(__dirname, 'main.js'), {
-      electron: require(path.join(__dirname, '../../node_modules/electron')),
-    });
+    loadElectronReload();
   }
 
-  app.whenReady().then(() => {
+  void app.whenReady().then(() => {
     ipcService.addEventListener({
       ...windowManagerListener,
       ...iconServiceListener,
     });
-    windowManager.initializeWindow();
+    void windowManager.initializeWindow();
   });
 
   app.on('window-all-closed', () => {
@@ -27,11 +24,9 @@ function main() {
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      windowManager.initializeWindow();
+      void windowManager.initializeWindow();
     }
   });
 }
 
 main();
-
-require('./listener');

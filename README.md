@@ -10,4 +10,5 @@ npm run start
 
 ## メモ
 
-lerna add のローカル参照あたりがめんどいかも
+npm i 使わないでください
+lerna add か lerna bootstrap をつかうこと
