@@ -1,10 +1,11 @@
 import { dialog } from 'electron';
 import fs from 'fs';
 import keytar from 'keytar';
+import type { IKeyService } from 'lib';
 import type { CipherService } from './cipher.service';
 import type { WindowManager } from './window-manager';
 
-export class KeyService {
+export class KeyService implements IKeyService {
   private readonly _service = 'k42un0k0passwordmanager';
 
   constructor(private readonly windowManager: WindowManager, private readonly cipherService: CipherService) {}

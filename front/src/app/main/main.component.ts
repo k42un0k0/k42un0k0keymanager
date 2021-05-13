@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { nonNullable } from 'lib';
 import { Observable } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { UserAccount } from 'src/models';
 import { OuterAccountRepository } from '../base/repositories/outer-account.repository';
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
-import { nonNullable } from 'lib';
+import { AccountEditorComponent } from './components/account-editor/account-editor.component';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { Tab, TabService } from './services/tab.service';
-import { MatDialog } from '@angular/material/dialog';
-import { AccountEditorComponent } from './components/account-editor/account-editor.component';
 
 @Component({
   selector: 'app-main',

@@ -14,6 +14,5 @@ export class AppComponent {
   }
   clickImport() {
     console.log('import');
-    window.main.keyService.import();
   }
 }

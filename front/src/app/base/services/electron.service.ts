@@ -10,9 +10,6 @@ export enum WindowEnum {
 })
 export class ElectronService {
   constructor(private window: Window) {}
-  get getFromUrl(): (url: string) => Promise<string> {
-    return this.window.main.iconService.getFromUrl;
-  }
   get closeWindow(): () => Promise<void> {
     return this.window.main.windowManager.close;
   }

@@ -4,7 +4,7 @@ import { urlUtils } from 'lib';
 import { BehaviorSubject, from } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
-import { ElectronService } from 'src/app/base/services/electron.service';
+import { IconService } from 'src/app/base/services/icon.service';
 import { OuterAccount, UserAccount } from 'src/models';
 
 @Component({
@@ -30,14 +30,14 @@ export class AccountEditorComponent {
   constructor(
     private dialogRef: MatDialogRef<AccountEditorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { outerAccountID?: string; userAccount: UserAccount },
-    private electronService: ElectronService,
-    private outerAccountRepository: OuterAccountRepository
+    private outerAccountRepository: OuterAccountRepository,
+    private iconService: IconService
   ) {
     this.iconSubject
       .pipe(
         debounceTime(1000),
         mergeMap((v) => {
-          return from(this.electronService.getFromUrl(v));
+          return from(this.iconService.getFromUrl(v));
         }),
         map(urlUtils.complementProtocol)
       )

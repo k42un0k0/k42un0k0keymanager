@@ -1,15 +1,15 @@
 import { app as electronApp, BrowserWindow } from 'electron';
 import path from 'path';
-import { cipherServiceListener, iconServiceListener, keyServiceListener, windowManagerListener } from './listener';
+import { cipherSerciseListener, iconSerciseListener, keySerciseListener, windowManagerListener } from './listener';
 import { registerAutoReload } from './reload';
 import { ipcService, windowManager } from './singleton';
 function main(): void {
   registerAutoReload(path.join(__dirname, '..'));
   ipcService.addEventListener({
     ...windowManagerListener,
-    ...iconServiceListener,
-    ...cipherServiceListener,
-    ...keyServiceListener,
+    ...keySerciseListener,
+    ...iconSerciseListener,
+    ...cipherSerciseListener,
   });
   void electronApp.whenReady().then(() => {
     void windowManager.initializeWindow();

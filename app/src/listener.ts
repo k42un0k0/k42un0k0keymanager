@@ -1,4 +1,4 @@
-import { CHANNELS } from './channels';
+import { CHANNELS } from './../../lib/src/channels';
 import type { IpcListenerMap } from './lib/ipc.service';
 import { WindowEnum } from './lib/window-manager';
 import { cipherService, iconService, keyService, windowManager } from './singleton';
@@ -24,25 +24,16 @@ export const windowManagerListener: IpcListenerMap = {
   [CHANNELS.windowManager.userAccountManager]: async () => windowManager.createWindow(WindowEnum.userAccountManager),
 };
 
-export const iconServiceListener: IpcListenerMap = {
-  [CHANNELS.iconService.getFromUrl]: async (_, url: string): Promise<string> => iconService.getFromUrl(url),
-};
+function createListhener<T>(t: T, s: Record<keyof T, (...args: any[]) => any>): IpcListenerMap {
+  return Object.keys(t).reduce<IpcListenerMap>((pre, key) => {
+    pre[key] = (...args: any[]): any => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      s[key as keyof T](...args);
+    };
+    return pre;
+  }, {});
+}
 
-export const cipherServiceListener: IpcListenerMap = {
-  [CHANNELS.cipherService.cipher]: async (_, key: string, plaintext: string): Promise<string> =>
-    Promise.resolve(cipherService.cipher(key, plaintext)),
-  [CHANNELS.cipherService.decipher]: async (_, key: string, encyptedData: string): Promise<string> =>
-    Promise.resolve(cipherService.decipher(key, encyptedData)),
-};
-
-export const keyServiceListener: IpcListenerMap = {
-  [CHANNELS.keyService.findOrCreate]: async (_, userAccountID: string): Promise<string> =>
-    keyService.findOrCreate(userAccountID),
-  [CHANNELS.keyService.find]: async (_, userAccountID: string): Promise<string | null> =>
-    keyService.find(userAccountID),
-  [CHANNELS.keyService.create]: async (_, userAccountID: string): Promise<string> => keyService.create(userAccountID),
-  [CHANNELS.keyService.set]: async (_, userAccountID: string, key: string): Promise<void> =>
-    keyService.set(userAccountID, key),
-  [CHANNELS.keyService.import]: async (_, userAccountID: string): Promise<void> => keyService.import(userAccountID),
-  [CHANNELS.keyService.export]: async (_, userAccountID: string): Promise<void> => keyService.export(userAccountID),
-};
+export const iconSerciseListener = createListhener(CHANNELS.iconService, iconService);
+export const keySerciseListener = createListhener(CHANNELS.keyService, keyService);
+export const cipherSerciseListener = createListhener(CHANNELS.cipherService, cipherService);

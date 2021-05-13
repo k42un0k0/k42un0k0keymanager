@@ -1,7 +1,8 @@
 import axios from 'axios';
 import jsdom from 'jsdom';
+import type { IIconService } from 'lib';
 
-export class IconService {
+export class IconService implements IIconService {
   async getFromUrl(url: string): Promise<string> {
     try {
       const res = await axios.get(url);

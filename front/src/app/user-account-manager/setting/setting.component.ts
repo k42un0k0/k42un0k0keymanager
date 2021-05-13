@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import { filter, mergeMap, pluck } from 'rxjs/operators';
 import { InputComponent } from 'src/app/base/components/input/input.component';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { KeyService } from 'src/app/base/services/key.service';
 import { UserAccount } from 'src/models';
 
 @Component({
@@ -18,7 +19,11 @@ export class SettingComponent implements OnInit {
   @ViewChild('input') input!: InputComponent;
   editing = false;
 
-  constructor(private activatedRoute: ActivatedRoute, private userAccountRepository: UserAccountRepository) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private keyService: KeyService,
+    private userAccountRepository: UserAccountRepository
+  ) {}
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
@@ -62,6 +67,6 @@ export class SettingComponent implements OnInit {
   }
 
   clickExport() {
-    window.main.keyService.export(this.model.id);
+    this.keyService.export(this.model.id);
   }
 }

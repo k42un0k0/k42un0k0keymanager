@@ -20,4 +20,4 @@ export const CHANNELS = {
     export: 'KEY_SERVICE/EXPORT',
     import: 'KEY_SERVICE/IMPORT',
   },
-};
+} as const;
