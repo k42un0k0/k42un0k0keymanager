@@ -3,18 +3,11 @@ import fs from 'fs';
 import keytar from 'keytar';
 import type { IKeyService } from 'lib';
 import type { CipherService } from './cipher.service';
-import type { WindowManager } from './window-manager';
 
 export class KeyService implements IKeyService {
   private readonly _service = 'k42un0k0passwordmanager';
 
-  constructor(private readonly windowManager: WindowManager, private readonly cipherService: CipherService) {}
-
-  async findOrCreate(userAccountID: string): Promise<string> {
-    const optKey = await this.find(userAccountID);
-    if (optKey != null) return optKey;
-    return this.create(userAccountID);
-  }
+  constructor(private readonly cipherService: CipherService) {}
 
   async find(userAccountID: string): Promise<string | null> {
     return keytar.getPassword(this._service, userAccountID);

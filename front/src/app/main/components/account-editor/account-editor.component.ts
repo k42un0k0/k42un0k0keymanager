@@ -3,8 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { urlUtils } from 'lib';
 import { BehaviorSubject, from } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
+import { IconService } from 'src/app/base/electron/icon.service';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
-import { IconService } from 'src/app/base/services/icon.service';
 import { OuterAccount, UserAccount } from 'src/models';
 
 @Component({

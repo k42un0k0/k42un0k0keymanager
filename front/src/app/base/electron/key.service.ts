@@ -5,9 +5,6 @@ import { CHANNELS, IKeyService } from 'lib';
   providedIn: 'root',
 })
 export class KeyService implements IKeyService {
-  findOrCreate(userAccountID: string): Promise<string> {
-    return window.main.ipcRenderer.invoke(CHANNELS.keyService.findOrCreate, userAccountID);
-  }
   find(userAccountID: string): Promise<string | null> {
     return window.main.ipcRenderer.invoke(CHANNELS.keyService.find, userAccountID);
   }

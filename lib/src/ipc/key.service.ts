@@ -1,6 +1,4 @@
 export interface IKeyService {
-  findOrCreate: (userAccountID: string) => Promise<string>;
-
   find: (userAccountID: string) => Promise<string | null>;
 
   create: (userAccountID: string) => Promise<string>;

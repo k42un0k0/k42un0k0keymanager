@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 import { filter, mergeMap, pluck } from 'rxjs/operators';
 import { InputComponent } from 'src/app/base/components/input/input.component';
+import { KeyService } from 'src/app/base/electron/key.service';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
-import { KeyService } from 'src/app/base/services/key.service';
 import { UserAccount } from 'src/models';
 
 @Component({
