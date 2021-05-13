@@ -19,15 +19,13 @@ export class WindowManager {
 
   async createWindow(value: WindowEnum): Promise<void> {
     const [browser, url] = this._getWindowConfig(value);
-    await this._createWindow(browser, url);
+    await browser.loadURL(url);
   }
 
   async initializeWindow(): Promise<void> {
     if (this.app.isProd) {
       const splash = new SplashWindow().configure();
       const initial = new InitialWindow().configure();
-      this._pushWindow(splash[0]);
-      this._pushWindow(initial[0]);
       initial[0].hide();
       void splash[0].loadURL(splash[1]);
       await initial[0].loadURL(initial[1]);
@@ -35,7 +33,6 @@ export class WindowManager {
       initial[0].show();
     } else {
       const [browser, url] = new InitialWindow().configure();
-      this._pushWindow(browser);
       await browser.loadURL(url);
     }
   }
@@ -44,15 +41,6 @@ export class WindowManager {
     const win = this.windowMap.get(id);
     if (win == null) throw new Error('存在しないウィンドウです');
     win.close();
-  }
-
-  private _pushWindow(browser: BrowserWindow): void {
-    this.windowMap.set(browser.id, browser);
-  }
-
-  private async _createWindow(browser: BrowserWindow, url: string): Promise<void> {
-    this._pushWindow(browser);
-    return browser.loadURL(url);
   }
 
   private _getWindowConfig(value: WindowEnum): [BrowserWindow, string] {

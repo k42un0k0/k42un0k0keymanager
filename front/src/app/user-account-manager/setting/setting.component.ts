@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { filter, mergeMap, pluck } from 'rxjs/operators';
 import { from } from 'rxjs';
-import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { filter, mergeMap, pluck } from 'rxjs/operators';
 import { InputComponent } from 'src/app/base/components/input/input.component';
+import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { UserAccount } from 'src/models';
 
 @Component({
@@ -59,5 +59,9 @@ export class SettingComponent implements OnInit {
   _DeleteAccount(): void {
     console.log(this);
     this.userAccountRepository.destroy(this.model);
+  }
+
+  clickExport() {
+    window.main.keyService.export(this.model.id);
   }
 }

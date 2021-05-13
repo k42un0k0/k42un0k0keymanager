@@ -5,29 +5,41 @@ export class CipherService {
 
   private readonly _ivLenght = 16;
 
-  createKey(): Buffer {
-    return crypto.randomBytes(this._keyLength);
+  private readonly _sepalator = ':';
+
+  private readonly _algolithm = 'aes-256-cbc';
+
+  private readonly _cipherEncode = 'base64';
+
+  private readonly _plaintextEncode = 'utf8';
+
+  generateKey(): string {
+    return crypto.randomBytes(this._keyLength).toString(this._cipherEncode);
   }
 
-  cipher(key: Buffer, plaintext: string): string {
-    const iv = this._iv();
-    const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
-    let encrypted = cipher.update(plaintext, 'utf8', 'base64');
-    encrypted += cipher.final('base64');
+  cipher(key: string, plaintext: string): string {
+    const iv = this._generateIv();
+    const cipher = crypto.createCipheriv(this._algolithm, Buffer.from(key, this._cipherEncode), iv);
+    let encrypted = cipher.update(plaintext, this._plaintextEncode, this._cipherEncode);
+    encrypted += cipher.final(this._cipherEncode);
 
-    return `${iv.toString('base64')}:${encrypted}`;
+    return `${iv.toString(this._cipherEncode)}${this._sepalator}${encrypted}`;
   }
 
-  decipher(key: Buffer, encryptedData: string): string {
-    const [iv, encryptedText] = encryptedData.split(':');
+  decipher(key: string, encryptedData: string): string {
+    const [iv, encryptedText] = encryptedData.split(this._sepalator);
 
-    const decipher = crypto.createDecipheriv('aes-256-cbc', key, Buffer.from(iv, 'base64'));
-    let decrypted = decipher.update(encryptedText, 'base64', 'utf8');
-    decrypted += decipher.final('utf8');
+    const decipher = crypto.createDecipheriv(
+      this._algolithm,
+      Buffer.from(key, this._cipherEncode),
+      Buffer.from(iv, this._cipherEncode)
+    );
+    let decrypted = decipher.update(encryptedText, this._cipherEncode, this._plaintextEncode);
+    decrypted += decipher.final(this._plaintextEncode);
     return decrypted;
   }
 
-  private _iv(): Buffer {
+  private _generateIv(): Buffer {
     return crypto.randomBytes(this._ivLenght);
   }
 }

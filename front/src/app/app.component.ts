@@ -12,5 +12,8 @@ export class AppComponent {
   prepareRoute(outlet: RouterOutlet): any {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
-  aaa = 1;
+  clickImport() {
+    console.log('import');
+    window.main.keyService.import();
+  }
 }
