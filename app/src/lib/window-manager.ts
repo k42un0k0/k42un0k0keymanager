@@ -18,19 +18,8 @@ export class WindowManager {
   constructor(private readonly app: App) {}
 
   async createWindow(value: WindowEnum): Promise<void> {
-    switch (value) {
-      case WindowEnum.auth:
-        await this._createWindow(...new AuthWindow().configure());
-        break;
-      case WindowEnum.main:
-        await this._createWindow(...new MainWindow().configure());
-        break;
-      case WindowEnum.userAccountManager:
-        await this._createWindow(...new UserAccountManagerWindow().configure());
-        break;
-      default:
-        throw new Error('引数の値が不正です');
-    }
+    const [browser, url] = this._getWindowConfig(value);
+    await this._createWindow(browser, url);
   }
 
   async initializeWindow(): Promise<void> {
@@ -64,5 +53,18 @@ export class WindowManager {
   private async _createWindow(browser: BrowserWindow, url: string): Promise<void> {
     this._pushWindow(browser);
     return browser.loadURL(url);
+  }
+
+  private _getWindowConfig(value: WindowEnum): [BrowserWindow, string] {
+    switch (value) {
+      case WindowEnum.auth:
+        return new AuthWindow().configure();
+      case WindowEnum.main:
+        return new MainWindow().configure();
+      case WindowEnum.userAccountManager:
+        return new UserAccountManagerWindow().configure();
+      default:
+        throw new Error('引数の値が不正です');
+    }
   }
 }
