@@ -9,7 +9,7 @@
 </div>
 <form>
   <app-input label="User ID" [disabled]="disabled" [(value)]="userId"></app-input>
-  <app-input label="Password" [disabled]="disabled" [(value)]="password"></app-input>
+  <app-input type="password" label="Password" [disabled]="disabled" [(value)]="password"></app-input>
   <div class="link-group">
     <app-input label="Link" [disabled]="disabled" [value]="link" (valueChange)="onChangeLink($event)"></app-input>
     <img [src]="iconPath" alt="provider icon" />

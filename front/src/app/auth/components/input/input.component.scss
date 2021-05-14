@@ -1,4 +1,4 @@
-@import "_variables";
+@import '_variables';
 
 :host {
   display: flex;
@@ -8,13 +8,34 @@
     color: $secondary-text;
     padding: 1rem;
   }
-
+  .input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
   input {
-    padding: .75rem;
+    padding: 0.75rem;
     border: 1px solid $primary-text;
     border-radius: 4px;
     color: $primary-text;
     background-color: transparent;
+
+    &[type='password'] {
+      letter-spacing: 3px;
+    }
+
+    & + button {
+      display: none;
+    }
+
+    &.password {
+      padding-right: 40px;
+    }
+    &.password + button {
+      display: inline;
+      position: absolute;
+      right: 5px;
+    }
 
     &:focus {
       outline: none;

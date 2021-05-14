@@ -26,7 +26,7 @@ Primary.args = {
     userId: 'k42un0k0',
     link: '',
     password: '',
-    userAccount: new UserAccount({ name: 'aaa', token: 'aaas', OuterAccounts: [] }),
+    userAccount: new UserAccount({ name: 'aaa', OuterAccounts: [] }),
   }),
 };
 
@@ -47,12 +47,12 @@ export const List = (args: AccountCardComponent) => ({
   </div>`,
 });
 List.args = {
-  account: {
-    id: '',
+  account: new OuterAccount({
     providerName: 'Twitter',
     iconPath: '',
     userId: 'k42un0k0',
     link: '',
     password: '',
-  },
+    userAccount: new UserAccount({ name: 'aaa', OuterAccounts: [] }),
+  }),
 };
