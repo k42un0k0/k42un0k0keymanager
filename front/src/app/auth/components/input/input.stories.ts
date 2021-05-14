@@ -1,5 +1,7 @@
-// also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+// also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
+import { MatIconModule } from '@angular/material/icon';
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { InputComponent } from './input.component';
@@ -12,7 +14,7 @@ export default {
   },
   decorators: [
     moduleMetadata({
-      imports: [FormsModule],
+      imports: [FormsModule, MatButtonModule, MatIconModule],
     }),
   ],
 } as Meta;
@@ -26,17 +28,9 @@ Primary.args = {
   label: 'InputComponent',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const Password = Template.bind({});
+Password.args = {
   label: 'InputComponent',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  label: 'InputComponent',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  label: 'InputComponent',
+  type: 'password',
+  value: 'password',
 };

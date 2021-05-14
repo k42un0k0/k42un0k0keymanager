@@ -1,4 +1,10 @@
 <label>
   {{label}}
 </label>
-<input [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)" />
+<div class="input">
+  <input [type]='inputType' [class]="_type | async" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)" />
+  <button type="button" (click)="toggleShow()" class="button" mat-dialog-close mat-icon-button color="primary"
+    aria-label="Example icon button with a menu icon">
+    <mat-icon> {{(show|async) ? "visibility" : "visibility_off"}} </mat-icon>
+  </button>
+</div>
