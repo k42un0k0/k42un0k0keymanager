@@ -1,0 +1,31 @@
+name: Node.js CI
+
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ${{ubuntu-latest}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      # キャッシュ管理
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      # /キャッシュ管理
+      - run: npm install
+      - run: npm run bootstrap
+      - run: npm run build:lib
+      - run: npm run test
+        working-directory: ./front
+      - run: npm run test
+        working-directory: ./app
+      - run: npm run test
+        working-directory: ./lib
