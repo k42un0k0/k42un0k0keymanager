@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { UserAccount } from 'src/models';
-import { Tab } from '../../services/tab.service';
 import { TabComponent } from './tab.component';
+import { Tab } from 'src/app/main/services/tab.service';
+import { UserAccount } from 'src/models';
 
 describe('main/components/TabComponent', () => {
   let component: TabComponent;

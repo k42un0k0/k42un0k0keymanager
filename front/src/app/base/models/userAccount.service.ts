@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { KeyService } from 'src/app/base/electron/key.service';
 import { UserAccount } from 'src/models';
-import { KeyService } from '../electron/key.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ElectronService } from '../base/electron/electron.service';
-import { UserAccountRepository } from '../base/repositories/user-account.repository';
+import { ElectronService } from 'src/app/base/electron/electron.service';
+import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 
 @Component({
   selector: 'app-user-account-manager',

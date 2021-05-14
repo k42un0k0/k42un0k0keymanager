@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MutableModel } from '@aws-amplify/datastore';
-import { OuterAccount } from 'src/models';
-import { OuterAccountService } from '../models/outerAccount.service';
 import { AbstractRepository } from './abstract.repository';
+import { OuterAccountService } from 'src/app/base/models/outerAccount.service';
+import { OuterAccount } from 'src/models';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ElectronService } from './../../../base/electron/electron.service';
+import { ElectronService } from 'src/app/base/electron/electron.service';
 
 export type SidebarItem = {
   title: string;

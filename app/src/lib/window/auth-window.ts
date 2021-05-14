@@ -1,7 +1,7 @@
-import { BrowserWindow } from 'electron';
 import * as url from 'url';
-import { frontPath, preloadPath } from '../../constant';
+import { BrowserWindow } from 'electron';
 import { MyWindow } from './my-window';
+import { frontPath, preloadPath } from 'src/constant';
 
 export class AuthWindow extends MyWindow {
   protected config = {

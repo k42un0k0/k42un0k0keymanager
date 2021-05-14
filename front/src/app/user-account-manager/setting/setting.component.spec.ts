@@ -2,11 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BaseModule } from 'src/app/base/base.module';
-
+import { Observable } from 'zen-observable-ts';
 import { SettingComponent } from './setting.component';
 import { APIService } from 'src/app/API.service';
-import { Observable } from 'zen-observable-ts';
+import { BaseModule } from 'src/app/base/base.module';
 
 describe('SettingComponent', () => {
   let component: SettingComponent;

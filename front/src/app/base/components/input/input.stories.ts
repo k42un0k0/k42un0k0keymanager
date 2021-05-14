@@ -2,8 +2,8 @@
 import { FormsModule } from '@angular/forms';
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { BaseModule } from 'src/app/base/base.module';
 import { InputComponent } from './input.component';
+import { BaseModule } from 'src/app/base/base.module';
 
 export default {
   title: 'user-account-manager/components/InputComponent',

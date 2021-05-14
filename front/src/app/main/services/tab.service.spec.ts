@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { UserAccount } from 'src/models';
 
 import { Tab, TabService } from './tab.service';
 import { createScheduler } from 'src/app/tests/createScheduler';
+import { UserAccount } from 'src/models';
 
 describe('main/services/TabService', () => {
   let service: TabService;

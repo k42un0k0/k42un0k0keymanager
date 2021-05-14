@@ -1,6 +1,6 @@
-import { dialog } from 'electron';
 import fs from 'fs';
-import keytar from 'keytar';
+import { dialog } from 'electron';
+import { getPassword, setPassword } from 'keytar';
 import { IKeyService } from 'lib';
 import type { CipherService } from './cipher.service';
 
@@ -12,17 +12,17 @@ export class KeyService extends IKeyService {
   }
 
   async find(userAccountID: string): Promise<string | null> {
-    return keytar.getPassword(this._service, userAccountID);
+    return getPassword(this._service, userAccountID);
   }
 
   async create(userAccountID: string): Promise<string> {
     const key = this.cipherService.generateKey();
-    await keytar.setPassword(this._service, userAccountID, key);
+    await setPassword(this._service, userAccountID, key);
     return key;
   }
 
   async set(userAccountID: string, key: string): Promise<void> {
-    await keytar.setPassword(this._service, userAccountID, key);
+    await setPassword(this._service, userAccountID, key);
   }
 
   async export(userAccountID: string): Promise<void> {

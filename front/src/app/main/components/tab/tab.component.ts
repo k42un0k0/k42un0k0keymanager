@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { Tab } from '../../services/tab.service';
+import { Tab } from 'src/app/main/services/tab.service';
 
 export interface TabItem {
   title: string;

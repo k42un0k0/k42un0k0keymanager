@@ -1,5 +1,5 @@
-import type { CHANNELS } from '../channels';
 import type { IpcService } from './ipc';
+import type { CHANNELS } from 'src/channels';
 
 export abstract class IKeyService implements IpcService<typeof CHANNELS.keyService> {
   abstract find(userAccountID: string): Promise<string | null>;

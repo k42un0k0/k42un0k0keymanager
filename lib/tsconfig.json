@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "CommonJS",
+    "baseUrl": "./",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

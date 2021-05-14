@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { CHANNELS } from './../../lib/src/channels';
+import { CHANNELS } from 'lib';
 import type { IpcListenerMap } from './lib/ipc.service';
 import { WindowEnum } from './lib/window-manager';
 import { cipherService, iconService, keyService, windowManager } from './singleton';

@@ -1,8 +1,9 @@
-import { app as electronApp, BrowserWindow } from 'electron';
 import path from 'path';
+import { app as electronApp, BrowserWindow } from 'electron';
 import { cipherSerciseListener, iconSerciseListener, keySerciseListener, windowManagerListener } from './listener';
 import { registerAutoReload } from './reload';
 import { ipcService, windowManager } from './singleton';
+
 function main(): void {
   registerAutoReload(path.join(__dirname, '..'));
   ipcService.addEventListener({

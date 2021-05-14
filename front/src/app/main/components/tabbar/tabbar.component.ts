@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ElectronService } from '../../../base/electron/electron.service';
-import { AuthenticationService } from '../../../base/services/authentication.service';
-import { TabService } from '../../services/tab.service';
+import { ElectronService } from 'src/app/base/electron/electron.service';
+import { AuthenticationService } from 'src/app/base/services/authentication.service';
+import { TabService } from 'src/app/main/services/tab.service';
 
 @Component({
   selector: 'app-tabbar',

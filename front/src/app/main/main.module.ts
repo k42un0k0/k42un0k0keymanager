@@ -1,13 +1,13 @@
-import { MatButtonModule } from '@angular/material/button';
-import { BaseModule } from '../base/base.module';
-import { OuterAccountListComponent } from './outer-account-list/outer-account-list.component';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainRoutingModule } from './main-routing.module';
-import { MainComponent } from './main.component';
+import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ComponentsModule } from './components/components.module';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MainRoutingModule } from './main-routing.module';
+import { MainComponent } from './main.component';
+import { OuterAccountListComponent } from './outer-account-list/outer-account-list.component';
+import { BaseModule } from 'src/app/base/base.module';
 
 @NgModule({
   declarations: [MainComponent, OuterAccountListComponent],

@@ -9,8 +9,9 @@
     "front/amplify/backend/awscloudformation": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+        "source.fixAll.eslint": true  // ESLint を実行
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"

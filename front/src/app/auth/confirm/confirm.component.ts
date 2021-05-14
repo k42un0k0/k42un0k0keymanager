@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../../base/services/authentication.service';
+import { AuthenticationService } from 'src/app/base/services/authentication.service';
 
 @Component({
   selector: 'app-confirm',

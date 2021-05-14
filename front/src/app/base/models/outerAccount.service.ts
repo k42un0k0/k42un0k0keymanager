@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { CipherService } from 'src/app/base/electron/cipher.service';
+import { KeyService } from 'src/app/base/electron/key.service';
 import { OuterAccount } from 'src/models';
-import { CipherService } from '../electron/cipher.service';
-import { KeyService } from '../electron/key.service';
 
 @Injectable({
   providedIn: 'root',

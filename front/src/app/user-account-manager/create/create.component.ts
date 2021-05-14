@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { UserAccount } from 'src/models';
-import { UserAccountRepository } from '../../base/repositories/user-account.repository';
 
 @Component({
   selector: 'app-create',

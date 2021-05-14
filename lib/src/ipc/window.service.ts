@@ -1,5 +1,5 @@
-import type { CHANNELS } from '../channels';
 import type { IpcService } from './ipc';
+import type { CHANNELS } from 'src/channels';
 
 export abstract class IWindowService implements IpcService<typeof CHANNELS.windowService> {
   abstract auth(): Promise<void>;

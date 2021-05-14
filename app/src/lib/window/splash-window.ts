@@ -1,7 +1,7 @@
-import { BrowserWindow } from 'electron';
 import * as url from 'url';
-import { preloadPath, splashPath } from '../../constant';
+import { BrowserWindow } from 'electron';
 import { MyWindow } from './my-window';
+import { preloadPath, splashPath } from 'src/constant';
 
 export class SplashWindow extends MyWindow {
   protected config = {

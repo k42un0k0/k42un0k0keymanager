@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentsModule } from '../components.module';
-
 import { AccountEditorComponent } from './account-editor.component';
+import { ComponentsModule } from 'src/app/main/components/components.module';
 
 describe('main/components/AccountEditorComponent', () => {
   let component: AccountEditorComponent;

@@ -11,6 +11,9 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
         "prettier"
       ],
       "rules": {
@@ -29,7 +32,19 @@
             "style": "camelCase",
             "type": "attribute"
           }
+        ],
+        "no-restricted-imports": ["error", { "patterns": ["..*"] }],
+        "import/order": [
+          2,
+          {
+            "alphabetize": { "order": "asc" }
+          }
         ]
+      },
+      "settings": {
+        "import/resolver": {
+          "typescript": {}
+        }
       }
     },
     {

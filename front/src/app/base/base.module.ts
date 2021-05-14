@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AutoFocusDirective } from './directives/auto-focus.directive';
-import { InputComponent } from './components/input/input.component';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InputComponent } from './components/input/input.component';
+import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 @NgModule({
   declarations: [AutoFocusDirective, InputComponent],

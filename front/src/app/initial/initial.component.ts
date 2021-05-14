@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ElectronService } from '../base/electron/electron.service';
-import { AuthenticationService } from '../base/services/authentication.service';
+import { ElectronService } from 'src/app/base/electron/electron.service';
+import { AuthenticationService } from 'src/app/base/services/authentication.service';
 
 @Component({
   selector: 'app-initial',

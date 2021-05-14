@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { OuterAccount, UserAccount } from 'src/models';
 import { AccountCardComponent } from './account-card.component';
+import { OuterAccount, UserAccount } from 'src/models';
 
 describe('main/components/AccountCardComponent', () => {
   let component: AccountCardComponent;

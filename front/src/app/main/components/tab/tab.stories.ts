@@ -2,9 +2,9 @@
 import { MatIconModule } from '@angular/material/icon';
 import { moduleMetadata } from '@storybook/angular';
 import { Meta, Story } from '@storybook/angular/types-6-0';
-import { UserAccount } from 'src/models';
-import { Tab } from '../../services/tab.service';
 import { TabComponent } from './tab.component';
+import { Tab } from 'src/app/main/services/tab.service';
+import { UserAccount } from 'src/models';
 
 export default {
   title: 'main/components/TabComponent',

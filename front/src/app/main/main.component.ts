@@ -3,12 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { nonNullable } from 'lib';
 import { Observable } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { UserAccount } from 'src/models';
-import { OuterAccountRepository } from '../base/repositories/outer-account.repository';
-import { UserAccountRepository } from '../base/repositories/user-account.repository';
 import { AccountEditorComponent } from './components/account-editor/account-editor.component';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { Tab, TabService } from './services/tab.service';
+import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
+import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-main',

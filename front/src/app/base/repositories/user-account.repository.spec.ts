@@ -1,8 +1,8 @@
-import { APIService } from './../../API.service';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'zen-observable-ts';
 
 import { UserAccountRepository } from './user-account.repository';
+import { APIService } from 'src/app/API.service';
 
 describe('UserAccountRepository', () => {
   let service: UserAccountRepository;

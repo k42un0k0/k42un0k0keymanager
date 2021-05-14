@@ -2,11 +2,18 @@
   "root": true,
   "ignorePatterns": ["dist/", "jest.config.js"],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["import", "@typescript-eslint"],
   "parserOptions": {
     "project": ["tsconfig.json"]
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/all", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/all",
+    "prettier"
+  ],
   "rules": {
     "@typescript-eslint/no-type-alias": 0,
     "@typescript-eslint/prefer-readonly-parameter-types": 0,
@@ -21,7 +28,19 @@
       {
         "accessibility": "no-public"
       }
+    ],
+    "no-restricted-imports": ["error", { "patterns": ["..*"] }],
+    "import/order": [
+      2,
+      {
+        "alphabetize": { "order": "asc" }
+      }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   },
   "overrides": [
     {

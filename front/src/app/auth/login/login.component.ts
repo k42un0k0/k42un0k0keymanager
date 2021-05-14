@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ElectronService } from 'src/app/base/electron/electron.service';
+import { AuthenticationService } from 'src/app/base/services/authentication.service';
 import { WindowService } from 'src/app/base/services/window.service';
-import { AuthenticationService } from '../../base/services/authentication.service';
 
 @Component({
   selector: 'app-login',

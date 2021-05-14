@@ -1,15 +1,15 @@
-import { MatButtonModule } from '@angular/material/button';
-import { AccountEditorComponent } from './account-editor/account-editor.component';
-import { AccountCardComponent } from './account-card/account-card.component';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { AccountCardComponent } from './account-card/account-card.component';
+import { AccountEditorComponent } from './account-editor/account-editor.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TabComponent } from './tab/tab.component';
 import { TabbarComponent } from './tabbar/tabbar.component';
-import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { BaseModule } from 'src/app/base/base.module';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AccountCardComponent, AccountEditorComponent, SidebarComponent, TabComponent, TabbarComponent],
