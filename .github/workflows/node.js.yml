@@ -24,29 +24,24 @@ jobs:
       - run: npm run bootstrap
       - run: npm run build:lib
       - uses: dorny/paths-filter@v2
-        id: front-changes
+        id: changes
         with:
           filters: |
-            src:
+            front:
               - 'front/**'
-      - uses: dorny/paths-filter@v2
-        id: app-changes
-        with:
-          filters: |
-            src:
+            app:
               - 'app/**'
-      - uses: dorny/paths-filter@v2
-        id: lib-changes
-        with:
-          filters: |
-            src:
+            lib:
               - 'lib/**'
-      - run: npm run test
-        if: steps.front-changes.outputs.src == 'true'
+      - name: test front
+        run: npm run test
+        if: steps.changes.outputs.front == 'true'
         working-directory: ./front
-      - run: npm run test
-        if: steps.app-changes.outputs.src == 'true'
+      - name: test app
+        run: npm run test
+        if: steps.changes.outputs.app == 'true'
         working-directory: ./app
-      - run: npm run test
-        if: steps.lib-changes.outputs.src == 'true'
+      - name: test lib
+        run: npm run test
+        if: steps.changes.outputs.lib == 'true'
         working-directory: ./lib
