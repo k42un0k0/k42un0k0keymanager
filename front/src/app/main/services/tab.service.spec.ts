@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { Tab, TabService } from './tab.service';
-import { createScheduler } from 'src/app/tests/createScheduler';
+import { createScheduler } from 'src/app/__tests__/createScheduler';
 import { UserAccount } from 'src/models';
 
 describe('main/services/TabService', () => {
@@ -20,7 +20,7 @@ describe('main/services/TabService', () => {
     it('create a tab', () => {
       const scheduler = createScheduler();
       scheduler.run(({ expectObservable, cold, flush }) => {
-        const userAccount = new UserAccount({ name: 'a', token: 'aaaa', OuterAccounts: [] });
+        const userAccount = new UserAccount({ name: 'a', OuterAccounts: [] });
         const tab = new Tab(userAccount);
         const throttle = 'x';
         cold(throttle, { x: userAccount }).subscribe((a) => {
@@ -37,8 +37,8 @@ describe('main/services/TabService', () => {
     it('create tab and deactivate other tabs', () => {
       const scheduler = createScheduler();
       scheduler.run(({ expectObservable, cold, flush }) => {
-        const userAccount1 = new UserAccount({ name: 'a', token: 'aaaa', OuterAccounts: [] });
-        const userAccount2 = new UserAccount({ name: 'b', token: 'aaaa', OuterAccounts: [] });
+        const userAccount1 = new UserAccount({ name: 'a', OuterAccounts: [] });
+        const userAccount2 = new UserAccount({ name: 'b', OuterAccounts: [] });
         const tab1 = new Tab(userAccount1);
         const tab2 = new Tab(userAccount2);
         const throttle = 'x-y';
@@ -56,8 +56,8 @@ describe('main/services/TabService', () => {
     it('activate the tab', () => {
       const scheduler = createScheduler();
       scheduler.run(({ expectObservable, cold, flush }) => {
-        const userAccount1 = new UserAccount({ name: 'a', token: 'aaaa', OuterAccounts: [] });
-        const userAccount2 = new UserAccount({ name: 'b', token: 'aaaa', OuterAccounts: [] });
+        const userAccount1 = new UserAccount({ name: 'a', OuterAccounts: [] });
+        const userAccount2 = new UserAccount({ name: 'b', OuterAccounts: [] });
         const tab1 = new Tab(userAccount1);
         const tab2 = new Tab(userAccount2);
         const throttle = 'x-y-z';

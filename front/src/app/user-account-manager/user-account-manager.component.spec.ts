@@ -4,7 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { UserAccountManagerComponent } from './user-account-manager.component';
-import { BaseModule } from 'src/app/base/base.module';
+import { TestModule } from 'src/app/__tests__/test.module';
+import { ElectronService } from 'src/app/base/electron/electron.service';
 
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 
@@ -14,11 +15,15 @@ describe('UserAccountManagerComponent', () => {
 
   beforeEach(async () => {
     const mockUserAccountRepository: any = {};
+    const mockElectronService: any = {};
     mockUserAccountRepository.userAccounts = of([]);
     await TestBed.configureTestingModule({
       declarations: [UserAccountManagerComponent],
-      providers: [{ provide: UserAccountRepository, useValue: mockUserAccountRepository }],
-      imports: [RouterTestingModule, MatIconModule, MatButtonModule, BaseModule],
+      providers: [
+        { provide: UserAccountRepository, useValue: mockUserAccountRepository },
+        { provide: ElectronService, useValue: mockElectronService },
+      ],
+      imports: [RouterTestingModule, MatIconModule, MatButtonModule, TestModule],
     }).compileComponents();
   });
 

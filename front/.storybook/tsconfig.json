@@ -5,5 +5,5 @@
   },
   "exclude": ["../src/test.ts", "../src/**/*.spec.ts", "../projects/**/*.spec.ts"],
   "include": ["../src/**/*", "../projects/**/*"],
-  "files": ["./typings.d.ts", "../electron/preload.d.ts"]
+  "files": ["./typings.d.ts", "../../app/src/preload.d.ts"]
 }

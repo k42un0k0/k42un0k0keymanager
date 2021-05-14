@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { AccountEditorComponent } from './account-editor.component';
+import { TestModule } from 'src/app/__tests__/test.module';
 import { ComponentsModule } from 'src/app/main/components/components.module';
 
 describe('main/components/AccountEditorComponent', () => {
@@ -8,7 +10,13 @@ describe('main/components/AccountEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ComponentsModule],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {},
+        },
+      ],
+      imports: [ComponentsModule, TestModule, MatDialogModule],
     }).compileComponents();
   });
 
