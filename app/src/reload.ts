@@ -1,9 +1,9 @@
+/* eslint-disable */
 /**
  * You need to install chokider
  *
  *    npm install chokider
  */
-import * as chokidar from 'chokidar';
 import type { BrowserWindow } from 'electron';
 import { app } from 'electron';
 
@@ -21,6 +21,7 @@ import { app } from 'electron';
  * @param mainFilePath absolute path of electron main.js file
  */
 export function registerAutoReload(srcRoot: string): void {
+  const chokidar = require('chokidar');
   const browserWindows: BrowserWindow[] = [];
 
   app.on('browser-window-created', (_, browserWindow) => {

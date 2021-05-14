@@ -5,7 +5,8 @@ import { registerAutoReload } from './reload';
 import { ipcService, windowManager } from './singleton';
 
 function main(): void {
-  registerAutoReload(path.join(__dirname, '..'));
+  if (!electronApp.isPackaged) registerAutoReload(path.join(__dirname, '..'));
+
   ipcService.addEventListener({
     ...windowManagerListener,
     ...keySerciseListener,

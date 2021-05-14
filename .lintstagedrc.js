@@ -1,6 +1,6 @@
 module.exports = {
   'front/src/**/*.ts': (filenames) => `lerna run lint --scope front -- --files=[${filenames.join()}`,
-  'app/src/**/*.ts': 'lerna run lint --scope app --',
+  'app/src/**/*.ts': 'lerna run lint --scope k42un0k0passwordmanager --',
   'lib/src/**/*.ts': 'lerna run lint --scope lib --',
   '*.ts': 'prettier --write ',
 };
