@@ -1,5 +1,4 @@
 type UserAccount @auth(rules: [{ allow: owner }]) @model {
-  token: String!
   id: ID!
   name: String!
   OuterAccounts: [OuterAccount]! @connection(keyName: "byUserAccount", fields: ["id"])

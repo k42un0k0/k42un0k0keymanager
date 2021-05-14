@@ -1,7 +1,6 @@
 # this is an auto generated file. This will be overwritten
 subscription OnCreateUserAccount($owner: String!) {
   onCreateUserAccount(owner: $owner) {
-    token
     id
     name
     OuterAccounts {
@@ -33,7 +32,6 @@ subscription OnCreateUserAccount($owner: String!) {
 }
 subscription OnUpdateUserAccount($owner: String!) {
   onUpdateUserAccount(owner: $owner) {
-    token
     id
     name
     OuterAccounts {
@@ -65,7 +63,6 @@ subscription OnUpdateUserAccount($owner: String!) {
 }
 subscription OnDeleteUserAccount($owner: String!) {
   onDeleteUserAccount(owner: $owner) {
-    token
     id
     name
     OuterAccounts {
@@ -105,7 +102,6 @@ subscription OnCreateOuterAccount($owner: String!) {
     password
     userAccountID
     userAccount {
-      token
       id
       name
       OuterAccounts {
@@ -137,7 +133,6 @@ subscription OnUpdateOuterAccount($owner: String!) {
     password
     userAccountID
     userAccount {
-      token
       id
       name
       OuterAccounts {
@@ -169,7 +164,6 @@ subscription OnDeleteOuterAccount($owner: String!) {
     password
     userAccountID
     userAccount {
-      token
       id
       name
       OuterAccounts {

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/init-declarations */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { CHANNELS } from 'lib';
@@ -18,21 +21,35 @@ function createListhener<T extends Record<string, string>>(
   channel: T,
   service: Record<keyof T, (...args: any[]) => any>,
   options?: {
-    takeEventFunc: (keyof T)[];
+    takeEventFunc?: (keyof T)[];
+    syncFunc?: (keyof T)[];
   }
 ): IpcListenerMap {
   return Object.entries<string>(channel).reduce<IpcListenerMap>((pre, [key, value]) => {
-    pre[value] = (e: any, ...args: any[]): any => {
-      if (options?.takeEventFunc.find((v) => v === key) != null) {
-        return service[key as keyof T](e, ...args);
+    const isTakeEvent = options?.takeEventFunc?.find((v) => v === key) != null;
+    const isSync = options?.syncFunc?.find((v) => v === key) != null;
+    const listener = (e: any, ...args: any[]): any => {
+      let returnValue: any;
+      if (isTakeEvent) {
+        returnValue = service[key as keyof T](e, ...args);
       } else {
-        return service[key as keyof T](...args);
+        returnValue = service[key as keyof T](...args);
       }
+
+      if (isSync) {
+        e.returnValue = returnValue;
+        return;
+      }
+      return returnValue;
     };
+    listener.isSync = isSync;
+    pre[value] = listener;
     return pre;
   }, {});
 }
 
 export const iconSerciseListener = createListhener(CHANNELS.iconService, iconService);
 export const keySerciseListener = createListhener(CHANNELS.keyService, keyService);
-export const cipherSerciseListener = createListhener(CHANNELS.cipherService, cipherService);
+export const cipherSerciseListener = createListhener(CHANNELS.cipherService, cipherService, {
+  syncFunc: ['cipher', 'decipher'],
+});

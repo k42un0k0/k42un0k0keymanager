@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { UserAccount } from 'src/models';
 
@@ -11,9 +12,11 @@ export class CreateComponent {
   name = '';
   password = '';
 
-  constructor(private userAccountRepository: UserAccountRepository) {}
+  constructor(private userAccountRepository: UserAccountRepository, private router: Router) {}
 
-  submit(): void {
-    this.userAccountRepository.create(new UserAccount({ name: this.name, token: 'aaaaaa', OuterAccounts: [] }));
+  async submit(): Promise<void> {
+    const model = new UserAccount({ name: this.name, OuterAccounts: [] });
+    await this.userAccountRepository.create(model);
+    this.router.navigate(['/user-account-manager/setting/' + model.id]);
   }
 }

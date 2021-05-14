@@ -32,10 +32,7 @@ export class SettingComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         pluck('id'),
-        mergeMap((id) => {
-          console.log(id);
-          return from(this.userAccountRepository.get(id));
-        }),
+        mergeMap((id) => from(this.userAccountRepository.get(id))),
         filter((v): v is UserAccount => !!v)
       )
       .subscribe({
@@ -69,7 +66,6 @@ export class SettingComponent implements OnInit {
   }
 
   _DeleteAccount(): void {
-    console.log(this);
     this.userAccountRepository.destroy(this.model);
   }
 

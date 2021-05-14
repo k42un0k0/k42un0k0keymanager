@@ -11,7 +11,7 @@ export class OuterAccountService {
   async encrypt(model: OuterAccount) {
     const key = await this.keyService.find(model.userAccount.id);
     if (key == null) throw new Error('aaaa');
-    const encryptedPassword = await this.cipherService.cipher(key, model.password);
+    const encryptedPassword = this.cipherService.cipher(key, model.password);
     return OuterAccount.copyOf(model, (d) => {
       d.password = encryptedPassword;
     });
@@ -20,7 +20,7 @@ export class OuterAccountService {
   async decrypt(model: OuterAccount) {
     const key = await this.keyService.find(model.userAccount.id);
     if (key == null) throw new Error('aaaa');
-    const decryptedPassword = await this.cipherService.decipher(key, model.password);
+    const decryptedPassword = this.cipherService.decipher(key, model.password);
     return OuterAccount.copyOf(model, (d) => {
       d.password = decryptedPassword;
     });
