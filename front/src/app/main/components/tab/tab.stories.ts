@@ -9,9 +9,7 @@ import { UserAccount } from 'src/models';
 export default {
   title: 'main/components/TabComponent',
   component: TabComponent,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  argTypes: {},
   decorators: [
     moduleMetadata({
       imports: [MatIconModule],
@@ -28,6 +26,6 @@ Primary.args = {};
 
 export const Active = Template.bind({});
 Active.args = {
-  tab: new Tab(new UserAccount({ name: 'aaaaaa', token: '', OuterAccounts: [] })),
+  tab: new Tab(new UserAccount({ name: 'aaaaaa', OuterAccounts: [] })),
   active: true,
 };

@@ -1,5 +1,13 @@
 <label class="secondary">
   {{label}}
 </label>
-<input #input class="primary" [disabled]="disabled" [appAutoFocus]="autoFocus" type="text" [ngModel]="value"
-  (ngModelChange)="valueChange.emit($event)" />
+<div class="input-container">
+  <div [ngClass]="[(_type | async)||'','input']">
+    <input #input [type]='inputType' class="primary" [disabled]="disabled" [appAutoFocus]="autoFocus" type="text"
+      [ngModel]="value" (ngModelChange)="valueChange.emit($event)" />
+  </div>
+  <button type="button" (click)="toggleShow($event)" class="button" mat-dialog-close mat-icon-button color="primary"
+    aria-label="Example icon button with a menu icon">
+    <mat-icon> {{(show|async) ? "visibility" : "visibility_off"}} </mat-icon>
+  </button>
+</div>
