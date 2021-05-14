@@ -29,7 +29,6 @@
         "accessibility": "no-public"
       }
     ],
-    "no-restricted-imports": ["error", { "patterns": ["..*"] }],
     "import/order": [
       2,
       {

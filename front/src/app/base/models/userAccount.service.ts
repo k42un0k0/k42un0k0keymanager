@@ -8,7 +8,7 @@ import { UserAccount } from 'src/models';
 export class UserAccountService {
   constructor(private keyService: KeyService) {}
 
-  filterWithKey(userAccount: UserAccount): Promise<boolean> {
+  hasKey(userAccount: UserAccount): Promise<boolean> {
     return this.keyService.find(userAccount.id).then((v) => !!v);
   }
 }
