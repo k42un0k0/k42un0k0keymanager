@@ -83,7 +83,7 @@ jobs:
     strategy:
       matrix:
         map:
-          - os: mac-latest
+          - os: macos-latest
             path: ./build/mac/k42un0k0passwordmanager.app
             name: k42un0k0passwordmanager.app
     steps:
