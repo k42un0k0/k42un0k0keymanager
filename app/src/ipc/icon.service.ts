@@ -1,8 +1,8 @@
 import axios from 'axios';
 import jsdom from 'jsdom';
-import type { IIconService } from 'lib';
+import { IIconService } from 'lib';
 
-export class IconService implements IIconService {
+export class IconService extends IIconService {
   async getFromUrl(url: string): Promise<string> {
     try {
       const res = await axios.get(url);
@@ -17,7 +17,6 @@ export class IconService implements IIconService {
 
   private _fromShortcutIcon(dom: jsdom.JSDOM): string | undefined {
     const link = dom.window.document.querySelector<HTMLLinkElement>('link[rel="shortcut icon"]');
-
     return link?.href;
   }
 }

@@ -1,13 +1,15 @@
 import { dialog } from 'electron';
 import fs from 'fs';
 import keytar from 'keytar';
-import type { IKeyService } from 'lib';
+import { IKeyService } from 'lib';
 import type { CipherService } from './cipher.service';
 
-export class KeyService implements IKeyService {
+export class KeyService extends IKeyService {
   private readonly _service = 'k42un0k0passwordmanager';
 
-  constructor(private readonly cipherService: CipherService) {}
+  constructor(private readonly cipherService: CipherService) {
+    super();
+  }
 
   async find(userAccountID: string): Promise<string | null> {
     return keytar.getPassword(this._service, userAccountID);
@@ -34,6 +36,7 @@ export class KeyService implements IKeyService {
     const res = await dialog.showOpenDialog({ properties: ['openFile'] });
     if (res.filePaths.length !== 1 || res.canceled) return;
     const key = fs.readFileSync(res.filePaths[0], { encoding: 'utf8' });
+    console.log(key);
     await this.set(userAccountID, key);
   }
 }

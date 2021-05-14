@@ -1,6 +1,7 @@
 export { CHANNELS } from './channels';
-export type { ICipherService } from './ipc/cipher.service';
-export type { IIconService } from './ipc/icon.service';
-export type { IKeyService } from './ipc/key.service';
+export { ICipherService } from './ipc/cipher.service';
+export { IIconService } from './ipc/icon.service';
+export { IKeyService } from './ipc/key.service';
+export { IWindowService } from './ipc/window.service';
 export * from './nonNullable';
 export * from './url';

@@ -4,18 +4,18 @@ import { CHANNELS } from 'lib';
 contextBridge.exposeInMainWorld('process', { env: { ...process.env } });
 
 const main = {
-  windowManager: {
+  windowService: {
     async close(): Promise<any> {
-      return ipcRenderer.invoke(CHANNELS.windowManager.close);
+      return ipcRenderer.invoke(CHANNELS.windowService.close);
     },
     async auth(): Promise<any> {
-      return ipcRenderer.invoke(CHANNELS.windowManager.auth);
+      return ipcRenderer.invoke(CHANNELS.windowService.auth);
     },
     async userAccountManager(): Promise<any> {
-      return ipcRenderer.invoke(CHANNELS.windowManager.userAccountManager);
+      return ipcRenderer.invoke(CHANNELS.windowService.userAccountManager);
     },
     async main(): Promise<any> {
-      return ipcRenderer.invoke(CHANNELS.windowManager.main);
+      return ipcRenderer.invoke(CHANNELS.windowService.main);
     },
   },
   ipcRenderer,

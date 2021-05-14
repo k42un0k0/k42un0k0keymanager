@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ElectronService } from '../base/electron/electron.service';
 import { AuthenticationService } from '../base/services/authentication.service';
-import { ElectronService, WindowEnum } from '../base/services/electron.service';
 
 @Component({
   selector: 'app-initial',
@@ -14,11 +14,11 @@ export class InitialComponent implements OnInit {
     this.authenticationService.isSignedIn.subscribe((isSignedIn) => {
       (async () => {
         if (isSignedIn) {
-          await this.electronService.openWindow(WindowEnum.main);
+          await this.electronService.main();
         } else {
-          await this.electronService.openWindow(WindowEnum.auth);
+          await this.electronService.auth();
         }
-        this.electronService.closeWindow();
+        this.electronService.close();
       })();
     });
   }

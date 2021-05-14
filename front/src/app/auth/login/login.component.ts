@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { ElectronService, WindowEnum } from 'src/app/base/services/electron.service';
+import { ElectronService } from 'src/app/base/electron/electron.service';
 import { WindowService } from 'src/app/base/services/window.service';
 import { AuthenticationService } from '../../base/services/authentication.service';
 
@@ -27,7 +27,7 @@ export class LoginComponent implements AfterViewInit {
 
   async submit(): Promise<void> {
     await this.authenticationService.signIn({ username: this.username, password: this.password });
-    await this.electronService.openWindow(WindowEnum.main);
-    this.electronService.closeWindow();
+    await this.electronService.main();
+    this.electronService.close();
   }
 }

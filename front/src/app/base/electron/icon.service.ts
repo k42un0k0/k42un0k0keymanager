@@ -4,8 +4,11 @@ import { CHANNELS, IIconService } from 'lib';
 @Injectable({
   providedIn: 'root',
 })
-export class IconService implements IIconService {
+export class IconService extends IIconService {
+  constructor(private window: Window) {
+    super();
+  }
   getFromUrl(url: string): Promise<string> {
-    return window.main.ipcRenderer.invoke(CHANNELS.iconService.getFromUrl, url);
+    return this.window.main.ipcRenderer.invoke(CHANNELS.iconService.getFromUrl, url);
   }
 }

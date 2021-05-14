@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
-import type { ICipherService } from 'lib';
+import { ICipherService } from 'lib';
 
-export class CipherService implements ICipherService {
+export class CipherService extends ICipherService {
   private readonly _keyLength = 32;
 
   private readonly _ivLenght = 16;

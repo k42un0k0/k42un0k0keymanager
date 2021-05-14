@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { ElectronService } from '../base/electron/electron.service';
 import { UserAccountRepository } from '../base/repositories/user-account.repository';
-import { ElectronService } from '../base/services/electron.service';
 
 @Component({
   selector: 'app-user-account-manager',
@@ -13,6 +13,6 @@ export class UserAccountManagerComponent {
   constructor(private userAccountRepository: UserAccountRepository, private electronService: ElectronService) {}
 
   closeWindow(): void {
-    this.electronService.closeWindow();
+    this.electronService.close();
   }
 }

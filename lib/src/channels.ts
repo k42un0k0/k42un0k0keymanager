@@ -1,5 +1,5 @@
 export const CHANNELS = {
-  windowManager: {
+  windowService: {
     auth: 'WINDOW_MANAGER/AUTH',
     main: 'WINDOW_MANAGER/MAIN',
     userAccountManager: 'WINDOW_MANAGER/USER_ACCOUNT_MANAGER',
@@ -19,4 +19,4 @@ export const CHANNELS = {
     export: 'KEY_SERVICE/EXPORT',
     import: 'KEY_SERVICE/IMPORT',
   },
-} as const;
+};

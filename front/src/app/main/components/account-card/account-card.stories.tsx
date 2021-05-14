@@ -1,8 +1,8 @@
-import { componentWrapperDecorator, Meta, moduleMetadata, Story } from '@storybook/angular';
-import { AccountCardComponent } from './account-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
-import { OuterAccount } from 'src/models';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { OuterAccount, UserAccount } from 'src/models';
+import { AccountCardComponent } from './account-card.component';
 
 export default {
   title: 'main/components/AccountCardComponent',
@@ -20,14 +20,14 @@ const Template: Story<AccountCardComponent> = (args: AccountCardComponent) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  account: {
-    id: "",
-    providerName: "Twitter",
-    iconPath: "",
-    userId: "k42un0k0",
-    link: "",
-    password: "",
-  },
+  account: new OuterAccount({
+    providerName: 'Twitter',
+    iconPath: '',
+    userId: 'k42un0k0',
+    link: '',
+    password: '',
+    userAccount: new UserAccount({ name: 'aaa', token: 'aaas', OuterAccounts: [] }),
+  }),
 };
 
 export const List = (args: AccountCardComponent) => ({
@@ -48,11 +48,11 @@ export const List = (args: AccountCardComponent) => ({
 });
 List.args = {
   account: {
-    id: "",
-    providerName: "Twitter",
-    iconPath: "",
-    userId: "k42un0k0",
-    link: "",
-    password: "",
+    id: '',
+    providerName: 'Twitter',
+    iconPath: '',
+    userId: 'k42un0k0',
+    link: '',
+    password: '',
   },
 };

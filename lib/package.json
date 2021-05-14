@@ -16,7 +16,8 @@
   "scripts": {
     "compile": "tsc",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "tsc": "tsc --noEmit"
   },
   "bugs": {
     "url": "https://github.com/k42un0k0/k42un0k0passwordmanager/issues"

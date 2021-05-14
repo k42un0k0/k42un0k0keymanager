@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
 import { MutableModel } from '@aws-amplify/datastore';
 import { OuterAccount } from 'src/models';
-import { CipherService } from '../electron/cipher.service';
-import { KeyService } from '../electron/key.service';
+import { OuterAccountService } from '../models/outerAccount.service';
 import { AbstractRepository } from './abstract.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OuterAccountRepository extends AbstractRepository<OuterAccount> {
-  constructor(private keyService: KeyService, private cipherService: CipherService) {
+  constructor(private outerAccount: OuterAccountService) {
     super(OuterAccount);
   }
 
   async save(model: OuterAccount): Promise<OuterAccount> {
-    return super.save(await this._encrypt(model));
+    return super.save(await this.outerAccount.encrypt(model));
   }
 
   async update(model: OuterAccount, mutator: (draft: MutableModel<OuterAccount>) => void): Promise<OuterAccount> {
@@ -28,24 +27,6 @@ export class OuterAccountRepository extends AbstractRepository<OuterAccount> {
         console.log(v);
         return v;
       })
-      .then((model) => (model ? this._decrypt(model) : model));
-  }
-
-  private async _encrypt(model: OuterAccount) {
-    const key = await this.keyService.find(model.userAccount.id);
-    if (key == null) throw new Error('aaaa');
-    const encryptedPassword = await this.cipherService.cipher(key, model.password);
-    return OuterAccount.copyOf(model, (d) => {
-      d.password = encryptedPassword;
-    });
-  }
-
-  private async _decrypt(model: OuterAccount) {
-    const key = await this.keyService.find(model.userAccount.id);
-    if (key == null) throw new Error('aaaa');
-    const decryptedPassword = await this.cipherService.decipher(key, model.password);
-    return OuterAccount.copyOf(model, (d) => {
-      d.password = decryptedPassword;
-    });
+      .then((model) => (model ? this.outerAccount.decrypt(model) : model));
   }
 }

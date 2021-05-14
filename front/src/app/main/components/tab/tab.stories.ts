@@ -1,9 +1,10 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/angular/types-6-0';
-import { moduleMetadata } from '@storybook/angular';
-import { TabComponent } from './tab.component';
 import { MatIconModule } from '@angular/material/icon';
+import { moduleMetadata } from '@storybook/angular';
+import { Meta, Story } from '@storybook/angular/types-6-0';
+import { UserAccount } from 'src/models';
 import { Tab } from '../../services/tab.service';
+import { TabComponent } from './tab.component';
 
 export default {
   title: 'main/components/TabComponent',
@@ -27,6 +28,6 @@ Primary.args = {};
 
 export const Active = Template.bind({});
 Active.args = {
-  tab: new Tab({ name: 'aaaaaa', id: '', token: '' }),
+  tab: new Tab(new UserAccount({ name: 'aaaaaa', token: '', OuterAccounts: [] })),
   active: true,
 };

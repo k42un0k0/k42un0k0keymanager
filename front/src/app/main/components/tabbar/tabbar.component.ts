@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ElectronService } from '../../../base/electron/electron.service';
 import { AuthenticationService } from '../../../base/services/authentication.service';
-import { ElectronService } from '../../../base/services/electron.service';
 import { TabService } from '../../services/tab.service';
 
 @Component({
@@ -24,6 +24,6 @@ export class TabbarComponent {
     this.authenticationService.signOut();
   }
   closeWindow(): void {
-    this.electronService.closeWindow();
+    this.electronService.close();
   }
 }

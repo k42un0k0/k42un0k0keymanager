@@ -1,7 +1,7 @@
 /// <reference types="electron" />
 declare interface Window {
   main: {
-    windowManager: {
+    windowService: {
       close(): Promise<void>;
       auth(): Promise<void>;
       userAccountManager(): Promise<void>;
