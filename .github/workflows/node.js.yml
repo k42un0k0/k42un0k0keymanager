@@ -29,27 +29,24 @@ jobs:
           filters: |
             src:
               - 'front/**'
-        # run only if some file in 'src' folder was changed
-        if: steps.front-changes.outputs.src == 'true'
-        run: npm run test
-        working-directory: ./front
       - uses: dorny/paths-filter@v2
         id: app-changes
         with:
           filters: |
             src:
               - 'app/**'
-        # run only if some file in 'src' folder was changed
-        if: steps.app-changes.outputs.src == 'true'
-        run: npm run test
-        working-directory: ./app
       - uses: dorny/paths-filter@v2
         id: lib-changes
         with:
           filters: |
             src:
               - 'lib/**'
-        # run only if some file in 'src' folder was changed
+      - run: npm run test
+        if: steps.front-changes.outputs.src == 'true'
+        working-directory: ./front
+      - run: npm run test
+        if: steps.app-changes.outputs.src == 'true'
+        working-directory: ./app
+      - run: npm run test
         if: steps.lib-changes.outputs.src == 'true'
-        run: npm run test
         working-directory: ./lib
