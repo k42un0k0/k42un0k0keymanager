@@ -1,6 +1,6 @@
 {
   "name": "front",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./main.js",
   "scripts": {
     "ng": "ng",
@@ -33,7 +33,7 @@
     "@storybook/theming": "^6.2.8",
     "aws-amplify": "^3.3.18",
     "electron-reload": "^1.5.0",
-    "lib": "^0.0.0",
+    "lib": "^1.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
