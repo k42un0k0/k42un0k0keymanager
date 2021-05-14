@@ -23,9 +23,33 @@ jobs:
       - run: npm install
       - run: npm run bootstrap
       - run: npm run build:lib
-      - run: npm run test
+      - uses: dorny/paths-filter@v2
+        id: front-changes
+        with:
+          filters: |
+            src:
+              - 'front/**'
+        # run only if some file in 'src' folder was changed
+        if: steps.front-changes.outputs.src == 'true'
+        run: npm run test
         working-directory: ./front
-      - run: npm run test
+      - uses: dorny/paths-filter@v2
+        id: app-changes
+        with:
+          filters: |
+            src:
+              - 'app/**'
+        # run only if some file in 'src' folder was changed
+        if: steps.app-changes.outputs.src == 'true'
+        run: npm run test
         working-directory: ./app
-      - run: npm run test
+      - uses: dorny/paths-filter@v2
+        id: lib-changes
+        with:
+          filters: |
+            src:
+              - 'lib/**'
+        # run only if some file in 'src' folder was changed
+        if: steps.lib-changes.outputs.src == 'true'
+        run: npm run test
         working-directory: ./lib
