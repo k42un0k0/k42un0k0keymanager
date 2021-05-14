@@ -14,6 +14,6 @@ export class CreateComponent {
   constructor(private userAccountRepository: UserAccountRepository) {}
 
   submit(): void {
-    this.userAccountRepository.save(new UserAccount({ name: this.name, token: 'aaaaaa', OuterAccounts: [] }));
+    this.userAccountRepository.create(new UserAccount({ name: this.name, token: 'aaaaaa', OuterAccounts: [] }));
   }
 }

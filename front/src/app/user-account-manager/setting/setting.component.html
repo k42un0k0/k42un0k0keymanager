@@ -11,7 +11,11 @@
   <div class="secondary">
     暗号化鍵
   </div>
-  <button (click)="clickExport()" mat-button color="primary">エクスポート</button>
+
+  <div>
+    <button *ngIf="hasKey" (click)="clickExport()" mat-button color="primary">エクスポート</button>
+    <button (click)="clickImport()" mat-button color="primary">インポート</button>
+  </div>
 </div>
 <footer class="footer row">
   <div></div>

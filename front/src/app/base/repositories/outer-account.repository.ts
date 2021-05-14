@@ -12,8 +12,8 @@ export class OuterAccountRepository extends AbstractRepository<OuterAccount> {
     super(OuterAccount);
   }
 
-  async save(model: OuterAccount): Promise<OuterAccount> {
-    return super.save(await this.outerAccount.encrypt(model));
+  async create(model: OuterAccount): Promise<OuterAccount> {
+    return this.save(await this.outerAccount.encrypt(model));
   }
 
   async update(model: OuterAccount, mutator: (draft: MutableModel<OuterAccount>) => void): Promise<OuterAccount> {

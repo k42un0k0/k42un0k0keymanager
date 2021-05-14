@@ -99,7 +99,7 @@ export class AccountEditorComponent {
     }
   }
   private async _create(): Promise<void> {
-    await this.outerAccountRepository.save(
+    await this.outerAccountRepository.create(
       new OuterAccount({
         userAccount: this.data.userAccount,
         providerName: this.providerName,

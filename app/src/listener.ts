@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { CHANNELS } from 'lib';
 import type { IpcListenerMap } from './lib/ipc.service';
@@ -13,19 +14,19 @@ export const windowManagerListener: IpcListenerMap = {
   [CHANNELS.windowService.userAccountManager]: async () => windowManager.createWindow(WindowEnum.userAccountManager),
 };
 
-function createListhener<T>(
+function createListhener<T extends Record<string, string>>(
   channel: T,
   service: Record<keyof T, (...args: any[]) => any>,
   options?: {
     takeEventFunc: (keyof T)[];
   }
 ): IpcListenerMap {
-  return Object.keys(channel).reduce<IpcListenerMap>((pre, key) => {
-    pre[key] = (e: any, ...args: any[]): any => {
+  return Object.entries<string>(channel).reduce<IpcListenerMap>((pre, [key, value]) => {
+    pre[value] = (e: any, ...args: any[]): any => {
       if (options?.takeEventFunc.find((v) => v === key) != null) {
-        service[key as keyof T](e, ...args);
+        return service[key as keyof T](e, ...args);
       } else {
-        service[key as keyof T](...args);
+        return service[key as keyof T](...args);
       }
     };
     return pre;

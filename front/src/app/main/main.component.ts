@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { nonNullable } from 'lib';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { AccountEditorComponent } from './components/account-editor/account-editor.component';
 import { SidebarItem } from './components/sidebar/sidebar.component';
 import { Tab, TabService } from './services/tab.service';
+import { UserAccountService } from 'src/app/base/models/userAccount.service';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { UserAccount } from 'src/models';
@@ -22,6 +23,13 @@ export class MainComponent {
   }
 
   sidebarItems: Observable<SidebarItem[]> = this.userAccountRepository.list.pipe(
+    mergeMap((v) => {
+      async function asyncFilter(array, asyncCallback) {
+        const bits = await Promise.all(array.map(asyncCallback));
+        return array.filter((_, i) => bits[i]);
+      }
+      return from(asyncFilter(v, (i) => this.userAccountService.hasKey(i)));
+    }),
     map((value) => {
       return value.map((v) => {
         return {
@@ -47,6 +55,7 @@ export class MainComponent {
   userAccount!: UserAccount;
   constructor(
     private userAccountRepository: UserAccountRepository,
+    private userAccountService: UserAccountService,
     private outerAccountRepository: OuterAccountRepository,
     private tabService: TabService,
     private dialog: MatDialog
