@@ -3,6 +3,7 @@ import { Observable } from 'zen-observable-ts';
 
 import { UserAccountRepository } from './user-account.repository';
 import { APIService } from 'src/app/API.service';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('UserAccountRepository', () => {
   let service: UserAccountRepository;
@@ -13,6 +14,7 @@ describe('UserAccountRepository', () => {
     mockApiServie.OnCreateUserAccountListener = Observable.of();
     TestBed.configureTestingModule({
       providers: [{ provide: APIService, useValue: mockApiServie }],
+      imports: [TestModule],
     });
     service = TestBed.inject(UserAccountRepository);
   });

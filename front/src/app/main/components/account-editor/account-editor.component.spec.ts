@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AccountEditorComponent } from './account-editor.component';
-import { TestModule } from 'src/app/__tests__/test.module';
 import { ComponentsModule } from 'src/app/main/components/components.module';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('main/components/AccountEditorComponent', () => {
   let component: AccountEditorComponent;
@@ -11,6 +11,7 @@ describe('main/components/AccountEditorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
         {
           provide: MatDialogRef,
           useValue: {},

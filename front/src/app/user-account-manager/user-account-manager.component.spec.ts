@@ -4,10 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { UserAccountManagerComponent } from './user-account-manager.component';
-import { TestModule } from 'src/app/__tests__/test.module';
 import { ElectronService } from 'src/app/base/electron/electron.service';
 
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('UserAccountManagerComponent', () => {
   let component: UserAccountManagerComponent;

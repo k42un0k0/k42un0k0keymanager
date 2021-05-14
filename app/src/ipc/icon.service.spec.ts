@@ -1,8 +1,16 @@
 import { IconService } from './icon.service';
 
 describe('icon.service', () => {
-  const service = new IconService();
-  it('get', async () => {
-    expect(await service.getFromUrl('http://twitter.com/login')).toEqual('unkoman');
+  let service: IconService;
+  beforeEach(() => {
+    service = new IconService();
+  });
+  describe('getFromUrl', () => {
+    it('get from link tag', async () => {
+      expect(await service.getFromUrl('http://twitter.com/login')).toEqual('//abs.twimg.com/favicons/twitter.ico');
+    });
+    it('compute favicon link', async () => {
+      expect(await service.getFromUrl('http://example.com/login')).toEqual('http://example.com/favicon.ico');
+    });
   });
 });
