@@ -1,6 +1,6 @@
 {
   "name": "k42un0k0passwordmanager",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./dist/app/main.js",
   "scripts": {
     "dev": "run-p watch start",

@@ -1,0 +1,50 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      # キャッシュ管理
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      # /キャッシュ管理
+      - run: npm install
+      - run: npm run bootstrap
+      - run: npm run build:lib
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            front:
+              - 'front/**'
+            app:
+              - 'app/**'
+            lib:
+              - 'lib/**'
+      - name: test front
+        run: npm run test
+        if: steps.changes.outputs.front == 'true'
+        working-directory: ./front
+      - name: test app
+        run: npm run test
+        if: steps.changes.outputs.app == 'true'
+        working-directory: ./app
+      - name: test lib
+        run: npm run test
+        if: steps.changes.outputs.lib == 'true'
+        working-directory: ./lib
