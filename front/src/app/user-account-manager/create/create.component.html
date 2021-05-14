@@ -1,0 +1,9 @@
+<form class="mat-elevation-z8 paper primary">
+  <h3>ユーザーアカウントの作成</h3>
+  <div>
+    <app-input label="ユーザー名" [autoFocus]="true" [(value)]="name"></app-input>
+  </div>
+  <footer>
+    <button (click)="submit()" mat-button color="primary">作成</button>
+  </footer>
+</form>

@@ -1,0 +1,29 @@
+<header class="header">
+  <button class="button" mat-dialog-close mat-icon-button color="primary"
+    aria-label="Example icon button with a menu icon">
+    <mat-icon> close </mat-icon>
+  </button>
+</header>
+<div>
+  <app-input label="Provider Name" [disabled]="disabled" [(value)]="providerName"></app-input>
+</div>
+<form>
+  <app-input label="User ID" [disabled]="disabled" [(value)]="userId"></app-input>
+  <app-input label="Password" [disabled]="disabled" [(value)]="password"></app-input>
+  <div class="link-group">
+    <app-input label="Link" [disabled]="disabled" [value]="link" (valueChange)="onChangeLink($event)"></app-input>
+    <img [src]="iconPath" alt="provider icon" />
+  </div>
+  <div *ngIf="disabled; else submitBlock" class="form-action">
+    <button (click)="toggleEdit()" mat-button color="primary">編集</button>
+  </div>
+  <ng-template #submitBlock>
+    <div class="form-action">
+      <button (click)="save($event)" mat-button color="primary">保存</button>
+      <button (click)="toggleEdit()" mat-button color="primary">キャンセル</button>
+    </div>
+  </ng-template>
+  <div *ngIf="disabled" class="form-action">
+    <button (click)="destroyAccount($event)" mat-button color="primary">削除</button>
+  </div>
+</form>
