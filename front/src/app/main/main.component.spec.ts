@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 import { ComponentsModule } from './components/components.module';
 
 import { MainComponent } from './main.component';
+import { TestModule } from 'src/app/__tests__/test.module';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 
 describe('main/MainComponent', () => {
@@ -15,11 +16,11 @@ describe('main/MainComponent', () => {
 
   beforeEach(async () => {
     const mock: any = {};
-    mock.userAccounts = of([]);
+    mock.list = of([]);
     await TestBed.configureTestingModule({
       declarations: [MainComponent],
       providers: [{ provide: UserAccountRepository, useValue: mock }],
-      imports: [ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule, MatDialogModule],
+      imports: [ComponentsModule, RouterTestingModule, MatIconModule, MatButtonModule, MatDialogModule, TestModule],
     }).compileComponents();
   });
 

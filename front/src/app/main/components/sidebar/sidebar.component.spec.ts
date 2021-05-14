@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-
 import { SidebarComponent } from './sidebar.component';
+import { TestModule } from 'src/app/__tests__/test.module';
 
 describe('main/components/SidebarComponent', () => {
   let component: SidebarComponent;
@@ -10,7 +10,7 @@ describe('main/components/SidebarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SidebarComponent],
-      imports: [MatIconModule],
+      imports: [MatIconModule, TestModule],
     }).compileComponents();
   });
 

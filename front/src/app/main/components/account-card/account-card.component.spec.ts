@@ -23,7 +23,7 @@ describe('main/components/AccountCardComponent', () => {
       userId: 'k42un0k0',
       link: '',
       password: '',
-      userAccount: new UserAccount({ name: 'aaa', token: 'aaas', OuterAccounts: [] }),
+      userAccount: new UserAccount({ name: 'aaa', OuterAccounts: [] }),
     });
     fixture.detectChanges();
   });

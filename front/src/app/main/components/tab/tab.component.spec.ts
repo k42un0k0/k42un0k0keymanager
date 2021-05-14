@@ -18,7 +18,7 @@ describe('main/components/TabComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;
-    component.tab = new Tab(new UserAccount({ name: 'user account', token: '', OuterAccounts: [] }));
+    component.tab = new Tab(new UserAccount({ name: 'user account', OuterAccounts: [] }));
     fixture.detectChanges();
   });
 
