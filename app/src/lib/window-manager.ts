@@ -31,6 +31,7 @@ export class WindowManager {
       await initial[0].loadURL(initial[1]);
       splash[0].close();
       initial[0].show();
+      initial[0].reload();
     } else {
       const [browser, url] = new InitialWindow().configure();
       await browser.loadURL(url);

@@ -2,7 +2,11 @@ name: Node.js CI
 
 on:
   push:
-    branches: [develop, main]
+    branches:
+      - develop
+      - main
+    tags:
+      - 'v*'
   pull_request:
 
 jobs:
@@ -48,3 +52,63 @@ jobs:
         run: npm run test
         if: steps.changes.outputs.lib == 'true'
         working-directory: ./lib
+  release:
+    name: Create Github Release
+    if: contains(github.ref, 'tags/v')
+    needs: [test]
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+  publish:
+    if: contains(github.ref, 'tags/v')
+    needs: [test, release]
+    runs-on: ${{ matrix.map.os }}
+    strategy:
+      matrix:
+        map:
+          - os: macos-latest
+            path: ./build/k42un0k0passwordmanager-0.0.8-mac.zip
+            name: k42un0k0passwordmanager-mac.zip
+          - os: windows-latest
+            path: './build/k42un0k0passwordmanager Setup 0.0.8.exe'
+            name: k42un0k0passwordmanager-win.exe
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: npm install
+      - name: set private files
+        shell: bash
+        run: |
+          echo "$ANGULAR_ENV" > ./front/src/environments/environment.ts
+          echo "$ANGULAR_ENV" > ./front/src/environments/environment.prod.ts
+          echo "$AWS_EXPORTS" > ./front/src/aws-exports.js
+        env:
+          ANGULAR_ENV: ${{secrets.ANGULAR_ENV}}
+          AWS_EXPORTS: ${{secrets.AWS_EXPORTS}}
+      - run: npm run bootstrap
+      - run: npm run package
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.release.outputs.upload_url }}
+          asset_path: ${{ matrix.map.path }}
+          asset_name: ${{ matrix.map.name }}
+          asset_content_type: application/zip
