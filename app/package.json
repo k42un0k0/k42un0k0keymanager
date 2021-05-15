@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "run-p watch start",
     "start": "cross-env ELECTRON_START_URL=\"http://localhost:4200\" electron --inspect=5858 .",
-    "compile": "cpx src/splash.html dist/app && tsc",
-    "compile:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
-    "watch": "yarn compile --watch",
+    "build": "cpx src/splash.html dist/app && tsc",
+    "build:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
+    "watch": "yarn build --watch",
     "test": "jest",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",

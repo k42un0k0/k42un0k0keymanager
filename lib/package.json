@@ -14,7 +14,7 @@
     "url": "git+https://github.com/k42un0k0/k42un0k0passwordmanager.git"
   },
   "scripts": {
-    "compile": "tsc",
+    "build": "tsc",
     "test": "jest",
     "lint": "eslint .",
     "tsc": "tsc --noEmit"

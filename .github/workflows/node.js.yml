@@ -104,6 +104,10 @@ jobs:
       - run: npm install
       - name: set aws-exports
         run: echo $AWS_EXPORTS  > ./front/src/aws-exports.js
+      - name: set angular env
+        run: |
+          echo $ANGULAR_ENV  > ./front/src/environments/environment.ts
+          echo $ANGULAR_ENV  > ./front/src/environments/environment.prod.ts
       - run: npm run bootstrap
       - run: npm run package
 
