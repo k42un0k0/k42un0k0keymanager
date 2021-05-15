@@ -79,26 +79,17 @@ jobs:
       matrix:
         map:
           - os: macos-latest
-            path: ./build/mac/k42un0k0passwordmanager.app
-            name: k42un0k0passwordmanager.app
-          - os: windows-latest
-            path: './build/k42un0k0passwordmanager Setup 0.0.7.exe'
-            name: k42un0k0passwordmanager-setup.exe
+            path: ./build/k42un0k0passwordmanager-0.0.7-mac.zip
+            name: k42un0k0passwordmanager.zip
+          # - os: windows-latest
+          #   path: './build/k42un0k0passwordmanager Setup 0.0.7.exe'
+          #   name: k42un0k0passwordmanager-setup.exe
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-      # キャッシュ管理
-      - name: restore lerna
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      # /キャッシュ管理
       - run: npm install
       - name: set private files
         shell: bash
