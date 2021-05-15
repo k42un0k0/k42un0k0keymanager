@@ -77,8 +77,8 @@ jobs:
           path: release_url.txt
 
   publish:
-    if: contains(github.ref, 'tags/v')
-    needs: [test, release]
+    # if: contains(github.ref, 'tags/v')
+    # needs: [test, release]
     runs-on: ${{ matrix.map.os }}
     strategy:
       matrix:
@@ -106,11 +106,15 @@ jobs:
       # /キャッシュ管理
       - run: npm install
       - name: set aws-exports
-        run: echo $AWS_EXPORTS  > ./front/src/aws-exports.js
+        run: echo "$AWS_EXPORTS" > ./front/src/aws-exports.js
+        env:
+          AWS_EXPORTS: ${{secrets.AWS_EXPORTS}}
       - name: set angular env
         run: |
-          echo $ANGULAR_ENV  > ./front/src/environments/environment.ts
-          echo $ANGULAR_ENV  > ./front/src/environments/environment.prod.ts
+          echo "$ANGULAR_ENV" > ./front/src/environments/environment.ts
+          echo "$ANGULAR_ENV" > ./front/src/environments/environment.prod.ts
+        env:
+          ANGULAR_ENV: ${{secrets.ANGULAR_ENV}}
       - run: npm run bootstrap
       - run: npm run package
 
