@@ -82,7 +82,7 @@ jobs:
             path: ./build/mac/k42un0k0passwordmanager.app
             name: k42un0k0passwordmanager.app
           - os: windows-latest
-            path: './build/k42un0k0passwordmanager Setup 0.0.5.exe'
+            path: './build/k42un0k0passwordmanager Setup 0.0.7.exe'
             name: k42un0k0passwordmanager-setup.exe
     steps:
       - uses: actions/checkout@v2
