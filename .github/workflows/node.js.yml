@@ -79,11 +79,11 @@ jobs:
       matrix:
         map:
           - os: macos-latest
-            path: ./build/k42un0k0passwordmanager-0.0.7-mac.zip
-            name: k42un0k0passwordmanager.zip
-          # - os: windows-latest
-          #   path: './build/k42un0k0passwordmanager Setup 0.0.7.exe'
-          #   name: k42un0k0passwordmanager-setup.exe
+            path: ./build/k42un0k0passwordmanager-0.0.8-mac.zip
+            name: k42un0k0passwordmanager-mac.zip
+          - os: windows-latest
+            path: './build/k42un0k0passwordmanager Setup 0.0.8.exe'
+            name: k42un0k0passwordmanager-win.exe
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14
