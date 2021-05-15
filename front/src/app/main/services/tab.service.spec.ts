@@ -12,10 +12,6 @@ describe('main/services/TabService', () => {
     service = TestBed.inject(TabService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
   describe('createOrActivateTab', () => {
     it('create a tab', () => {
       const scheduler = createScheduler();
@@ -77,7 +73,11 @@ describe('main/services/TabService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('closeTab', () => {
-    expect(service).toBeTruthy();
+  describe('closeTab', () => {
+    it.todo('close not last tab');
+
+    it.todo('close first tab');
+
+    it.todo('close last one tab');
   });
 });
