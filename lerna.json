@@ -1,4 +1,8 @@
 {
-  "packages": ["front", "app", "lib"],
-  "version": "0.0.1"
+  "packages": [
+    "front",
+    "app",
+    "lib"
+  ],
+  "version": "0.0.2"
 }

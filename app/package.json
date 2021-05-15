@@ -1,6 +1,6 @@
 {
   "name": "k42un0k0passwordmanager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/app/main.js",
   "scripts": {
     "dev": "run-p watch start",
@@ -32,7 +32,7 @@
     "axios": "^0.21.1",
     "jsdom": "^16.5.3",
     "keytar": "^7.7.0",
-    "lib": "^0.0.1"
+    "lib": "^0.0.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
