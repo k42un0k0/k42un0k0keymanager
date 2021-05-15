@@ -86,6 +86,9 @@ jobs:
           - os: macos-latest
             path: ./build/mac/k42un0k0passwordmanager.app
             name: k42un0k0passwordmanager.app
+          - os: windows-latest
+            path: './build/k42un0k0passwordmanager Setup 0.0.4.exe'
+            name: k42un0k0passwordmanager-setup.exe
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14

@@ -15,7 +15,7 @@
     "test:lib": "lerna run test --scope lib",
     "lint": "lerna run lint",
     "storybook": "lerna run storybook --scope front --stream",
-    "cp-front-to-app": "cpx './front/dist/front/**/*' './app/dist/front'",
+    "cp-front-to-app": "cpx \"./front/dist/front/**/*\" \"./app/dist/front\"",
     "prepackage": "rimraf app/dist && npm run build:lib && run-p build:app build:front && npm run-script cp-front-to-app && lerna run dist --scope k42un0k0passwordmanager",
     "package": "lerna run dist --scope k42un0k0passwordmanager",
     "prepare": "husky install"
