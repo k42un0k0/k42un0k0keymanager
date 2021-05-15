@@ -18,40 +18,40 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14'
-      # # キャッシュ管理
-      # - name: restore lerna
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: |
-      #       node_modules
-      #       */node_modules
-      #     key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-      # # /キャッシュ管理
-      # - run: npm install
-      # - run: npm run bootstrap
-      # - run: npm run build:lib
-      # - uses: dorny/paths-filter@v2
-      #   id: changes
-      #   with:
-      #     filters: |
-      #       front:
-      #         - 'front/**'
-      #       app:
-      #         - 'app/**'
-      #       lib:
-      #         - 'lib/**'
-      # - name: test front
-      #   run: npm run test
-      #   if: steps.changes.outputs.front == 'true'
-      #   working-directory: ./front
-      # - name: test app
-      #   run: npm run test
-      #   if: steps.changes.outputs.app == 'true'
-      #   working-directory: ./app
-      # - name: test lib
-      #   run: npm run test
-      #   if: steps.changes.outputs.lib == 'true'
-      #   working-directory: ./lib
+      # キャッシュ管理
+      - name: restore lerna
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      # /キャッシュ管理
+      - run: npm install
+      - run: npm run bootstrap
+      - run: npm run build:lib
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            front:
+              - 'front/**'
+            app:
+              - 'app/**'
+            lib:
+              - 'lib/**'
+      - name: test front
+        run: npm run test
+        if: steps.changes.outputs.front == 'true'
+        working-directory: ./front
+      - name: test app
+        run: npm run test
+        if: steps.changes.outputs.app == 'true'
+        working-directory: ./app
+      - name: test lib
+        run: npm run test
+        if: steps.changes.outputs.lib == 'true'
+        working-directory: ./lib
   release:
     name: Create Github Release
     if: contains(github.ref, 'tags/v')
@@ -77,8 +77,8 @@ jobs:
           path: release_url.txt
 
   publish:
-    # if: contains(github.ref, 'tags/v')
-    # needs: [test, release]
+    if: contains(github.ref, 'tags/v')
+    needs: [test, release]
     runs-on: ${{ matrix.map.os }}
     strategy:
       matrix:
@@ -86,9 +86,9 @@ jobs:
           - os: macos-latest
             path: ./build/mac/k42un0k0passwordmanager.app
             name: k42un0k0passwordmanager.app
-          # - os: windows-latest
-          #   path: './build/k42un0k0passwordmanager Setup 0.0.4.exe'
-          #   name: k42un0k0passwordmanager-setup.exe
+          - os: windows-latest
+            path: './build/k42un0k0passwordmanager Setup 0.0.5.exe'
+            name: k42un0k0passwordmanager-setup.exe
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14
