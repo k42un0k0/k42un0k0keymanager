@@ -105,17 +105,15 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       # /キャッシュ管理
       - run: npm install
-      - name: set aws-exports
-        run: echo "$AWS_EXPORTS" > ./front/src/aws-exports.js
-        env:
-          AWS_EXPORTS: ${{secrets.AWS_EXPORTS}}
-      - name: set angular env
+      - name: set private files
+        shell: bash
         run: |
           echo "$ANGULAR_ENV" > ./front/src/environments/environment.ts
           echo "$ANGULAR_ENV" > ./front/src/environments/environment.prod.ts
-          echo "$ANGULAR_ENV"
+          echo "$AWS_EXPORTS" > ./front/src/aws-exports.js
         env:
           ANGULAR_ENV: ${{secrets.ANGULAR_ENV}}
+          AWS_EXPORTS: ${{secrets.AWS_EXPORTS}}
       - run: npm run bootstrap
       - run: npm run package
 
