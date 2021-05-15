@@ -6,17 +6,18 @@
     "start": "run-p build:lib start:*",
     "start:front": "lerna run start --scope front --stream",
     "start:app": "lerna run dev --scope k42un0k0passwordmanager --stream",
-    "build:front": "lerna run build --scope front",
-    "build:lib": "lerna run compile --scope lib",
-    "build:app": "lerna run compile:prod --scope k42un0k0passwordmanager",
+    "build:front": "lerna run build:prod --scope front",
+    "build:lib": "lerna run build --scope lib",
+    "build:app": "lerna run build:prod --scope k42un0k0passwordmanager",
     "test": "lerna run test",
     "test:front": "lerna run test --scope front",
     "test:app": "lerna run test --scope k42un0k0passwordmanager",
     "test:lib": "lerna run test --scope lib",
     "lint": "lerna run lint",
     "storybook": "lerna run storybook --scope front --stream",
-    "cp-front-to-app": "cpx './front/dist/front/**/*' './app/dist/front'",
-    "package": "run-p build:* && npm run-script cp-front-to-app && lerna run dist --scope k42un0k0passwordmanager",
+    "cp-front-to-app": "cpx \"./front/dist/front/**/*\" \"./app/dist/front\"",
+    "prepackage": "rimraf app/dist && npm run build:lib && run-p build:app build:front && npm run-script cp-front-to-app && lerna run dist --scope k42un0k0passwordmanager",
+    "package": "lerna run dist --scope k42un0k0passwordmanager",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2"
   }
 }

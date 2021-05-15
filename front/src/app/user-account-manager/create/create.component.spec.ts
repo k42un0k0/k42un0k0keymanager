@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CreateComponent } from './create.component';
-import { TestModule } from 'src/app/__tests__/test.module';
 import { BaseModule } from 'src/app/base/base.module';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('CreateComponent', () => {
   let component: CreateComponent;

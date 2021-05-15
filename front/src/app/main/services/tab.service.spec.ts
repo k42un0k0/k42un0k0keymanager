@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { Tab, TabService } from './tab.service';
-import { createScheduler } from 'src/app/__tests__/createScheduler';
+import { createScheduler } from 'src/app/test/createScheduler';
 import { UserAccount } from 'src/models';
 
 describe('main/services/TabService', () => {

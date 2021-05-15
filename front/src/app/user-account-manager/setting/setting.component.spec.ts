@@ -5,8 +5,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'zen-observable-ts';
 import { SettingComponent } from './setting.component';
 import { APIService } from 'src/app/API.service';
-import { TestModule } from 'src/app/__tests__/test.module';
 import { BaseModule } from 'src/app/base/base.module';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('SettingComponent', () => {
   let component: SettingComponent;

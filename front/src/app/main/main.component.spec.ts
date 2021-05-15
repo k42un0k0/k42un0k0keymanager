@@ -7,8 +7,8 @@ import { Observable, of } from 'rxjs';
 import { ComponentsModule } from './components/components.module';
 
 import { MainComponent } from './main.component';
-import { TestModule } from 'src/app/__tests__/test.module';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('main/MainComponent', () => {
   let component: MainComponent;

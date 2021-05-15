@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TabbarComponent } from './tabbar.component';
-import { TestModule } from 'src/app/__tests__/test.module';
 import { BaseModule } from 'src/app/base/base.module';
 import { TabComponent } from 'src/app/main/components/tab/tab.component';
+import { TestModule } from 'src/app/test/test.module';
 
 describe('main/components/TabbarComponent', () => {
   let component: TabbarComponent;

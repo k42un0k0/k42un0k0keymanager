@@ -3,7 +3,7 @@
   "compilerOptions": {
     "types": ["node"]
   },
-  "exclude": ["../src/test.ts", "../src/**/*.spec.ts", "../**/__tests__", "../projects/**/*.spec.ts"],
+  "exclude": ["../src/test.ts", "../src/**/*.spec.ts", "../**/test", "../projects/**/*.spec.ts"],
   "include": ["../src/**/*", "../projects/**/*"],
   "files": ["./typings.d.ts", "../../app/src/preload.d.ts"]
 }

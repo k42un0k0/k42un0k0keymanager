@@ -1,13 +1,13 @@
 {
   "name": "k42un0k0passwordmanager",
-  "version": "0.0.0",
+  "version": "0.0.8",
   "main": "./dist/app/main.js",
   "scripts": {
     "dev": "run-p watch start",
     "start": "cross-env ELECTRON_START_URL=\"http://localhost:4200\" electron --inspect=5858 .",
-    "compile": "cpx src/splash.html dist/app && tsc",
-    "compile:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
-    "watch": "yarn compile --watch",
+    "build": "cpx src/splash.html dist/app && tsc",
+    "build:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
+    "watch": "yarn build --watch",
     "test": "jest",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",
@@ -32,7 +32,7 @@
     "axios": "^0.21.1",
     "jsdom": "^16.5.3",
     "keytar": "^7.7.0",
-    "lib": "^0.0.0"
+    "lib": "^0.0.8"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
