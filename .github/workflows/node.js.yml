@@ -102,6 +102,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       # /キャッシュ管理
       - run: npm install
+      - name: set aws-exports
+        run: echo $AWS_EXPORTS  > ./front/src/aws-exports.js
       - run: npm run bootstrap
       - run: npm run package
 
