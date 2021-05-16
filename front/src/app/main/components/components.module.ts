@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +14,7 @@ import { BaseModule } from 'src/app/base/base.module';
 
 @NgModule({
   declarations: [AccountCardComponent, AccountEditorComponent, SidebarComponent, TabComponent, TabbarComponent],
-  imports: [MatIconModule, MatButtonModule, RouterModule, CommonModule, BaseModule, MatDialogModule],
+  imports: [MatIconModule, MatButtonModule, RouterModule, CommonModule, BaseModule, MatDialogModule, DragDropModule],
   exports: [AccountCardComponent, AccountEditorComponent, SidebarComponent, TabComponent, TabbarComponent],
 })
 export class ComponentsModule {}

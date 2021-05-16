@@ -30,6 +30,22 @@
   display: block;
 }
 
+.tab-wrapper {
+  display: flex;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tab-wrapper.cdk-drop-list-dragging app-tab:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
 .button {
   border-radius: 0;
   min-width: 52px;

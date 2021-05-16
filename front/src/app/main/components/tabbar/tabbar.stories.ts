@@ -1,12 +1,10 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { action } from '@storybook/addon-actions';
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { TabbarComponent } from './tabbar.component';
-import { BaseModule } from 'src/app/base/base.module';
-import { TabComponent } from 'src/app/main/components/tab/tab.component';
+import { ComponentsModule } from 'src/app/main/components/components.module';
+import { TestModule } from 'src/app/test/test.module';
 
 export default {
   title: 'main/components/TabbarComponent',
@@ -16,8 +14,7 @@ export default {
   },
   decorators: [
     moduleMetadata({
-      declarations: [TabComponent],
-      imports: [CommonModule, MatIconModule, BaseModule],
+      imports: [ComponentsModule, TestModule],
     }),
   ],
 } as Meta;

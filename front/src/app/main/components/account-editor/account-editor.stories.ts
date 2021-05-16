@@ -1,14 +1,10 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { action } from '@storybook/addon-actions';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { AccountEditorComponent } from './account-editor.component';
-import { BaseModule } from 'src/app/base/base.module';
-import { TabComponent } from 'src/app/main/components/tab/tab.component';
+import { ComponentsModule } from 'src/app/main/components/components.module';
+import { TestModule } from 'src/app/test/test.module';
 
 export default {
   title: 'main/components/AccountEditorComponent',
@@ -18,8 +14,14 @@ export default {
   },
   decorators: [
     moduleMetadata({
-      declarations: [TabComponent],
-      imports: [CommonModule, MatIconModule, MatButtonModule, BaseModule, HttpClientModule],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        {
+          provide: MatDialogRef,
+          useValue: {},
+        },
+      ],
+      imports: [ComponentsModule, TestModule],
     }),
   ],
 } as Meta;

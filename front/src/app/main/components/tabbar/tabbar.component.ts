@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ElectronService } from 'src/app/base/electron/electron.service';
 import { AuthenticationService } from 'src/app/base/services/authentication.service';
@@ -25,5 +26,9 @@ export class TabbarComponent {
   }
   closeWindow(): void {
     this.electronService.close();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.tabService.tabs, event.previousIndex, event.currentIndex);
   }
 }
