@@ -20,4 +20,5 @@ const main = {
   },
   ipcRenderer,
 };
+
 contextBridge.exposeInMainWorld('main', main);

@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "run-p watch start",
     "start": "cross-env ELECTRON_START_URL=\"http://localhost:4200\" electron --inspect=5858 .",
-    "build": "cpx src/splash.html dist/app && tsc",
-    "build:prod": "cpx src/splash.html ./dist/app && tsc -p tsconfig.prod.json",
-    "watch": "yarn build --watch",
+    "build": "webpack",
+    "build:prod": "webpack --mode production",
+    "watch": "webpack --watch",
     "test": "jest",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",
@@ -42,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "chokidar": "^3.5.1",
+    "copy-webpack-plugin": "^8.1.1",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
     "electron": "^12.0.2",
@@ -53,6 +54,10 @@
     "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
     "ts-jest": "^26.5.5",
-    "typescript": "~4.1.5"
+    "ts-loader": "^9.1.2",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
+    "typescript": "~4.1.5",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
   }
 }
