@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 
 @Component({
@@ -6,7 +6,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
 })
-export class InputComponent {
+export class InputComponent implements OnInit {
   @Input()
   label!: string;
 
@@ -31,8 +31,10 @@ export class InputComponent {
   @Output() valueChange = new EventEmitter<string>();
   constructor() {
     combineLatest([this._type, this.show]).subscribe(([t, s]) => {
-      console.log(t, s);
       this.inputType = s ? undefined : t;
     });
+  }
+  ngOnInit(): void {
+    console.log(this);
   }
 }

@@ -6,7 +6,10 @@
       <app-auth-input label="User ID" [(value)]="username"></app-auth-input>
       <app-auth-input type="password" label="Password" [(value)]="password"></app-auth-input>
     </div>
-    <span class="button" (click)="submit()">Login</span>
+    <div *ngIf="error != ''" class="primary error-message">
+      {{error}}
+    </div>
+    <button class="button" (click)="submit()">Login</button>
   </form>
   <a routerLink="/auth/register" class="link">Register</a>
 </app-container>

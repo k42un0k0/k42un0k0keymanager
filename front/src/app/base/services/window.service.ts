@@ -8,8 +8,8 @@ export class WindowService {
 
   resizeTo(elm: ElementRef<HTMLElement>): void {
     elm.nativeElement.style.display = 'block';
-    const width = elm.nativeElement.clientWidth;
-    const height = elm.nativeElement.clientHeight;
+    const width = elm.nativeElement.offsetWidth - (window.innerWidth - window.outerWidth);
+    const height = elm.nativeElement.offsetHeight - (window.innerHeight - window.outerHeight);
     this.window.resizeTo(width, height);
   }
 }

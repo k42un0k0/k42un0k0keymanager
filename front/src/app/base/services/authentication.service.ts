@@ -75,13 +75,9 @@ export class AuthenticationService {
   }
 
   async signIn({ username, password }: SignInArg): Promise<void> {
-    try {
-      const cognitoUser: CognitoUser = await Auth.signIn(username, password);
-      console.log('sign in');
-      await this.setUserFromCognitoUser(cognitoUser);
-    } catch (error) {
-      console.log('error signing in', error);
-    }
+    const cognitoUser: CognitoUser = await Auth.signIn(username, password);
+    console.log('sign in');
+    await this.setUserFromCognitoUser(cognitoUser);
   }
 
   async resendConfirmationCode({ username }: ResendConfirmationCodeArg): Promise<void> {

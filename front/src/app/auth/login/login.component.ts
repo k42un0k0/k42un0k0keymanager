@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { ElectronService } from 'src/app/base/electron/electron.service';
 import { AuthenticationService } from 'src/app/base/services/authentication.service';
 import { WindowService } from 'src/app/base/services/window.service';
@@ -13,12 +12,13 @@ export class LoginComponent implements AfterViewInit {
   password = '';
   username = '';
 
+  error = '';
+
   constructor(
     private authenticationService: AuthenticationService,
     private elm: ElementRef,
     private windowService: WindowService,
-    private electronService: ElectronService,
-    private router: Router
+    private electronService: ElectronService
   ) {}
 
   ngAfterViewInit(): void {
@@ -26,8 +26,16 @@ export class LoginComponent implements AfterViewInit {
   }
 
   async submit(): Promise<void> {
-    await this.authenticationService.signIn({ username: this.username, password: this.password });
-    await this.electronService.main();
-    this.electronService.close();
+    try {
+      await this.authenticationService.signIn({ username: this.username, password: this.password });
+      await this.electronService.main();
+      this.electronService.close();
+    } catch (e) {
+      if (e.code === 'InvalidParameterException') {
+        this.error = 'Incorrect User ID or Password';
+      } else {
+        this.error = e.message;
+      }
+    }
   }
 }
