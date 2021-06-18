@@ -1,15 +1,14 @@
-import { MatIconModule } from '@angular/material/icon';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { OuterAccount, UserAccount } from 'src/models';
 import { AccountCardComponent } from './account-card.component';
+import { ComponentsModule } from 'src/app/main/components/components.module';
 
 export default {
   title: 'main/components/AccountCardComponent',
   component: AccountCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [MatIconModule, RouterTestingModule],
+      imports: [ComponentsModule],
     }),
   ],
 } as Meta;

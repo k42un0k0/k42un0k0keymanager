@@ -6,7 +6,7 @@ import { frontPath, preloadPath } from 'src/constant';
 export class AuthWindow extends MyWindow {
   protected config = {
     width: 800,
-    height: 800,
+    height: 600,
     webPreferences: {
       preload: preloadPath,
     },

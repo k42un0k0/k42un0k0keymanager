@@ -29,6 +29,7 @@ export class TabService {
 
   current$ = new BehaviorSubject<Tab | null>(null);
   tabs: Tab[] = [];
+
   createOrActivateTab(userAccount: UserAccount): void {
     const tab = new Tab(userAccount);
     let existTab = false;
@@ -61,5 +62,10 @@ export class TabService {
   }
   closeTab(index: number): void {
     this.tabs.splice(index, 1);
+
+    const currentIndex = index - 1 != -1 ? index - 1 : 0;
+    const tab = this.tabs[currentIndex];
+    tab?.activate();
+    this.current$.next(tab);
   }
 }
