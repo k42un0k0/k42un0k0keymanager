@@ -1,7 +1,7 @@
 <app-titlebar></app-titlebar>
 <app-container>
   <h1 class="title">K42un0k0 Password Manager</h1>
-  <form>
+  <form (submit)="submit($event)">
     <div class="input-group">
       <app-auth-input label="User ID" [(value)]="username"></app-auth-input>
       <app-auth-input type="password" label="Password" [(value)]="password"></app-auth-input>
@@ -9,7 +9,7 @@
     <div *ngIf="error != ''" class="primary error-message">
       {{error}}
     </div>
-    <button class="button" (click)="submit()">Login</button>
+    <button class="button">Login</button>
   </form>
   <a routerLink="/auth/register" class="link">Register</a>
 </app-container>

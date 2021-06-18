@@ -17,7 +17,6 @@ export class AuthWindow extends MyWindow {
 
   configure(): [BrowserWindow, string] {
     const win = new BrowserWindow(this.config);
-
     const startUrl = `${
       process.env.ELECTRON_START_URL ??
       url.format({

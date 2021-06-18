@@ -25,7 +25,8 @@ export class LoginComponent implements AfterViewInit {
     this.windowService.resizeTo(this.elm);
   }
 
-  async submit(): Promise<void> {
+  async submit(e: Event): Promise<void> {
+    e.preventDefault();
     try {
       await this.authenticationService.signIn({ username: this.username, password: this.password });
       await this.electronService.main();
