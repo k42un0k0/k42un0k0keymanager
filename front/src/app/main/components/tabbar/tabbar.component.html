@@ -8,9 +8,15 @@
   </div>
 </div>
 <div class="in-window-frame">
-  <button class="button button-down" (click)="logout()" mat-button aria-label="Example icon button with a menu icon">
+  <button class="button button-down" [matMenuTriggerFor]="menu" mat-button
+    aria-label="Example icon button with a menu icon">
     <mat-icon class="window-close" aria-hidden="false" aria-label="Example home icon"> keyboard_arrow_down </mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="export()">エクスポート</button>
+    <button mat-menu-item>インポート</button>
+    <button mat-menu-item (click)="logout()">ログアウト</button>
+  </mat-menu>
   <button class="button button-close" (click)="closeWindow()" mat-button
     aria-label="Example icon button with a menu icon">
     <mat-icon class="window-close" aria-hidden="false" aria-label="Example home icon">close </mat-icon>

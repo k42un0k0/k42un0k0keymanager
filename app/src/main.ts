@@ -1,6 +1,12 @@
 import path from 'path';
 import { app as electronApp, BrowserWindow } from 'electron';
-import { cipherSerciseListener, iconSerciseListener, keySerciseListener, windowManagerListener } from './listener';
+import {
+  cipherSerciseListener,
+  csvSerciseListener,
+  iconSerciseListener,
+  keySerciseListener,
+  windowManagerListener,
+} from './listener';
 import { registerAutoReload } from './reload';
 import { ipcService, windowManager } from './singleton';
 
@@ -12,6 +18,7 @@ function main(): void {
     ...keySerciseListener,
     ...iconSerciseListener,
     ...cipherSerciseListener,
+    ...csvSerciseListener,
   });
   void electronApp.whenReady().then(() => {
     void windowManager.initializeWindow();
