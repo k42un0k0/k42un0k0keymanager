@@ -1,8 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import { CHANNELS } from 'lib';
 
-contextBridge.exposeInMainWorld('process', { env: { ...process.env } });
-
 const main = {
   windowService: {
     async close(): Promise<any> {

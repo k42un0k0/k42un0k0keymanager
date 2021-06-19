@@ -12,9 +12,6 @@ export const CHANNELS = {
     cipher: 'CIPHER_SERVISE/CIPHER',
     decipher: 'CIPHER_SERVISE/DECIPHER',
   },
-  csvService: {
-    parse: 'CSV_SERVISE/parse',
-  },
   keyService: {
     find: 'KEY_SERVICE/FIND',
     create: 'KEY_SERVICE/CREATE',

@@ -1,10 +1,9 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { CsvService } from 'src/app/base/electron/csv.service';
+import parse from 'csv-parse';
 import { ElectronService } from 'src/app/base/electron/electron.service';
 import { AuthenticationService } from 'src/app/base/services/authentication.service';
 import { TabService } from 'src/app/main/services/tab.service';
-
 @Component({
   selector: 'app-tabbar',
   templateUrl: './tabbar.component.html',
@@ -16,8 +15,7 @@ export class TabbarComponent {
   constructor(
     private electronService: ElectronService,
     private authenticationService: AuthenticationService,
-    public tabService: TabService,
-    private csvService: CsvService
+    public tabService: TabService
   ) {}
 
   _onClickHome(): void {
@@ -34,7 +32,7 @@ export class TabbarComponent {
     moveItemInArray(this.tabService.tabs, event.previousIndex, event.currentIndex);
   }
   export() {
-    this.csvService.parse('1,2,3').then((r) => {
+    parse('1,2,3', (_, r) => {
       console.log(r);
     });
   }

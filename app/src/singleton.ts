@@ -1,6 +1,5 @@
 import { app as electronApp } from 'electron';
 import { CipherService } from './ipc/cipher.service';
-import { CsvService } from './ipc/csv.service';
 import { IconService } from './ipc/icon.service';
 import { KeyService } from './ipc/key.service';
 import { App } from './lib/app';
@@ -13,4 +12,3 @@ export const ipcService: IpcService = new IpcService();
 export const iconService: IconService = new IconService();
 export const cipherService: CipherService = new CipherService();
 export const keyService: KeyService = new KeyService(cipherService);
-export const csvService: CsvService = new CsvService();
