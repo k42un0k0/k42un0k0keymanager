@@ -88,7 +88,9 @@
               "crypto-js/lib-typedarrays",
               "crypto-js/hmac-sha256",
               "crypto",
-              "util"
+              "util",
+              "lib",
+              "csv"
             ]
           },
           "configurations": {
@@ -110,7 +112,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1.1mb"
+                  "maximumError": "1.2mb"
                 },
                 {
                   "type": "anyComponentStyle",
