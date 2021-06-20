@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MutableModel } from '@aws-amplify/datastore';
 import { CipherService } from 'src/app/base/electron/cipher.service';
 import { KeyService } from 'src/app/base/electron/key.service';
 import { OuterAccount } from 'src/models';
@@ -9,12 +10,16 @@ import { OuterAccount } from 'src/models';
 export class OuterAccountService {
   constructor(private keyService: KeyService, private cipherService: CipherService) {}
   async encrypt(model: OuterAccount) {
-    const key = await this.keyService.find(model.userAccount.id);
+    return OuterAccount.copyOf(model, await this.encryptMutator(model.password, model.userAccount.id));
+  }
+
+  async encryptMutator(password: string, userAccountID: string) {
+    const key = await this.keyService.find(userAccountID);
     if (key == null) throw new Error('aaaa');
-    const encryptedPassword = this.cipherService.cipher(key, model.password);
-    return OuterAccount.copyOf(model, (d) => {
+    const encryptedPassword = this.cipherService.cipher(key, password);
+    return (d: MutableModel<OuterAccount>) => {
       d.password = encryptedPassword;
-    });
+    };
   }
 
   async decrypt(model: OuterAccount) {

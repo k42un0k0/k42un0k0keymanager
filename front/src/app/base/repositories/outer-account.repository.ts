@@ -17,7 +17,14 @@ export class OuterAccountRepository extends AbstractRepository<OuterAccount> {
   }
 
   async update(model: OuterAccount, mutator: (draft: MutableModel<OuterAccount>) => void): Promise<OuterAccount> {
-    return this.save(OuterAccount.copyOf(model, mutator));
+    const newModel = OuterAccount.copyOf(model, mutator);
+    const passwordMutator = await this.outerAccount.encryptMutator(newModel.password, newModel.userAccount.id);
+    return super.save(
+      OuterAccount.copyOf(model, (d) => {
+        mutator(d);
+        passwordMutator(d);
+      })
+    );
   }
 
   async get(id: string): Promise<OuterAccount | undefined> {

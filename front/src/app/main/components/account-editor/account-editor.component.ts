@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { urlUtils } from 'lib';
 import { BehaviorSubject, from } from 'rxjs';
-import { debounceTime, map, mergeMap } from 'rxjs/operators';
+import { catchError, debounceTime, map, mergeMap } from 'rxjs/operators';
 import { IconService } from 'src/app/base/electron/icon.service';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
 import { OuterAccount, UserAccount } from 'src/models';
@@ -37,7 +37,13 @@ export class AccountEditorComponent {
       .pipe(
         debounceTime(1000),
         mergeMap((v) => {
-          return from(this.iconService.getFromUrl(v));
+          console.log(v);
+          this.iconService.getFromUrl(v).then(console.log);
+          return from(
+            this.iconService.getFromUrl(v).catch(() => {
+              return '';
+            })
+          );
         }),
         map(urlUtils.complementProtocol)
       )

@@ -19,25 +19,34 @@ export class CipherService extends ICipherService {
   }
 
   cipher(key: string, plaintext: string): string {
-    const iv = this._generateIv();
-    const cipher = crypto.createCipheriv(this._algolithm, Buffer.from(key, this._cipherEncode), iv);
-    let encrypted = cipher.update(plaintext, this._plaintextEncode, this._cipherEncode);
-    encrypted += cipher.final(this._cipherEncode);
+    try {
+      const iv = this._generateIv();
+      const cipher = crypto.createCipheriv(this._algolithm, Buffer.from(key, this._cipherEncode), iv);
+      let encrypted = cipher.update(plaintext, this._plaintextEncode, this._cipherEncode);
+      encrypted += cipher.final(this._cipherEncode);
 
-    return `${iv.toString(this._cipherEncode)}${this._sepalator}${encrypted}`;
+      return `${iv.toString(this._cipherEncode)}${this._sepalator}${encrypted}`;
+    } catch (e: unknown) {
+      console.log('cipher', key, plaintext, e);
+      throw e;
+    }
   }
 
   decipher(key: string, encryptedData: string): string {
     const [iv, encryptedText] = encryptedData.split(this._sepalator);
-
-    const decipher = crypto.createDecipheriv(
-      this._algolithm,
-      Buffer.from(key, this._cipherEncode),
-      Buffer.from(iv, this._cipherEncode)
-    );
-    let decrypted = decipher.update(encryptedText, this._cipherEncode, this._plaintextEncode);
-    decrypted += decipher.final(this._plaintextEncode);
-    return decrypted;
+    try {
+      const decipher = crypto.createDecipheriv(
+        this._algolithm,
+        Buffer.from(key, this._cipherEncode),
+        Buffer.from(iv, this._cipherEncode)
+      );
+      let decrypted = decipher.update(encryptedText, this._cipherEncode, this._plaintextEncode);
+      decrypted += decipher.final(this._plaintextEncode);
+      return decrypted;
+    } catch (e: unknown) {
+      console.log('decipher', encryptedData, iv, encryptedText);
+      throw e;
+    }
   }
 
   private _generateIv(): Buffer {

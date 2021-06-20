@@ -36,14 +36,22 @@
 
 .content {
   padding: 1em;
+  overflow: hidden;
 }
 
 .providerName {
   font-size: 20px;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.userId {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 img {
+  flex-shrink: 0;
   height: 100%;
   padding: 10px;
 }

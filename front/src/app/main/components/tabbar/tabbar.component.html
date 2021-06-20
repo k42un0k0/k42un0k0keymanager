@@ -14,7 +14,7 @@
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="export()">エクスポート</button>
-    <button mat-menu-item (click)="import()">インポート</button>
+    <button mat-menu-item (click)="import()"><input type="file" value="インポート" /></button>
     <button mat-menu-item (click)="logout()">ログアウト</button>
   </mat-menu>
   <button class="button button-close" (click)="closeWindow()" mat-button
