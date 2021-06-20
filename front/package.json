@@ -1,6 +1,6 @@
 {
   "name": "front",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "./main.js",
   "scripts": {
     "ng": "ng",
@@ -34,7 +34,7 @@
     "aws-amplify": "^3.3.18",
     "csv": "^5.5.0",
     "electron-reload": "^1.5.0",
-    "lib": "^1.0.0",
+    "lib": "^1.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
