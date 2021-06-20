@@ -34,7 +34,6 @@ export class InputComponent {
   inputType: string | undefined;
 
   toggleShow(e: MouseEvent) {
-    console.log(e);
     e.stopPropagation();
     e.preventDefault();
     // @ts-ignore
@@ -48,7 +47,6 @@ export class InputComponent {
 
   constructor() {
     combineLatest([this._type, this.show]).subscribe(([t, s]) => {
-      console.log(t, s);
       this.inputType = s ? undefined : t;
     });
   }

@@ -48,16 +48,9 @@ export class SettingComponent implements OnInit {
 
   onClickEdit(): void {
     if (this.editing && this.model) {
-      this.userAccountRepository
-        .update(this.model, (model) => {
-          model.name = this.name;
-        })
-        .then((a) => {
-          console.log(a);
-        })
-        .catch((a) => {
-          console.log(a);
-        });
+      this.userAccountRepository.update(this.model, (model) => {
+        model.name = this.name;
+      });
     }
     this.editing = !this.editing;
     setTimeout(() => {

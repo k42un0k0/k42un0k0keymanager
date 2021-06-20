@@ -37,8 +37,6 @@ export class AccountEditorComponent {
       .pipe(
         debounceTime(1000),
         mergeMap((v) => {
-          console.log(v);
-          this.iconService.getFromUrl(v).then(console.log);
           return from(
             this.iconService.getFromUrl(v).catch(() => {
               return '';

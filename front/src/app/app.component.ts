@@ -9,16 +9,8 @@ import { routeAnimations } from './animations';
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations],
 })
-export class AppComponent implements OnInit {
-  ngOnInit(): void {
-    parse('1,2,3', (_, r) => {
-      console.log(r);
-    });
-  }
+export class AppComponent {
   prepareRoute(outlet: RouterOutlet): any {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
-  }
-  clickImport() {
-    console.log('import');
   }
 }

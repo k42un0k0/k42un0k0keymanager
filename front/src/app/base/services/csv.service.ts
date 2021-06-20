@@ -20,7 +20,6 @@ export class CsvService {
     const a = document.createElement('a');
     a.download = 'export.csv';
     a.href = 'data:application/octet-stream,' + encodeURIComponent(result);
-    console.log(result);
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -37,10 +36,8 @@ export class CsvService {
     const userIdIndex = head.findIndex((v) => v === 'userId');
     const passwordIndex = head.findIndex((v) => v === 'password');
     const linkIndex = head.findIndex((v) => v === 'link');
-    console.log(head);
     return await Promise.all(
       rows.map((row) => {
-        console.log(row, row[userIdIndex], userIdIndex);
         const outerAccount = new OuterAccount({
           userAccount: userAccount,
           providerName: row[providerNameIndex],
@@ -49,7 +46,6 @@ export class CsvService {
           link: row[linkIndex],
           iconPath: '',
         });
-        console.log(outerAccount);
         return this.aa.create(outerAccount);
       })
     );

@@ -36,7 +36,6 @@ export class KeyService extends IKeyService {
     const res = await dialog.showOpenDialog({ properties: ['openFile'] });
     if (res.filePaths.length !== 1 || res.canceled) return;
     const key = fs.readFileSync(res.filePaths[0], { encoding: 'utf8' });
-    console.log(key);
     await this.set(userAccountID, key);
   }
 }
