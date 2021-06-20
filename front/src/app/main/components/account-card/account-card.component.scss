@@ -1,8 +1,28 @@
 @import '_variables';
 
 :host {
-  flex: 0 0 25%;
+  flex: 0 0 auto;
+  width: 25%;
   padding: 8px;
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    width: 50%;
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    width: calc(100% / 3);
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    width: 25%;
+  }
 }
 
 .container {

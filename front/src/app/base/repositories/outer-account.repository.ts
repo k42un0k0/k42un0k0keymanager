@@ -21,12 +21,14 @@ export class OuterAccountRepository extends AbstractRepository<OuterAccount> {
   }
 
   async get(id: string): Promise<OuterAccount | undefined> {
-    return super
-      .get(id)
-      .then((v) => {
-        console.log(v);
-        return v;
-      })
-      .then((model) => (model ? this.outerAccount.decrypt(model) : model));
+    return super.get(id).then((model) => (model ? this.outerAccount.decrypt(model) : model));
+  }
+
+  async getAll(): Promise<OuterAccount[]> {
+    return super.getAll().then((model) => Promise.all(model.map((m) => this.outerAccount.decrypt(m))));
+  }
+
+  async getAllByUserAcountID(userAccountID: string) {
+    return this.getAll().then((models) => models.filter((model) => model.userAccount.id === userAccountID));
   }
 }

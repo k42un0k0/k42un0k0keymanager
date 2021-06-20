@@ -27,10 +27,11 @@
   align-content: flex-start;
   padding: 8px 8px 0;
   position: relative;
+  overflow: auto;
 }
 
 .button {
-  position: absolute;
+  position: fixed;
   bottom: 2em;
   right: 2em;
 }
