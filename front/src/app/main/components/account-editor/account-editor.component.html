@@ -1,32 +1,58 @@
-<header class="header">
-  <div class="primary title">
-    外部アカウントの作成
+<form [formGroup]="form" (ngSubmit)="save()">
+  <header class="header">
+    <div class="primary title">
+      外部アカウントの作成
+    </div>
+    <button class="button" mat-dialog-close mat-icon-button color="primary"
+      aria-label="Example icon button with a menu icon">
+      <mat-icon> close </mat-icon>
+    </button>
+  </header>
+  <div formGroupName="outerAccount">
+    <app-input label="Provider Name" [disabled]="disabled" formControlName="providerName">
+    </app-input>
+    <app-input label="User ID" [disabled]="disabled" formControlName="userId"></app-input>
   </div>
-  <button class="button" mat-dialog-close mat-icon-button color="primary"
-    aria-label="Example icon button with a menu icon">
-    <mat-icon> close </mat-icon>
-  </button>
-</header>
-<div>
-  <app-input label="Provider Name" [disabled]="disabled" [(value)]="providerName"></app-input>
-</div>
-<form>
-  <app-input label="User ID" [disabled]="disabled" [(value)]="userId"></app-input>
-  <app-input type="password" label="Password" [disabled]="disabled" [(value)]="password"></app-input>
-  <div class="link-group">
-    <app-input label="Link" [disabled]="disabled" [value]="link" (valueChange)="onChangeLink($event)"></app-input>
-    <img [src]="iconPath" alt="provider icon" />
+  <mat-slide-toggle class="gray-text" formControlName="isGeneratePassword" (ngModelChange)="genPassworda()">
+    パスワードを自動で生成する
+  </mat-slide-toggle>
+  <div class="gray-text" *ngIf="isGeneratePassword?.value">
+    <div formGroupName="check">
+      <mat-checkbox formControlName="lowercase">
+        英小文字含む
+      </mat-checkbox>
+      <mat-checkbox formControlName="uppercase">
+        英大文字含む
+      </mat-checkbox>
+      <mat-checkbox formControlName="numeric">
+        数字含む
+      </mat-checkbox>
+      <mat-checkbox formControlName="symbol">
+        記号含む
+      </mat-checkbox>
+    </div>
+    <div>
+      <button mat-button color="primary" type="button" (click)="genPassworda()">再生成する</button>
+    </div>
+  </div>
+  <div formGroupName="outerAccount">
+    <app-input type="password" label="Password" [disabled]="disabled" formControlName="password"></app-input>
+    <div class="link-group">
+      <app-input label="Link" [disabled]="disabled" formControlName="link" (ngModelChange)="onChangeLink($event)">
+      </app-input>
+      <img [src]="outerAccount?.value.iconPath" alt="provider icon" />
+    </div>
   </div>
   <div *ngIf="disabled; else submitBlock" class="form-action">
     <button (click)="toggleEdit()" mat-button color="primary">編集</button>
   </div>
   <ng-template #submitBlock>
     <div class="form-action">
-      <button (click)="save($event)" mat-button color="primary">保存</button>
+      <button mat-button color="primary" type="submit">保存</button>
       <button (click)="toggleEdit()" mat-button color="primary">キャンセル</button>
     </div>
   </ng-template>
   <div *ngIf="disabled" class="form-action">
-    <button (click)="destroyAccount($event)" mat-button color="primary">削除</button>
+    <button (click)="destroyAccount()" mat-button color="primary">削除</button>
   </div>
 </form>

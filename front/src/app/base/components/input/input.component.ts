@@ -1,11 +1,19 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject, combineLatest } from 'rxjs';
+
+const MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => InputComponent),
+  multi: true,
+};
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
+  providers: [MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR],
   styleUrls: ['./input.component.scss'],
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor {
   @Input()
   disabled!: boolean;
 
@@ -32,6 +40,7 @@ export class InputComponent {
   show = new BehaviorSubject<boolean>(false);
 
   inputType: string | undefined;
+  _controlValueAccessorChangeFn?: (value: string) => void;
 
   toggleShow(e: MouseEvent) {
     e.stopPropagation();
@@ -44,14 +53,28 @@ export class InputComponent {
     }, 1);
     this.show.next(!this.show.value);
   }
+  valueAccessor: ControlValueAccessor;
 
   constructor() {
+    this.valueAccessor = this;
     combineLatest([this._type, this.show]).subscribe(([t, s]) => {
       this.inputType = s ? undefined : t;
     });
   }
+  writeValue(value: string): void {
+    this.value = value;
+  }
+  registerOnChange(fn: any): void {
+    this._controlValueAccessorChangeFn = fn;
+  }
+  registerOnTouched(fn: any): void {
+    // this._onTouched = fn;
+  }
 
   focus(): void {
     this.input.nativeElement.focus();
+  }
+  change(value: string) {
+    this._controlValueAccessorChangeFn && this._controlValueAccessorChangeFn(value);
   }
 }

@@ -1,10 +1,12 @@
 import { Component, Inject } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { urlUtils } from 'lib';
 import { BehaviorSubject, from } from 'rxjs';
-import { catchError, debounceTime, map, mergeMap } from 'rxjs/operators';
+import { debounceTime, map, mergeMap } from 'rxjs/operators';
 import { IconService } from 'src/app/base/electron/icon.service';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
+import { genPassword } from 'src/app/utils/password';
 import { OuterAccount, UserAccount } from 'src/models';
 
 @Component({
@@ -13,12 +15,33 @@ import { OuterAccount, UserAccount } from 'src/models';
   styleUrls: ['./account-editor.component.scss'],
 })
 export class AccountEditorComponent {
-  providerName = '';
-  userId = '';
-  password = '';
-  link = '';
   iconSubject = new BehaviorSubject('');
-  iconPath = '';
+
+  form = new FormGroup({
+    isGeneratePassword: new FormControl(true),
+    outerAccount: new FormGroup({
+      providerName: new FormControl(''),
+      userId: new FormControl(''),
+      password: new FormControl(''),
+      link: new FormControl(''),
+      iconPath: new FormControl(''),
+    }),
+    check: new FormGroup({
+      lowercase: new FormControl(true),
+      uppercase: new FormControl(true),
+      numeric: new FormControl(true),
+      symbol: new FormControl(true),
+    }),
+  });
+  get isGeneratePassword() {
+    return this.form.get('isGeneratePassword');
+  }
+  get outerAccount() {
+    return this.form.get('outerAccount');
+  }
+  get check() {
+    return this.form.get('check');
+  }
 
   editing = false;
   creating = false;
@@ -46,7 +69,10 @@ export class AccountEditorComponent {
         map(urlUtils.complementProtocol)
       )
       .subscribe((v) => {
-        this.iconPath = v;
+        this.outerAccount?.setValue({
+          ...this.outerAccount?.value,
+          iconPath: v,
+        });
       });
 
     if (this.data.outerAccountID) {
@@ -63,27 +89,42 @@ export class AccountEditorComponent {
   toggleEdit(): void {
     this.editing = !this.editing;
   }
+
+  genPassworda() {
+    if (this.isGeneratePassword?.value === true) {
+      this.outerAccount?.setValue({
+        ...this.outerAccount?.value,
+        password: genPassword(8, this.check?.value),
+      });
+    } else {
+      this.outerAccount?.setValue({
+        ...this.outerAccount?.value,
+        password: '',
+      });
+    }
+  }
   private _parseOuterAccountToProperty(outerAccount: OuterAccount): void {
-    this.providerName = outerAccount.providerName;
-    this.userId = outerAccount.userId;
-    this.password = outerAccount.password;
-    this.link = outerAccount.link;
+    this.outerAccount?.setValue({
+      providerName: outerAccount.providerName,
+      userId: outerAccount.userId,
+      password: outerAccount.password,
+      link: outerAccount.link,
+      iconPath: outerAccount.iconPath,
+    });
     this.iconSubject.next(outerAccount.link);
-    this.iconPath = outerAccount.iconPath;
   }
 
   onChangeLink(v: string): void {
-    this.link = v;
     this.iconSubject.next(v);
   }
 
-  async save(e: MouseEvent): Promise<void> {
-    e.preventDefault();
-    if (this.creating) {
-      this._create();
-    } else {
-      this._update();
-    }
+  async save(): Promise<void> {
+    console.log(this.form);
+    // if (this.creating) {
+    //   this._create();
+    // } else {
+    //   this._update();
+    // }
   }
   private async _update(): Promise<void> {
     if (this.data.outerAccountID) {
@@ -91,11 +132,7 @@ export class AccountEditorComponent {
       if (outerAccount) {
         await this.outerAccountRepository.update(outerAccount, (v) => {
           v.userAccount = this.data.userAccount;
-          v.providerName = this.providerName;
-          v.userId = this.userId;
-          v.password = this.password;
-          v.link = this.link;
-          v.iconPath = this.iconPath;
+          v = { ...v, ...this.outerAccount?.value };
         });
 
         this.toggleEdit();
@@ -105,20 +142,15 @@ export class AccountEditorComponent {
   private async _create(): Promise<void> {
     await this.outerAccountRepository.create(
       new OuterAccount({
+        ...this.outerAccount?.value,
         userAccount: this.data.userAccount,
-        providerName: this.providerName,
-        userId: this.userId,
-        password: this.password,
-        link: this.link,
-        iconPath: this.iconPath,
       })
     );
 
     this.dialogRef.close();
   }
 
-  async destroyAccount(e: MouseEvent): Promise<void> {
-    e.preventDefault();
+  async destroyAccount(): Promise<void> {
     if (this.data.outerAccountID) {
       const outerAccount = await this.outerAccountRepository.get(this.data.outerAccountID);
       if (outerAccount) {
