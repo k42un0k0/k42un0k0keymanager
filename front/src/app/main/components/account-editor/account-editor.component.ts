@@ -18,7 +18,8 @@ export class AccountEditorComponent {
   iconSubject = new BehaviorSubject('');
 
   form = new FormGroup({
-    isGeneratePassword: new FormControl(true),
+    passwordLength: new FormControl(8),
+    isGeneratePassword: new FormControl(false),
     outerAccount: new FormGroup({
       providerName: new FormControl(''),
       userId: new FormControl(''),
@@ -33,6 +34,9 @@ export class AccountEditorComponent {
       symbol: new FormControl(true),
     }),
   });
+  get passwordLength() {
+    return this.form.get('passwordLength');
+  }
   get isGeneratePassword() {
     return this.form.get('isGeneratePassword');
   }
@@ -88,13 +92,20 @@ export class AccountEditorComponent {
 
   toggleEdit(): void {
     this.editing = !this.editing;
+    if (this.data.outerAccountID) {
+      this.outerAccountRepository.get(this.data.outerAccountID).then((outerAccount) => {
+        if (outerAccount) {
+          this._parseOuterAccountToProperty(outerAccount);
+        }
+      });
+    }
   }
 
   genPassworda() {
     if (this.isGeneratePassword?.value === true) {
       this.outerAccount?.setValue({
         ...this.outerAccount?.value,
-        password: genPassword(8, this.check?.value),
+        password: genPassword(this.passwordLength?.value, this.check?.value),
       });
     } else {
       this.outerAccount?.setValue({
@@ -115,7 +126,7 @@ export class AccountEditorComponent {
   }
 
   onChangeLink(v: string): void {
-    this.iconSubject.next(v);
+    if (v !== this.iconSubject.value) this.iconSubject.next(v);
   }
 
   async save(): Promise<void> {

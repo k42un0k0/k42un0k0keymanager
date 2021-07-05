@@ -13,10 +13,11 @@
     </app-input>
     <app-input label="User ID" [disabled]="disabled" formControlName="userId"></app-input>
   </div>
-  <mat-slide-toggle class="gray-text" formControlName="isGeneratePassword" (ngModelChange)="genPassworda()">
+  <mat-slide-toggle *ngIf="!disabled" class="gray-text" formControlName="isGeneratePassword"
+    (ngModelChange)="genPassworda()">
     パスワードを自動で生成する
   </mat-slide-toggle>
-  <div class="gray-text" *ngIf="isGeneratePassword?.value">
+  <div class="gray-text" *ngIf="!disabled&&isGeneratePassword?.value">
     <div formGroupName="check">
       <mat-checkbox formControlName="lowercase">
         英小文字含む
@@ -32,6 +33,7 @@
       </mat-checkbox>
     </div>
     <div>
+      <input type="text" inputmode="decimel" pattern="\d{1,5}" title="Only digits" formControlName="passwordLength" />
       <button mat-button color="primary" type="button" (click)="genPassworda()">再生成する</button>
     </div>
   </div>
@@ -49,7 +51,7 @@
   <ng-template #submitBlock>
     <div class="form-action">
       <button mat-button color="primary" type="submit">保存</button>
-      <button (click)="toggleEdit()" mat-button color="primary">キャンセル</button>
+      <button *ngIf="editing" (click)="toggleEdit()" mat-button color="primary">キャンセル</button>
     </div>
   </ng-template>
   <div *ngIf="disabled" class="form-action">
