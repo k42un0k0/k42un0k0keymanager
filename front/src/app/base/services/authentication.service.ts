@@ -1,9 +1,9 @@
 import { promisify } from 'util';
 import { Injectable } from '@angular/core';
 import { CognitoUser } from '@aws-amplify/auth';
-import { Auth } from 'aws-amplify';
+import { Auth, DataStore } from 'aws-amplify';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 
 type SignUpArg = { username: string; password: string; email: string };
@@ -47,7 +47,12 @@ export class AuthenticationService {
   get isSignedIn(): Observable<boolean> {
     return from(this.initializeResult).pipe(
       mergeMap(() => {
-        return this.user.pipe(map((v) => !!v));
+        return this.user.pipe(
+          map((v) => !!v),
+          tap((v) => {
+            if (v === false) DataStore.clear();
+          })
+        );
       })
     );
   }

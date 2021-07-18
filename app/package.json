@@ -1,5 +1,5 @@
 {
-  "name": "k42un0k0passwordmanager",
+  "name": "app",
   "version": "1.1.0",
   "main": "./dist/app/main.js",
   "scripts": {
@@ -16,6 +16,7 @@
   },
   "private": true,
   "build": {
+    "productName": "K42un0k0 Password Manager",
     "appId": "com.electron.k42un0k0passwordmanager",
     "mac": {
       "category": "your.app.category.type",
