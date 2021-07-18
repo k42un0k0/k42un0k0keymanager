@@ -79,9 +79,9 @@ jobs:
       matrix:
         map:
           - os: macos-latest
-            prefix: ./build/k42un0k0passwordmanager-
-            suffix: -mac.zip
-            name: k42un0k0passwordmanager-mac.zip
+            prefix: './build/K42un0k0 Password Manager-'
+            suffix: .dmg
+            name: k42un0k0passwordmanager-mac.dmg
           - os: windows-latest
             prefix: './build/K42un0k0 Password Manager Setup '
             suffix: .exe
