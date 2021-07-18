@@ -4,6 +4,9 @@ import { listener } from './listener';
 import { registerAutoReload } from './reload';
 import { ipcService, windowManager } from './singleton';
 
+function windowIsNone(): boolean {
+  return BrowserWindow.getAllWindows().length === 0;
+}
 function main(): void {
   if (!electronApp.isPackaged) registerAutoReload(path.join(__dirname, '..'));
 
@@ -23,10 +26,12 @@ function main(): void {
   });
 
   electronApp.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
+    if (windowIsNone()) {
       void windowManager.initializeWindow();
     }
   });
 }
 
-main();
+if (windowIsNone()) {
+  main();
+}

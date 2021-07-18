@@ -18,7 +18,13 @@
   "build": {
     "appId": "com.electron.k42un0k0passwordmanager",
     "mac": {
-      "category": "your.app.category.type"
+      "category": "your.app.category.type",
+      "target": "dmg",
+      "icon": "../doc/icon.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "../doc/icon-trans.png"
     },
     "files": [
       "dist/**/*"

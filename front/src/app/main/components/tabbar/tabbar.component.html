@@ -1,7 +1,8 @@
 <div class="menu in-window-frame">
-  <div class="home-wrapper">
+  <div class="home-wrapper" role="button">
     <mat-icon class="home" (click)="_onClickHome()" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
   </div>
+
   <div class="tab-wrapper" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
     <app-tab *ngFor="let tab of tabService.tabs; index as i" cdkDrag [tab]="tab" (click)="tabService.clickTab(i)"
       (clickClose)="tabService.closeTab(i)"></app-tab>

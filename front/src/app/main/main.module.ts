@@ -6,11 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { ComponentsModule } from './components/components.module';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import { OuterAccountListComponent } from './outer-account-list/outer-account-list.component';
 import { BaseModule } from 'src/app/base/base.module';
 
 @NgModule({
-  declarations: [MainComponent, OuterAccountListComponent],
+  declarations: [MainComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

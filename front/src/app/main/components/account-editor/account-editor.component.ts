@@ -102,17 +102,10 @@ export class AccountEditorComponent {
   }
 
   genPassworda() {
-    if (this.isGeneratePassword?.value === true) {
-      this.outerAccount?.setValue({
-        ...this.outerAccount?.value,
-        password: genPassword(this.passwordLength?.value, this.check?.value),
-      });
-    } else {
-      this.outerAccount?.setValue({
-        ...this.outerAccount?.value,
-        password: '',
-      });
-    }
+    this.outerAccount?.setValue({
+      ...this.outerAccount?.value,
+      password: genPassword(this.passwordLength?.value, this.check?.value),
+    });
   }
   private _parseOuterAccountToProperty(outerAccount: OuterAccount): void {
     this.outerAccount?.setValue({

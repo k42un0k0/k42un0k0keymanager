@@ -13,8 +13,7 @@
     </app-input>
     <app-input label="User ID" [disabled]="disabled" formControlName="userId"></app-input>
   </div>
-  <mat-slide-toggle *ngIf="!disabled" class="gray-text" formControlName="isGeneratePassword"
-    (ngModelChange)="genPassworda()">
+  <mat-slide-toggle *ngIf="!disabled" class="gray-text" formControlName="isGeneratePassword">
     パスワードを自動で生成する
   </mat-slide-toggle>
   <div class="gray-text" *ngIf="!disabled&&isGeneratePassword?.value">
@@ -34,7 +33,7 @@
     </div>
     <div>
       <input type="text" inputmode="decimel" pattern="\d{1,5}" title="Only digits" formControlName="passwordLength" />
-      <button mat-button color="primary" type="button" (click)="genPassworda()">再生成する</button>
+      <button mat-button color="primary" type="button" (click)="genPassworda()">生成する</button>
     </div>
   </div>
   <div formGroupName="outerAccount">
