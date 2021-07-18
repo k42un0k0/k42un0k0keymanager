@@ -107,7 +107,7 @@ jobs:
       - name: Set output
         id: vars
         run: |
-          echo ::set-output name=asset_path::${prefix}${github_ref##*/v}${suffix}
+          echo ::set-output name=asset_path::${prefix}${GITHUB_REF##*/v}${suffix}
         env:
           prefix: ${{ matrix.map.prefix }}
           suffix: ${{ matrix.map.suffix }}
