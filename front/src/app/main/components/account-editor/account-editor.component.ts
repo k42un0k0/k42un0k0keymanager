@@ -123,12 +123,11 @@ export class AccountEditorComponent {
   }
 
   async save(): Promise<void> {
-    console.log(this.form);
-    // if (this.creating) {
-    //   this._create();
-    // } else {
-    //   this._update();
-    // }
+    if (this.creating) {
+      this._create();
+    } else {
+      this._update();
+    }
   }
   private async _update(): Promise<void> {
     if (this.data.outerAccountID) {
