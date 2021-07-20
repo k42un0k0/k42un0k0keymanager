@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "./dist/app/main.js",
   "scripts": {
     "dev": "run-p watch start",
@@ -40,7 +40,7 @@
     "csv": "^5.5.0",
     "jsdom": "^16.5.3",
     "keytar": "^7.7.0",
-    "lib": "^1.2.0"
+    "lib": "^1.2.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
