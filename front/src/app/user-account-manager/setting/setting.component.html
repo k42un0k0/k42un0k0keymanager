@@ -1,10 +1,10 @@
 <div class="row-username">
-  <app-input #input class="input" [disabled]="!editing" [(value)]="name" label="ユーザー名">
+  <app-input name="name" #input class="input" [disabled]="!editing" [(ngModel)]="name" label="ユーザー名">
   </app-input>
 
-  <button *ngIf="editing; else elseBlock;" mat-button color="primary" (click)="onClickEdit()">保存</button>
+  <button *ngIf="editing; else elseBlock;" mat-button type="submit" color="primary" (click)="onClickEdit()">保存</button>
   <ng-template #elseBlock>
-    <button mat-button color="primary" (click)="onClickEdit()">編集</button>
+    <button mat-button color="primary" data-testid="edit" (click)="onClickEdit()">編集</button>
   </ng-template>
 </div>
 <div class="row row-key">

@@ -10,11 +10,10 @@ import { UserAccount } from 'src/models';
 })
 export class CreateComponent {
   name = '';
-  password = '';
 
   constructor(private userAccountRepository: UserAccountRepository, private router: Router) {}
 
-  async submit(): Promise<void> {
+  async submit() {
     const model = new UserAccount({ name: this.name, OuterAccounts: [] });
     await this.userAccountRepository.create(model);
     this.router.navigate(['/user-account-manager/setting/' + model.id]);

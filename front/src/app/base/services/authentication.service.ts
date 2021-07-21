@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { CognitoUser } from '@aws-amplify/auth';
 import { Auth, DataStore } from 'aws-amplify';
 import { BehaviorSubject, from, Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
-import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
+import { map, mergeMap } from 'rxjs/operators';
 
 type SignUpArg = { username: string; password: string; email: string };
 type ConfirmSignUpArg = { username: string; code: string };
@@ -22,7 +21,7 @@ type User = {
 export class AuthenticationService {
   user = new BehaviorSubject<User | null>(null);
 
-  constructor(private userAccountRepository: UserAccountRepository) {
+  constructor() {
     this.initializeResult = Auth.currentAuthenticatedUser()
       .then(async (v) => {
         await this.setUserFromCognitoUser(v);
@@ -47,12 +46,7 @@ export class AuthenticationService {
   get isSignedIn(): Observable<boolean> {
     return from(this.initializeResult).pipe(
       mergeMap(() => {
-        return this.user.pipe(
-          map((v) => !!v),
-          tap((v) => {
-            if (v === false) DataStore.clear();
-          })
-        );
+        return this.user.pipe(map((v) => !!v));
       })
     );
   }
@@ -83,6 +77,7 @@ export class AuthenticationService {
     const cognitoUser: CognitoUser = await Auth.signIn(username, password);
     console.log('sign in');
     await this.setUserFromCognitoUser(cognitoUser);
+    DataStore.clear();
   }
 
   async resendConfirmationCode({ username }: ResendConfirmationCodeArg): Promise<void> {

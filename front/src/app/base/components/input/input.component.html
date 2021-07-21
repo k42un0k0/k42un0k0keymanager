@@ -1,10 +1,10 @@
-<label class="secondary">
+<label [for]="name" class="secondary">
   {{label}}
 </label>
 <div class="input-container">
   <div [ngClass]="[(_type | async)||'','input']">
-    <input #input [type]='inputType' class="primary" [disabled]="disabled" [appAutoFocus]="autoFocus" type="text"
-      [ngModel]="value" (ngModelChange)="change($event)" />
+    <input #input [id]="name" [type]='inputType' class="primary" [disabled]="disabled" [appAutoFocus]="autoFocus"
+      type="text" [ngModel]="value" (ngModelChange)="change($event)" />
   </div>
   <button type="button" (click)="toggleShow($event)" class="button" mat-dialog-close mat-icon-button color="primary"
     aria-label="Example icon button with a menu icon">

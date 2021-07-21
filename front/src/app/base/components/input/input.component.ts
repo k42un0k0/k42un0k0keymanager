@@ -26,6 +26,9 @@ export class InputComponent implements ControlValueAccessor {
   @Input()
   value!: string;
 
+  @Input()
+  name!: string;
+
   @Output() valueChange = new EventEmitter<string>();
 
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
