@@ -3,7 +3,6 @@ import type { App } from './app';
 import { AuthWindow } from './window/auth-window';
 import { InitialWindow } from './window/initial-window';
 import { MainWindow } from './window/main-window';
-import { SplashWindow } from './window/splash-window';
 import { UserAccountManagerWindow } from './window/user-account-manager-window';
 
 export enum WindowEnum {
@@ -22,19 +21,20 @@ export class WindowManager {
     await browser.loadURL(url);
   }
 
-  async initializeWindow(): Promise<void> {
+  initializeWindow(): void {
     if (this.app.isProd) {
-      const splash = new SplashWindow().configure();
-      const initial = new InitialWindow().configure();
-      initial[0].hide();
-      void splash[0].loadURL(splash[1]);
-      await initial[0].loadURL(initial[1]);
-      splash[0].close();
-      initial[0].show();
-      initial[0].reload();
+      const [initialBrowser, initialUrl] = new InitialWindow().configure();
+
+      void initialBrowser.loadURL(initialUrl);
+      initialBrowser.once('ready-to-show', () => {
+        initialBrowser.show();
+      });
     } else {
       const [browser, url] = new InitialWindow().configure();
-      await browser.loadURL(url);
+      void browser.loadURL(url);
+      browser.once('ready-to-show', () => {
+        browser.show();
+      });
     }
   }
 

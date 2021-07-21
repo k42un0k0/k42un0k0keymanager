@@ -12,7 +12,7 @@ function main(): void {
 
   ipcService.addEventListener(listener);
   void electronApp.whenReady().then(() => {
-    void windowManager.initializeWindow();
+    windowManager.initializeWindow();
   });
 
   electronApp.on('browser-window-created', (_, browserWindow) => {
@@ -27,7 +27,7 @@ function main(): void {
 
   electronApp.on('activate', () => {
     if (windowIsNone()) {
-      void windowManager.initializeWindow();
+      windowManager.initializeWindow();
     }
   });
 }

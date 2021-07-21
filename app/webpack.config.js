@@ -1,6 +1,5 @@
 const path = require('path');
 
-const CopyPlugin = require('copy-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
@@ -43,9 +42,5 @@ module.exports = {
     ],
   },
   externals: [nodeExternals()],
-  plugins: [
-    new CopyPlugin({
-      patterns: [{ from: './src/splash.html', to: 'splash.html' }],
-    }),
-  ],
+  plugins: [],
 };

@@ -10,6 +10,7 @@ export class InitialWindow extends MyWindow {
     webPreferences: {
       preload: preloadPath,
     },
+    show: false,
     frame: false,
     resizable: false,
     backgroundColor: '#333',
