@@ -4,27 +4,17 @@ import { IIconService } from 'lib';
 
 export class IconService extends IIconService {
   async getFromUrl(url: string): Promise<string> {
-    try {
-      const res = await axios.get(url);
-      const dom = new jsdom.JSDOM(res.data as string);
-      return this._fromShortcutIcon(dom, new URL(url).origin) ?? this._fromNoSetting(new URL(url));
-    } catch (e: unknown) {
-      return this._fromNoSetting(new URL(url));
-    }
+    const urlInstance = new URL(url);
+    return (await this._fromDom(urlInstance)) ?? this._fromNoSetting(urlInstance);
   }
 
-  private _fromShortcutIcon(dom: jsdom.JSDOM, origin: string): string | undefined {
+  private async _fromDom(url: URL): Promise<string | undefined> {
+    const res = await axios.get(url.toString());
+    const dom = new jsdom.JSDOM(res.data as string);
     const link = dom.window.document.querySelector<HTMLLinkElement>('link[rel="shortcut icon"]');
-    if (link != null && !link.href.includes('http')) {
-      if (link.href.startsWith('//')) {
-        return 'https:' + link.href;
-      }
-      if (link.href.startsWith('/')) {
-        return origin + link.href;
-      }
-      return origin + '/' + link.href;
+    if (link != null) {
+      return new URL(link.href, url.origin).toString();
     }
-    return link?.href;
   }
 
   private _fromNoSetting(url: URL): string {

@@ -7,12 +7,12 @@ describe('icon.service', () => {
   });
   describe('getFromUrl', () => {
     it('get from link tag', async () => {
-      expect(await service.getFromUrl('http://twitter.com/login')).toEqual(
+      expect(await service.getFromUrl('https://twitter.com/login')).toEqual(
         'https://abs.twimg.com/favicons/twitter.ico'
       );
     });
-    it('compute favicon link', async () => {
-      expect(await service.getFromUrl('http://example.com/login')).toEqual('http://example.com/favicon.ico');
+    it('compute favicon link', () => {
+      void expect(service.getFromUrl('http://example.com/login')).rejects.toThrow();
     });
   });
 });

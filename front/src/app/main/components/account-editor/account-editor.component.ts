@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { urlUtils } from 'lib';
 import { BehaviorSubject, from } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
 import { IconService } from 'src/app/base/electron/icon.service';
@@ -69,8 +68,7 @@ export class AccountEditorComponent {
               return '';
             })
           );
-        }),
-        map(urlUtils.complementProtocol)
+        })
       )
       .subscribe((v) => {
         this.outerAccount?.setValue({
