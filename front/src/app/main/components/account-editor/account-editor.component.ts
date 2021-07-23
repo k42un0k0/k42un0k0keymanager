@@ -133,7 +133,7 @@ export class AccountEditorComponent {
       if (outerAccount) {
         await this.outerAccountRepository.update(outerAccount, (v) => {
           v.userAccount = this.data.userAccount;
-          v = { ...v, ...this.outerAccount?.value };
+          Object.assign(v, this.outerAccount?.value);
         });
 
         this.toggleEdit();
