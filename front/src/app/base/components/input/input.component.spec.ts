@@ -9,25 +9,25 @@ describe('InputComponent', () => {
   let component: InputComponent;
   let fixture: ComponentFixture<InputComponent>;
 
-  // beforeEach(async () => {
-  //   await TestBed.configureTestingModule({
-  //     imports: [BaseModule],
-  //   }).compileComponents();
-  // });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [BaseModule],
+    }).compileComponents();
+  });
 
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(InputComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  // });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(InputComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
-  // it('should focus input', () => {
-  //   component.focus();
-  //   expect(document.activeElement).toBe(component.input.nativeElement);
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+  it('should focus input', () => {
+    component.focus();
+    expect(document.activeElement).toBe(component.input.nativeElement);
+  });
 
   it('accept ngModel', fakeAsync(() => {
     // setup
