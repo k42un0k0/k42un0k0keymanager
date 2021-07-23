@@ -1,8 +1,9 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, Input, Provider, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-const MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
+const MAT_APP_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => InputComponent),
   multi: true,
@@ -10,7 +11,7 @@ const MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  providers: [MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR],
+  providers: [MAT_APP_INPUT_CONTROL_VALUE_ACCESSOR],
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements ControlValueAccessor {
@@ -24,60 +25,48 @@ export class InputComponent implements ControlValueAccessor {
   label!: string;
 
   @Input()
-  value!: string;
-
-  @Input()
   name!: string;
-
-  @Output() valueChange = new EventEmitter<string>();
 
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
+  _type = new BehaviorSubject<'password' | 'text' | undefined>(undefined);
   @Input()
-  set type(v: string) {
+  set type(v: 'password' | 'text' | undefined) {
     this._type.next(v);
   }
 
-  _type = new BehaviorSubject<string | undefined>(undefined);
+  showPassword = new BehaviorSubject<boolean>(false);
 
-  show = new BehaviorSubject<boolean>(false);
-
-  inputType: string | undefined;
-  _controlValueAccessorChangeFn?: (value: string) => void;
-
-  toggleShow(e: MouseEvent) {
-    e.stopPropagation();
-    e.preventDefault();
-    // @ts-ignore
-    var ae = document.activeElement;
-    setTimeout(function () {
-      // @ts-ignore
-      ae.focus();
-    }, 1);
-    this.show.next(!this.show.value);
-  }
-  valueAccessor: ControlValueAccessor;
-
-  constructor() {
-    this.valueAccessor = this;
-    combineLatest([this._type, this.show]).subscribe(([t, s]) => {
-      this.inputType = s ? undefined : t;
-    });
-  }
-  writeValue(value: string): void {
-    this.value = value;
-  }
-  registerOnChange(fn: any): void {
-    this._controlValueAccessorChangeFn = fn;
-  }
-  registerOnTouched(fn: any): void {
-    // this._onTouched = fn;
-  }
+  currentType = combineLatest([this._type, this.showPassword]).pipe(
+    map(([t, s]) => {
+      if (t !== 'password') return t;
+      return s ? 'text' : t;
+    })
+  );
 
   focus(): void {
     this.input.nativeElement.focus();
   }
-  change(value: string) {
-    this._controlValueAccessorChangeFn && this._controlValueAccessorChangeFn(value);
+
+  toggleShowPassword() {
+    this.showPassword.next(!this.showPassword.value);
+  }
+
+  /**
+   * ControlValueAccessor
+   */
+
+  value!: string;
+
+  onChange?: (value: string) => void;
+
+  writeValue(value: string): void {
+    this.value = value;
+  }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    // this._onTouched = fn;
   }
 }
