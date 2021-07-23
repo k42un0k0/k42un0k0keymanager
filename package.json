@@ -19,7 +19,7 @@
     "prepackage": "rimraf app/dist && npm run build:lib && run-p build:app build:front && npm run-script cp-front-to-app && lerna run dist --scope app",
     "package": "lerna run dist --scope app",
     "prepare": "husky install",
-    "version-up": "lerna version"
+    "version-up": "lerna version --force-publish"
   },
   "devDependencies": {
     "cpx": "^1.5.0",
