@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { AutoFocusDirective } from './auto-focus.directive';
 
 @Component({
-  template: `
-    <h2 appAutoFocus>Something Yellow</h2>
-    <h2 [appAutoFocus]="true">The Default (Gray)</h2>
-    <h2 [appAutoFocus]="false">No Highlight</h2>
-    <h2>No Highlight</h2>
-  `,
+  template: `<input data-testid="focused" appAutoFocus value="hello" />`,
 })
 class TestComponent {}
 
@@ -30,5 +26,9 @@ describe('AutoFocusDirective', () => {
 
   it('should create an instance', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('focus a input', () => {
+    expect(document.activeElement).toBe(fixture.debugElement.query(By.css("[data-testid='focused']")).nativeElement);
   });
 });
