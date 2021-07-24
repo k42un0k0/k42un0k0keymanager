@@ -1,6 +1,7 @@
 <div class="menu in-window-frame">
   <div class="home-wrapper" role="button">
-    <mat-icon class="home" (click)="_onClickHome()" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+    <mat-icon class="home" (click)="clickHome.emit()" aria-hidden="false" aria-label="Example home icon">home
+    </mat-icon>
   </div>
 
   <div class="tab-wrapper" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">

@@ -1,60 +1,43 @@
-import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { InputComponent } from './input.component';
 import { BaseModule } from 'src/app/base/base.module';
-
 describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  async function setup() {
+    return render(InputComponent, {
       imports: [BaseModule],
-    }).compileComponents();
+      excludeComponentDeclaration: true,
+    });
+  }
+  it('should create', async () => {
+    const container = await setup();
+    expect(container.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(InputComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should focus input', async () => {
+    const container = await setup();
+    container.fixture.componentInstance.focus();
+    const input = screen.getByRole('textbox');
+    expect(document.activeElement).toBe(input);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-  it('should focus input', () => {
-    component.focus();
-    expect(document.activeElement).toBe(component.input.nativeElement);
-  });
-
-  it('accept ngModel', fakeAsync(() => {
-    // setup
-    @Component({ template: `<app-input [(ngModel)]="value"></app-input>` })
-    class ParentComponent {
-      value = '';
-    }
-    TestBed.configureTestingModule({
-      declarations: [ParentComponent],
+  it('accept ngModel', fakeAsync(async () => {
+    TestBed.resetTestingModule();
+    const container = await render(`<app-input label="Name" name="name" [(ngModel)]="value"></app-input>`, {
+      componentProperties: { value: 'hello' },
       imports: [BaseModule, FormsModule],
-    }).compileComponents();
-    const parentFixture = TestBed.createComponent(ParentComponent);
-    const parentComponent = parentFixture.componentInstance;
-    // test
-    parentComponent.value = 'hello';
-    // MEMO: ngModelが２つネストしてるため２回tickを呼び出す
-    parentFixture.detectChanges();
-    tick();
-    parentFixture.detectChanges();
-    tick();
+    });
+    // MEMO: ngModelが２つネストしてるため２回tickを呼び出す必要があるのでflushを使う
+    container.detectChanges();
+    flush();
 
-    const input = parentFixture.debugElement.query(By.css('input'));
+    const input = screen.getByLabelText('Name');
+    expect((input as HTMLInputElement).value).toBe('hello');
+    await userEvent.type(input, 'world');
+    flush();
 
-    expect(input.nativeElement.value).toBe('hello');
-
-    input.triggerEventHandler('input', { target: { value: 'world' } });
-
-    expect(parentComponent.value).toBe('world');
+    expect(container.fixture.componentInstance.value).toBe('helloworld');
   }));
 });

@@ -7,7 +7,7 @@ export class ImagePreloadDirective {
 
   @HostBinding('attr.src') @Input() src;
 
-  @HostListener('error', ['$event']) updateSrc(e: unknown) {
+  @HostListener('error', ['$event']) _updateSrc(e: unknown) {
     console.log(e);
     this.src = this.appDefault;
   }

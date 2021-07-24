@@ -16,7 +16,7 @@ const MAT_APP_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 })
 export class InputComponent implements ControlValueAccessor {
   @Input()
-  disabled!: boolean;
+  disabled?: boolean;
 
   @Input()
   autoFocus = false;
@@ -29,27 +29,27 @@ export class InputComponent implements ControlValueAccessor {
 
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
-  _type = new BehaviorSubject<'password' | 'text' | undefined>(undefined);
+  type$ = new BehaviorSubject<'password' | 'text' | undefined>(undefined);
   @Input()
   set type(v: 'password' | 'text' | undefined) {
-    this._type.next(v);
+    this.type$.next(v);
   }
 
-  showPassword = new BehaviorSubject<boolean>(false);
+  showPassword$ = new BehaviorSubject<boolean>(false);
 
-  currentType = combineLatest([this._type, this.showPassword]).pipe(
+  currentType$ = combineLatest([this.type$, this.showPassword$]).pipe(
     map(([t, s]) => {
       if (t !== 'password') return t;
       return s ? 'text' : t;
     })
   );
 
-  focus(): void {
-    this.input.nativeElement.focus();
+  toggleShowPassword() {
+    this.showPassword$.next(!this.showPassword$.value);
   }
 
-  toggleShowPassword() {
-    this.showPassword.next(!this.showPassword.value);
+  focus(): void {
+    this.input.nativeElement.focus();
   }
 
   /**

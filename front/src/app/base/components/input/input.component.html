@@ -2,12 +2,12 @@
   {{label}}
 </label>
 <div class="input-container">
-  <div [ngClass]="[(_type | async)||'','input']">
-    <input #input [id]="name" [name]="name" [type]='currentType | async' class="primary" [disabled]="disabled"
+  <div [ngClass]="[(type$ | async)||'','input']">
+    <input #input [id]="name" [name]="name" [type]='currentType$ | async' class="primary" [disabled]="!!disabled"
       [appAutoFocus]="autoFocus" [ngModel]="value" (ngModelChange)="onChange && onChange($event)" />
   </div>
   <button type="button" (click)="toggleShowPassword()" type="button" class="button" mat-dialog-close mat-icon-button
     color="primary" aria-label="Example icon button with a menu icon">
-    <mat-icon> {{(showPassword|async) ? "visibility" : "visibility_off"}} </mat-icon>
+    <mat-icon> {{(showPassword$|async) ? "visibility" : "visibility_off"}} </mat-icon>
   </button>
 </div>

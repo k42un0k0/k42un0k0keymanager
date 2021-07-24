@@ -1,34 +1,20 @@
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { render, screen } from '@testing-library/angular';
 import { AutoFocusDirective } from './auto-focus.directive';
 
-@Component({
-  template: `<input data-testid="focused" appAutoFocus value="hello" />`,
-})
-class TestComponent {}
-
 describe('AutoFocusDirective', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+  async function setup() {
+    return render(`<input appAutoFocus />`, {
+      declarations: [AutoFocusDirective],
+    });
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TestComponent, AutoFocusDirective],
-    }).createComponent(TestComponent);
+  it('should create an instance', async () => {
+    const container = await setup();
+    expect(container.fixture.componentInstance).toBeTruthy();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create an instance', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('focus a input', () => {
-    expect(document.activeElement).toBe(fixture.debugElement.query(By.css("[data-testid='focused']")).nativeElement);
+  it('focus a input', async () => {
+    await setup();
+    expect(document.activeElement).toBe(screen.getByRole('textbox'));
   });
 });

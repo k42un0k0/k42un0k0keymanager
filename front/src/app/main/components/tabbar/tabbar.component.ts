@@ -19,9 +19,6 @@ export class TabbarComponent {
     private csvService: CsvService
   ) {}
 
-  _onClickHome(): void {
-    this.clickHome.emit();
-  }
   logout(): void {
     this.authenticationService.signOut();
   }
