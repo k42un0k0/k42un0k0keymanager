@@ -1,17 +1,15 @@
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { By } from '@angular/platform-browser';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { AccountEditorComponent } from './account-editor.component';
 import { ComponentsModule } from 'src/app/main/components/components.module';
 import { TestModule } from 'src/app/test/test.module';
 import { UserAccount } from 'src/models';
 
 describe('main/components/AccountEditorComponent', () => {
-  let component: AccountEditorComponent;
-  let fixture: ComponentFixture<AccountEditorComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  async function setup() {
+    return render(AccountEditorComponent, {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         {
@@ -20,25 +18,20 @@ describe('main/components/AccountEditorComponent', () => {
         },
       ],
       imports: [ComponentsModule, TestModule, MatDialogModule],
-    }).compileComponents();
-  });
+      excludeComponentDeclaration: true,
+    });
+  }
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AccountEditorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', async () => {
+    const container = await setup();
+    expect(container.fixture.componentInstance).toBeTruthy();
   });
 
   it.todo('generate password');
   it.todo('fetch favicon path');
-  it('make a form editable', fakeAsync(() => {
-    // setup
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
+  it('make a form editable', fakeAsync(async () => {
+    await render(AccountEditorComponent, {
+      excludeComponentDeclaration: true,
       providers: [
         {
           provide: MAT_DIALOG_DATA,
@@ -50,32 +43,28 @@ describe('main/components/AccountEditorComponent', () => {
         },
       ],
       imports: [ComponentsModule, TestModule, MatDialogModule],
-    }).compileComponents();
-    fixture = TestBed.createComponent(AccountEditorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    tick();
-    // test
-    const providerNameInput = fixture.debugElement.query(By.css('input#providerName'));
-    const userIdInput = fixture.debugElement.query(By.css('input#userId'));
-    const passwordInput = fixture.debugElement.query(By.css('input#password'));
-    const linkInput = fixture.debugElement.query(By.css('input#link'));
+    });
 
-    expect(providerNameInput.nativeElement.disabled).toBe(true);
-    expect(userIdInput.nativeElement.disabled).toBe(true);
-    expect(passwordInput.nativeElement.disabled).toBe(true);
-    expect(linkInput.nativeElement.disabled).toBe(true);
+    const providerNameInput = screen.getByLabelText('Provider Name');
+    const userIdInput = screen.getByLabelText('User ID');
+    const passwordInput = screen.getByLabelText('Password');
+    const linkInput = screen.getByLabelText('Link');
 
-    const editButton = fixture.debugElement.query(By.css('[data-testid="editButton"]'));
-    editButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    tick();
+    expect(providerNameInput).toBeDisabled();
+    expect(userIdInput).toBeDisabled();
+    expect(passwordInput).toBeDisabled();
+    expect(linkInput).toBeDisabled();
 
-    expect(providerNameInput.nativeElement.disabled).toBe(false);
-    expect(userIdInput.nativeElement.disabled).toBe(false);
-    expect(passwordInput.nativeElement.disabled).toBe(false);
-    expect(linkInput.nativeElement.disabled).toBe(false);
+    const editButton = screen.getByTestId('editButton');
 
+    await userEvent.click(editButton);
+    flush();
+
+    expect(providerNameInput).toBeEnabled();
+    expect(userIdInput).toBeEnabled();
+    expect(passwordInput).toBeEnabled();
+    expect(linkInput).toBeEnabled();
+    //FIXME: iconの挙動は無視している
     discardPeriodicTasks();
   }));
   it.todo('destroy outer account');
