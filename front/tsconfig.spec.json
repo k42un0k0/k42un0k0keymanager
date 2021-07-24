@@ -2,19 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": [
-      "jest"
-    ],
+    "types": ["jest"],
     "module": "commonjs",
     "emitDecoratorMetadata": true,
     "allowJs": true
   },
-  "files": [
-    "src/polyfills.ts",
-    "../app/src/preload.d.ts"
-  ],
-  "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/polyfills.ts", "../app/src/preload.d.ts"],
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts", "./setup-jest.ts"]
 }
