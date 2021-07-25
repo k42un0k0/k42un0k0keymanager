@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { UserAccount } from 'src/models';
@@ -9,12 +10,12 @@ import { UserAccount } from 'src/models';
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  name = '';
+  name = new FormControl('');
 
   constructor(private userAccountRepository: UserAccountRepository, private router: Router) {}
 
   async submit() {
-    const model = new UserAccount({ name: this.name, OuterAccounts: [] });
+    const model = new UserAccount({ name: this.name.value, OuterAccounts: [] });
     await this.userAccountRepository.create(model);
     this.router.navigate(['/user-account-manager/setting/' + model.id]);
   }
