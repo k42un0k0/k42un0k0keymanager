@@ -22,20 +22,13 @@ export class WindowManager {
   }
 
   initializeWindow(): void {
-    if (this.app.isProd) {
-      const [initialBrowser, initialUrl] = new InitialWindow().configure();
+    const [initialBrowser, initialUrl] = new InitialWindow().configure();
 
-      void initialBrowser.loadURL(initialUrl);
-      initialBrowser.once('ready-to-show', () => {
-        initialBrowser.show();
-      });
-    } else {
-      const [browser, url] = new InitialWindow().configure();
-      void browser.loadURL(url);
-      browser.once('ready-to-show', () => {
-        browser.show();
-      });
-    }
+    void initialBrowser.loadURL(initialUrl);
+    initialBrowser.once('ready-to-show', () => {
+      initialBrowser.show();
+      initialBrowser.reload();
+    });
   }
 
   closeWindow(id: number): void {
