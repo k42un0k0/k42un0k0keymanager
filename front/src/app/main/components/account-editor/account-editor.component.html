@@ -9,14 +9,14 @@
     </button>
   </header>
   <div formGroupName="outerAccount">
-    <app-input label="Provider Name" name="providerName" [disabled]="disabled" formControlName="providerName">
+    <app-input label="Provider Name" name="providerName" formControlName="providerName">
     </app-input>
-    <app-input label="User ID" name="userId" [disabled]="disabled" formControlName="userId"></app-input>
+    <app-input label="User ID" name="userId" formControlName="userId"></app-input>
   </div>
-  <mat-slide-toggle *ngIf="!disabled" class="gray-text" formControlName="isGeneratePassword">
+  <mat-slide-toggle *ngIf="(disabled$|async)===false" class="gray-text" formControlName="isGeneratePassword">
     パスワードを自動で生成する
   </mat-slide-toggle>
-  <div class="gray-text" *ngIf="!disabled&&isGeneratePassword?.value">
+  <div class="gray-text" *ngIf="((disabled$|async)===false)&&isGeneratePassword?.value">
     <div formGroupName="check">
       <mat-checkbox formControlName="lowercase">
         英小文字含む
@@ -37,25 +37,24 @@
     </div>
   </div>
   <div formGroupName="outerAccount">
-    <app-input type="password" label="Password" name="password" [disabled]="disabled" formControlName="password">
+    <app-input type="password" label="Password" formControlName="password">
     </app-input>
     <div class="link-group">
-      <app-input label="Link" name="link" [disabled]="disabled" formControlName="link"
-        (ngModelChange)="onChangeLink($event)">
+      <app-input label="Link" name="link" formControlName="link" (ngModelChange)="onChangeLink($event)">
       </app-input>
       <img [src]="outerAccount?.value.iconPath" alt="provider icon" />
     </div>
   </div>
-  <div *ngIf="disabled; else submitBlock" class="form-action">
+  <div *ngIf="disabled$| async; else submitBlock" class="form-action">
     <button data-testid="editButton" (click)="toggleEdit()" mat-button color="primary">編集</button>
   </div>
   <ng-template #submitBlock>
     <div class="form-action">
       <button mat-button color="primary" type="submit">保存</button>
-      <button *ngIf="editing" (click)="toggleEdit()" mat-button color="primary">キャンセル</button>
+      <button *ngIf="editing$ | async" (click)="toggleEdit()" mat-button color="primary">キャンセル</button>
     </div>
   </ng-template>
-  <div *ngIf="disabled" class="form-action">
+  <div *ngIf="disabled$| async" class="form-action">
     <button (click)="destroyAccount()" mat-button color="primary">削除</button>
   </div>
 </form>

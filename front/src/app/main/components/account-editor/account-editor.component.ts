@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BehaviorSubject, from } from 'rxjs';
+import { BehaviorSubject, combineLatest, from } from 'rxjs';
 import { debounceTime, map, mergeMap } from 'rxjs/operators';
 import { IconService } from 'src/app/base/electron/icon.service';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
@@ -46,12 +46,14 @@ export class AccountEditorComponent {
     return this.form.get('check');
   }
 
-  editing = false;
-  creating = false;
+  editing$ = new BehaviorSubject(false);
+  creating$ = new BehaviorSubject(false);
 
-  get disabled(): boolean {
-    return !this.creating && !this.editing;
-  }
+  disabled$ = combineLatest([this.editing$, this.creating$]).pipe(
+    map(([e, c]) => {
+      return !e && !c;
+    })
+  );
 
   constructor(
     private dialogRef: MatDialogRef<AccountEditorComponent>,
@@ -59,6 +61,19 @@ export class AccountEditorComponent {
     private outerAccountRepository: OuterAccountRepository,
     private iconService: IconService
   ) {
+    this.disabled$.subscribe((d) => {
+      if (d) {
+        this.outerAccount?.get('providerName')?.disable();
+        this.outerAccount?.get('userId')?.disable();
+        this.outerAccount?.get('password')?.disable();
+        this.outerAccount?.get('link')?.disable();
+      } else {
+        this.outerAccount?.get('providerName')?.enable();
+        this.outerAccount?.get('userId')?.enable();
+        this.outerAccount?.get('password')?.enable();
+        this.outerAccount?.get('link')?.enable();
+      }
+    });
     this.iconSubject
       .pipe(
         debounceTime(1000),
@@ -84,12 +99,12 @@ export class AccountEditorComponent {
         }
       });
     } else {
-      this.creating = true;
+      this.creating$.next(true);
     }
   }
 
   toggleEdit(): void {
-    this.editing = !this.editing;
+    this.editing$.next(!this.editing$.value);
     if (this.data.outerAccountID) {
       this.outerAccountRepository.get(this.data.outerAccountID).then((outerAccount) => {
         if (outerAccount) {
@@ -121,7 +136,7 @@ export class AccountEditorComponent {
   }
 
   async save(): Promise<void> {
-    if (this.creating) {
+    if (this.creating$.value) {
       this._create();
     } else {
       this._update();

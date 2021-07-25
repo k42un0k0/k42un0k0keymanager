@@ -16,16 +16,10 @@ const MAT_APP_INPUT_CONTROL_VALUE_ACCESSOR: Provider = {
 })
 export class InputComponent implements ControlValueAccessor {
   @Input()
-  disabled?: boolean;
-
-  @Input()
   autoFocus = false;
 
   @Input()
   label!: string;
-
-  @Input()
-  name!: string;
 
   @ViewChild('input') input!: ElementRef<HTMLInputElement>;
 
@@ -56,7 +50,8 @@ export class InputComponent implements ControlValueAccessor {
    * ControlValueAccessor
    */
 
-  value!: string;
+  value = '';
+  disabled = false;
 
   onChange?: (value: string) => void;
 
@@ -68,5 +63,9 @@ export class InputComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     // this._onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

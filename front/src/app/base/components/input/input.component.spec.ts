@@ -1,5 +1,5 @@
-import { fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { InputComponent } from './input.component';
@@ -24,14 +24,12 @@ describe('InputComponent', () => {
   });
 
   it('accept ngModel', fakeAsync(async () => {
-    TestBed.resetTestingModule();
-    const container = await render(`<app-input label="Name" name="name" [(ngModel)]="value"></app-input>`, {
+    const container = await render(`<app-input label="Name" [(ngModel)]="value"></app-input>`, {
       componentProperties: { value: 'hello' },
       imports: [BaseModule, FormsModule],
     });
-    // MEMO: ngModelが２つネストしてるため２回tickを呼び出す必要があるのでflushを使う
     container.detectChanges();
-    flush();
+    tick();
 
     const input = screen.getByLabelText('Name');
     expect((input as HTMLInputElement).value).toBe('hello');
@@ -39,5 +37,20 @@ describe('InputComponent', () => {
     flush();
 
     expect(container.fixture.componentInstance.value).toBe('helloworld');
+  }));
+
+  it('refrect isDisable', fakeAsync(async () => {
+    const value = new FormControl('');
+    const container = await render(`<app-input label="Name" [formControl]="value"></app-input>`, {
+      componentProperties: { value },
+      imports: [BaseModule, FormsModule, ReactiveFormsModule],
+    });
+
+    const input = screen.getByLabelText('Name');
+    expect(input).toBeEnabled();
+    value.disable();
+    container.detectChanges();
+    flush();
+    expect(input).toBeDisabled();
   }));
 });

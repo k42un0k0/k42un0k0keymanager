@@ -18,3 +18,7 @@
 ?Do you want to use an existing environment? No
 ?Enter a name for the environment / {{name}}
 ```
+
+## test の timer について
+
+jest のタイマーを使うとなぜかうまくいかないことがあるので、fakeAsync を使う

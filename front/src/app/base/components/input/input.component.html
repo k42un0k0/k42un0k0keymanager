@@ -1,9 +1,9 @@
-<label [for]="name" class="secondary">
+<label [for]="label" class="secondary">
   {{label}}
 </label>
 <div class="input-container">
   <div [ngClass]="[(type$ | async)||'','input']">
-    <input #input [id]="name" [name]="name" [type]='currentType$ | async' class="primary" [disabled]="!!disabled"
+    <input #input [id]="label" [type]='currentType$ | async' class="primary" [disabled]="!!disabled "
       [appAutoFocus]="autoFocus" [ngModel]="value" (ngModelChange)="onChange && onChange($event)" />
   </div>
   <button type="button" (click)="toggleShowPassword()" type="button" class="button" mat-dialog-close mat-icon-button
