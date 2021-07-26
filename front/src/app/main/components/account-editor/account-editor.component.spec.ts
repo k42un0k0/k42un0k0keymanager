@@ -37,19 +37,19 @@ describe('main/components/AccountEditorComponent', () => {
     expect(container.fixture.componentInstance).toBeTruthy();
   });
 
-  it.skip('generate password', fakeAsync(async () => {
+  it('generate password', async () => {
     await setup();
+
     const passwordGeneratableSwitch = screen.getByLabelText('パスワードを自動で生成する');
 
-    expect(await screen.findByText('生成する')).not.toBeInTheDocument();
-
+    expect(screen.queryByText('生成する')).not.toBeInTheDocument();
     await userEvent.click(passwordGeneratableSwitch);
     const generateButton = screen.getByText('生成する');
     const passwordInput = screen.getByLabelText('Password') as HTMLInputElement;
     const value = passwordInput.value;
     await userEvent.click(generateButton);
     expect(passwordInput.value).not.toBe(value);
-  }));
+  });
   it('fetch favicon path', fakeAsync(async () => {
     const getFromUrlSpy = jest.fn().mockReturnValue(Promise.resolve('https://k42un0k0.com/favicon.ico'));
     const container = await render(AccountEditorComponent, {
