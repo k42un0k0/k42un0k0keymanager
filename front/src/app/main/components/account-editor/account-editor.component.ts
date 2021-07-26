@@ -86,7 +86,7 @@ export class AccountEditorComponent {
         })
       )
       .subscribe((v) => {
-        this.outerAccount?.setValue({
+        this.outerAccount?.patchValue({
           ...this.outerAccount?.value,
           iconPath: v,
         });
@@ -115,13 +115,13 @@ export class AccountEditorComponent {
   }
 
   genPassworda() {
-    this.outerAccount?.setValue({
+    this.outerAccount?.patchValue({
       ...this.outerAccount?.value,
       password: genPassword(this.passwordLength?.value, this.check?.value),
     });
   }
   private _parseOuterAccountToProperty(outerAccount: OuterAccount): void {
-    this.outerAccount?.setValue({
+    this.outerAccount?.patchValue({
       providerName: outerAccount.providerName,
       userId: outerAccount.userId,
       password: outerAccount.password,

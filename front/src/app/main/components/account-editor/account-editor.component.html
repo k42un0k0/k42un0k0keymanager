@@ -33,7 +33,7 @@
     </div>
     <div>
       <input type="text" inputmode="decimel" pattern="\d{1,5}" title="Only digits" formControlName="passwordLength" />
-      <button mat-button color="primary" type="button" (click)="genPassworda()">生成する</button>
+      <button mat-button color="primary" type="button" type="button" (click)="genPassworda()">生成する</button>
     </div>
   </div>
   <div formGroupName="outerAccount">
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div *ngIf="disabled$| async; else submitBlock" class="form-action">
-    <button data-testid="editButton" (click)="toggleEdit()" mat-button color="primary">編集</button>
+    <button data-testid="editButton" (click)="toggleEdit()" type="button" mat-button color="primary">編集</button>
   </div>
   <ng-template #submitBlock>
     <div class="form-action">
