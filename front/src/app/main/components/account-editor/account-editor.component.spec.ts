@@ -216,33 +216,22 @@ describe('main/components/AccountEditorComponent', () => {
       ],
       imports: [ComponentsModule, TestModule, MatDialogModule],
     });
+    container.fixture.autoDetectChanges();
     const editButton = screen.getByText('編集');
 
     await userEvent.click(editButton);
-    container.detectChanges();
     const providerNameInput = screen.getByLabelText('Provider Name');
     const userIdInput = screen.getByLabelText('User ID');
     const passwordInput = screen.getByLabelText('Password');
     const linkInput = screen.getByLabelText('Link');
     fireEvent.input(providerNameInput, { target: { value: 'password manager' } });
-    container.detectChanges();
     expect((providerNameInput as HTMLInputElement).value).toBe('password manager');
     await userEvent.clear(userIdInput);
     await userEvent.type(userIdInput, 'Bob');
-    flush();
     await userEvent.clear(passwordInput);
     await userEvent.type(passwordInput, 'foobar');
-    flush();
     fireEvent.input(linkInput, { target: { value: 'https://k42un0k0.com' } });
-    container.detectChanges();
-    tick();
-    container.detectChanges();
-    tick();
-    container.detectChanges();
-    tick();
-    container.detectChanges();
     tick(1000);
-    container.detectChanges();
 
     expect(outerAccountRepository.update).toHaveBeenCalledTimes(0);
 
@@ -258,9 +247,6 @@ describe('main/components/AccountEditorComponent', () => {
     expect(newModel.link).toBe('https://k42un0k0.com');
     expect(newModel.iconPath).toBe('https://k42un0k0.com/favicon.ico');
     tick();
-    container.detectChanges();
-    tick();
-    container.detectChanges();
     expect(providerNameInput).toBeDisabled();
     expect(userIdInput).toBeDisabled();
     expect(passwordInput).toBeDisabled();
