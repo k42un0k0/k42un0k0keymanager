@@ -32,6 +32,10 @@ function main(): void {
   });
 }
 
-if (windowIsNone()) {
+const gotTheLock = electronApp.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  electronApp.quit();
+} else {
   main();
 }
