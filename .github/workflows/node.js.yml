@@ -52,6 +52,23 @@ jobs:
         run: npm run test
         if: steps.changes.outputs.lib == 'true'
         working-directory: ./lib
+  release:
+    name: Create Github Release
+    if: contains(github.ref, 'tags/v')
+    needs: [test]
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
 
   publish:
     if: contains(github.ref, 'tags/v')
