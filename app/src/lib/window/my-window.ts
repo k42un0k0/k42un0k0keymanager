@@ -1,4 +1,5 @@
 import type { BrowserWindow } from 'electron';
+import type { Emitter } from 'src/emitter/emitter';
 
 export abstract class MyWindow {
   protected abstract config: {
@@ -11,5 +12,5 @@ export abstract class MyWindow {
     backgroundColor: string;
   };
 
-  abstract configure(): [BrowserWindow, string];
+  abstract configure(): [BrowserWindow, string, Emitter[]];
 }

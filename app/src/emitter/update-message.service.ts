@@ -1,0 +1,16 @@
+import type { BrowserWindow } from 'electron';
+import { CHANNELS, IUpdateMessageService } from 'lib';
+import type { Emitter } from 'src/emitter/emitter';
+
+export class UpdateMessageService extends IUpdateMessageService implements Emitter {
+  win: BrowserWindow;
+
+  constructor(_win: BrowserWindow) {
+    super();
+    this.win = _win;
+  }
+
+  onProgress(parcent: number): void {
+    this.win.webContents.send(CHANNELS.updateMessageService.onProgress, parcent);
+  }
+}

@@ -2,6 +2,7 @@ import * as url from 'url';
 import { BrowserWindow } from 'electron';
 import { MyWindow } from './my-window';
 import { frontPath, preloadPath } from 'src/constant';
+import type { Emitter } from 'src/emitter/emitter';
 
 export class UserAccountManagerWindow extends MyWindow {
   protected config = {
@@ -14,7 +15,7 @@ export class UserAccountManagerWindow extends MyWindow {
     backgroundColor: '#333',
   };
 
-  configure(): [BrowserWindow, string] {
+  configure(): [BrowserWindow, string, Emitter[]] {
     const win = new BrowserWindow(this.config);
 
     const startUrl = `${
@@ -25,6 +26,6 @@ export class UserAccountManagerWindow extends MyWindow {
         slashes: true,
       })
     }#/user-account-manager`;
-    return [win, startUrl];
+    return [win, startUrl, []];
   }
 }

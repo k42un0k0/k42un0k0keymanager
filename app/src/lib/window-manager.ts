@@ -1,9 +1,10 @@
 import type { BrowserWindow } from 'electron';
-import type { App } from './app';
 import { AuthWindow } from './window/auth-window';
 import { InitialWindow } from './window/initial-window';
 import { MainWindow } from './window/main-window';
 import { UserAccountManagerWindow } from './window/user-account-manager-window';
+import type { Emitter } from 'src/emitter/emitter';
+import type { EmitterManager } from 'src/lib/emitter-manager';
 
 export enum WindowEnum {
   auth = 0,
@@ -14,10 +15,21 @@ export enum WindowEnum {
 export class WindowManager {
   windowMap = new Map<number, BrowserWindow>();
 
-  constructor(private readonly app: App) {}
+  private createListeners: ((window: BrowserWindow) => void)[] = [];
+
+  constructor(private readonly emitterManager: EmitterManager) {}
+
+  addEventListener(event: 'create', listener: (window: BrowserWindow) => void): void {
+    this.createListeners.push(listener);
+  }
+
+  removeEventListener(event: 'create', listener: (window: BrowserWindow) => void): void {
+    this.createListeners = this.createListeners.filter((v) => v !== listener);
+  }
 
   async createWindow(value: WindowEnum): Promise<void> {
-    const [browser, url] = this._getWindowConfig(value);
+    const [browser, url, emitters] = this._getWindowConfig(value);
+    this.emitterManager.addEmitters(browser.id, emitters);
     await browser.loadURL(url);
   }
 
@@ -37,7 +49,7 @@ export class WindowManager {
     win.close();
   }
 
-  private _getWindowConfig(value: WindowEnum): [BrowserWindow, string] {
+  private _getWindowConfig(value: WindowEnum): [BrowserWindow, string, Emitter[]] {
     switch (value) {
       case WindowEnum.auth:
         return new AuthWindow().configure();

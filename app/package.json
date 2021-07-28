@@ -45,6 +45,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "csv": "^5.5.0",
+    "electron-log": "^4.4.0",
     "electron-updater": "^4.3.9",
     "jsdom": "^16.5.3",
     "keytar": "^7.7.0",
