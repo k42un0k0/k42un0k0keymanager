@@ -15,6 +15,7 @@ export class ElectronListener<T extends AnyObject = {}> {
         returnValue = handler[key](...args);
         return returnValue;
       };
+
       pre[channels[key]] = listener;
       this.window.main.ipcRenderer.on(channels[key], listener);
       return pre;

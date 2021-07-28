@@ -4,7 +4,7 @@ import logger from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { listener } from './lib/listener/listener';
 import { registerAutoReload } from './lib/reload';
-import { emitterManager, ipcService, windowManager } from './lib/singleton';
+import { ipcService, windowManager } from './lib/singleton';
 import { UpdateMessageService } from 'src/lib/emitter/update-message.service';
 
 logger.transports.file.level = 'info';
@@ -22,7 +22,7 @@ function main(): void {
   });
 
   autoUpdater.signals.progress((progressObj) => {
-    emitterManager.getEmitters(UpdateMessageService).forEach((u) => {
+    windowManager.getEmitters(UpdateMessageService).forEach((u) => {
       u.onProgress(progressObj.percent);
     });
   });
