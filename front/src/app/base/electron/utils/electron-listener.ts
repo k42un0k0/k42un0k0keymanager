@@ -5,7 +5,7 @@ type ToChannels<T extends AnyObject> = { [P in keyof T]: string };
 
 export class ElectronListener<T extends AnyObject = {}> {
   constructor(private window: Window) {}
-  // ToListenerがプロパティをnullableにするため幽霊型を使ってプロパティを検査する
+  // ToListenerがプロパティをnullableにするため幽霊型っぽいものでプロパティを検査できるようにする
   private _phantom!: T;
   private listeners: ToListener<T> = {};
   listen<U extends AnyObject>(channels: ToChannels<U>, handler: U): ElectronListener<T & U> {

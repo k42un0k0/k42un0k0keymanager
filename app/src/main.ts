@@ -2,10 +2,10 @@ import path from 'path';
 import { app as electronApp } from 'electron';
 import logger from 'electron-log';
 import { autoUpdater } from 'electron-updater';
-import { listener } from './listener';
-import { registerAutoReload } from './reload';
-import { emitterManager, ipcService, windowManager } from './singleton';
-import { UpdateMessageService } from 'src/emitter/update-message.service';
+import { listener } from './lib/listener/listener';
+import { registerAutoReload } from './lib/reload';
+import { emitterManager, ipcService, windowManager } from './lib/singleton';
+import { UpdateMessageService } from 'src/lib/emitter/update-message.service';
 
 logger.transports.file.level = 'info';
 autoUpdater.logger = logger;

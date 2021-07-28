@@ -2,7 +2,7 @@ import * as url from 'url';
 import { BrowserWindow } from 'electron';
 import { MyWindow } from './my-window';
 import { frontPath, preloadPath } from 'src/constant';
-import type { Emitter } from 'src/emitter/emitter';
+import type { Emitter } from 'src/lib/emitter/emitter';
 
 export class UserAccountManagerWindow extends MyWindow {
   protected config = {

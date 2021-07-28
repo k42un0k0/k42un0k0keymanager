@@ -1,4 +1,4 @@
-import type { Emitter } from 'src/emitter/emitter';
+import type { Emitter } from './emitter';
 
 export class EmitterManager {
   /**

@@ -1,6 +1,6 @@
 import type { BrowserWindow } from 'electron';
 import { CHANNELS, IUpdateMessageService } from 'lib';
-import type { Emitter } from 'src/emitter/emitter';
+import type { Emitter } from 'src/lib/emitter/emitter';
 
 export class UpdateMessageService extends IUpdateMessageService implements Emitter {
   win: BrowserWindow;

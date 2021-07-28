@@ -1,5 +1,5 @@
 import type { BrowserWindow } from 'electron';
-import type { Emitter } from 'src/emitter/emitter';
+import type { Emitter } from 'src/lib/emitter/emitter';
 
 export abstract class MyWindow {
   protected abstract config: {

@@ -1,10 +1,10 @@
 import type { BrowserWindow } from 'electron';
-import { AuthWindow } from './window/auth-window';
-import { InitialWindow } from './window/initial-window';
-import { MainWindow } from './window/main-window';
-import { UserAccountManagerWindow } from './window/user-account-manager-window';
-import type { Emitter } from 'src/emitter/emitter';
-import type { EmitterManager } from 'src/lib/emitter-manager';
+import { AuthWindow } from './auth-window';
+import { InitialWindow } from './initial-window';
+import { MainWindow } from './main-window';
+import { UserAccountManagerWindow } from './user-account-manager-window';
+import type { Emitter } from 'src/lib/emitter/emitter';
+import type { EmitterManager } from 'src/lib/emitter/emitter-manager';
 
 export enum WindowEnum {
   auth = 0,
@@ -15,17 +15,7 @@ export enum WindowEnum {
 export class WindowManager {
   windowMap = new Map<number, BrowserWindow>();
 
-  private createListeners: ((window: BrowserWindow) => void)[] = [];
-
   constructor(private readonly emitterManager: EmitterManager) {}
-
-  addEventListener(event: 'create', listener: (window: BrowserWindow) => void): void {
-    this.createListeners.push(listener);
-  }
-
-  removeEventListener(event: 'create', listener: (window: BrowserWindow) => void): void {
-    this.createListeners = this.createListeners.filter((v) => v !== listener);
-  }
 
   async createWindow(value: WindowEnum): Promise<void> {
     const [browser, url, emitters] = this._getWindowConfig(value);

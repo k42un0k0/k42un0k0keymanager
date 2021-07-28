@@ -1,7 +1,7 @@
 import { CHANNELS } from 'lib';
-import type { IpcListenerMap } from './lib/ipc.service';
-import { WindowEnum } from './lib/window-manager';
-import { cipherService, iconService, ipcService, keyService, windowManager } from './singleton';
+import type { IpcListenerMap } from 'src/lib/ipc.service';
+import { cipherService, iconService, ipcService, keyService, windowManager } from 'src/lib/singleton';
+import { WindowEnum } from 'src/lib/window/window-manager';
 
 const windowManagerListener: IpcListenerMap = {
   [CHANNELS.windowService.close]: (e) => {

@@ -2,8 +2,8 @@ import * as url from 'url';
 import { BrowserWindow } from 'electron';
 import { MyWindow } from './my-window';
 import { frontPath, preloadPath } from 'src/constant';
-import type { Emitter } from 'src/emitter/emitter';
-import { UpdateMessageService } from 'src/emitter/update-message.service';
+import type { Emitter } from 'src/lib/emitter/emitter';
+import { UpdateMessageService } from 'src/lib/emitter/update-message.service';
 
 export class MainWindow extends MyWindow {
   protected config = {
