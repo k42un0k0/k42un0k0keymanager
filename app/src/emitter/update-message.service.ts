@@ -10,7 +10,7 @@ export class UpdateMessageService extends IUpdateMessageService implements Emitt
     this.win = _win;
   }
 
-  onProgress(parcent: number): void {
-    this.win.webContents.send(CHANNELS.updateMessageService.onProgress, parcent);
+  onProgress(percent: number): void {
+    this.win.webContents.send(CHANNELS.updateMessageService.onProgress, percent);
   }
 }
