@@ -1,5 +1,5 @@
 import path from 'path';
-import { app as electronApp } from 'electron';
+import { app as electronApp, BrowserWindow } from 'electron';
 import logger from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { listener } from './lib/listener/listener';
@@ -10,9 +10,9 @@ import { UpdateMessageService } from 'src/lib/emitter/update-message.service';
 logger.transports.file.level = 'info';
 autoUpdater.logger = logger;
 
-// function windowIsNone(): boolean {
-//   return BrowserWindow.getAllWindows().length === 0;
-// }
+function windowIsNone(): boolean {
+  return BrowserWindow.getAllWindows().length === 0;
+}
 function main(): void {
   if (!electronApp.isPackaged) registerAutoReload(path.join(__dirname, '..'));
 
@@ -39,12 +39,11 @@ function main(): void {
     electronApp.focus();
   });
 
-  // TODO: 用途がわからないためコメントアウト
-  // electronApp.on('activate', () => {
-  //   if (windowIsNone()) {
-  //     windowManager.initializeWindow();
-  //   }
-  // });
+  electronApp.on('activate', () => {
+    if (windowIsNone()) {
+      windowManager.initializeWindow();
+    }
+  });
 }
 
 const gotTheLock = electronApp.requestSingleInstanceLock();
