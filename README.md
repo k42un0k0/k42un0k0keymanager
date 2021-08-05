@@ -17,6 +17,8 @@ lerna add か lerna bootstrap をつかうこと
 
 rxjs 系のプロパティは name$ の形にする
 
+window の config の show を false にして ready-to-show の後に show を true にすると変な画面は見えない(electron みたいにある程度を html に任せればいい感じに skeleton になりそう)
+
 ### auto update
 
 mac だと調整が必要らしい

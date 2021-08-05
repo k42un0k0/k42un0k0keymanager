@@ -23,6 +23,10 @@
         "repo": "k42un0k0passwordmanager"
       }
     ],
+    "extraFiles": {
+      "from": "unko.cmd",
+      "to": ""
+    },
     "productName": "K42un0k0 Password Manager",
     "appId": "com.electron.k42un0k0passwordmanager",
     "mac": {
@@ -33,6 +37,10 @@
     "win": {
       "target": "nsis",
       "icon": "../doc/icon-trans.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     },
     "files": [
       "dist/**/*"

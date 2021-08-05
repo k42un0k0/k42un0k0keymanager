@@ -2,6 +2,7 @@ import { AuthWindow } from './auth-window';
 import { InitialWindow } from './initial-window';
 import { MainWindow } from './main-window';
 import { UserAccountManagerWindow } from './user-account-manager-window';
+import type { Emitter } from 'src/lib/emitter/emitter';
 import type { MyWindow } from 'src/lib/window/my-window';
 
 export class WindowManager {
@@ -19,7 +20,6 @@ export class WindowManager {
     void instance.load();
     instance.win.once('ready-to-show', () => {
       instance.win.show();
-      instance.win.reload();
     });
   }
 
@@ -37,9 +37,9 @@ export class WindowManager {
   }
 
   getEmitters<T extends new (...args: any[]) => any>(constructor: T): InstanceType<T>[] {
-    const emitters = this.windowMap.values();
-    return Array.from(emitters)
-      .reduce((acc, v) => {
+    const windows = this.windowMap.values();
+    return Array.from(windows)
+      .reduce<Emitter[]>((acc, v) => {
         return acc.concat(v.emitters);
       }, [])
       .filter((v): v is InstanceType<T> => v instanceof constructor);
