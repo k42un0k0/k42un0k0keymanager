@@ -40,8 +40,8 @@
     <div class="password-container">
       <app-input type="password" label="Password" formControlName="password">
       </app-input>
-      <button *ngIf="disabled$|async" (click)="copyPassword()" type="button" type="button" class="copy-button"
-        mat-dialog-close mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
+      <button *ngIf="disabled$|async" (click)="copyPassword()" type="button" class="copy-button" mat-icon-button
+        color="primary" aria-label="a button to copy password to clipboard">
         <mat-icon>save_alt</mat-icon>
       </button>
     </div>

@@ -8,7 +8,7 @@ import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.
 import { ComponentsModule } from 'src/app/main/components/components.module';
 import { mockOuterAccount, mockUserAccount } from 'src/app/test/model';
 import { TestModule } from 'src/app/test/test.module';
-import { OuterAccount, UserAccount } from 'src/models';
+import { OuterAccount } from 'src/models';
 
 describe('main/components/AccountEditorComponent', () => {
   async function setup() {
@@ -253,5 +253,43 @@ describe('main/components/AccountEditorComponent', () => {
     expect(linkInput).toBeDisabled();
     flush();
     discardPeriodicTasks();
+  }));
+
+  it('copy password', fakeAsync(async () => {
+    const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+    // @ts-expect-error in test runtime, clipboard is undefined
+    navigator.clipboard = { writeText: jest.fn().mockImplementation(() => Promise.resolve()) };
+    const outerAccount = mockOuterAccount();
+    const outerAccountRepository = {
+      get: jest.fn().mockReturnValue(Promise.resolve(outerAccount)),
+    };
+    const container = await render(AccountEditorComponent, {
+      excludeComponentDeclaration: true,
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: { outerAccountID: outerAccount.id, userAccount: outerAccount.userAccount },
+        },
+        {
+          provide: MatDialogRef,
+          useValue: {},
+        },
+        {
+          provide: IconService,
+          useValue: { getFromUrl: jest.fn().mockReturnValue(Promise.resolve('https://k42un0k0.com/favicon.ico')) },
+        },
+        { provide: OuterAccountRepository, useValue: outerAccountRepository },
+        { provide: Window, useValue: { navigator } },
+      ],
+      imports: [ComponentsModule, TestModule, MatDialogModule],
+    });
+    container.fixture.autoDetectChanges();
+    const copyButton = screen.getByLabelText('a button to copy password to clipboard');
+
+    await userEvent.click(copyButton);
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(outerAccount.password);
+    expect(alertSpy).toHaveBeenCalledTimes(1);
+    // discard timer
+    tick(1000);
   }));
 });

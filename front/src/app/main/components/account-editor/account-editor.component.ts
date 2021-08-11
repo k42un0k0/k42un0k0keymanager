@@ -125,7 +125,6 @@ export class AccountEditorComponent implements OnInit {
   }
 
   copyPassword() {
-    console.log(this.outerAccount?.get('password')?.value);
     navigator.clipboard.writeText(this.outerAccount?.get('password')?.value).then(() => {
       alert('パスワードをコピーしました');
     });
