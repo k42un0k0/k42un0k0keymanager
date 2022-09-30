@@ -8,7 +8,7 @@ describe('icon.service', () => {
   describe('getFromUrl', () => {
     it('get from link tag', async () => {
       expect(await service.getFromUrl('https://twitter.com/login')).toEqual(
-        'https://abs.twimg.com/favicons/twitter.ico'
+        'https://abs.twimg.com/favicons/twitter.2.ico'
       );
     });
     it('compute favicon link', () => {
