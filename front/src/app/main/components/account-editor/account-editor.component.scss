@@ -29,3 +29,12 @@
   justify-content: flex-end;
   margin-top: 30px;
 }
+
+.password-container {
+  position: relative;
+}
+.copy-button {
+  position: absolute;
+  left: 80px;
+  top: -20px;
+}

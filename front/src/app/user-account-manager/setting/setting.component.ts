@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { from } from 'rxjs';
+import { BehaviorSubject, from } from 'rxjs';
 import { filter, mergeMap, pluck } from 'rxjs/operators';
 import { InputComponent } from 'src/app/base/components/input/input.component';
 import { KeyService } from 'src/app/base/electron/key.service';
@@ -14,12 +15,12 @@ import { UserAccount } from 'src/models';
   styleUrls: ['./setting.component.scss'],
 })
 export class SettingComponent implements OnInit {
-  name!: string;
+  name = new FormControl('');
   model!: UserAccount;
 
   @ViewChild('input') input!: InputComponent;
-  editing = false;
 
+  editing$ = new BehaviorSubject(false);
   hasKey = false;
 
   constructor(
@@ -29,6 +30,10 @@ export class SettingComponent implements OnInit {
     private userAccountService: UserAccountService
   ) {}
   ngOnInit(): void {
+    this.editing$.subscribe((e) => {
+      if (e) this.name.enable();
+      else this.name.disable();
+    });
     this.activatedRoute.params
       .pipe(
         pluck('id'),
@@ -37,7 +42,7 @@ export class SettingComponent implements OnInit {
       )
       .subscribe({
         next: (v): void => {
-          this.name = v.name;
+          this.name.setValue(v.name);
           this.model = v;
           this.userAccountService.hasKey(this.model).then((v) => {
             this.hasKey = v;
@@ -47,12 +52,12 @@ export class SettingComponent implements OnInit {
   }
 
   onClickEdit(): void {
-    if (this.editing && this.model) {
+    if (this.editing$.value && this.model) {
       this.userAccountRepository.update(this.model, (model) => {
-        model.name = this.name;
+        model.name = this.name.value;
       });
     }
-    this.editing = !this.editing;
+    this.editing$.next(!this.editing$.value);
     setTimeout(() => {
       this.input.focus();
     }, 0);

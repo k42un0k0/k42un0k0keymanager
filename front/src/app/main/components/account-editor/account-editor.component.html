@@ -33,12 +33,18 @@
     </div>
     <div>
       <input type="text" inputmode="decimel" pattern="\d{1,5}" title="Only digits" formControlName="passwordLength" />
-      <button mat-button color="primary" type="button" (click)="genPassworda()">生成する</button>
+      <button mat-button color="primary" type="button" type="button" (click)="generatePassword()">生成する</button>
     </div>
   </div>
   <div formGroupName="outerAccount">
-    <app-input type="password" label="Password" formControlName="password">
-    </app-input>
+    <div class="password-container">
+      <app-input type="password" label="Password" formControlName="password">
+      </app-input>
+      <button *ngIf="disabled$|async" (click)="copyPassword()" type="button" class="copy-button" mat-icon-button
+        color="primary" aria-label="a button to copy password to clipboard">
+        <mat-icon>save_alt</mat-icon>
+      </button>
+    </div>
     <div class="link-group">
       <app-input label="Link" name="link" formControlName="link" (ngModelChange)="onChangeLink($event)">
       </app-input>
@@ -46,7 +52,7 @@
     </div>
   </div>
   <div *ngIf="disabled$| async; else submitBlock" class="form-action">
-    <button data-testid="editButton" (click)="toggleEdit()" mat-button color="primary">編集</button>
+    <button data-testid="editButton" (click)="toggleEdit()" type="button" mat-button color="primary">編集</button>
   </div>
   <ng-template #submitBlock>
     <div class="form-action">

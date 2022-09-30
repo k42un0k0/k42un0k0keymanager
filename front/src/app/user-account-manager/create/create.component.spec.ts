@@ -1,54 +1,40 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { mocked } from 'ts-jest/utils';
-import { Observable } from 'zen-observable-ts';
 import { CreateComponent } from './create.component';
-import { APIService } from 'src/app/API.service';
 import { BaseModule } from 'src/app/base/base.module';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { TestModule } from 'src/app/test/test.module';
 
 describe('CreateComponent', () => {
-  let component: CreateComponent;
-  let fixture: ComponentFixture<CreateComponent>;
-  let apiService: any = {};
-  let userAccountRepository: any = {};
-  let router: any = {};
-  beforeEach(async () => {
-    apiService.GetUserAccount = jest.fn(() => Promise.resolve(Observable.of()));
+  it('should create', async () => {
+    const container = await render(CreateComponent, {
+      imports: [RouterTestingModule, MatButtonModule, ReactiveFormsModule, BaseModule, TestModule],
+    });
+    expect(container.fixture.componentInstance).toBeTruthy();
+  });
+
+  it('create user account', async () => {
+    let userAccountRepository: any = {};
+    let router: any = {};
     userAccountRepository.create = jest.fn();
     router.navigate = jest.fn();
-    await TestBed.configureTestingModule({
-      declarations: [CreateComponent],
+
+    await render(CreateComponent, {
       providers: [
-        { provide: APIService, useValue: apiService },
         { provide: Router, useValue: router },
         { provide: UserAccountRepository, useValue: userAccountRepository },
       ],
-      imports: [RouterTestingModule, MatButtonModule, FormsModule, BaseModule, TestModule],
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CreateComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('create user account', () => {
-    const nameInput = fixture.debugElement.query(By.css('[id="name"]'));
-    const submitButton = fixture.debugElement.query(By.css('[type="submit"]'));
-    nameInput.triggerEventHandler('input', { target: { value: 'user name' } });
-    submitButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
+      imports: [RouterTestingModule, MatButtonModule, ReactiveFormsModule, BaseModule, TestModule],
+    });
+    const nameInput = screen.getByLabelText('ユーザー名');
+    const submitButton = screen.getByText('作成');
+    await userEvent.type(nameInput, 'user name');
+    await userEvent.click(submitButton);
     expect(userAccountRepository.create).toBeCalledTimes(1);
     const [model] = mocked<UserAccountRepository['create']>(userAccountRepository.create).mock.calls[0];
     expect(model.name).toEqual('user name');

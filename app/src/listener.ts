@@ -1,7 +1,7 @@
 import { CHANNELS } from 'lib';
 import type { IpcListenerMap } from './lib/ipc.service';
 import { WindowEnum } from './lib/window-manager';
-import { cipherService, iconService, ipcService, keyService, windowManager } from './singleton';
+import { cipherService, exportService, iconService, ipcService, keyService, windowManager } from './singleton';
 
 const windowManagerListener: IpcListenerMap = {
   [CHANNELS.windowService.close]: (e) => {
@@ -14,6 +14,7 @@ const windowManagerListener: IpcListenerMap = {
 
 const iconSerciseListener = ipcService.createListhenerMap(CHANNELS.iconService, iconService);
 const keySerciseListener = ipcService.createListhenerMap(CHANNELS.keyService, keyService);
+const exportSerciseListener = ipcService.createListhenerMap(CHANNELS.exportService, exportService);
 const cipherSerciseListener = ipcService.createListhenerMap(CHANNELS.cipherService, cipherService, {
   syncFunc: ['cipher', 'decipher'],
 });
@@ -23,4 +24,5 @@ export const listener = {
   ...keySerciseListener,
   ...iconSerciseListener,
   ...cipherSerciseListener,
+  ...exportSerciseListener,
 };

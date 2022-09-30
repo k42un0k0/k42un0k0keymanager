@@ -1,7 +1,7 @@
 <form class="mat-elevation-z8 paper primary">
   <h3>ユーザーアカウントの作成</h3>
   <div>
-    <app-input name="name" label="ユーザー名" [autoFocus]="true" [(ngModel)]="name"></app-input>
+    <app-input label="ユーザー名" [autoFocus]="true" [formControl]="name"></app-input>
   </div>
   <footer>
     <button type="submit" (click)="submit()" mat-button color="primary">作成</button>
