@@ -22,4 +22,7 @@ export const CHANNELS = {
   updateMessageService: {
     onProgress: 'UPDATE_MESSAGE_SERVICE/ON_PROGRESS',
   },
+  exportService: {
+    export: 'EXPORT_SERVICE/EXPORT',
+  },
 };

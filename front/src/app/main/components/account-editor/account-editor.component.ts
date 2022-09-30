@@ -124,6 +124,12 @@ export class AccountEditorComponent implements OnInit {
     }
   }
 
+  copyPassword() {
+    navigator.clipboard.writeText(this.outerAccount?.get('password')?.value).then(() => {
+      alert('パスワードをコピーしました');
+    });
+  }
+
   generatePassword() {
     this.outerAccount?.patchValue({
       ...this.outerAccount?.value,

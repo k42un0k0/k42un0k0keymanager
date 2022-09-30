@@ -1,6 +1,6 @@
 import { CHANNELS } from 'lib';
 import type { IpcListenerMap } from 'src/lib/ipc.service';
-import { cipherService, iconService, ipcService, keyService, windowManager } from 'src/lib/singleton';
+import { cipherService, iconService, ipcService, keyService, windowManager, exportService } from 'src/lib/singleton';
 import { AuthWindow } from 'src/lib/window/auth-window';
 import { MainWindow } from 'src/lib/window/main-window';
 import { UserAccountManagerWindow } from 'src/lib/window/user-account-manager-window';
@@ -16,6 +16,7 @@ const windowManagerListener: IpcListenerMap = {
 
 const iconSerciseListener = ipcService.createListhenerMap(CHANNELS.iconService, iconService);
 const keySerciseListener = ipcService.createListhenerMap(CHANNELS.keyService, keyService);
+const exportSerciseListener = ipcService.createListhenerMap(CHANNELS.exportService, exportService);
 const cipherSerciseListener = ipcService.createListhenerMap(CHANNELS.cipherService, cipherService, {
   syncFunc: ['cipher', 'decipher'],
 });
@@ -25,4 +26,5 @@ export const listener = {
   ...keySerciseListener,
   ...iconSerciseListener,
   ...cipherSerciseListener,
+  ...exportSerciseListener,
 };

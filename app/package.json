@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "version": "1.2.4-test",
+  "version": "1.2.5",
   "main": "./dist/app/main.js",
   "scripts": {
     "dev": "run-p watch start",
@@ -57,7 +57,7 @@
     "electron-updater": "^4.3.9",
     "jsdom": "^16.5.3",
     "keytar": "^7.7.0",
-    "lib": "^1.2.4"
+    "lib": "^1.2.5"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
