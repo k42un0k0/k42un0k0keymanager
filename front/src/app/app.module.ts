@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WINDOW } from 'src/app/utils/token';
 import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,10 @@ import { environment } from 'src/environments/environment';
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [{ provide: Window, useValue: window }],
+  providers: [
+    { provide: Window, useValue: window },
+    { provide: WINDOW, useValue: window },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

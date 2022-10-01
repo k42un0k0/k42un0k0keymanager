@@ -9,7 +9,6 @@ import { ipcService, windowManager } from './lib/singleton';
 
 logger.transports.file.level = 'info';
 // autoUpdater.logger = logger;
-
 function windowIsNone(): boolean {
   return BrowserWindow.getAllWindows().length === 0;
 }
