@@ -17,7 +17,30 @@ import { UserAccount } from 'src/models';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
+  template: `
+    <app-tabbar class="is-window-frame" (clickHome)="_onClickHome()"></app-tabbar>
+    <div class="content">
+      <div class="sidebar">
+        <app-sidebar [open]="open || tabLength === 0" [sidebarItems]="sidebarItems"></app-sidebar>
+      </div>
+      <div class="account-list">
+        <app-account-card
+          *ngFor="let account of outerAccounts | async"
+          [account]="account"
+          (click)="_OpenEditDialog(account.id)"
+        ></app-account-card>
+        <button
+          class="button"
+          (click)="_OpenDialog()"
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a menu icon"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  `,
   styleUrls: ['./main.component.scss'],
 })
 @AutoElectronListener

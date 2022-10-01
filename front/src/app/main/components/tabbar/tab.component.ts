@@ -8,7 +8,10 @@ export interface TabItem {
 
 @Component({
   selector: 'app-tab',
-  templateUrl: './tab.component.html',
+  template: `
+    <span>{{ tab.title }}</span>
+    <mat-icon class="close" (click)="clickClose.emit()" aria-hidden="false" aria-label="close icon"> close </mat-icon>
+  `,
   styleUrls: ['./tab.component.scss'],
 })
 export class TabComponent {
