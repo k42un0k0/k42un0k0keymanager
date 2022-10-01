@@ -32,3 +32,7 @@ https://blog.katsubemakito.net/nodejs/electron/autoupdater
 ### lib の扱いについて
 
 なんか symlink 張られてるっぽいので build して再起すればいけるっぽい
+
+## release
+
+1.`yarn lerna version hogehoge`で自動でリリースされる
