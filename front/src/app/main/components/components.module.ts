@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 import { AccountCardComponent } from './account-card/account-card.component';
 import { AccountEditorComponent } from './account-editor/account-editor.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { TabComponent } from './tab/tab.component';
+import { TabComponent } from './tabbar/tab.component';
 import { TabbarComponent } from './tabbar/tabbar.component';
 import { BaseModule } from 'src/app/base/base.module';
 @NgModule({

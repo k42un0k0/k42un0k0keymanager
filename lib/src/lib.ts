@@ -4,4 +4,5 @@ export { IIconService } from './ipc/icon.service';
 export { IKeyService } from './ipc/key.service';
 export { IExportService } from './ipc/export.service';
 export { IWindowService } from './ipc/window.service';
+export { IUpdateMessageService } from './ipc/update-message.service';
 export * from './nonNullable';

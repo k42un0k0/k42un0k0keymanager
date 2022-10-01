@@ -22,3 +22,8 @@
 ## test の timer について
 
 jest のタイマーを使うとなぜかうまくいかないことがあるので、fakeAsync を使う
+
+## window の注入について
+
+なんかコンポーネントに対して注入するとテストで「 Can't resolve all parameters for MainComponent:」って言われる
+多分、`createComponent`と`inject`で話が違うのかもしれない

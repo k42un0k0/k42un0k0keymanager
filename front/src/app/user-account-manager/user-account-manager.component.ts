@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ElectronService } from 'src/app/base/electron/electron.service';
-import { ExportService } from 'src/app/base/electron/export.service';
+import { ElectronService } from 'src/app/base/electron/emitter/electron.service';
+import { ExportService } from 'src/app/base/electron/emitter/export.service';
 import { OuterAccountRepository } from 'src/app/base/repositories/outer-account.repository';
 import { UserAccountRepository } from 'src/app/base/repositories/user-account.repository';
 import { OuterAccount, UserAccount } from 'src/models';

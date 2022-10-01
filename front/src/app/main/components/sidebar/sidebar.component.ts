@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ElectronService } from 'src/app/base/electron/electron.service';
+import { ElectronService } from 'src/app/base/electron/emitter/electron.service';
 
 export type SidebarItem = {
   title: string;
@@ -9,7 +9,26 @@ export type SidebarItem = {
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
+  template: `
+    <section #section>
+      <ul>
+        <li *ngFor="let item of sidebarItems | async" (click)="item.onClick()">
+          {{ item.title }}
+        </li>
+      </ul>
+      <footer>
+        <button
+          class="settings"
+          (click)="openUserAccountManager()"
+          mat-icon-button
+          color="primary"
+          aria-label="Example icon button with a open in new tab icon"
+        >
+          <mat-icon>settings</mat-icon>
+        </button>
+      </footer>
+    </section>
+  `,
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements AfterViewChecked {

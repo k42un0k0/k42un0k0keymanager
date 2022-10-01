@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TabbarComponent } from './tabbar.component';
 import { BaseModule } from 'src/app/base/base.module';
-import { TabComponent } from 'src/app/main/components/tab/tab.component';
+import { TabComponent } from 'src/app/main/components/tabbar/tab.component';
 import { TestModule } from 'src/app/test/test.module';
 
 describe('main/components/TabbarComponent', () => {

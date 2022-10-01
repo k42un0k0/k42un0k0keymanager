@@ -5,7 +5,11 @@ import { routeAnimations } from './animations';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <div style="height: 100%; overflow: hidden;" [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  `,
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations],
 })

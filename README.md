@@ -17,6 +17,14 @@ lerna add か lerna bootstrap をつかうこと
 
 rxjs 系のプロパティは name$ の形にする
 
+window の config の show を false にして ready-to-show の後に show を true にすると変な画面は見えない(electron みたいにある程度を html に任せればいい感じに skeleton になりそう)
+
+### auto update
+
+mac だと調整が必要らしい
+
+https://blog.katsubemakito.net/nodejs/electron/autoupdater
+
 ### testing-library
 
 双方向バインディングを実装した際のテストに関してだけは実装の詳細のテストを許容する(あくまで現状はの話)

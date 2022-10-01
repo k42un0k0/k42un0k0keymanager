@@ -3,7 +3,15 @@ import { OuterAccount } from 'src/models';
 
 @Component({
   selector: 'app-account-card',
-  templateUrl: './account-card.component.html',
+  template: `
+    <div class="container">
+      <div class="content">
+        <div class="primary providerName">{{ account.providerName }}</div>
+        <div class="secondary userId">{{ account.userId }}</div>
+      </div>
+      <img alt="provier icon" [src]="account.iconPath" appDefault="./assets/icons/lock.png" />
+    </div>
+  `,
   styleUrls: ['./account-card.component.scss'],
 })
 export class AccountCardComponent {
