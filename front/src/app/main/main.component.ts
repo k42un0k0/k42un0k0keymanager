@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CHANNELS, IUpdateMessageService, nonNullable } from 'lib';
 import { from, Observable } from 'rxjs';
@@ -58,18 +59,20 @@ export class MainComponent {
     })
   );
   userAccount!: UserAccount;
+  private window: Window;
   constructor(
-    private window: Window,
+    @Inject(DOCUMENT) private document: Document,
     private userAccountRepository: UserAccountRepository,
     private userAccountService: UserAccountService,
     private outerAccountRepository: OuterAccountRepository,
     private tabService: TabService,
     private dialog: MatDialog
   ) {
+    this.window = this.document.defaultView!;
     this.tabService.current$.pipe(filter((v): v is Tab => v != null)).subscribe((tab) => {
       this.userAccount = tab.userAccount;
     });
-    this.listener = new ElectronListener(window).listen(CHANNELS.updateMessageService, new UpdateMessageService());
+    this.listener = new ElectronListener(this.window).listen(CHANNELS.updateMessageService, new UpdateMessageService());
   }
 
   _onClickHome(): void {
