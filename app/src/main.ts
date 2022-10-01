@@ -1,14 +1,14 @@
 import path from 'path';
 import { app as electronApp, BrowserWindow } from 'electron';
 import logger from 'electron-log';
-import { autoUpdater } from 'electron-updater';
+// import { autoUpdater } from 'electron-updater';
 import { listener } from './lib/listener/listener';
 import { registerAutoReload } from './lib/reload';
 import { ipcService, windowManager } from './lib/singleton';
-import { UpdateMessageService } from 'src/lib/emitter/update-message.service';
+// import { UpdateMessageService } from 'src/lib/emitter/update-message.service';
 
 logger.transports.file.level = 'info';
-autoUpdater.logger = logger;
+// autoUpdater.logger = logger;
 
 function windowIsNone(): boolean {
   return BrowserWindow.getAllWindows().length === 0;
@@ -21,11 +21,11 @@ function main(): void {
     windowManager.initializeWindow();
   });
 
-  autoUpdater.signals.progress((progressObj) => {
-    windowManager.getEmitters(UpdateMessageService).forEach((u) => {
-      u.onProgress(progressObj.percent);
-    });
-  });
+  // autoUpdater.signals.progress((progressObj) => {
+  //   windowManager.getEmitters(UpdateMessageService).forEach((u) => {
+  //     u.onProgress(progressObj.percent);
+  //   });
+  // });
 
   // macではウィンドウが閉じてもアプリが残るため、マニュアルで閉じる
   electronApp.on('window-all-closed', () => {
